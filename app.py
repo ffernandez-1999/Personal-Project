@@ -60,8 +60,8 @@ with center:
                 unsafe_allow_html=True
             )
 
-            if st.button("Ver IPC actualizado →", use_container_width=True):
-                st.switch_page("pages/2_Dashboard.py")
+            st.page_link("pages/2_Dashboard.py", label="Ver IPC actualizado →", use_container_width=True)
+
 
     # ---------- CARD 2: Artículos (Wix) ----------
     with c2:
