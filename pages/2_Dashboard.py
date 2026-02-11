@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
+from datetime import date
+
 
 st.set_page_config(
     page_title="IPC vs IPCA (ENGHo 2017/18)",
@@ -144,6 +146,10 @@ ipc_level = ipc_level.loc[common_idx]
 div_wide = div_wide.loc[common_idx]
 months = list(common_idx.sort_values())
 
+# months: lista de pd.Timestamp
+months_d = [m.date() for m in months]  # -> datetime.date (tipo soportado y consistente)
+
+
 # ============================================================
 # Controles (arriba, alineados con el panel derecho)
 # ============================================================
@@ -152,20 +158,27 @@ with ctrl_col:
     c1, c2, c3 = st.columns([2.2, 1.2, 1.2], gap="medium")
 
     with c1:
+        months_d = [m.date() for m in months]
+    
         start_default_date = next(
-            (m for m in months if (m.year == 2025 and m.month == 1)),
-            months[0]
+            (d for d in months_d if (d.year == 2025 and d.month == 1)),
+            months_d[0]
         )
-        
-        start_m, end_m = st.slider(
+    
+        start_d, end_d = st.slider(
             "Rango de fechas",
-            min_value=months[0],
-            max_value=months[-1],
-            value=(start_default_date, months[-1]),
-            format="MMM-YY",   # ← clave
+            min_value=months_d[0],
+            max_value=months_d[-1],
+            value=(start_default_date, months_d[-1]),
+            format="MMM-YY",
         )
-
+    
+        # volver a Timestamp para filtrar series
+        start_m = pd.Timestamp(start_d)
+        end_m = pd.Timestamp(end_d)
+    
         st.caption(f"{start_m.strftime('%b-%Y')} → {end_m.strftime('%b-%Y')}")
+
 
 
     with c2:
