@@ -1,3 +1,18 @@
+st.set_page_config(
+    page_title="Personal Project",
+    layout="wide"
+)
+
+pg = st.navigation([
+    st.Page("app.py", title="Home"),
+    st.Page("pages/2_Dashboard.py", title="Dashboard"),
+    st.Page("pages/3_Notes.py", title="Notes"),
+])
+pg.run()
+
+
+
+
 import streamlit as st
 
 st.set_page_config(
