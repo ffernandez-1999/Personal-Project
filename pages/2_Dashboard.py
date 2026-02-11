@@ -1,4 +1,3 @@
-# pages/2_Dashboard.py
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -10,9 +9,28 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# ---------- MINI HEADER (arriba-derecha) ----------
-_, hcol = st.columns([3, 1], gap="large")
-with hcol:
+# --- Oculta sidebar también en esta página ---
+st.markdown(
+    """
+    <style>
+      [data-testid="stSidebar"] { display: none !important; }
+      [data-testid="stSidebarNav"] { display: none !important; }
+      section.main > div { padding-top: 1.0rem; }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# ============================================================
+# Top row: botón volver + mini header derecha
+# ============================================================
+top_left, top_right = st.columns([1, 3], gap="large")
+
+with top_left:
+    if st.button("← Volver al Home"):
+        st.switch_page("app.py")
+
+with top_right:
     st.markdown(
         """
         <div style="text-align:right; line-height:1.2;">
@@ -37,8 +55,6 @@ st.markdown("<div style='height:8px;'></div>", unsafe_allow_html=True)
 # Config
 # ============================================================
 DIV_CODES = list(range(1, 13))
-
-# Ponderadores ENGHo 2017/18 (proporciones)
 W_2017 = {
     1: 22.7 / 100, 2: 2.0 / 100, 3: 6.8 / 100, 4: 14.5 / 100,
     5: 5.5 / 100, 6: 6.4 / 100, 7: 14.3 / 100, 8: 5.1 / 100,
@@ -81,11 +97,8 @@ def month_label(ts: pd.Timestamp) -> str:
     return ts.strftime("%Y-%m")
 
 def compute_ipca_level(div_wide: pd.DataFrame, weights: dict, base_year: int) -> pd.Series:
-    # promedio del año base por división
     base_mask = div_wide.index.year == base_year
     base_avg = div_wide.loc[base_mask, DIV_CODES].mean(axis=0)
-
-    # fallback si no hay base_year dentro del rango
     if base_avg.isna().any():
         base_avg = div_wide[DIV_CODES].mean(axis=0)
 
@@ -96,7 +109,6 @@ def compute_ipca_level(div_wide: pd.DataFrame, weights: dict, base_year: int) ->
 
 def calc_series(level: pd.Series, measure: str) -> pd.Series:
     level = level.sort_index()
-
     if measure == "Mensual":
         return level.pct_change(1) * 100
     if measure == "Interanual":
@@ -104,18 +116,16 @@ def calc_series(level: pd.Series, measure: str) -> pd.Series:
     if measure == "Acumulado":
         base = level.dropna().iloc[0] if not level.dropna().empty else np.nan
         return (level / base - 1) * 100
-
     raise ValueError("Medida inválida")
 
 # ============================================================
-# Build dataset
+# Data
 # ============================================================
 st.title("IPC vs IPCA (ENGHo 2017/18)")
 
 df = get_ipc_indec_full()
 df_nac = df[(df["Region"] == "Nacional") & (df["Clasificador"].str.contains("divisiones", case=False, na=False))].copy()
 
-# IPC oficial (nivel general, nivel 2016=100 de INDEC)
 ipc_level = (
     df_nac[df_nac["Codigo_num"] == 0][["Periodo", "Indice_IPC"]]
     .drop_duplicates("Periodo")
@@ -123,18 +133,15 @@ ipc_level = (
     .set_index("Periodo")["Indice_IPC"]
 )
 
-# Divisiones para construir IPCA
 div_df = df_nac[df_nac["Codigo_num"].isin(DIV_CODES)][["Periodo", "Codigo_num", "Indice_IPC"]].copy()
 div_wide = (
     div_df.pivot_table(index="Periodo", columns="Codigo_num", values="Indice_IPC", aggfunc="last")
     .sort_index()
 )
 
-# Fechas comunes
 common_idx = ipc_level.index.intersection(div_wide.index)
 ipc_level = ipc_level.loc[common_idx]
 div_wide = div_wide.loc[common_idx]
-
 months = list(common_idx.sort_values())
 
 # ============================================================
@@ -145,9 +152,7 @@ with ctrl_col:
     c1, c2, c3 = st.columns([2.2, 1.2, 1.2], gap="medium")
 
     with c1:
-        # default: desde ene-2025 hasta último mes, pero se puede elegir todo
         start_default = next((i for i, m in enumerate(months) if (m.year == 2025 and m.month == 1)), 0)
-
         i0, i1 = st.slider(
             "Rango de fechas",
             min_value=0,
@@ -163,16 +168,12 @@ with ctrl_col:
         measure = st.selectbox("Medida", ["Mensual", "Interanual", "Acumulado"], index=0)
 
     with c3:
-        base_year = st.selectbox(
-            "Año base (IPCA)",
-            options=list(range(2017, 2026)),
-            index=8,  # 2025
-        )
+        base_year = st.selectbox("Año base (IPCA)", options=list(range(2017, 2026)), index=8)
 
 st.divider()
 
 # ============================================================
-# Apply range + compute series
+# Range + series
 # ============================================================
 mask = (common_idx >= start_m) & (common_idx <= end_m)
 ipc_level_rng = ipc_level.loc[mask]
@@ -188,7 +189,7 @@ ipc = ipc.loc[common]
 ipca = ipca.loc[common]
 
 # ============================================================
-# Layout principal: KPIs (izq) + Gráfico (der) — MISMA FILA
+# Layout: KPIs (izq) + Chart (der)
 # ============================================================
 kpi_col, main_col = st.columns([1, 3], gap="large")
 
@@ -211,10 +212,10 @@ with kpi_col:
         """
 <div style="font-size:13px; line-height:1.35; color: rgba(0,0,0,0.75);">
 <ul style="margin-top:6px;">
-  <li><b>IPC:</b> inflación oficial del INDEC (Nivel general, Nacional), tomada directamente del CSV publicado por el organismo.</li>
-  <li><b>IPCA (ENGHo 2017/18):</b> indicador construido reponderando las <b>12 divisiones COICOP</b> del IPC con la estructura de gasto de la <b>ENGHo 2017/18</b>.
-      Se utilizan los <b>índices por división</b> publicados por INDEC y se agregan mediante un <b>promedio ponderado</b>.</li>
-  <li><b>Actualización automática:</b> el dashboard descarga el CSV oficial de INDEC y recalcula IPC e IPCA automáticamente (con caché para performance).</li>
+  <li><b>IPC:</b> inflación oficial del INDEC (Nivel general, Nacional), tomada del CSV publicado por el organismo.</li>
+  <li><b>IPCA (ENGHo 2017/18):</b> índice sintético que repondera las <b>12 divisiones COICOP</b> usando la estructura de gasto de la <b>ENGHo 2017/18</b>.
+      Se agregan los <b>índices por división</b> mediante un <b>promedio ponderado</b> y se normaliza a 100 por el año base elegido.</li>
+  <li><b>Actualización automática:</b> el dashboard descarga el CSV oficial y recalcula IPC/IPCA (con caché para performance).</li>
 </ul>
 </div>
 """,
@@ -255,9 +256,11 @@ with main_col:
             y=1.02,
             xanchor="left",
             x=0,
-            font=dict(size=15),  # agranda la letra de la leyenda
+            font=dict(size=15),
         ),
         hovermode="x",
     )
     fig.update_yaxes(title="%")
-    st.plotly_chart(fig, use_container_width=True)
+
+    # Streamlit nuevo: reemplaza use_container_width
+    st.plotly_chart(fig, width="stretch")
