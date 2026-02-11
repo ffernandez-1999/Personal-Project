@@ -2,17 +2,22 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Personal Project",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="collapsed",
 )
 
-pg = st.navigation([
-    st.Page("app.py", title="Home"),
-    st.Page("pages/2_Dashboard.py", title="Dashboard"),
-    st.Page("pages/3_Notes.py", title="Notes"),
-])
-
-pg.run()
-
+# --- Oculta sidebar + botón/cabecera (para que no aparezca el menú de páginas) ---
+st.markdown(
+    """
+    <style>
+      [data-testid="stSidebar"] { display: none !important; }
+      [data-testid="stSidebarNav"] { display: none !important; }
+      /* achica un poco el padding superior */
+      section.main > div { padding-top: 1.2rem; }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 # ---------- HEADER PRINCIPAL ----------
 st.markdown(
@@ -37,72 +42,42 @@ left, center, right = st.columns([1, 6, 1])
 with center:
     st.divider()
 
-    # espacio vertical (el que ya sabíamos que estaba bien)
+    # espacio vertical (mantenemos tu look)
     st.markdown("<div style='height:90px;'></div>", unsafe_allow_html=True)
 
-    # ---------- CARDS ----------
-    c1, c2, c3 = st.columns(3)
+    # ---------- CARDS (2 columnas) ----------
+    c1, c2 = st.columns(2)
 
-    # ---------- CARD 1 ----------
+    # ---------- CARD 1: Dashboard ----------
     with c1:
-        with st.container(border=True):
-            st.markdown(
-                "<h4 style='text-align:center;'>📄 Sobre mí / CV</h4>",
-                unsafe_allow_html=True
-            )
-            st.markdown(
-                "<p style='text-align:center;'>Experiencia, formación y áreas de interés.</p>",
-                unsafe_allow_html=True
-            )
-
-            b1, b2 = st.columns(2)
-
-            with b1:
-                with open("assets/cv.pdf", "rb") as f:
-                    st.download_button(
-                        "Ver CV →",
-                        f,
-                        file_name="CV_Francisco_Fernandez_Amato.pdf",
-                        mime="application/pdf",
-                        use_container_width=True
-                    )
-
-            with b2:
-                with open("assets/TFM_Fernandez.pdf", "rb") as f:
-                    st.download_button(
-                        "Ver Tesis Maestría →",
-                        f,
-                        file_name="TFM_Francisco_Fernandez.pdf",
-                        mime="application/pdf",
-                        use_container_width=True
-                    )
-
-    # ---------- CARD 2 ----------
-    with c2:
         with st.container(border=True):
             st.markdown(
                 "<h4 style='text-align:center;'>📊 Dashboard interactivo</h4>",
                 unsafe_allow_html=True
             )
             st.markdown(
-                "<p style='text-align:center;'>Visualización de datos macroeconómicos.</p>",
+                "<p style='text-align:center;'>Comparación IPC oficial vs IPCA (ENGHo 2017/18).</p>",
                 unsafe_allow_html=True
             )
 
-            if st.button("Ver dashboard →", use_container_width=True):
+            if st.button("Ver IPC actualizado →", use_container_width=True):
                 st.switch_page("pages/2_Dashboard.py")
 
-    # ---------- CARD 3 ----------
-    with c3:
+    # ---------- CARD 2: Artículos (Wix) ----------
+    with c2:
         with st.container(border=True):
             st.markdown(
                 "<h4 style='text-align:center;'>📝 Notas macroeconómicas</h4>",
                 unsafe_allow_html=True
             )
             st.markdown(
-                "<p style='text-align:center;'>Análisis y perspectivas actuales.</p>",
+                "<p style='text-align:center;'>Artículos y publicaciones.</p>",
                 unsafe_allow_html=True
             )
 
-            if st.button("Ver artículos →", use_container_width=True):
-                st.switch_page("pages/3_Notes.py")
+            # Link externo (más confiable que intentar switch_page)
+            st.link_button(
+                "Ver artículos →",
+                "https://franciscofernanc2ozl.wixsite.com/ffecon",
+                use_container_width=True,
+            )
