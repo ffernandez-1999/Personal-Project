@@ -152,17 +152,21 @@ with ctrl_col:
     c1, c2, c3 = st.columns([2.2, 1.2, 1.2], gap="medium")
 
     with c1:
-        start_default = next((i for i, m in enumerate(months) if (m.year == 2025 and m.month == 1)), 0)
-        i0, i1 = st.slider(
-            "Rango de fechas",
-            min_value=0,
-            max_value=len(months) - 1,
-            value=(start_default, len(months) - 1),
-            format="",
+        start_default_date = next(
+            (m for m in months if (m.year == 2025 and m.month == 1)),
+            months[0]
         )
-        start_m = months[i0]
-        end_m = months[i1]
-        st.caption(f"{month_label(start_m)} → {month_label(end_m)}")
+        
+        start_m, end_m = st.slider(
+            "Rango de fechas",
+            min_value=months[0],
+            max_value=months[-1],
+            value=(start_default_date, months[-1]),
+            format="MMM-YY",   # ← clave
+        )
+
+        st.caption(f"{start_m.strftime('%b-%Y')} → {end_m.strftime('%b-%Y')}")
+
 
     with c2:
         measure = st.selectbox("Medida", ["Mensual", "Interanual", "Acumulado"], index=0)
