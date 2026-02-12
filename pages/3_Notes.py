@@ -2,13 +2,18 @@
 import streamlit as st
 import textwrap
 
+# ------------------------------------------------------------
+# Config
+# ------------------------------------------------------------
 st.set_page_config(
     page_title="Notas — Macro",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
 
-# --- Oculta sidebar multipage de Streamlit (en esta page también) ---
+# ------------------------------------------------------------
+# Ocultar sidebar multipage
+# ------------------------------------------------------------
 st.markdown(
     """
     <style>
@@ -16,13 +21,18 @@ st.markdown(
       [data-testid="stSidebarNav"] { display: none !important; }
       [data-testid="collapsedControl"] { display: none !important; }
 
-      .block-container { max-width: 1400px; padding-top: 1.2rem; }
-      section.main > div { padding-top: 1.2rem; }
+      .block-container {
+          max-width: 1450px;
+          padding-top: 1.2rem;
+      }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
+# ------------------------------------------------------------
+# Data placeholder
+# ------------------------------------------------------------
 NOTAS = [
     {
         "id": "nota-01",
@@ -50,111 +60,134 @@ NOTAS = [
     },
 ]
 
-# --- CSS UI ---
+# ------------------------------------------------------------
+# CSS
+# ------------------------------------------------------------
 st.markdown(
     """
     <style>
       :root{
         --ink:#0b2b4c;
-        --muted:#526484;
+        --muted:#5b6b82;
         --line: rgba(15, 23, 42, 0.10);
         --card: rgba(255,255,255,0.92);
-        --shadow: 0 10px 24px rgba(2,6,23,0.06);
-        --shadow2: 0 6px 16px rgba(2,6,23,0.08);
-        --blue: rgba(37, 99, 235, 0.35);
+        --shadow: 0 6px 18px rgba(2,6,23,0.05);
+        --hover: rgba(37, 99, 235, 0.25);
       }
 
-      .notes-title { font-size: 38px; font-weight: 950; margin: 0; color: var(--ink); }
-      .notes-sub   { color: var(--muted); margin: 6px 0 18px 0; font-weight: 700; font-size: 15px; }
+      .notes-title {
+        font-size: 40px;
+        font-weight: 800;
+        margin: 0;
+        color: var(--ink);
+      }
 
+      .notes-sub {
+        color: var(--muted);
+        margin: 6px 0 22px 0;
+        font-size: 15px;
+      }
+
+      /* Sidebar */
       .notes-sidebar {
         position: sticky;
         top: 70px;
-        padding: 12px;
-        border-radius: 16px;
+        padding: 16px;
+        border-radius: 18px;
         background: var(--card);
         border: 1px solid var(--line);
-        box-shadow: 0 6px 18px rgba(2,6,23,0.05);
-        backdrop-filter: blur(10px);
+        box-shadow: var(--shadow);
       }
+
       .notes-sidebar h4{
-        margin: 0 0 10px 2px;
+        margin: 0 0 14px 2px;
         font-size: 12px;
-        letter-spacing: .35px;
+        letter-spacing: .4px;
         text-transform: uppercase;
         color: var(--muted);
-        font-weight: 900;
       }
 
       .notes-item{
         display:block;
-        padding: 10px 10px;
-        border-radius: 14px;
+        padding: 14px 14px;
+        border-radius: 16px;
         text-decoration: none !important;
         color: var(--ink) !important;
-        font-weight: 900;
+        font-weight: 500;   /* ← sin negrita fuerte */
         border: 1px solid rgba(15, 23, 42, 0.08);
-        background: rgba(255,255,255,0.98);
-        margin-bottom: 8px;
+        background: white;
+        margin-bottom: 12px;
         transition: all .15s ease;
-        line-height: 1.25;
       }
+
       .notes-item:hover{
+        border-color: var(--hover);
         transform: translateY(-1px);
-        border-color: var(--blue);
-        box-shadow: var(--shadow2);
       }
+
       .notes-item .date{
         display:block;
-        margin-top: 4px;
+        margin-top: 6px;
         font-size: 12px;
-        font-weight: 800;
+        font-weight: 400;
         color: #6b7280;
       }
 
-      .note-anchor { scroll-margin-top: 92px; }
+      /* Contenido derecha */
+      .note-anchor { scroll-margin-top: 100px; }
+
       .note-h2{
         margin: 0 0 6px 0;
         font-size: 26px;
-        font-weight: 950;
+        font-weight: 700;
         color: var(--ink);
       }
+
       .note-meta{
         margin: 0 0 12px 0;
         font-size: 12px;
-        font-weight: 900;
         color: var(--muted);
         text-transform: uppercase;
-        letter-spacing: .35px;
+        letter-spacing: .4px;
       }
+
       .note-text{
-        margin: 0 0 14px 0;
-        font-size: 15px;
-        line-height: 1.62;
+        margin: 0 0 16px 0;
+        font-size: 16px;
+        line-height: 1.65;
         color: var(--ink);
-        font-weight: 650;
       }
+
       hr {
         border: none;
-        border-top: 1px solid rgba(15, 23, 42, 0.10);
-        margin: 18px 0 18px 0;
+        border-top: 1px solid rgba(15, 23, 42, 0.12);
+        margin: 26px 0;
       }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-# --- Volver ---
-st.page_link("app.py", label="← Volver", use_container_width=False)
+# ------------------------------------------------------------
+# Volver
+# ------------------------------------------------------------
+st.page_link("app.py", label="← Volver")
 
+# ------------------------------------------------------------
+# Header
+# ------------------------------------------------------------
 st.markdown("<div class='notes-title'>Notas — Macro</div>", unsafe_allow_html=True)
 st.markdown("<div class='notes-sub'>Índice a la izquierda (sticky) + notas completas a la derecha</div>", unsafe_allow_html=True)
 
-# Layout (derecha más ancha)
-left, right = st.columns([1, 5], gap="large")
+# ------------------------------------------------------------
+# Layout (columna izquierda más grande)
+# ------------------------------------------------------------
+left, right = st.columns([1.5, 4], gap="large")
 
+# ------------------------------------------------------------
+# Sidebar
+# ------------------------------------------------------------
 with left:
-    # ⚠️ IMPORTANTE: SIN INDENTACIÓN para que Markdown no lo convierta en code block
     items = []
     for n in NOTAS:
         items.append(
@@ -170,6 +203,9 @@ with left:
 
     st.markdown(sidebar_html, unsafe_allow_html=True)
 
+# ------------------------------------------------------------
+# Contenido
+# ------------------------------------------------------------
 with right:
     for i, n in enumerate(NOTAS):
         st.markdown(
