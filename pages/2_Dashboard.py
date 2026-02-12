@@ -194,7 +194,7 @@ st.markdown(
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
                 <div class="header-title">Francisco Fernandez Amato</div>
-                <div style="font-size: 0.9rem; opacity: 0.9;">Analista Económico</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">Macroeconomista</div>
             </div>
             <div class="header-links">
                 <a href="mailto:franciscofernandezz1999@gmail.com">📧 Email</a>
@@ -309,10 +309,8 @@ months = list(common_idx.sort_values())
 months_d = [m.date() for m in months]
 
 # ============================================================
-# Controles (mejorados visualmente)
+# Controles (inline compactos sin título)
 # ============================================================
-st.markdown("### ⚙️ Configuración")
-
 c1, c2, c3 = st.columns([3, 1.5, 1.5], gap="medium")
 
 with c1:
@@ -332,7 +330,7 @@ with c1:
     start_m = pd.Timestamp(start_d)
     end_m = pd.Timestamp(end_d)
 
-    st.caption(f"📊 Período seleccionado: {start_m.strftime('%b-%Y')} → {end_m.strftime('%b-%Y')}")
+    st.caption(f"📊 Período: {start_m.strftime('%b-%Y')} → {end_m.strftime('%b-%Y')}")
 
 with c2:
     measure = st.selectbox("📈 Medida", ["Mensual", "Interanual", "Acumulado"], index=0)
