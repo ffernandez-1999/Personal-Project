@@ -356,7 +356,6 @@ with c1:
         months_d[0]
     )
 
-    # wrapper SOLO para este slider
     st.markdown('<div class="range-clean">', unsafe_allow_html=True)
 
     start_d, end_d = st.slider(
@@ -369,16 +368,9 @@ with c1:
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-    # Tu rango azul (único texto visible)
-    st.markdown(
-        f"<div style='color:#1e3a8a; font-weight:700; margin-top:-6px;'>"
-        f"{pd.Timestamp(start_d).strftime('%b-%y')} — {pd.Timestamp(end_d).strftime('%b-%y')}"
-        f"</div>",
-        unsafe_allow_html=True,
-    )
-
     start_m = pd.Timestamp(start_d)
     end_m = pd.Timestamp(end_d)
+
 
 
 
