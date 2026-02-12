@@ -11,47 +11,207 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# --- Oculta sidebar también en esta página ---
+# ============================================================
+# CSS Mejorado (realista para Streamlit)
+# ============================================================
 st.markdown(
     """
     <style>
+      /* Ocultar sidebar */
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
-      section.main > div { padding-top: 1.0rem; }
+      
+      /* Reducir padding superior */
+      section.main > div { padding-top: 1rem; }
+      
+      /* Tipografía general */
+      html, body, [class*="css"] {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+      
+      /* Headers más bonitos */
+      h1 {
+        font-size: 2.5rem !important;
+        font-weight: 700 !important;
+        margin-bottom: 0.5rem !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      h2, h3 {
+        font-weight: 600 !important;
+      }
+      
+      /* Métricas mejoradas */
+      [data-testid="stMetricValue"] {
+        font-size: 2.5rem !important;
+        font-weight: 700 !important;
+      }
+      
+      [data-testid="stMetricLabel"] {
+        font-size: 0.875rem !important;
+        font-weight: 500 !important;
+        color: rgba(0,0,0,0.6) !important;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      
+      /* Botones con mejor estilo */
+      .stButton > button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 0.5rem 1.5rem !important;
+        font-weight: 600 !important;
+        transition: all 0.3s !important;
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
+      }
+      
+      .stButton > button:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
+      }
+      
+      /* Selectbox y Slider más modernos */
+      .stSelectbox > div > div {
+        border-radius: 8px !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+      
+      /* Divider más sutil */
+      hr {
+        margin: 1.5rem 0 !important;
+        border-color: #e2e8f0 !important;
+      }
+      
+      /* Caption mejorado */
+      .stCaption {
+        color: rgba(0,0,0,0.5) !important;
+        font-size: 0.875rem !important;
+      }
+      
+      /* Card personalizada para metodología */
+      .methodology-card {
+        background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
+        border-left: 4px solid #667eea;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-top: 1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      }
+      
+      .methodology-card ul {
+        margin-top: 0.5rem;
+        padding-left: 1.2rem;
+      }
+      
+      .methodology-card li {
+        margin-bottom: 0.75rem;
+        line-height: 1.6;
+      }
+      
+      /* Header personalizado */
+      .custom-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 1.5rem 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+        color: white;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+      }
+      
+      .header-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+      
+      .header-links {
+        font-size: 0.875rem;
+        opacity: 0.9;
+      }
+      
+      .header-links a {
+        color: white !important;
+        text-decoration: none;
+        margin: 0 0.5rem;
+        font-weight: 500;
+      }
+      
+      .header-links a:hover {
+        text-decoration: underline;
+      }
+      
+      /* KPI cards personalizadas */
+      .kpi-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        margin-bottom: 1rem;
+      }
+      
+      .kpi-card-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: rgba(0,0,0,0.5);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+      
+      .kpi-card-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.25rem;
+      }
+      
+      /* Plotly container */
+      .js-plotly-plot {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
 # ============================================================
-# Top row: botón volver + mini header derecha
+# Header personalizado (reemplaza el top row)
 # ============================================================
-top_left, top_right = st.columns([1, 3], gap="large")
-
-with top_left:
-    if st.button("← Volver al Home"):
-        st.switch_page("app.py")
-
-with top_right:
-    st.markdown(
-        """
-        <div style="text-align:right; line-height:1.2;">
-            <div style="font-size:22px; font-weight:700;">
-                Francisco Fernandez Amato
+st.markdown(
+    """
+    <div class="custom-header">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <div class="header-title">Francisco Fernandez Amato</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">Analista Económico</div>
             </div>
-            <div style="margin-top:6px; font-size:14px;">
-                <a href="mailto:franciscofernandezz1999@gmail.com">Email</a>
-                &nbsp;·&nbsp;
-                <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">LinkedIn</a>
-                &nbsp;·&nbsp;
-                <a href="https://github.com/ffernandez-1999" target="_blank">GitHub</a>
+            <div class="header-links">
+                <a href="mailto:franciscofernandezz1999@gmail.com">📧 Email</a>
+                <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">💼 LinkedIn</a>
+                <a href="https://github.com/ffernandez-1999" target="_blank">🔗 GitHub</a>
             </div>
         </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
-st.markdown("<div style='height:8px;'></div>", unsafe_allow_html=True)
+# Botón volver (más chico y elegante)
+col_btn, _ = st.columns([1, 5])
+with col_btn:
+    if st.button("← Volver"):
+        st.switch_page("app.py")
 
 # ============================================================
 # Config
@@ -146,46 +306,39 @@ ipc_level = ipc_level.loc[common_idx]
 div_wide = div_wide.loc[common_idx]
 months = list(common_idx.sort_values())
 
-# months: lista de pd.Timestamp
-months_d = [m.date() for m in months]  # -> datetime.date (tipo soportado y consistente)
-
+months_d = [m.date() for m in months]
 
 # ============================================================
-# Controles (arriba, alineados con el panel derecho)
+# Controles (mejorados visualmente)
 # ============================================================
-_, ctrl_col = st.columns([1, 3], gap="large")
-with ctrl_col:
-    c1, c2, c3 = st.columns([2.2, 1.2, 1.2], gap="medium")
+st.markdown("### ⚙️ Configuración")
 
-    with c1:
-        months_d = [m.date() for m in months]
-    
-        start_default_date = next(
-            (d for d in months_d if (d.year == 2025 and d.month == 1)),
-            months_d[0]
-        )
-    
-        start_d, end_d = st.slider(
-            "Rango de fechas",
-            min_value=months_d[0],
-            max_value=months_d[-1],
-            value=(start_default_date, months_d[-1]),
-            format="MMM-YY",
-        )
-    
-        # volver a Timestamp para filtrar series
-        start_m = pd.Timestamp(start_d)
-        end_m = pd.Timestamp(end_d)
-    
-        st.caption(f"{start_m.strftime('%b-%Y')} → {end_m.strftime('%b-%Y')}")
+c1, c2, c3 = st.columns([3, 1.5, 1.5], gap="medium")
 
+with c1:
+    start_default_date = next(
+        (d for d in months_d if (d.year == 2025 and d.month == 1)),
+        months_d[0]
+    )
 
+    start_d, end_d = st.slider(
+        "📅 Rango de fechas",
+        min_value=months_d[0],
+        max_value=months_d[-1],
+        value=(start_default_date, months_d[-1]),
+        format="MMM-YY",
+    )
 
-    with c2:
-        measure = st.selectbox("Medida", ["Mensual", "Interanual", "Acumulado"], index=0)
+    start_m = pd.Timestamp(start_d)
+    end_m = pd.Timestamp(end_d)
 
-    with c3:
-        base_year = st.selectbox("Año base (IPCA)", options=list(range(2017, 2026)), index=8)
+    st.caption(f"📊 Período seleccionado: {start_m.strftime('%b-%Y')} → {end_m.strftime('%b-%Y')}")
+
+with c2:
+    measure = st.selectbox("📈 Medida", ["Mensual", "Interanual", "Acumulado"], index=0)
+
+with c3:
+    base_year = st.selectbox("📐 Año base (IPCA)", options=list(range(2017, 2026)), index=8)
 
 st.divider()
 
@@ -208,57 +361,95 @@ ipca = ipca.loc[common]
 # ============================================================
 # Layout: KPIs (izq) + Chart (der)
 # ============================================================
-kpi_col, main_col = st.columns([1, 3], gap="large")
+kpi_col, main_col = st.columns([1, 2.5], gap="large")
 
 with kpi_col:
-    st.subheader("📌 KPIs")
+    st.markdown("### 📊 Indicadores Clave")
 
     if common.empty:
-        st.warning("No hay datos en el rango seleccionado.")
+        st.warning("⚠️ No hay datos en el rango seleccionado.")
     else:
         last_date = common.max()
-        st.caption(f"Último dato: {pd.to_datetime(last_date).strftime('%b-%Y')}")
-        st.metric("IPC", fmt_pct(ipc.iloc[-1]))
-        st.metric("IPCA (ENGHo 2017/18)", fmt_pct(ipca.iloc[-1]))
+        st.caption(f"🕐 Último dato disponible: **{pd.to_datetime(last_date).strftime('%B %Y')}**")
+        
+        # KPIs con cards personalizadas
+        st.markdown(
+            f"""
+            <div class="kpi-card">
+                <div class="kpi-card-label">IPC Nacional</div>
+                <div class="kpi-card-value">{fmt_pct(ipc.iloc[-1])}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        
+        st.markdown(
+            f"""
+            <div class="kpi-card">
+                <div class="kpi-card-label">IPCA (ENGHo 2017/18)</div>
+                <div class="kpi-card-value">{fmt_pct(ipca.iloc[-1])}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        
+        # Diferencial
+        if not ipc.empty and not ipca.empty:
+            diff = ipc.iloc[-1] - ipca.iloc[-1]
+            st.markdown(
+                f"""
+                <div class="kpi-card">
+                    <div class="kpi-card-label">Diferencial (IPC - IPCA)</div>
+                    <div class="kpi-card-value">{fmt_pct(diff)}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
-    st.markdown("<div style='height:10px;'></div>", unsafe_allow_html=True)
-    st.divider()
-
-    st.markdown("**📌 Metodología**")
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    # Metodología en card bonita
     st.markdown(
         """
-<div style="font-size:13px; line-height:1.35; color: rgba(0,0,0,0.75);">
-<ul style="margin-top:6px;">
-  <li><b>IPC:</b> inflación oficial del INDEC (Nivel general, Nacional), tomada del CSV publicado por el organismo.</li>
-  <li><b>IPCA (ENGHo 2017/18):</b> índice sintético que repondera las <b>12 divisiones COICOP</b> usando la estructura de gasto de la <b>ENGHo 2017/18</b>.
-      Se agregan los <b>índices por división</b> mediante un <b>promedio ponderado</b> y se normaliza a 100 por el año base elegido.</li>
-  <li><b>Actualización automática:</b> el dashboard descarga el CSV oficial y recalcula IPC/IPCA (con caché para performance).</li>
-</ul>
-</div>
-""",
+        <div class="methodology-card">
+            <h4 style="margin-top: 0; margin-bottom: 1rem; font-size: 1rem;">📖 Metodología</h4>
+            <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.875rem; line-height: 1.6;">
+                <li><b>IPC:</b> Inflación oficial del INDEC (nivel general, nacional)</li>
+                <li><b>IPCA:</b> Índice que repondera las 12 divisiones COICOP usando ponderadores de ENGHo 2017/18</li>
+                <li><b>Fuente:</b> CSV oficial del INDEC, actualizado automáticamente</li>
+                <li><b>Cálculo:</b> Promedio ponderado de índices por división, normalizado a 100 en año base</li>
+            </ul>
+        </div>
+        """,
         unsafe_allow_html=True,
     )
 
 with main_col:
+    st.markdown("### 📈 Evolución Temporal")
+    
     fig = go.Figure()
 
+    # IPC
     fig.add_trace(
         go.Scatter(
             x=ipc.index,
             y=ipc.values,
             mode="lines+markers",
-            marker=dict(size=6),
+            marker=dict(size=7, color='#667eea'),
+            line=dict(width=3, color='#667eea'),
             name="IPC",
             hovertemplate="%{x|%b-%Y}<br>IPC: %{y:.2f}%<extra></extra>",
         )
     )
 
+    # IPCA
     fig.add_trace(
         go.Scatter(
             x=ipca.index,
             y=ipca.values,
             mode="lines+markers",
-            marker=dict(size=6),
+            marker=dict(size=7, color='#764ba2'),
+            line=dict(width=3, color='#764ba2'),
             name="IPCA (ENGHo 2017/18)",
             hovertemplate="%{x|%b-%Y}<br>IPCA: %{y:.2f}%<extra></extra>",
         )
@@ -266,18 +457,44 @@ with main_col:
 
     fig.update_layout(
         height=560,
-        margin=dict(l=10, r=10, t=10, b=10),
+        margin=dict(l=20, r=20, t=40, b=20),
         legend=dict(
             orientation="h",
             yanchor="bottom",
             y=1.02,
             xanchor="left",
             x=0,
-            font=dict(size=15),
+            font=dict(size=14),
         ),
-        hovermode="x",
+        hovermode="x unified",
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(family="Inter, sans-serif"),
     )
-    fig.update_yaxes(title="%")
+    
+    fig.update_xaxes(
+        showgrid=True,
+        gridwidth=1,
+        gridcolor='rgba(0,0,0,0.05)',
+        showline=True,
+        linewidth=1,
+        linecolor='rgba(0,0,0,0.1)',
+    )
+    
+    fig.update_yaxes(
+        title="Variación %",
+        showgrid=True,
+        gridwidth=1,
+        gridcolor='rgba(0,0,0,0.05)',
+        showline=True,
+        linewidth=1,
+        linecolor='rgba(0,0,0,0.1)',
+    )
 
-    # Streamlit nuevo: reemplaza use_container_width
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
+
+# ============================================================
+# Footer
+# ============================================================
+st.markdown("<br><br>", unsafe_allow_html=True)
+st.caption("💡 Dashboard actualizado automáticamente desde fuentes oficiales del INDEC")
