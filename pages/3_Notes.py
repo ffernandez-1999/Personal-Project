@@ -1,18 +1,14 @@
 # pages/3_Notes.py
 import streamlit as st
+import textwrap
 
-# ============================================================
-# Page config
-# ============================================================
 st.set_page_config(
     page_title="Notas — Macro",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
 
-# ============================================================
-# Hide Streamlit multipage sidebar (hay que hacerlo en cada page)
-# ============================================================
+# --- Oculta sidebar multipage de Streamlit (en esta page también) ---
 st.markdown(
     """
     <style>
@@ -20,7 +16,6 @@ st.markdown(
       [data-testid="stSidebarNav"] { display: none !important; }
       [data-testid="collapsedControl"] { display: none !important; }
 
-      /* más ancho el contenido */
       .block-container { max-width: 1400px; padding-top: 1.2rem; }
       section.main > div { padding-top: 1.2rem; }
     </style>
@@ -28,9 +23,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ============================================================
-# Data (placeholder)
-# ============================================================
 NOTAS = [
     {
         "id": "nota-01",
@@ -58,9 +50,7 @@ NOTAS = [
     },
 ]
 
-# ============================================================
-# CSS (aplica a todo porque NO usamos iframe)
-# ============================================================
+# --- CSS UI ---
 st.markdown(
     """
     <style>
@@ -68,36 +58,24 @@ st.markdown(
         --ink:#0b2b4c;
         --muted:#526484;
         --line: rgba(15, 23, 42, 0.10);
-        --card: rgba(255,255,255,0.98);
+        --card: rgba(255,255,255,0.92);
         --shadow: 0 10px 24px rgba(2,6,23,0.06);
         --shadow2: 0 6px 16px rgba(2,6,23,0.08);
         --blue: rgba(37, 99, 235, 0.35);
       }
 
-      /* Top */
       .notes-title { font-size: 38px; font-weight: 950; margin: 0; color: var(--ink); }
-      .notes-sub { color: var(--muted); margin: 6px 0 18px 0; font-weight: 700; font-size: 15px; }
+      .notes-sub   { color: var(--muted); margin: 6px 0 18px 0; font-weight: 700; font-size: 15px; }
 
-      /* Back button look (for st.page_link wrapper) */
-      .back-wrap {
-        display:flex;
-        justify-content:flex-start;
-        margin-bottom: 8px;
-      }
-      .back-wrap a, .back-wrap button {
-        font-weight: 850 !important;
-      }
-
-      /* Sidebar */
       .notes-sidebar {
         position: sticky;
         top: 70px;
         padding: 12px;
         border-radius: 16px;
-        background: rgba(255,255,255,0.88);
+        background: var(--card);
         border: 1px solid var(--line);
-        backdrop-filter: blur(10px);
         box-shadow: 0 6px 18px rgba(2,6,23,0.05);
+        backdrop-filter: blur(10px);
       }
       .notes-sidebar h4{
         margin: 0 0 10px 2px;
@@ -134,7 +112,6 @@ st.markdown(
         color: #6b7280;
       }
 
-      /* Right content */
       .note-anchor { scroll-margin-top: 92px; }
       .note-h2{
         margin: 0 0 6px 0;
@@ -167,56 +144,42 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ============================================================
-# Back button (estable)
-# ============================================================
-st.markdown("<div class='back-wrap'>", unsafe_allow_html=True)
+# --- Volver ---
 st.page_link("app.py", label="← Volver", use_container_width=False)
-st.markdown("</div>", unsafe_allow_html=True)
 
-# Title
 st.markdown("<div class='notes-title'>Notas — Macro</div>", unsafe_allow_html=True)
 st.markdown("<div class='notes-sub'>Índice a la izquierda (sticky) + notas completas a la derecha</div>", unsafe_allow_html=True)
 
-# ============================================================
-# Layout: derecha más ancha
-# ============================================================
+# Layout (derecha más ancha)
 left, right = st.columns([1, 5], gap="large")
 
-# Sidebar index (SIN iframe, CSS aplica bien)
 with left:
-    items_html = []
+    # ⚠️ IMPORTANTE: SIN INDENTACIÓN para que Markdown no lo convierta en code block
+    items = []
     for n in NOTAS:
-        items_html.append(
-            f"""
-            <a class="notes-item" href="#{n['id']}">
-              {n['titulo']}
-              <span class="date">{n['fecha']}</span>
-            </a>
-            """
+        items.append(
+            f'<a class="notes-item" href="#{n["id"]}">{n["titulo"]}<span class="date">{n["fecha"]}</span></a>'
         )
 
-    st.markdown(
-        f"""
-        <div class="notes-sidebar">
-          <h4>Índice</h4>
-          {''.join(items_html)}
-        </div>
-        """,
-        unsafe_allow_html=True,
+    sidebar_html = (
+        '<div class="notes-sidebar">'
+        '<h4>Índice</h4>'
+        + "".join(items) +
+        "</div>"
     )
 
-# Right content (simple + divider)
+    st.markdown(sidebar_html, unsafe_allow_html=True)
+
 with right:
     for i, n in enumerate(NOTAS):
         st.markdown(
-            f"""
+            textwrap.dedent(f"""
             <div id="{n['id']}" class="note-anchor">
               <div class="note-h2">{n['titulo']}</div>
               <div class="note-meta">{n['fecha']}</div>
               <div class="note-text">{n['texto']}</div>
             </div>
-            """,
+            """).strip(),
             unsafe_allow_html=True,
         )
         if i < len(NOTAS) - 1:
