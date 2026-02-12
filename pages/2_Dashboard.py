@@ -11,9 +11,6 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# ============================================================
-# CSS Mejorado (realista para Streamlit)
-# ============================================================
 
 st.markdown(
     """
@@ -96,23 +93,37 @@ st.markdown(
         background-color: #1e3a8a !important;
       }
 
-      /* (Ya tenías esto) Ocultar tickbar */
+      /* Ocultar tickbar */
       [data-baseweb="slider"] [data-testid="stTickBar"] {
         display: none !important;
       }
 
-      /* ================================
-         SLIDER: ocultar puntas + labels
-         ================================ */
-
-      /* Oculta min/max (las "puntas" tipo Dec-16 / Jan-26) */
+      /* ====== (general) si querés seguir ocultando puntas en todos los sliders ====== */
       [data-testid="stSlider"] [data-testid="stTickBarMin"],
       [data-testid="stSlider"] [data-testid="stTickBarMax"]{
         display: none !important;
       }
 
-      /* Oculta los value labels (tipo Jan-25 / Jan-26 arriba) */
-      [data-testid="stSlider"] [data-baseweb="slider"] [data-baseweb="tooltip"]{
+      /* ================================
+         SOLO este slider: ocultar etiquetas molestas
+         (Jan-25 / Jan-26 arriba + puntas)
+         ================================ */
+
+      /* Ocultar min/max dentro del wrapper */
+      .range-clean [data-testid="stTickBarMin"],
+      .range-clean [data-testid="stTickBarMax"]{
+        display: none !important;
+      }
+
+      /* Ocultar labels de valores arriba (Jan-25 / Jan-26) */
+      .range-clean [data-baseweb="slider"] [data-baseweb="popover"],
+      .range-clean [data-baseweb="slider"] [data-baseweb="tooltip"],
+      .range-clean [data-baseweb="slider"] div[role="tooltip"]{
+        display: none !important;
+      }
+
+      /* ÚLTIMO MARTILLAZO: si en tu versión esos labels vienen como spans */
+      .range-clean [data-baseweb="slider"] span{
         display: none !important;
       }
 
@@ -340,32 +351,34 @@ months_d = [m.date() for m in months]
 c1, c2, c3 = st.columns([3, 1.5, 1.5], gap="medium")
 
 with c1:
-    st.markdown("<div style='font-weight:600; margin-bottom:6px;'>📅 Rango de fechas</div>", unsafe_allow_html=True)
-
     start_default_date = next(
         (d for d in months_d if (d.year == 2025 and d.month == 1)),
         months_d[0]
     )
 
-    start_d, end_d = st.select_slider(
-        "",
-        options=months_d,
+    # wrapper SOLO para este slider
+    st.markdown('<div class="range-clean">', unsafe_allow_html=True)
+
+    start_d, end_d = st.slider(
+        "📅 Rango de fechas",
+        min_value=months_d[0],
+        max_value=months_d[-1],
         value=(start_default_date, months_d[-1]),
-        format_func=lambda d: pd.Timestamp(d).strftime("%b-%y"),
-        label_visibility="collapsed",
-        key="ipc_ipca_range",
+        format="MMM-YY",
     )
 
-    # Mostrar rango en azul (tu etiqueta)
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    # Tu rango azul (único texto visible)
     st.markdown(
-        f"<div style='color:#1e3a8a; font-weight:800; margin-top:6px;'>"
+        f"<div style='color:#1e3a8a; font-weight:700; margin-top:-6px;'>"
         f"{pd.Timestamp(start_d).strftime('%b-%y')} — {pd.Timestamp(end_d).strftime('%b-%y')}"
         f"</div>",
         unsafe_allow_html=True,
     )
 
-    start_m = pd.Timestamp(start_d).to_period("M").to_timestamp()
-    end_m = pd.Timestamp(end_d).to_period("M").to_timestamp()
+    start_m = pd.Timestamp(start_d)
+    end_m = pd.Timestamp(end_d)
 
 
 
