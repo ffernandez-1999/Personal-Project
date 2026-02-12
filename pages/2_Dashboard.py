@@ -81,6 +81,27 @@ st.markdown(
         border: 1px solid #e2e8f0 !important;
       }
       
+      /* Slider con color azul oscuro */
+      .stSlider > div > div > div > div {
+        background-color: #1e3a8a !important;
+      }
+      
+      .stSlider > div > div > div {
+        background-color: #1e3a8a !important;
+      }
+      
+      [data-baseweb="slider"] [role="slider"] {
+        background-color: #1e3a8a !important;
+      }
+      
+      [data-baseweb="slider"] > div > div {
+        background-color: rgba(30, 58, 138, 0.2) !important;
+      }
+      
+      [data-baseweb="slider"] [data-testid="stTickBar"] > div {
+        background-color: #1e3a8a !important;
+      }
+      
       /* Divider más sutil */
       hr {
         margin: 1.5rem 0 !important;
@@ -283,7 +304,7 @@ def calc_series(level: pd.Series, measure: str) -> pd.Series:
 # ============================================================
 # Data
 # ============================================================
-st.title("IPC vs IPCA (ENGHo 2017/18)")
+st.markdown("<h1 style='text-align: center;'>IPC vs IPCA (ENGHo 2017/18)</h1>", unsafe_allow_html=True)
 
 df = get_ipc_indec_full()
 df_nac = df[(df["Region"] == "Nacional") & (df["Clasificador"].str.contains("divisiones", case=False, na=False))].copy()
@@ -330,8 +351,6 @@ with c1:
     start_m = pd.Timestamp(start_d)
     end_m = pd.Timestamp(end_d)
 
-    st.caption(f"📊 Período: {start_m.strftime('%b-%Y')} → {end_m.strftime('%b-%Y')}")
-
 with c2:
     measure = st.selectbox("📈 Medida", ["Mensual", "Interanual", "Acumulado"], index=0)
 
@@ -362,7 +381,7 @@ ipca = ipca.loc[common]
 kpi_col, main_col = st.columns([1, 2.5], gap="large")
 
 with kpi_col:
-    st.markdown("### 📊 Indicadores Clave")
+    st.markdown("### 📊 Indicadores")
 
     if common.empty:
         st.warning("⚠️ No hay datos en el rango seleccionado.")
@@ -370,57 +389,48 @@ with kpi_col:
         last_date = common.max()
         st.caption(f"🕐 Último dato disponible: **{pd.to_datetime(last_date).strftime('%B %Y')}**")
         
-        # KPIs con cards personalizadas
+        # Calculate monthly and annual variations
+        ipc_monthly = ipc.iloc[-1] if len(ipc) > 0 else np.nan
+        ipc_annual = calc_series(ipc_level_rng, "Interanual").iloc[-1] if len(ipc_level_rng) > 12 else np.nan
+        
+        ipca_monthly = ipca.iloc[-1] if len(ipca) > 0 else np.nan
+        ipca_annual = calc_series(ipca_level_rng, "Interanual").iloc[-1] if len(ipca_level_rng) > 12 else np.nan
+        
+        # KPI IPC con variaciones
         st.markdown(
             f"""
             <div class="kpi-card">
                 <div class="kpi-card-label">IPC Nacional</div>
-                <div class="kpi-card-value">{fmt_pct(ipc.iloc[-1])}</div>
+                <div class="kpi-card-value">{fmt_pct(ipc_monthly)}</div>
+                <div style="font-size: 0.875rem; color: #1e3a8a; font-weight: 600;">
+                    m/m: {fmt_pct(ipc_monthly)}
+                    <span style="margin-left: 1rem; color: rgba(0,0,0,0.4);">
+                        y/y: {fmt_pct(ipc_annual)}
+                    </span>
+                </div>
             </div>
             """,
             unsafe_allow_html=True,
         )
         
+        # KPI IPCA con variaciones
         st.markdown(
             f"""
             <div class="kpi-card">
                 <div class="kpi-card-label">IPCA (ENGHo 2017/18)</div>
-                <div class="kpi-card-value">{fmt_pct(ipca.iloc[-1])}</div>
+                <div class="kpi-card-value">{fmt_pct(ipca_monthly)}</div>
+                <div style="font-size: 0.875rem; color: #1e3a8a; font-weight: 600;">
+                    m/m: {fmt_pct(ipca_monthly)}
+                    <span style="margin-left: 1rem; color: rgba(0,0,0,0.4);">
+                        y/y: {fmt_pct(ipca_annual)}
+                    </span>
+                </div>
             </div>
             """,
             unsafe_allow_html=True,
         )
-        
-        # Diferencial
-        if not ipc.empty and not ipca.empty:
-            diff = ipc.iloc[-1] - ipca.iloc[-1]
-            st.markdown(
-                f"""
-                <div class="kpi-card">
-                    <div class="kpi-card-label">Diferencial (IPC - IPCA)</div>
-                    <div class="kpi-card-value">{fmt_pct(diff)}</div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
 
     st.markdown("<br>", unsafe_allow_html=True)
-    
-    # Metodología en card bonita
-    st.markdown(
-        """
-        <div class="methodology-card">
-            <h4 style="margin-top: 0; margin-bottom: 1rem; font-size: 1rem;">📖 Metodología</h4>
-            <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.875rem; line-height: 1.6;">
-                <li><b>IPC:</b> Inflación oficial del INDEC (nivel general, nacional)</li>
-                <li><b>IPCA:</b> Índice que repondera las 12 divisiones COICOP usando ponderadores de ENGHo 2017/18</li>
-                <li><b>Fuente:</b> CSV oficial del INDEC, actualizado automáticamente</li>
-                <li><b>Cálculo:</b> Promedio ponderado de índices por división, normalizado a 100 en año base</li>
-            </ul>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
 
 with main_col:
     st.markdown("### 📈 Evolución Temporal")
@@ -490,6 +500,24 @@ with main_col:
     )
 
     st.plotly_chart(fig, use_container_width=True)
+
+# ============================================================
+# Metodología (full width debajo del gráfico)
+# ============================================================
+st.markdown(
+    """
+    <div class="methodology-card">
+        <h4 style="margin-top: 0; margin-bottom: 1rem; font-size: 1rem;">📖 Metodología</h4>
+        <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.875rem; line-height: 1.6;">
+            <li><b>IPC:</b> Inflación oficial del INDEC (nivel general, nacional)</li>
+            <li><b>IPCA:</b> Índice que repondera las 12 divisiones COICOP usando ponderadores de ENGHo 2017/18</li>
+            <li><b>Fuente:</b> CSV oficial del INDEC, actualizado automáticamente</li>
+            <li><b>Cálculo:</b> Promedio ponderado de índices por división, normalizado a 100 en año base</li>
+        </ul>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 # ============================================================
 # Footer
