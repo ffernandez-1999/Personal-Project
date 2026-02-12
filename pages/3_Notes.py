@@ -1,36 +1,35 @@
 # pages/3_Notes.py
 import streamlit as st
-import streamlit.components.v1 as components
 
 # ============================================================
 # Page config
 # ============================================================
-st.set_page_config(page_title="Notas — Macro", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(
+    page_title="Notas — Macro",
+    layout="wide",
+    initial_sidebar_state="collapsed",
+)
 
 # ============================================================
-# Global CSS: hide Streamlit multipage sidebar + clean padding
+# Hide Streamlit multipage sidebar (hay que hacerlo en cada page)
 # ============================================================
 st.markdown(
     """
     <style>
-      /* Hide Streamlit sidebar + multipage nav */
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
       [data-testid="collapsedControl"] { display: none !important; }
 
-      /* Wider content area */
-      .block-container { max-width: 1320px; padding-top: 1.2rem; }
+      /* más ancho el contenido */
+      .block-container { max-width: 1400px; padding-top: 1.2rem; }
       section.main > div { padding-top: 1.2rem; }
-
-      /* Remove weird extra spacing some themes add */
-      div[data-testid="stVerticalBlock"] { gap: 0.75rem; }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
 # ============================================================
-# Demo notes (placeholder content)
+# Data (placeholder)
 # ============================================================
 NOTAS = [
     {
@@ -60,7 +59,7 @@ NOTAS = [
 ]
 
 # ============================================================
-# CSS: Bloomberg-ish, sidebar clean, right column wider
+# CSS (aplica a todo porque NO usamos iframe)
 # ============================================================
 st.markdown(
     """
@@ -70,48 +69,32 @@ st.markdown(
         --muted:#526484;
         --line: rgba(15, 23, 42, 0.10);
         --card: rgba(255,255,255,0.98);
-        --bg: rgba(242,244,247,0.0);
         --shadow: 0 10px 24px rgba(2,6,23,0.06);
         --shadow2: 0 6px 16px rgba(2,6,23,0.08);
-        --blue: rgba(37, 99, 235, 0.45);
+        --blue: rgba(37, 99, 235, 0.35);
       }
 
-      .notes-topbar{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        margin: 0 0 10px 0;
-      }
-      .notes-back a{
-        display:inline-flex;
-        align-items:center;
-        gap:8px;
-        padding: 10px 12px;
-        border-radius: 12px;
-        border: 1px solid var(--line);
-        background: var(--card);
-        color: var(--ink);
-        text-decoration:none;
-        font-weight: 850;
-        box-shadow: 0 4px 14px rgba(2,6,23,0.05);
-        transition: all .15s ease;
-      }
-      .notes-back a:hover{
-        transform: translateY(-1px);
-        border-color: var(--blue);
-        box-shadow: var(--shadow2);
-      }
-
-      .notes-title { font-size: 36px; font-weight: 950; margin: 0; color: var(--ink); }
+      /* Top */
+      .notes-title { font-size: 38px; font-weight: 950; margin: 0; color: var(--ink); }
       .notes-sub { color: var(--muted); margin: 6px 0 18px 0; font-weight: 700; font-size: 15px; }
 
-      /* Sidebar (Index) */
+      /* Back button look (for st.page_link wrapper) */
+      .back-wrap {
+        display:flex;
+        justify-content:flex-start;
+        margin-bottom: 8px;
+      }
+      .back-wrap a, .back-wrap button {
+        font-weight: 850 !important;
+      }
+
+      /* Sidebar */
       .notes-sidebar {
         position: sticky;
-        top: 72px;
+        top: 70px;
         padding: 12px;
         border-radius: 16px;
-        background: rgba(255,255,255,0.82);
+        background: rgba(255,255,255,0.88);
         border: 1px solid var(--line);
         backdrop-filter: blur(10px);
         box-shadow: 0 6px 18px rgba(2,6,23,0.05);
@@ -124,15 +107,16 @@ st.markdown(
         color: var(--muted);
         font-weight: 900;
       }
+
       .notes-item{
         display:block;
         padding: 10px 10px;
         border-radius: 14px;
-        text-decoration: none;
-        color: var(--ink);
+        text-decoration: none !important;
+        color: var(--ink) !important;
         font-weight: 900;
-        border: 1px solid rgba(15, 23, 42, 0.07);
-        background: rgba(255,255,255,0.96);
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        background: rgba(255,255,255,0.98);
         margin-bottom: 8px;
         transition: all .15s ease;
         line-height: 1.25;
@@ -150,12 +134,11 @@ st.markdown(
         color: #6b7280;
       }
 
-      /* Right content: simpler (divider-based) */
-      .note-wrap { padding: 0; }
+      /* Right content */
       .note-anchor { scroll-margin-top: 92px; }
       .note-h2{
         margin: 0 0 6px 0;
-        font-size: 24px;
+        font-size: 26px;
         font-weight: 950;
         color: var(--ink);
       }
@@ -170,12 +153,10 @@ st.markdown(
       .note-text{
         margin: 0 0 14px 0;
         font-size: 15px;
-        line-height: 1.6;
+        line-height: 1.62;
         color: var(--ink);
         font-weight: 650;
       }
-
-      /* Softer divider */
       hr {
         border: none;
         border-top: 1px solid rgba(15, 23, 42, 0.10);
@@ -187,36 +168,26 @@ st.markdown(
 )
 
 # ============================================================
-# Top bar: Back button + title
-# Back uses query param to return home (?go=home) - you can adjust
+# Back button (estable)
 # ============================================================
-st.markdown(
-    """
-    <div class="notes-topbar">
-      <div class="notes-back">
-        <a href="/?go=home">← Volver</a>
-      </div>
-      <div></div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+st.markdown("<div class='back-wrap'>", unsafe_allow_html=True)
+st.page_link("app.py", label="← Volver", use_container_width=False)
+st.markdown("</div>", unsafe_allow_html=True)
 
+# Title
 st.markdown("<div class='notes-title'>Notas — Macro</div>", unsafe_allow_html=True)
 st.markdown("<div class='notes-sub'>Índice a la izquierda (sticky) + notas completas a la derecha</div>", unsafe_allow_html=True)
 
 # ============================================================
-# Layout: make right column wider
+# Layout: derecha más ancha
 # ============================================================
 left, right = st.columns([1, 5], gap="large")
 
-# -------------------------
-# Sidebar index (rendered via components.html for reliability)
-# -------------------------
+# Sidebar index (SIN iframe, CSS aplica bien)
 with left:
-    items = []
+    items_html = []
     for n in NOTAS:
-        items.append(
+        items_html.append(
             f"""
             <a class="notes-item" href="#{n['id']}">
               {n['titulo']}
@@ -225,24 +196,22 @@ with left:
             """
         )
 
-    sidebar_html = f"""
-    <div class="notes-sidebar">
-      <h4>Índice</h4>
-      {''.join(items)}
-    </div>
-    """
+    st.markdown(
+        f"""
+        <div class="notes-sidebar">
+          <h4>Índice</h4>
+          {''.join(items_html)}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-    # Height: enough to show items without scroll; sticky still works
-    components.html(sidebar_html, height=420, scrolling=False)
-
-# -------------------------
-# Right content: full-width text + dividers (simpler/cleaner)
-# -------------------------
+# Right content (simple + divider)
 with right:
     for i, n in enumerate(NOTAS):
         st.markdown(
             f"""
-            <div id="{n['id']}" class="note-anchor note-wrap">
+            <div id="{n['id']}" class="note-anchor">
               <div class="note-h2">{n['titulo']}</div>
               <div class="note-meta">{n['fecha']}</div>
               <div class="note-text">{n['texto']}</div>
@@ -250,6 +219,5 @@ with right:
             """,
             unsafe_allow_html=True,
         )
-
         if i < len(NOTAS) - 1:
             st.markdown("<hr/>", unsafe_allow_html=True)
