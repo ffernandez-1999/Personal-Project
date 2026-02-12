@@ -102,6 +102,16 @@ st.markdown(
         background-color: #1e3a8a !important;
       }
       
+      /* Ocultar labels de slider y cambiar colores */
+      [data-baseweb="slider"] [data-testid="stTickBar"] {
+        display: none !important;
+      }
+      
+      .stSlider [data-testid="stTickBarMin"],
+      .stSlider [data-testid="stTickBarMax"] {
+        color: #1e3a8a !important;
+      }
+      
       /* Divider más sutil */
       hr {
         margin: 1.5rem 0 !important;
@@ -137,22 +147,29 @@ st.markdown(
       /* Header personalizado */
       .custom-header {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 1.5rem 2rem;
-        border-radius: 12px;
-        margin-bottom: 2rem;
+        padding: 2rem 2.5rem;
+        border-radius: 16px;
+        margin-bottom: 2.5rem;
         color: white;
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
       }
       
       .header-title {
-        font-size: 1.5rem;
+        font-size: 2rem;
         font-weight: 700;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .header-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.95;
+        font-weight: 500;
       }
       
       .header-links {
-        font-size: 0.875rem;
-        opacity: 0.9;
+        font-size: 0.95rem;
+        opacity: 0.95;
+        margin-top: 0.5rem;
       }
       
       .header-links a {
@@ -215,7 +232,7 @@ st.markdown(
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
                 <div class="header-title">Francisco Fernandez Amato</div>
-                <div style="font-size: 0.9rem; opacity: 0.9;">Macroeconomista</div>
+                <div class="header-subtitle">Macroeconomista</div>
             </div>
             <div class="header-links">
                 <a href="mailto:franciscofernandezz1999@gmail.com">📧 Email</a>
@@ -401,12 +418,13 @@ with kpi_col:
             f"""
             <div class="kpi-card">
                 <div class="kpi-card-label">IPC Nacional</div>
-                <div class="kpi-card-value">{fmt_pct(ipc_monthly)}</div>
-                <div style="font-size: 0.875rem; color: #1e3a8a; font-weight: 600;">
-                    m/m: {fmt_pct(ipc_monthly)}
-                    <span style="margin-left: 1rem; color: rgba(0,0,0,0.4);">
-                        y/y: {fmt_pct(ipc_annual)}
-                    </span>
+                <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.5rem;">
+                    <div class="kpi-card-value">{fmt_pct(ipc_monthly)}</div>
+                    <div class="kpi-card-value" style="opacity: 0.4;">{fmt_pct(ipc_annual)}</div>
+                </div>
+                <div style="font-size: 0.75rem; color: rgba(0,0,0,0.5); font-weight: 600;">
+                    <span>m/m</span>
+                    <span style="margin-left: 6.5rem;">y/y</span>
                 </div>
             </div>
             """,
@@ -418,12 +436,13 @@ with kpi_col:
             f"""
             <div class="kpi-card">
                 <div class="kpi-card-label">IPCA (ENGHo 2017/18)</div>
-                <div class="kpi-card-value">{fmt_pct(ipca_monthly)}</div>
-                <div style="font-size: 0.875rem; color: #1e3a8a; font-weight: 600;">
-                    m/m: {fmt_pct(ipca_monthly)}
-                    <span style="margin-left: 1rem; color: rgba(0,0,0,0.4);">
-                        y/y: {fmt_pct(ipca_annual)}
-                    </span>
+                <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.5rem;">
+                    <div class="kpi-card-value">{fmt_pct(ipca_monthly)}</div>
+                    <div class="kpi-card-value" style="opacity: 0.4;">{fmt_pct(ipca_annual)}</div>
+                </div>
+                <div style="font-size: 0.75rem; color: rgba(0,0,0,0.5); font-weight: 600;">
+                    <span>m/m</span>
+                    <span style="margin-left: 6.5rem;">y/y</span>
                 </div>
             </div>
             """,
