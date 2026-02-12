@@ -146,18 +146,23 @@ def render_notas_macro():
     # Sidebar (sticky)
     # -------------------------
     with left:
-        sidebar_html = ["<div class='notes-sidebar'>", "<h4>Índice</h4>"]
+        sidebar_html = """
+        <div class="notes-sidebar">
+          <h4>Índice</h4>
+        """
+    
         for n in NOTAS:
-            sidebar_html.append(
-                f"""
-                <a class="notes-link" href="#{n['id']}">
-                  {n['titulo']}
-                  <span class="notes-date">{n['fecha']}</span>
-                </a>
-                """
-            )
-        sidebar_html.append("</div>")
-        st.markdown("".join(sidebar_html), unsafe_allow_html=True)
+            sidebar_html += f"""
+            <a class="notes-link" href="#{n['id']}">
+              {n['titulo']}
+              <span class="notes-date">{n['fecha']}</span>
+            </a>
+            """
+    
+        sidebar_html += "</div>"
+    
+        st.markdown(sidebar_html, unsafe_allow_html=True)
+
 
     # -------------------------
     # Contenido (scroll)
