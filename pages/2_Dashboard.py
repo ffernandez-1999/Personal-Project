@@ -221,6 +221,21 @@ st.markdown(
     </style>
     """,
     unsafe_allow_html=True,
+    /* ================================
+       SLIDER: ocultar puntas + labels
+       ================================ */
+    
+    /* Oculta min/max (las "puntas" tipo Dec-16 / Jan-26) */
+    [data-testid="stSlider"] [data-testid="stTickBarMin"],
+    [data-testid="stSlider"] [data-testid="stTickBarMax"]{
+      display: none !important;
+    }
+    
+    /* Oculta los value labels (tipo Jan-25 / Jan-26 arriba) */
+    [data-testid="stSlider"] [data-baseweb="slider"] [data-baseweb="tooltip"]{
+      display: none !important;
+    }
+      
 )
 
 # ============================================================
@@ -357,6 +372,7 @@ with c1:
         months_d[0]
     )
 
+    # (A) Slider
     start_d, end_d = st.slider(
         "📅 Rango de fechas",
         min_value=months_d[0],
@@ -365,8 +381,17 @@ with c1:
         format="MMM-YY",
     )
 
+    # (B) Rango mostrado en azul (lo que vos querías ver)
+    st.markdown(
+        f"<div style='color:#1e3a8a; font-weight:700; margin-top:-6px;'>"
+        f"{pd.Timestamp(start_d).strftime('%b-%y')} — {pd.Timestamp(end_d).strftime('%b-%y')}"
+        f"</div>",
+        unsafe_allow_html=True,
+    )
+
     start_m = pd.Timestamp(start_d)
     end_m = pd.Timestamp(end_d)
+
 
 with c2:
     measure = st.selectbox("📈 Medida", ["Mensual", "Interanual", "Acumulado"], index=0)
@@ -465,7 +490,7 @@ with main_col:
             marker=dict(size=7, color='#667eea'),
             line=dict(width=3, color='#667eea'),
             name="IPC",
-            hovertemplate="%{x|%b-%Y}<br>IPC: %{y:.2f}%<extra></extra>",
+            hovertemplate="IPC: %{y:.2f}%<extra></extra>",
         )
     )
 
@@ -478,7 +503,7 @@ with main_col:
             marker=dict(size=7, color='#764ba2'),
             line=dict(width=3, color='#764ba2'),
             name="IPCA (ENGHo 2017/18)",
-            hovertemplate="%{x|%b-%Y}<br>IPCA: %{y:.2f}%<extra></extra>",
+            hovertemplate="IPCA: %{y:.2f}%<extra></extra>",
         )
     )
 
