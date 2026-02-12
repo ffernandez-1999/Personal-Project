@@ -14,21 +14,22 @@ st.set_page_config(
 # ============================================================
 # CSS Mejorado (realista para Streamlit)
 # ============================================================
+
 st.markdown(
     """
     <style>
       /* Ocultar sidebar */
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
-      
+
       /* Reducir padding superior */
       section.main > div { padding-top: 1rem; }
-      
+
       /* Tipografía general */
       html, body, [class*="css"] {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       }
-      
+
       /* Headers más bonitos */
       h1 {
         font-size: 2.5rem !important;
@@ -39,17 +40,15 @@ st.markdown(
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
-      
-      h2, h3 {
-        font-weight: 600 !important;
-      }
-      
+
+      h2, h3 { font-weight: 600 !important; }
+
       /* Métricas mejoradas */
       [data-testid="stMetricValue"] {
         font-size: 2.5rem !important;
         font-weight: 700 !important;
       }
-      
+
       [data-testid="stMetricLabel"] {
         font-size: 0.875rem !important;
         font-weight: 500 !important;
@@ -57,7 +56,7 @@ st.markdown(
         text-transform: uppercase;
         letter-spacing: 0.05em;
       }
-      
+
       /* Botones con mejor estilo */
       .stButton > button {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
@@ -69,61 +68,66 @@ st.markdown(
         transition: all 0.3s !important;
         box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
       }
-      
+
       .stButton > button:hover {
         transform: translateY(-2px) !important;
         box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
       }
-      
+
       /* Selectbox y Slider más modernos */
       .stSelectbox > div > div {
         border-radius: 8px !important;
         border: 1px solid #e2e8f0 !important;
       }
-      
+
       /* Slider con color azul oscuro */
-      .stSlider > div > div > div > div {
-        background-color: #1e3a8a !important;
-      }
-      
-      .stSlider > div > div > div {
-        background-color: #1e3a8a !important;
-      }
-      
+      .stSlider > div > div > div > div { background-color: #1e3a8a !important; }
+      .stSlider > div > div > div { background-color: #1e3a8a !important; }
+
       [data-baseweb="slider"] [role="slider"] {
         background-color: #1e3a8a !important;
       }
-      
+
       [data-baseweb="slider"] > div > div {
         background-color: rgba(30, 58, 138, 0.2) !important;
       }
-      
+
       [data-baseweb="slider"] [data-testid="stTickBar"] > div {
         background-color: #1e3a8a !important;
       }
-      
-      /* Ocultar labels de slider y cambiar colores */
+
+      /* (Ya tenías esto) Ocultar tickbar */
       [data-baseweb="slider"] [data-testid="stTickBar"] {
         display: none !important;
       }
-      
-      .stSlider [data-testid="stTickBarMin"],
-      .stSlider [data-testid="stTickBarMax"] {
-        color: #1e3a8a !important;
+
+      /* ================================
+         SLIDER: ocultar puntas + labels
+         ================================ */
+
+      /* Oculta min/max (las "puntas" tipo Dec-16 / Jan-26) */
+      [data-testid="stSlider"] [data-testid="stTickBarMin"],
+      [data-testid="stSlider"] [data-testid="stTickBarMax"]{
+        display: none !important;
       }
-      
+
+      /* Oculta los value labels (tipo Jan-25 / Jan-26 arriba) */
+      [data-testid="stSlider"] [data-baseweb="slider"] [data-baseweb="tooltip"]{
+        display: none !important;
+      }
+
       /* Divider más sutil */
       hr {
         margin: 1.5rem 0 !important;
         border-color: #e2e8f0 !important;
       }
-      
+
       /* Caption mejorado */
       .stCaption {
         color: rgba(0,0,0,0.5) !important;
         font-size: 0.875rem !important;
       }
-      
+
       /* Card personalizada para metodología */
       .methodology-card {
         background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
@@ -133,17 +137,10 @@ st.markdown(
         margin-top: 1rem;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       }
-      
-      .methodology-card ul {
-        margin-top: 0.5rem;
-        padding-left: 1.2rem;
-      }
-      
-      .methodology-card li {
-        margin-bottom: 0.75rem;
-        line-height: 1.6;
-      }
-      
+
+      .methodology-card ul { margin-top: 0.5rem; padding-left: 1.2rem; }
+      .methodology-card li { margin-bottom: 0.75rem; line-height: 1.6; }
+
       /* Header personalizado */
       .custom-header {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -153,36 +150,25 @@ st.markdown(
         color: white;
         box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
       }
-      
-      .header-title {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-      }
-      
-      .header-subtitle {
-        font-size: 1.1rem;
-        opacity: 0.95;
-        font-weight: 500;
-      }
-      
+
+      .header-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+      .header-subtitle { font-size: 1.1rem; opacity: 0.95; font-weight: 500; }
+
       .header-links {
         font-size: 0.95rem;
         opacity: 0.95;
         margin-top: 0.5rem;
       }
-      
+
       .header-links a {
         color: white !important;
         text-decoration: none;
         margin: 0 0.5rem;
         font-weight: 500;
       }
-      
-      .header-links a:hover {
-        text-decoration: underline;
-      }
-      
+
+      .header-links a:hover { text-decoration: underline; }
+
       /* KPI cards personalizadas */
       .kpi-card {
         background: white;
@@ -192,7 +178,7 @@ st.markdown(
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         margin-bottom: 1rem;
       }
-      
+
       .kpi-card-label {
         font-size: 0.75rem;
         font-weight: 600;
@@ -201,7 +187,7 @@ st.markdown(
         letter-spacing: 0.05em;
         margin-bottom: 0.5rem;
       }
-      
+
       .kpi-card-value {
         font-size: 2.5rem;
         font-weight: 700;
@@ -211,7 +197,7 @@ st.markdown(
         background-clip: text;
         margin-bottom: 0.25rem;
       }
-      
+
       /* Plotly container */
       .js-plotly-plot {
         border-radius: 12px;
@@ -221,22 +207,9 @@ st.markdown(
     </style>
     """,
     unsafe_allow_html=True,
-    /* ================================
-       SLIDER: ocultar puntas + labels
-       ================================ */
-    
-    /* Oculta min/max (las "puntas" tipo Dec-16 / Jan-26) */
-    [data-testid="stSlider"] [data-testid="stTickBarMin"],
-    [data-testid="stSlider"] [data-testid="stTickBarMax"]{
-      display: none !important;
-    }
-    
-    /* Oculta los value labels (tipo Jan-25 / Jan-26 arriba) */
-    [data-testid="stSlider"] [data-baseweb="slider"] [data-baseweb="tooltip"]{
-      display: none !important;
-    }
-      
 )
+
+
 
 # ============================================================
 # Header personalizado (reemplaza el top row)
