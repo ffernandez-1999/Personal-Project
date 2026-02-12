@@ -340,30 +340,33 @@ months_d = [m.date() for m in months]
 c1, c2, c3 = st.columns([3, 1.5, 1.5], gap="medium")
 
 with c1:
+    st.markdown("<div style='font-weight:600; margin-bottom:6px;'>📅 Rango de fechas</div>", unsafe_allow_html=True)
+
     start_default_date = next(
         (d for d in months_d if (d.year == 2025 and d.month == 1)),
         months_d[0]
     )
 
-    # (A) Slider
-    start_d, end_d = st.slider(
-        "📅 Rango de fechas",
-        min_value=months_d[0],
-        max_value=months_d[-1],
+    start_d, end_d = st.select_slider(
+        "",
+        options=months_d,
         value=(start_default_date, months_d[-1]),
-        format="MMM-YY",
+        format_func=lambda d: pd.Timestamp(d).strftime("%b-%y"),
+        label_visibility="collapsed",
+        key="ipc_ipca_range",
     )
 
-    # (B) Rango mostrado en azul (lo que vos querías ver)
+    # Mostrar rango en azul (tu etiqueta)
     st.markdown(
-        f"<div style='color:#1e3a8a; font-weight:700; margin-top:-6px;'>"
+        f"<div style='color:#1e3a8a; font-weight:800; margin-top:6px;'>"
         f"{pd.Timestamp(start_d).strftime('%b-%y')} — {pd.Timestamp(end_d).strftime('%b-%y')}"
         f"</div>",
         unsafe_allow_html=True,
     )
 
-    start_m = pd.Timestamp(start_d)
-    end_m = pd.Timestamp(end_d)
+    start_m = pd.Timestamp(start_d).to_period("M").to_timestamp()
+    end_m = pd.Timestamp(end_d).to_period("M").to_timestamp()
+
 
 
 with c2:
