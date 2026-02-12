@@ -62,8 +62,7 @@ with center:
 
             st.page_link("pages/2_Dashboard.py", label="Ver IPC actualizado →", use_container_width=True)
 
-
-    # ---------- CARD 2: Artículos (Wix) ----------
+    # ---------- CARD 2: Notas macro (INTERNAL) ----------
     with c2:
         with st.container(border=True):
             st.markdown(
@@ -75,9 +74,5 @@ with center:
                 unsafe_allow_html=True
             )
 
-            # Link externo (más confiable que intentar switch_page)
-            st.link_button(
-                "Ver artículos →",
-                "https://franciscofernanc2ozl.wixsite.com/ffecon",
-                use_container_width=True,
-            )
+            # ✅ Ahora es una page interna (no Wix)
+            st.page_link("pages/3_Notes.py", label="Ver artículos →", use_container_width=True)
