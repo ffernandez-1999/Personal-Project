@@ -17,14 +17,19 @@ st.set_page_config(
 st.markdown(
     """
     <style>
+      /* Ocultar sidebar */
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
+      
+      /* Reducir padding superior */
       section.main > div { padding-top: 1rem; }
-
+      
+      /* Tipografía general */
       html, body, [class*="css"] {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       }
-
+      
+      /* Headers más bonitos */
       h1 {
         font-size: 2.5rem !important;
         font-weight: 700 !important;
@@ -32,10 +37,28 @@ st.markdown(
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
-
-      h2, h3 { font-weight: 600 !important; }
-
+      
+      h2, h3 {
+        font-weight: 600 !important;
+      }
+      
+      /* Métricas mejoradas */
+      [data-testid="stMetricValue"] {
+        font-size: 2.5rem !important;
+        font-weight: 700 !important;
+      }
+      
+      [data-testid="stMetricLabel"] {
+        font-size: 0.875rem !important;
+        font-weight: 500 !important;
+        color: rgba(0,0,0,0.6) !important;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      
+      /* Botones con mejor estilo */
       .stButton > button {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
         color: white !important;
@@ -43,34 +66,34 @@ st.markdown(
         border-radius: 8px !important;
         padding: 0.5rem 1.5rem !important;
         font-weight: 600 !important;
+        transition: all 0.3s !important;
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
       }
-
-      .kpi-card {
-        background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        margin-bottom: 1rem;
+      
+      .stButton > button:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
       }
-
-      .kpi-card-label {
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: rgba(0,0,0,0.5);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.5rem;
+      
+      /* Selectbox y Slider más modernos */
+      .stSelectbox > div > div {
+        border-radius: 8px !important;
+        border: 1px solid #e2e8f0 !important;
       }
-
-      .kpi-card-value {
-        font-size: 2.5rem;
-        font-weight: 700;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      
+      /* Divider más sutil */
+      hr {
+        margin: 1.5rem 0 !important;
+        border-color: #e2e8f0 !important;
       }
-
+      
+      /* Caption mejorado */
+      .stCaption {
+        color: rgba(0,0,0,0.5) !important;
+        font-size: 0.875rem !important;
+      }
+      
+      /* Card personalizada para metodología */
       .methodology-card {
         background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
         border-left: 4px solid #667eea;
@@ -79,17 +102,79 @@ st.markdown(
         margin-top: 1rem;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       }
-
-      /* ✅ NUEVO: Card para controles */
-      .controls-card {
+      
+      .methodology-card ul {
+        margin-top: 0.5rem;
+        padding-left: 1.2rem;
+      }
+      
+      .methodology-card li {
+        margin-bottom: 0.75rem;
+        line-height: 1.6;
+      }
+      
+      /* Header personalizado */
+      .custom-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 1.5rem 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+        color: white;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+      }
+      
+      .header-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+      
+      .header-links {
+        font-size: 0.875rem;
+        opacity: 0.9;
+      }
+      
+      .header-links a {
+        color: white !important;
+        text-decoration: none;
+        margin: 0 0.5rem;
+        font-weight: 500;
+      }
+      
+      .header-links a:hover {
+        text-decoration: underline;
+      }
+      
+      /* KPI cards personalizadas */
+      .kpi-card {
         background: white;
         border-radius: 12px;
-        padding: 1.5rem 1.5rem 0.8rem 1.5rem;
+        padding: 1.5rem;
         border: 1px solid #e2e8f0;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
       }
-
+      
+      .kpi-card-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: rgba(0,0,0,0.5);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+      
+      .kpi-card-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.25rem;
+      }
+      
+      /* Plotly container */
       .js-plotly-plot {
         border-radius: 12px;
         overflow: hidden;
@@ -99,6 +184,34 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+# ============================================================
+# Header personalizado (reemplaza el top row)
+# ============================================================
+st.markdown(
+    """
+    <div class="custom-header">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <div class="header-title">Francisco Fernandez Amato</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">Macroeconomista</div>
+            </div>
+            <div class="header-links">
+                <a href="mailto:franciscofernandezz1999@gmail.com">📧 Email</a>
+                <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">💼 LinkedIn</a>
+                <a href="https://github.com/ffernandez-1999" target="_blank">🔗 GitHub</a>
+            </div>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Botón volver (más chico y elegante)
+col_btn, _ = st.columns([1, 5])
+with col_btn:
+    if st.button("← Volver"):
+        st.switch_page("app.py")
 
 # ============================================================
 # Config
@@ -141,6 +254,9 @@ def fmt_pct(x):
     if x is None or (isinstance(x, float) and np.isnan(x)):
         return "—"
     return f"{x:,.1f}%".replace(",", "X").replace(".", ",").replace("X", ".")
+
+def month_label(ts: pd.Timestamp) -> str:
+    return ts.strftime("%Y-%m")
 
 def compute_ipca_level(div_wide: pd.DataFrame, weights: dict, base_year: int) -> pd.Series:
     base_mask = div_wide.index.year == base_year
@@ -189,13 +305,12 @@ common_idx = ipc_level.index.intersection(div_wide.index)
 ipc_level = ipc_level.loc[common_idx]
 div_wide = div_wide.loc[common_idx]
 months = list(common_idx.sort_values())
+
 months_d = [m.date() for m in months]
 
 # ============================================================
-# ✅ CONTROLES EN CARD (ÚNICO CAMBIO REAL)
+# Controles (inline compactos sin título)
 # ============================================================
-st.markdown('<div class="controls-card">', unsafe_allow_html=True)
-
 c1, c2, c3 = st.columns([3, 1.5, 1.5], gap="medium")
 
 with c1:
@@ -223,8 +338,6 @@ with c2:
 with c3:
     base_year = st.selectbox("📐 Año base (IPCA)", options=list(range(2017, 2026)), index=8)
 
-st.markdown('</div>', unsafe_allow_html=True)
-
 st.divider()
 
 # ============================================================
@@ -244,7 +357,7 @@ ipc = ipc.loc[common]
 ipca = ipca.loc[common]
 
 # ============================================================
-# Layout: KPIs + Chart
+# Layout: KPIs (izq) + Chart (der)
 # ============================================================
 kpi_col, main_col = st.columns([1, 2.5], gap="large")
 
@@ -256,7 +369,8 @@ with kpi_col:
     else:
         last_date = common.max()
         st.caption(f"🕐 Último dato disponible: **{pd.to_datetime(last_date).strftime('%B %Y')}**")
-
+        
+        # KPIs con cards personalizadas
         st.markdown(
             f"""
             <div class="kpi-card">
@@ -266,7 +380,7 @@ with kpi_col:
             """,
             unsafe_allow_html=True,
         )
-
+        
         st.markdown(
             f"""
             <div class="kpi-card">
@@ -276,12 +390,44 @@ with kpi_col:
             """,
             unsafe_allow_html=True,
         )
+        
+        # Diferencial
+        if not ipc.empty and not ipca.empty:
+            diff = ipc.iloc[-1] - ipca.iloc[-1]
+            st.markdown(
+                f"""
+                <div class="kpi-card">
+                    <div class="kpi-card-label">Diferencial (IPC - IPCA)</div>
+                    <div class="kpi-card-value">{fmt_pct(diff)}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    # Metodología en card bonita
+    st.markdown(
+        """
+        <div class="methodology-card">
+            <h4 style="margin-top: 0; margin-bottom: 1rem; font-size: 1rem;">📖 Metodología</h4>
+            <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.875rem; line-height: 1.6;">
+                <li><b>IPC:</b> Inflación oficial del INDEC (nivel general, nacional)</li>
+                <li><b>IPCA:</b> Índice que repondera las 12 divisiones COICOP usando ponderadores de ENGHo 2017/18</li>
+                <li><b>Fuente:</b> CSV oficial del INDEC, actualizado automáticamente</li>
+                <li><b>Cálculo:</b> Promedio ponderado de índices por división, normalizado a 100 en año base</li>
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 with main_col:
     st.markdown("### 📈 Evolución Temporal")
-
+    
     fig = go.Figure()
 
+    # IPC
     fig.add_trace(
         go.Scatter(
             x=ipc.index,
@@ -290,9 +436,11 @@ with main_col:
             marker=dict(size=7, color='#667eea'),
             line=dict(width=3, color='#667eea'),
             name="IPC",
+            hovertemplate="%{x|%b-%Y}<br>IPC: %{y:.2f}%<extra></extra>",
         )
     )
 
+    # IPCA
     fig.add_trace(
         go.Scatter(
             x=ipca.index,
@@ -301,16 +449,50 @@ with main_col:
             marker=dict(size=7, color='#764ba2'),
             line=dict(width=3, color='#764ba2'),
             name="IPCA (ENGHo 2017/18)",
+            hovertemplate="%{x|%b-%Y}<br>IPCA: %{y:.2f}%<extra></extra>",
         )
     )
 
     fig.update_layout(
         height=560,
+        margin=dict(l=20, r=20, t=40, b=20),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="left",
+            x=0,
+            font=dict(size=14),
+        ),
         hovermode="x unified",
         plot_bgcolor='rgba(0,0,0,0)',
         paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(family="Inter, sans-serif"),
+    )
+    
+    fig.update_xaxes(
+        showgrid=True,
+        gridwidth=1,
+        gridcolor='rgba(0,0,0,0.05)',
+        showline=True,
+        linewidth=1,
+        linecolor='rgba(0,0,0,0.1)',
+    )
+    
+    fig.update_yaxes(
+        title="Variación %",
+        showgrid=True,
+        gridwidth=1,
+        gridcolor='rgba(0,0,0,0.05)',
+        showline=True,
+        linewidth=1,
+        linecolor='rgba(0,0,0,0.1)',
     )
 
     st.plotly_chart(fig, use_container_width=True)
 
+# ============================================================
+# Footer
+# ============================================================
+st.markdown("<br><br>", unsafe_allow_html=True)
 st.caption("💡 Dashboard actualizado automáticamente desde fuentes oficiales del INDEC")
