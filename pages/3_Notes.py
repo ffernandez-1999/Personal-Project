@@ -1,26 +1,36 @@
+# pages/3_Notes.py
 import streamlit as st
 import streamlit.components.v1 as components
 
-st.set_page_config(page_title="Notes — Macro", layout="wide", initial_sidebar_state="collapsed")
+# ============================================================
+# Page config
+# ============================================================
+st.set_page_config(page_title="Notas — Macro", layout="wide", initial_sidebar_state="collapsed")
 
-# --- OCULTA el sidebar multipage + nav (hay que hacerlo en CADA page) ---
+# ============================================================
+# Global CSS: hide Streamlit multipage sidebar + clean padding
+# ============================================================
 st.markdown(
     """
     <style>
+      /* Hide Streamlit sidebar + multipage nav */
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
-      /* botón colapsar sidebar (a veces aparece igual) */
       [data-testid="collapsedControl"] { display: none !important; }
 
+      /* Wider content area */
+      .block-container { max-width: 1320px; padding-top: 1.2rem; }
       section.main > div { padding-top: 1.2rem; }
-      .block-container { max-width: 1200px; }
+
+      /* Remove weird extra spacing some themes add */
+      div[data-testid="stVerticalBlock"] { gap: 0.75rem; }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
 # ============================================================
-# DATA (placeholder)
+# Demo notes (placeholder content)
 # ============================================================
 NOTAS = [
     {
@@ -50,112 +60,167 @@ NOTAS = [
 ]
 
 # ============================================================
-# CSS (look)
+# CSS: Bloomberg-ish, sidebar clean, right column wider
 # ============================================================
 st.markdown(
     """
     <style>
-      .notes-title { font-size: 34px; font-weight: 900; margin: 0 0 6px 0; color: #0b2b4c; }
-      .notes-sub { color: #526484; margin: 0 0 18px 0; font-weight: 650; }
+      :root{
+        --ink:#0b2b4c;
+        --muted:#526484;
+        --line: rgba(15, 23, 42, 0.10);
+        --card: rgba(255,255,255,0.98);
+        --bg: rgba(242,244,247,0.0);
+        --shadow: 0 10px 24px rgba(2,6,23,0.06);
+        --shadow2: 0 6px 16px rgba(2,6,23,0.08);
+        --blue: rgba(37, 99, 235, 0.45);
+      }
 
-      /* Sidebar (índice) */
-      .notes-sidebar {
-        position: sticky;
-        top: 76px;
-        padding: 12px 12px 14px 12px;
-        border-radius: 14px;
-        background: rgba(255,255,255,0.85);
-        border: 1px solid rgba(15, 23, 42, 0.10);
-        backdrop-filter: blur(8px);
-      }
-      .notes-sidebar h4{
+      .notes-topbar{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
         margin: 0 0 10px 0;
-        font-size: 13px;
-        letter-spacing: .2px;
-        text-transform: uppercase;
-        color: #526484;
-        font-weight: 800;
       }
-      .notes-link{
-        display: block;
-        padding: 10px 10px;
+      .notes-back a{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        padding: 10px 12px;
         border-radius: 12px;
-        text-decoration: none;
-        color: #0b2b4c;
-        font-weight: 800;
-        border: 1px solid rgba(15, 23, 42, 0.08);
-        background: rgba(255,255,255,0.95);
-        margin-bottom: 8px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        color: var(--ink);
+        text-decoration:none;
+        font-weight: 850;
+        box-shadow: 0 4px 14px rgba(2,6,23,0.05);
         transition: all .15s ease;
       }
-      .notes-link:hover{
+      .notes-back a:hover{
         transform: translateY(-1px);
-        border-color: rgba(37, 99, 235, 0.35);
-        box-shadow: 0 6px 16px rgba(2, 6, 23, 0.08);
+        border-color: var(--blue);
+        box-shadow: var(--shadow2);
       }
-      .notes-date{
-        display: block;
-        margin-top: 3px;
+
+      .notes-title { font-size: 36px; font-weight: 950; margin: 0; color: var(--ink); }
+      .notes-sub { color: var(--muted); margin: 6px 0 18px 0; font-weight: 700; font-size: 15px; }
+
+      /* Sidebar (Index) */
+      .notes-sidebar {
+        position: sticky;
+        top: 72px;
+        padding: 12px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.82);
+        border: 1px solid var(--line);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 6px 18px rgba(2,6,23,0.05);
+      }
+      .notes-sidebar h4{
+        margin: 0 0 10px 2px;
         font-size: 12px;
-        font-weight: 750;
+        letter-spacing: .35px;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 900;
+      }
+      .notes-item{
+        display:block;
+        padding: 10px 10px;
+        border-radius: 14px;
+        text-decoration: none;
+        color: var(--ink);
+        font-weight: 900;
+        border: 1px solid rgba(15, 23, 42, 0.07);
+        background: rgba(255,255,255,0.96);
+        margin-bottom: 8px;
+        transition: all .15s ease;
+        line-height: 1.25;
+      }
+      .notes-item:hover{
+        transform: translateY(-1px);
+        border-color: var(--blue);
+        box-shadow: var(--shadow2);
+      }
+      .notes-item .date{
+        display:block;
+        margin-top: 4px;
+        font-size: 12px;
+        font-weight: 800;
         color: #6b7280;
       }
 
-      /* Contenido */
-      .note-card{
-        padding: 16px 18px;
-        border-radius: 16px;
-        background: rgba(255,255,255,0.98);
-        border: 1px solid rgba(15, 23, 42, 0.10);
-        box-shadow: 0 10px 24px rgba(2,6,23,0.06);
-        margin-bottom: 14px;
-      }
+      /* Right content: simpler (divider-based) */
+      .note-wrap { padding: 0; }
+      .note-anchor { scroll-margin-top: 92px; }
       .note-h2{
         margin: 0 0 6px 0;
-        font-size: 22px;
+        font-size: 24px;
         font-weight: 950;
-        color: #0b2b4c;
+        color: var(--ink);
       }
       .note-meta{
-        margin: 0 0 10px 0;
+        margin: 0 0 12px 0;
         font-size: 12px;
-        font-weight: 850;
-        color: #526484;
+        font-weight: 900;
+        color: var(--muted);
         text-transform: uppercase;
-        letter-spacing: .3px;
+        letter-spacing: .35px;
       }
       .note-text{
-        margin: 0;
+        margin: 0 0 14px 0;
         font-size: 15px;
-        line-height: 1.55;
-        color: #0b2b4c;
+        line-height: 1.6;
+        color: var(--ink);
         font-weight: 650;
       }
 
-      /* Para que al saltar no quede tapado */
-      .anchor-offset { scroll-margin-top: 90px; }
+      /* Softer divider */
+      hr {
+        border: none;
+        border-top: 1px solid rgba(15, 23, 42, 0.10);
+        margin: 18px 0 18px 0;
+      }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
 # ============================================================
-# UI
+# Top bar: Back button + title
+# Back uses query param to return home (?go=home) - you can adjust
 # ============================================================
+st.markdown(
+    """
+    <div class="notes-topbar">
+      <div class="notes-back">
+        <a href="/?go=home">← Volver</a>
+      </div>
+      <div></div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
 st.markdown("<div class='notes-title'>Notas — Macro</div>", unsafe_allow_html=True)
 st.markdown("<div class='notes-sub'>Índice a la izquierda (sticky) + notas completas a la derecha</div>", unsafe_allow_html=True)
 
-left, right = st.columns([1, 3], gap="large")
+# ============================================================
+# Layout: make right column wider
+# ============================================================
+left, right = st.columns([1, 5], gap="large")
 
-# ----- Sidebar índice (RENDER SEGURO con components.html) -----
+# -------------------------
+# Sidebar index (rendered via components.html for reliability)
+# -------------------------
 with left:
     items = []
     for n in NOTAS:
         items.append(
             f"""
-            <a class="notes-link" href="#{n['id']}">
+            <a class="notes-item" href="#{n['id']}">
               {n['titulo']}
-              <span class="notes-date">{n['fecha']}</span>
+              <span class="date">{n['fecha']}</span>
             </a>
             """
         )
@@ -167,19 +232,24 @@ with left:
     </div>
     """
 
-    # 👇 Esto evita que Streamlit lo muestre como texto
-    components.html(sidebar_html, height=520, scrolling=False)
+    # Height: enough to show items without scroll; sticky still works
+    components.html(sidebar_html, height=420, scrolling=False)
 
-# ----- Contenido -----
+# -------------------------
+# Right content: full-width text + dividers (simpler/cleaner)
+# -------------------------
 with right:
-    for n in NOTAS:
+    for i, n in enumerate(NOTAS):
         st.markdown(
             f"""
-            <div id="{n['id']}" class="note-card anchor-offset">
+            <div id="{n['id']}" class="note-anchor note-wrap">
               <div class="note-h2">{n['titulo']}</div>
               <div class="note-meta">{n['fecha']}</div>
-              <p class="note-text">{n['texto']}</p>
+              <div class="note-text">{n['texto']}</div>
             </div>
             """,
             unsafe_allow_html=True,
         )
+
+        if i < len(NOTAS) - 1:
+            st.markdown("<hr/>", unsafe_allow_html=True)
