@@ -6,45 +6,23 @@ import streamlit as st
 
 
 # ============================================================
-# A3500 – BCRA API (v4.0)
+# MONETARIAS GENERIC
 # ============================================================
 
 @st.cache_data(ttl=60 * 60)
-def load_a3500() -> pd.DataFrame:
-    url = "https://api.bcra.gob.ar/estadisticas/v4.0/Monetarias/84"
-    params = {"Limit": 1000, "Offset": 0}
-    data = []
+def get_monetaria_serie(id_variable: int) -> pd.DataFrame:
+    url = f"https://api.bcra.gob.ar/estadisticas/v4.0/Monetarias/{id_variable}"
+    r = requests.get(url, timeout=10, verify=False)
+    r.raise_for_status()
 
-    while True:
-        r = requests.get(url, params=params, timeout=10, verify=False)
-        r.raise_for_status()
-        payload = r.json()
-
-        results = payload.get("results", [])
-        if not results:
-            break
-
-        detalle = results[0].get("detalle", [])
-        if not detalle:
-            break
-
-        data.extend(detalle)
-
-        meta = payload["metadata"]["resultset"]
-        params["Offset"] += params["Limit"]
-
-        if params["Offset"] >= meta["count"]:
-            break
-
-    if not data:
-        return pd.DataFrame(columns=["Date", "FX"])
+    data = r.json()["results"][0]["detalle"]
 
     df = pd.DataFrame(data)
     df["Date"] = pd.to_datetime(df["fecha"], errors="coerce")
-    df["FX"] = pd.to_numeric(df["valor"], errors="coerce")
+    df["value"] = pd.to_numeric(df["valor"], errors="coerce")
 
     return (
-        df[["Date", "FX"]]
+        df[["Date", "value"]]
         .dropna()
         .drop_duplicates("Date")
         .sort_values("Date")
@@ -53,11 +31,38 @@ def load_a3500() -> pd.DataFrame:
 
 
 # ============================================================
-# REM – última publicación
+# TC MAYORISTA (A3500)
 # ============================================================
 
 @st.cache_data(ttl=60 * 60)
-def load_rem_last():
+def get_a3500() -> pd.DataFrame:
+
+    df = get_monetaria_serie(5)
+
+    if df.empty:
+        df = get_monetaria_serie(84)
+
+    if df.empty:
+        return pd.DataFrame(columns=["Date", "FX"])
+
+    out = df.rename(columns={"value": "FX"}).copy()
+
+    return (
+        out[["Date", "FX"]]
+        .dropna()
+        .drop_duplicates("Date")
+        .sort_values("Date")
+        .reset_index(drop=True)
+    )
+
+
+# ============================================================
+# REM
+# ============================================================
+
+@st.cache_data(ttl=60 * 60)
+def get_rem_last() -> pd.DataFrame:
+
     url = (
         "https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/"
         "historico-relevamiento-expectativas-mercado.xlsx"
@@ -72,7 +77,7 @@ def load_rem_last():
 
     latest = rem["Fecha de pronóstico"].max()
 
-    rem = (
+    return (
         rem.loc[rem["Fecha de pronóstico"] == latest]
         .sort_values("Período")
         .tail(24)
@@ -81,15 +86,13 @@ def load_rem_last():
         .reset_index(drop=True)
     )
 
-    return rem[["Date", "v_m_REM"]]
-
 
 # ============================================================
-# IPC – INDEC
+# IPC NACIONAL MENSUAL
 # ============================================================
 
 @st.cache_data(ttl=12 * 60 * 60)
-def load_ipc_nacional_mensual():
+def get_ipc_bcra() -> pd.DataFrame:
 
     url = "https://www.indec.gob.ar/ftp/cuadros/economia/serie_ipc_divisiones.csv"
 
