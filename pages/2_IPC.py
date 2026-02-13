@@ -146,12 +146,12 @@ st.markdown(
 
       /* ✅ Misma importancia para mensual e interanual */
       .kpi-value {
-        font-family: 'Inter', sans-serif;
-        font-size: 2.05rem;   /* ✅ iguales */
-        font-weight: 800;
-        color: var(--text-primary);
-        letter-spacing: -0.02em;
-        line-height: 1;
+          font-family: 'Inter', sans-serif;
+          font-size: 2.05rem;
+          font-weight: 600;   /* ✅ sin negrita pesada */
+          color: var(--text-primary);
+          letter-spacing: -0.02em;
+          line-height: 1;
       }
 
       .kpi-sublabel {
@@ -198,6 +198,33 @@ st.markdown(
       .stSelectbox [data-baseweb="select"] span {
         color: var(--text-primary) !important;
       }
+              /* ===== MEJORA VISUAL SELECTORES ===== */
+        
+        /* Base */
+        .stSelectbox [data-baseweb="select"] > div {
+          border: 1px solid var(--border-color) !important;
+          box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
+          transition: border-color .15s ease, box-shadow .15s ease;
+        }
+        
+        /* Hover */
+        .stSelectbox [data-baseweb="select"] > div:hover {
+          border-color: var(--accent-primary) !important;
+          box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.12) !important;
+        }
+        
+        /* Focus */
+        .stSelectbox [data-baseweb="select"] > div:focus-within {
+          border-color: var(--accent-primary) !important;
+          box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.16) !important;
+        }
+        
+        /* Flecha más visible */
+        .stSelectbox [data-baseweb="select"] svg {
+          opacity: 0.95 !important;
+          transform: scale(1.1);
+        }
+
 
       /* Dropdown menu */
       [data-baseweb="popover"] {
