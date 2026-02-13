@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
 
-from data.macro_services import load_a3500, load_rem_last, load_ipc_nacional_mensual
+from data.macro_services import get_a3500, get_rem_last, get_ipc_bcra
 
 
 st.set_page_config(
@@ -21,18 +21,19 @@ if st.button("← Volver"):
 
 st.divider()
 
+
+# =========================
+# LOAD DATA
+# =========================
+
 with st.spinner("Cargando datos..."):
-    fx = load_a3500()
-    rem = load_rem_last()
-
-    if "ipc_data" not in st.session_state:
-        st.session_state.ipc_data = load_ipc_nacional_mensual()
-
-    ipc = st.session_state.ipc_data
+    fx = get_a3500()
+    rem = get_rem_last()
+    ipc = get_ipc_bcra()
 
 
 # ============================================================
-# Bandas 2025
+# BANDAS 2025
 # ============================================================
 
 def build_bands_2025(start, end, lower0, upper0):
@@ -52,10 +53,14 @@ def build_bands_2025(start, end, lower0, upper0):
 
 
 def build_bands_2026(bands_2025, rem, ipc):
+
     rem_m = rem.assign(Period=rem["Date"].dt.to_period("M"))[["Period", "v_m_REM"]]
 
     m = ipc.merge(rem_m, on="Period", how="outer").sort_values("Period")
     m["v_m_dec"] = np.where(m["v_m_CPI"].notna(), m["v_m_CPI"], m["v_m_REM"] / 100)
+
+    if not m["v_m_REM"].notna().any():
+        return pd.DataFrame(columns=["Date", "lower", "upper"])
 
     end_month = m.loc[m["v_m_REM"].notna(), "Period"].max() + 2
 
@@ -89,33 +94,46 @@ def build_bands_2026(bands_2025, rem, ipc):
 bands_2025 = build_bands_2025("2025-04-14", "2025-12-31", 1000.0, 1400.0)
 bands_2026 = build_bands_2026(bands_2025, rem, ipc)
 
-bands = pd.concat([bands_2025, bands_2026]).sort_values("Date")
+bands = pd.concat([bands_2025, bands_2026], ignore_index=True).sort_values("Date")
+
 df = bands.merge(fx, on="Date", how="left")
 
 
 # ============================================================
-# Gráfico
+# HEADER SIMPLE
 # ============================================================
 
-last_fx = df["FX"].dropna().iloc[-1]
+last_fx = fx["FX"].dropna().iloc[-1]
 
-c1, c2 = st.columns([1, 3])
+st.markdown(
+    f"<div style='font-size:46px; font-weight:700'>{last_fx:,.0f} ARS/USD</div>",
+    unsafe_allow_html=True,
+)
 
-with c1:
-    st.markdown(
-        f"<div style='font-size:46px; font-weight:700'>{last_fx:,.0f}</div>",
-        unsafe_allow_html=True,
+
+# ============================================================
+# PLOT
+# ============================================================
+
+fig = go.Figure()
+
+fig.add_trace(
+    go.Scatter(x=df["Date"], y=df["upper"], name="Banda superior", line=dict(dash="dash"))
+)
+
+fig.add_trace(
+    go.Scatter(
+        x=df["Date"],
+        y=df["lower"],
+        name="Banda inferior",
+        line=dict(dash="dash"),
+        fill="tonexty",
     )
+)
 
-with c2:
-    fig = go.Figure()
+fig.add_trace(go.Scatter(x=df["Date"], y=df["FX"], name="A3500"))
 
-    fig.add_trace(go.Scatter(x=df["Date"], y=df["upper"], name="Banda superior", line=dict(dash="dash")))
-    fig.add_trace(go.Scatter(x=df["Date"], y=df["lower"], name="Banda inferior", line=dict(dash="dash"), fill="tonexty"))
-    fig.add_trace(go.Scatter(x=df["Date"], y=df["FX"], name="A3500"))
+fig.update_layout(hovermode="x unified", height=600)
+fig.update_yaxes(title_text="ARS / USD")
 
-    fig.update_layout(hovermode="x unified", height=600)
-    fig.update_yaxes(title_text="ARS / USD")
-    fig.update_xaxes(title_text="")
-
-    st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, use_container_width=True)
