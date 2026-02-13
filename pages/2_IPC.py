@@ -13,7 +13,7 @@ st.set_page_config(
 
 
 # ============================================================
-# CSS - DARK TECH (IGUAL QUE TC MAYORISTA)
+# CSS - DARK TECH (CORREGIDO)
 # ============================================================
 
 st.markdown(
@@ -118,39 +118,52 @@ st.markdown(
         color: var(--accent-primary);
       }
 
-      /* Título de página */
+      /* Título de página MÁS DESTACADO */
+      .page-title-highlight {
+        font-family: 'Syne', sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2.5rem;
+        padding: 1rem;
+        background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        position: relative;
+      }
+
+      .page-title-highlight::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+        border-radius: 2px;
+      }
+
       h1 {
         font-family: 'Syne', sans-serif !important;
         font-size: 1.5rem !important;
         font-weight: 600 !important;
         color: var(--text-primary) !important;
         margin-bottom: 2rem !important;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
       }
 
-      h1::before {
-        content: '';
-        width: 3px;
-        height: 1.5rem;
-        background: linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-        border-radius: 2px;
-      }
-
-      /* KPI Cards */
-      .kpi-card {
+      /* KPI Cards MÁS COMPACTOS */
+      .kpi-card-compact {
         background: var(--bg-card);
-        padding: 1.75rem;
+        padding: 1.5rem;
         border-radius: 12px;
         border: 1px solid var(--border-color);
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
-        height: 100%;
       }
 
-      .kpi-card::after {
+      .kpi-card-compact::after {
         content: '';
         position: absolute;
         top: 0;
@@ -162,44 +175,60 @@ st.markdown(
         transition: opacity 0.3s ease;
       }
 
-      .kpi-card:hover {
+      .kpi-card-compact:hover {
         border-color: var(--accent-primary);
         transform: translateY(-2px);
       }
 
-      .kpi-card:hover::after {
+      .kpi-card-compact:hover::after {
         opacity: 1;
       }
 
       .kpi-label {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         color: var(--text-muted);
         text-transform: uppercase;
         letter-spacing: 0.1em;
         margin-bottom: 0.75rem;
-        font-weight: 500;
+        font-weight: 600;
+      }
+
+      .kpi-values {
+        display: flex;
+        align-items: baseline;
+        gap: 1.5rem;
       }
 
       .kpi-main {
         font-family: 'Syne', sans-serif;
-        font-size: 2.5rem;
+        font-size: 2.25rem;
         font-weight: 700;
         color: var(--text-primary);
         letter-spacing: -0.02em;
+        line-height: 1;
       }
 
-      .kpi-sub {
+      .kpi-secondary {
         font-family: 'Syne', sans-serif;
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 700;
-        color: var(--text-primary);
-        opacity: 0.4;
+        color: var(--text-secondary);
+        opacity: 0.5;
+        line-height: 1;
+      }
+
+      .kpi-labels {
+        display: flex;
+        gap: 3.5rem;
+        margin-top: 0.5rem;
       }
 
       .kpi-sublabel {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         color: var(--text-muted);
-        font-weight: 500;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
       }
 
       /* Subtítulos de sección */
@@ -213,45 +242,76 @@ st.markdown(
         margin-bottom: 1.5rem !important;
       }
 
-      /* Selectbox */
+      /* Selectbox CON MÁS CONTRASTE */
       .stSelectbox label {
         font-family: 'JetBrains Mono', monospace !important;
         font-size: 0.75rem !important;
-        color: var(--text-muted) !important;
+        color: var(--text-secondary) !important;
         text-transform: uppercase !important;
         letter-spacing: 0.05em !important;
-        font-weight: 500 !important;
+        font-weight: 600 !important;
       }
 
-      .stSelectbox > div > div {
+      .stSelectbox [data-baseweb="select"] {
         background-color: var(--bg-secondary) !important;
-        border: 1px solid var(--border-color) !important;
-        border-radius: 8px !important;
-        color: var(--text-primary) !important;
       }
 
       .stSelectbox [data-baseweb="select"] > div {
         background-color: var(--bg-secondary) !important;
-        border-color: var(--border-color) !important;
+        border: 1px solid var(--border-color) !important;
         color: var(--text-primary) !important;
-      }
-
-      /* Slider personalizado */
-      .stSlider label {
-        font-family: 'JetBrains Mono', monospace !important;
-        font-size: 0.75rem !important;
-        color: var(--text-muted) !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.05em !important;
         font-weight: 500 !important;
       }
 
-      .stSlider > div > div > div {
+      .stSelectbox [data-baseweb="select"] span {
+        color: var(--text-primary) !important;
+      }
+
+      /* Dropdown menu */
+      [data-baseweb="popover"] {
+        background-color: var(--bg-secondary) !important;
+      }
+
+      [role="listbox"] {
+        background-color: var(--bg-secondary) !important;
+      }
+
+      [role="option"] {
+        background-color: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
+      }
+
+      [role="option"]:hover {
         background-color: var(--bg-card) !important;
       }
 
-      .stSlider > div > div > div > div {
+      /* Slider CON MÁS CONTRASTE */
+      .stSlider label {
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 0.75rem !important;
+        color: var(--text-secondary) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        font-weight: 600 !important;
+      }
+
+      .stSlider [data-baseweb="slider"] {
+        background-color: var(--bg-card) !important;
+      }
+
+      .stSlider [data-baseweb="slider"] > div > div {
         background-color: var(--accent-primary) !important;
+      }
+
+      .stSlider [role="slider"] {
+        background-color: var(--accent-primary) !important;
+      }
+
+      /* Valores del slider más visibles */
+      .stSlider [data-testid="stTickBarMin"],
+      .stSlider [data-testid="stTickBarMax"] {
+        color: var(--text-secondary) !important;
+        font-weight: 500 !important;
       }
 
       /* Botón de volver */
@@ -313,7 +373,7 @@ st.markdown(
       /* Divider */
       hr {
         border-color: var(--border-color) !important;
-        margin: 1.5rem 0 !important;
+        margin: 2rem 0 !important;
       }
 
       /* Responsive */
@@ -370,7 +430,11 @@ with col_btn:
     if st.button("← Volver"):
         st.switch_page("app.py")
 
-st.markdown("<h1 style='text-align: center;'>IPC vs IPCA (ENGHo 2017/18)</h1>", unsafe_allow_html=True)
+# TÍTULO MÁS DESTACADO
+st.markdown(
+    '<div class="page-title-highlight">IPC vs IPCA (ENGHo 2017/18)</div>',
+    unsafe_allow_html=True
+)
 
 # ============================================================
 # CONFIG
@@ -514,7 +578,7 @@ ipc = ipc.loc[common]
 ipca = ipca.loc[common]
 
 # ============================================================
-# KPIs ARRIBA (2 CARDS CON 2 DATOS CADA UNO)
+# KPIs COMPACTOS ARRIBA
 # ============================================================
 
 if not common.empty:
@@ -533,13 +597,13 @@ if not common.empty:
     with kpi1:
         st.markdown(
             f"""
-            <div class="kpi-card">
-                <div class="kpi-label">IPC Nacional</div>
-                <div style="display: flex; align-items: baseline; gap: 2rem; margin-bottom: 0.5rem;">
+            <div class="kpi-card-compact">
+                <div class="kpi-label">IPC NACIONAL</div>
+                <div class="kpi-values">
                     <div class="kpi-main">{fmt_pct(ipc_monthly)}</div>
-                    <div class="kpi-sub">{fmt_pct(ipc_annual)}</div>
+                    <div class="kpi-secondary">{fmt_pct(ipc_annual)}</div>
                 </div>
-                <div style="display: flex; gap: 7rem;">
+                <div class="kpi-labels">
                     <div class="kpi-sublabel">m/m</div>
                     <div class="kpi-sublabel">y/y</div>
                 </div>
@@ -551,13 +615,13 @@ if not common.empty:
     with kpi2:
         st.markdown(
             f"""
-            <div class="kpi-card">
-                <div class="kpi-label">IPCA (ENGHo 2017/18)</div>
-                <div style="display: flex; align-items: baseline; gap: 2rem; margin-bottom: 0.5rem;">
+            <div class="kpi-card-compact">
+                <div class="kpi-label">IPCA (ENGHO 2017/18)</div>
+                <div class="kpi-values">
                     <div class="kpi-main">{fmt_pct(ipca_monthly)}</div>
-                    <div class="kpi-sub">{fmt_pct(ipca_annual)}</div>
+                    <div class="kpi-secondary">{fmt_pct(ipca_annual)}</div>
                 </div>
-                <div style="display: flex; gap: 7rem;">
+                <div class="kpi-labels">
                     <div class="kpi-sublabel">m/m</div>
                     <div class="kpi-sublabel">y/y</div>
                 </div>
@@ -567,6 +631,9 @@ if not common.empty:
         )
 else:
     st.warning("⚠️ No hay datos en el rango seleccionado.")
+
+# ESPACIO ENTRE KPIs Y GRÁFICO
+st.markdown("<div style='margin-top: 2rem;'></div>", unsafe_allow_html=True)
 
 # ============================================================
 # GRÁFICO (TODO EL ANCHO)
