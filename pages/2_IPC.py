@@ -19,169 +19,111 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
       
       /* Ocultar sidebar */
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
       section.main > div { padding-top: 1rem; }
+      
+      /* Ocultar/oscurecer header de Streamlit */
+      header[data-testid="stHeader"] {
+        background-color: #1a1a1a !important;
+      }
+      
+      /* Ocultar toolbar arriba */
+      [data-testid="stToolbar"] {
+        display: none !important;
+      }
 
-      /* Variables CSS */
+      /* Variables CSS - PANELES MÁS CLAROS */
       :root {
-        --bg-primary: #0a0e17;
-        --bg-secondary: #141824;
-        --bg-card: #1a1f2e;
-        --bg-chart: #1e2433;
-        --accent-primary: #00d4aa;
-        --accent-secondary: #0099ff;
-        --text-primary: #e8eaed;
-        --text-secondary: #9ba3af;
-        --text-muted: #6b7280;
-        --border-color: #2a3041;
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #242424;
+        --bg-card: #2a2a2a;
+        --bg-chart: #2f2f2f;
+        --accent-primary: #00ff88;
+        --accent-secondary: #ff0088;
+        --text-primary: #fff;
+        --text-secondary: #aaa;
+        --text-muted: #888;
+        --border-color: #333;
       }
 
       /* Fondo general */
       .stApp {
-        background-color: var(--bg-primary);
-        background-image: 
-          radial-gradient(circle at 20% 50%, rgba(0, 212, 170, 0.03) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(0, 153, 255, 0.03) 0%, transparent 50%);
+        background-color: var(--bg-primary) !important;
         color: var(--text-primary);
       }
 
-      /* Tipografía global */
-      html, body, [class*="css"], p, span, div {
-        font-family: 'JetBrains Mono', monospace !important;
-        color: var(--text-primary);
+      /* Tipografía global - INTER */
+      html, body, [class*="css"], p, span, div, h1, h2, h3, h4 {
+        font-family: 'Inter', sans-serif !important;
+        color: var(--text-primary) !important;
       }
 
-      /* Header personalizado */
-      .custom-header {
-        background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
-        padding: 2rem;
-        border-radius: 16px;
-        border: 1px solid var(--border-color);
-        margin-bottom: 2rem;
-        position: relative;
+      /* Header igual al home */
+      .home-header {
+        margin-bottom: 3rem;
+        padding: 0 1rem;
       }
 
-      .custom-header::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 4px;
-        height: 100%;
-        background: linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-      }
-
-      .header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .header-title {
-        font-family: 'Syne', sans-serif;
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 0.25rem;
+      .home-name {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
         letter-spacing: -0.02em;
+        color: #fff;
       }
 
-      .header-subtitle {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.875rem;
+      .home-role {
+        font-size: 0.95rem;
         color: var(--text-muted);
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
+        margin-bottom: 1.5rem;
       }
 
-      .header-links {
+      .home-links {
         display: flex;
-        gap: 1.5rem;
-        align-items: center;
-      }
-
-      .header-links a {
-        color: var(--text-secondary);
-        text-decoration: none;
+        gap: 2rem;
         font-size: 0.875rem;
-        transition: color 0.2s ease;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
       }
 
-      .header-links a:hover {
-        color: var(--accent-primary);
+      .home-links a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s;
       }
 
-      /* Título de página MÁS DESTACADO */
+      .home-links a:hover {
+        color: #fff;
+      }
+
+      /* Título de página */
       .page-title-highlight {
-        font-family: 'Syne', sans-serif;
+        font-family: 'Inter', sans-serif;
         font-size: 2rem;
-        font-weight: 700;
+        font-weight: 800;
         text-align: center;
         margin-bottom: 2.5rem;
         padding: 1rem;
-        background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
-        border-radius: 12px;
-        border: 1px solid var(--border-color);
-        position: relative;
+        background: var(--bg-card);
+        border-radius: 0;
+        border-top: 4px solid var(--accent-primary);
+        letter-spacing: -0.02em;
       }
 
-      .page-title-highlight::before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 3px;
-        background: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-        border-radius: 2px;
-      }
-
-      h1 {
-        font-family: 'Syne', sans-serif !important;
-        font-size: 1.5rem !important;
-        font-weight: 600 !important;
-        color: var(--text-primary) !important;
-        margin-bottom: 2rem !important;
-      }
-
-      /* KPI Cards MÁS COMPACTOS */
+      /* KPI Cards MÁS CLAROS */
       .kpi-card-compact {
         background: var(--bg-card);
         padding: 1.5rem;
-        border-radius: 12px;
+        border-radius: 0;
         border: 1px solid var(--border-color);
+        border-top: 4px solid var(--accent-primary);
         transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .kpi-card-compact::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: linear-gradient(90deg, var(--accent-primary) 0%, transparent 100%);
-        opacity: 0;
-        transition: opacity 0.3s ease;
       }
 
       .kpi-card-compact:hover {
-        border-color: var(--accent-primary);
-        transform: translateY(-2px);
-      }
-
-      .kpi-card-compact:hover::after {
-        opacity: 1;
+        transform: scale(1.02);
       }
 
       .kpi-label {
@@ -200,18 +142,18 @@ st.markdown(
       }
 
       .kpi-main {
-        font-family: 'Syne', sans-serif;
+        font-family: 'Inter', sans-serif;
         font-size: 2.25rem;
-        font-weight: 700;
+        font-weight: 800;
         color: var(--text-primary);
         letter-spacing: -0.02em;
         line-height: 1;
       }
 
       .kpi-secondary {
-        font-family: 'Syne', sans-serif;
+        font-family: 'Inter', sans-serif;
         font-size: 1.5rem;
-        font-weight: 700;
+        font-weight: 800;
         color: var(--text-secondary);
         opacity: 0.5;
         line-height: 1;
@@ -233,7 +175,7 @@ st.markdown(
 
       /* Subtítulos de sección */
       h3 {
-        font-family: 'Syne', sans-serif !important;
+        font-family: 'Inter', sans-serif !important;
         font-size: 0.875rem !important;
         font-weight: 600 !important;
         color: var(--text-secondary) !important;
@@ -242,9 +184,9 @@ st.markdown(
         margin-bottom: 1.5rem !important;
       }
 
-      /* Selectbox CON MÁS CONTRASTE */
+      /* Selectbox */
       .stSelectbox label {
-        font-family: 'JetBrains Mono', monospace !important;
+        font-family: 'Inter', sans-serif !important;
         font-size: 0.75rem !important;
         color: var(--text-secondary) !important;
         text-transform: uppercase !important;
@@ -285,9 +227,9 @@ st.markdown(
         background-color: var(--bg-card) !important;
       }
 
-      /* Slider CON MÁS CONTRASTE */
+      /* Slider */
       .stSlider label {
-        font-family: 'JetBrains Mono', monospace !important;
+        font-family: 'Inter', sans-serif !important;
         font-size: 0.75rem !important;
         color: var(--text-secondary) !important;
         text-transform: uppercase !important;
@@ -307,7 +249,6 @@ st.markdown(
         background-color: var(--accent-primary) !important;
       }
 
-      /* Valores del slider más visibles */
       .stSlider [data-testid="stTickBarMin"],
       .stSlider [data-testid="stTickBarMax"] {
         color: var(--text-secondary) !important;
@@ -316,36 +257,38 @@ st.markdown(
 
       /* Botón de volver */
       .stButton > button {
-        background: var(--bg-card) !important;
+        background: transparent !important;
         border: 1px solid var(--border-color) !important;
-        color: var(--text-secondary) !important;
-        font-family: 'JetBrains Mono', monospace !important;
-        border-radius: 8px !important;
+        color: var(--text-primary) !important;
+        font-family: 'Inter', sans-serif !important;
+        border-radius: 0 !important;
         padding: 0.75rem 1.25rem !important;
         transition: all 0.2s ease !important;
         font-size: 0.875rem !important;
+        font-weight: 600 !important;
       }
 
       .stButton > button:hover {
         border-color: var(--accent-primary) !important;
-        color: var(--accent-primary) !important;
+        background: rgba(0, 255, 136, 0.05) !important;
       }
 
       /* Metodología card */
       .methodology-card {
         background: var(--bg-card);
-        border-left: 4px solid var(--accent-primary);
-        border-radius: 12px;
+        border-top: 4px solid var(--accent-primary);
+        border-radius: 0;
         padding: 1.5rem;
         margin-top: 2rem;
         border: 1px solid var(--border-color);
       }
 
       .methodology-card h4 {
-        font-family: 'Syne', sans-serif;
+        font-family: 'Inter', sans-serif;
         color: var(--text-primary);
         margin-bottom: 1rem;
         font-size: 1.125rem;
+        font-weight: 800;
       }
 
       .methodology-card ul {
@@ -360,7 +303,7 @@ st.markdown(
 
       /* Gráfico contenedor */
       .js-plotly-plot {
-        border-radius: 12px;
+        border-radius: 0;
         overflow: hidden;
       }
 
@@ -376,18 +319,14 @@ st.markdown(
         margin: 2rem 0 !important;
       }
 
-      /* Responsive */
       @media (max-width: 768px) {
-        .header-content {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 1rem;
+        .home-name {
+          font-size: 2rem;
         }
 
-        .header-links {
+        .home-links {
           flex-direction: column;
-          align-items: flex-start;
-          gap: 0.75rem;
+          gap: 1rem;
         }
       }
     </style>
@@ -397,27 +336,17 @@ st.markdown(
 
 
 # ============================================================
-# HEADER
+# HEADER (IGUAL AL HOME)
 # ============================================================
 st.markdown(
     """
-    <div class="custom-header">
-        <div class="header-content">
-            <div>
-                <div class="header-title">Francisco Fernandez Amato</div>
-                <div class="header-subtitle">Macroeconomista</div>
-            </div>
-            <div class="header-links">
-                <a href="mailto:franciscofernandezz1999@gmail.com">
-                    <span>Gmail</span>
-                </a>
-                <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">
-                    <span>LinkedIn</span>
-                </a>
-                <a href="https://github.com/ffernandez-1999" target="_blank">
-                    <span>GitHub</span>
-                </a>
-            </div>
+    <div class="home-header">
+        <div class="home-name">Francisco Fernandez Amato</div>
+        <div class="home-role">Macroeconomista</div>
+        <div class="home-links">
+            <a href="mailto:franciscofernandezz1999@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/ffernandez-1999" target="_blank">GitHub</a>
         </div>
     </div>
     """,
@@ -648,8 +577,8 @@ if not common.empty:
             x=ipc.index,
             y=ipc.values,
             mode="lines+markers",
-            marker=dict(size=6, color='#0099ff'),
-            line=dict(width=2.5, color='#0099ff'),
+            marker=dict(size=6, color='#00ff88'),
+            line=dict(width=2.5, color='#00ff88'),
             name="IPC",
             hovertemplate="IPC: %{y:.2f}%<extra></extra>",
         )
@@ -661,8 +590,8 @@ if not common.empty:
             x=ipca.index,
             y=ipca.values,
             mode="lines+markers",
-            marker=dict(size=6, color='#00d4aa'),
-            line=dict(width=2.5, color='#00d4aa'),
+            marker=dict(size=6, color='#ff0088'),
+            line=dict(width=2.5, color='#ff0088'),
             name="IPCA (ENGHo 2017/18)",
             hovertemplate="IPCA: %{y:.2f}%<extra></extra>",
         )
@@ -677,23 +606,23 @@ fig.update_layout(
         y=1.02,
         xanchor="left",
         x=0,
-        font=dict(size=12, family="JetBrains Mono", color="#e8eaed"),
+        font=dict(size=12, family="Inter", color="#fff"),
     ),
     hovermode="x unified",
-    plot_bgcolor='#1e2433',
-    paper_bgcolor='#1a1f2e',
-    font=dict(family="JetBrains Mono", color="#e8eaed"),
+    plot_bgcolor='#2f2f2f',
+    paper_bgcolor='#2a2a2a',
+    font=dict(family="Inter", color="#fff"),
     xaxis=dict(
-        gridcolor='#2a3041',
+        gridcolor='#333',
         showgrid=True,
-        linecolor='#2a3041',
+        linecolor='#333',
     ),
     yaxis=dict(
         title="Variación %",
         title_font=dict(size=12),
-        gridcolor='#2a3041',
+        gridcolor='#333',
         showgrid=True,
-        linecolor='#2a3041',
+        linecolor='#333',
     ),
 )
 
