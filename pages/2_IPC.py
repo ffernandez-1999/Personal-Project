@@ -68,7 +68,7 @@ st.markdown(
         font-size: 2rem;
         font-weight: 800;
         text-align: center;
-        margin-bottom: 2.0rem;
+        margin-bottom: 3.0rem;
         padding: 1rem;
         background: var(--bg-chart); /* ✅ */
         border-radius: 0;
