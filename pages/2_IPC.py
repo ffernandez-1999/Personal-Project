@@ -36,6 +36,7 @@ st.markdown("""
 
 /* ========== BASE ========== */
 .stApp { background-color: var(--bg-primary); color: var(--text-primary); }
+
 html, body, [class*="css"] { font-family: 'Inter', sans-serif !important; }
 
 header[data-testid="stHeader"] { background-color: #1a1a1a !important; }
