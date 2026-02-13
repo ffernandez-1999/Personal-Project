@@ -17,203 +17,171 @@ st.set_page_config(
 )
 
 # ============================================================
-# CSS - OPCIÓN 1: DARK TECH (CORREGIDO)
+# CSS - MISMO ESTILO QUE HOME E IPC
 # ============================================================
 
 st.markdown(
     """
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
       
       /* Ocultar sidebar */
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
       section.main > div { padding-top: 1rem; }
+      
+      /* Ocultar/oscurecer header de Streamlit */
+      header[data-testid="stHeader"] {
+        background-color: #1a1a1a !important;
+      }
+      
+      /* Ocultar toolbar arriba */
+      [data-testid="stToolbar"] {
+        display: none !important;
+      }
 
-      /* Variables CSS */
+      /* Variables CSS - PANELES MÁS CLAROS */
       :root {
-        --bg-primary: #0a0e17;
-        --bg-secondary: #141824;
-        --bg-card: #1a1f2e;
-        --bg-chart: #1e2433;
-        --accent-primary: #00d4aa;
-        --accent-secondary: #0099ff;
-        --text-primary: #e8eaed;
-        --text-secondary: #9ba3af;
-        --text-muted: #6b7280;
-        --border-color: #2a3041;
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #242424;
+        --bg-card: #2a2a2a;
+        --bg-chart: #2f2f2f;
+        --accent-primary: #00ff88;
+        --accent-secondary: #ff0088;
+        --text-primary: #fff;
+        --text-secondary: #aaa;
+        --text-muted: #888;
+        --border-color: #333;
       }
 
       /* Fondo general */
       .stApp {
-        background-color: var(--bg-primary);
-        background-image: 
-          radial-gradient(circle at 20% 50%, rgba(0, 212, 170, 0.03) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(0, 153, 255, 0.03) 0%, transparent 50%);
+        background-color: var(--bg-primary) !important;
         color: var(--text-primary);
       }
 
-      /* Tipografía global */
-      html, body, [class*="css"], p, span, div {
-        font-family: 'JetBrains Mono', monospace !important;
-        color: var(--text-primary);
+      /* Tipografía global - INTER */
+      html, body, [class*="css"], p, span, div, h1, h2, h3, h4 {
+        font-family: 'Inter', sans-serif !important;
+        color: var(--text-primary) !important;
       }
 
-      /* Header personalizado */
-      .custom-header {
-        background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
-        padding: 2rem;
-        border-radius: 16px;
-        border: 1px solid var(--border-color);
-        margin-bottom: 2rem;
-        position: relative;
+      /* Header igual al home */
+      .home-header {
+        margin-bottom: 3rem;
+        padding: 0 1rem;
       }
 
-      .custom-header::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 4px;
-        height: 100%;
-        background: linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-      }
-
-      .header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .header-title {
-        font-family: 'Syne', sans-serif;
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 0.25rem;
+      .home-name {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
         letter-spacing: -0.02em;
+        color: #fff;
       }
 
-      .header-subtitle {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.875rem;
+      .home-role {
+        font-size: 0.95rem;
         color: var(--text-muted);
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
+        margin-bottom: 1.5rem;
       }
 
-      .header-links {
+      .home-links {
         display: flex;
-        gap: 1.5rem;
-        align-items: center;
-      }
-
-      .header-links a {
-        color: var(--text-secondary);
-        text-decoration: none;
+        gap: 2rem;
         font-size: 0.875rem;
-        transition: color 0.2s ease;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
       }
 
-      .header-links a:hover {
-        color: var(--accent-primary);
+      .home-links a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .home-links a:hover {
+        color: #fff;
       }
 
       /* Título de página */
-      h1 {
-        font-family: 'Syne', sans-serif !important;
-        font-size: 1.5rem !important;
-        font-weight: 600 !important;
-        color: var(--text-primary) !important;
-        margin-bottom: 2rem !important;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
+      .page-title-highlight {
+        font-family: 'Inter', sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 2.5rem;
+        padding: 1rem;
+        background: var(--bg-card);
+        border-radius: 0;
+        border-top: 4px solid var(--accent-primary);
+        letter-spacing: -0.02em;
       }
 
-      h1::before {
-        content: '';
-        width: 3px;
-        height: 1.5rem;
-        background: linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-        border-radius: 2px;
+      h1 {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 2rem !important;
+        font-weight: 800 !important;
+        color: var(--text-primary) !important;
+        margin-bottom: 2rem !important;
+        text-align: center;
       }
 
       /* KPI Cards */
       .kpi-card {
         background: var(--bg-card);
-        padding: 1.75rem;
-        border-radius: 12px;
+        padding: 1.5rem;
+        border-radius: 0;
         border: 1px solid var(--border-color);
+        border-top: 4px solid var(--accent-primary);
         transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
         height: 100%;
       }
 
-      .kpi-card::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: linear-gradient(90deg, var(--accent-primary) 0%, transparent 100%);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
       .kpi-card:hover {
-        border-color: var(--accent-primary);
-        transform: translateY(-2px);
-      }
-
-      .kpi-card:hover::after {
-        opacity: 1;
+        transform: scale(1.02);
       }
 
       .kpi-label {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         color: var(--text-muted);
         text-transform: uppercase;
         letter-spacing: 0.1em;
         margin-bottom: 0.75rem;
-        font-weight: 500;
+        font-weight: 600;
       }
 
       .kpi-main {
-        font-family: 'Syne', sans-serif;
-        font-size: 2.5rem;
-        font-weight: 700;
+        font-family: 'Inter', sans-serif;
+        font-size: 2.25rem;
+        font-weight: 800;
         color: var(--text-primary);
         letter-spacing: -0.02em;
       }
 
       .kpi-date {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         color: var(--text-muted);
         margin-left: 0.5rem;
       }
 
       .kpi-sub {
-        font-family: 'Syne', sans-serif;
+        font-family: 'Inter', sans-serif;
         font-size: 2rem;
-        font-weight: 700;
+        font-weight: 800;
         color: var(--text-primary);
       }
 
       .kpi-sublabel {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         color: var(--text-muted);
         margin-top: 0.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
       }
 
       /* Subtítulos de sección */
       h3 {
-        font-family: 'Syne', sans-serif !important;
+        font-family: 'Inter', sans-serif !important;
         font-size: 0.875rem !important;
         font-weight: 600 !important;
         color: var(--text-secondary) !important;
@@ -223,50 +191,67 @@ st.markdown(
       }
 
       /* Slider personalizado */
-      .stSlider {
-        padding: 1rem 0;
+      .stSlider label {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 0.75rem !important;
+        color: var(--text-secondary) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        font-weight: 600 !important;
       }
 
-      .stSlider > div > div > div {
+      .stSlider [data-baseweb="slider"] {
         background-color: var(--bg-card) !important;
       }
 
-      .stSlider > div > div > div > div {
+      .stSlider [data-baseweb="slider"] > div > div {
         background-color: var(--accent-primary) !important;
+      }
+
+      .stSlider [role="slider"] {
+        background-color: var(--accent-primary) !important;
+      }
+
+      .stSlider [data-testid="stTickBarMin"],
+      .stSlider [data-testid="stTickBarMax"] {
+        color: var(--text-secondary) !important;
+        font-weight: 500 !important;
       }
 
       /* Botón de volver */
       .stButton > button {
-        background: var(--bg-card) !important;
+        background: transparent !important;
         border: 1px solid var(--border-color) !important;
-        color: var(--text-secondary) !important;
-        font-family: 'JetBrains Mono', monospace !important;
-        border-radius: 8px !important;
+        color: var(--text-primary) !important;
+        font-family: 'Inter', sans-serif !important;
+        border-radius: 0 !important;
         padding: 0.75rem 1.25rem !important;
         transition: all 0.2s ease !important;
         font-size: 0.875rem !important;
+        font-weight: 600 !important;
       }
 
       .stButton > button:hover {
         border-color: var(--accent-primary) !important;
-        color: var(--accent-primary) !important;
+        background: rgba(0, 255, 136, 0.05) !important;
       }
 
       /* Metodología card */
       .methodology-card {
         background: var(--bg-card);
-        border-left: 4px solid var(--accent-primary);
-        border-radius: 12px;
+        border-top: 4px solid var(--accent-primary);
+        border-radius: 0;
         padding: 1.5rem;
         margin-top: 2rem;
         border: 1px solid var(--border-color);
       }
 
       .methodology-card h4 {
-        font-family: 'Syne', sans-serif;
+        font-family: 'Inter', sans-serif;
         color: var(--text-primary);
         margin-bottom: 1rem;
         font-size: 1.125rem;
+        font-weight: 800;
       }
 
       .methodology-card ul {
@@ -281,22 +266,18 @@ st.markdown(
 
       /* Gráfico contenedor */
       .js-plotly-plot {
-        border-radius: 12px;
+        border-radius: 0;
         overflow: hidden;
       }
 
-      /* Responsive */
       @media (max-width: 768px) {
-        .header-content {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 1rem;
+        .home-name {
+          font-size: 2rem;
         }
 
-        .header-links {
+        .home-links {
           flex-direction: column;
-          align-items: flex-start;
-          gap: 0.75rem;
+          gap: 1rem;
         }
       }
     </style>
@@ -305,28 +286,18 @@ st.markdown(
 )
 
 # ============================================================
-# HEADER
+# HEADER (IGUAL AL HOME)
 # ============================================================
 
 st.markdown(
     """
-    <div class="custom-header">
-        <div class="header-content">
-            <div>
-                <div class="header-title">Francisco Fernandez Amato</div>
-                <div class="header-subtitle">Macroeconomista</div>
-            </div>
-            <div class="header-links">
-                <a href="https://www.linkedin.com/in/francisco-fernandez-amato" target="_blank">
-                    <span>LinkedIn</span>
-                </a>
-                <a href="mailto:tu-email@gmail.com">
-                    <span>Gmail</span>
-                </a>
-                <a href="https://github.com/tu-usuario" target="_blank">
-                    <span>GitHub</span>
-                </a>
-            </div>
+    <div class="home-header">
+        <div class="home-name">Francisco Fernandez Amato</div>
+        <div class="home-role">Macroeconomista</div>
+        <div class="home-links">
+            <a href="mailto:franciscofernandezz1999@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/ffernandez-1999" target="_blank">GitHub</a>
         </div>
     </div>
     """,
@@ -470,7 +441,7 @@ fig.add_trace(
     go.Scatter(
         x=df_plot["Date"],
         y=df_plot["upper"],
-        line=dict(dash="dash", color="#00d4aa", width=1.5),
+        line=dict(dash="dash", color="#00ff88", width=1.5),
         showlegend=False,
     )
 )
@@ -479,9 +450,9 @@ fig.add_trace(
     go.Scatter(
         x=df_plot["Date"],
         y=df_plot["lower"],
-        line=dict(dash="dash", color="#00d4aa", width=1.5),
+        line=dict(dash="dash", color="#00ff88", width=1.5),
         fill="tonexty",
-        fillcolor="rgba(0, 212, 170, 0.05)",
+        fillcolor="rgba(0, 255, 136, 0.05)",
         showlegend=False,
     )
 )
@@ -490,7 +461,7 @@ fig.add_trace(
     go.Scatter(
         x=df_plot["Date"],
         y=df_plot["FX"],
-        line=dict(color="#0099ff", width=2.5),
+        line=dict(color="#ff0088", width=2.5),
         showlegend=False,
     )
 )
@@ -499,19 +470,19 @@ fig.update_layout(
     height=560,
     hovermode="x unified",
     margin=dict(l=20, r=20, t=20, b=20),
-    plot_bgcolor="#1e2433",  # Fondo más claro
-    paper_bgcolor="#1a1f2e",
-    font_color="#e8eaed",
-    font_family="JetBrains Mono",
+    plot_bgcolor="#2f2f2f",
+    paper_bgcolor="#2a2a2a",
+    font_color="#fff",
+    font_family="Inter",
     xaxis=dict(
-        gridcolor="#2a3041",
+        gridcolor="#333",
         showgrid=True,
-        linecolor="#2a3041",
+        linecolor="#333",
     ),
     yaxis=dict(
-        gridcolor="#2a3041",
+        gridcolor="#333",
         showgrid=True,
-        linecolor="#2a3041",
+        linecolor="#333",
     ),
 )
 
