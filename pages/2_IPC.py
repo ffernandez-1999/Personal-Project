@@ -391,9 +391,11 @@ months = list(common_idx.sort_values())
 months_d = [m.date() for m in months]
 
 # ============================================================
-# CONTROLES
+# CONTROLES + KPIs (misma zona, misma fila)
 # ============================================================
-c1, c2, c3 = st.columns([1.5, 1.5, 3], gap="medium")
+
+# Fila 1: selectores + kpis
+c1, c2, k1, k2 = st.columns([1.35, 1.55, 1.55, 1.55], gap="medium")
 
 with c1:
     measure = st.selectbox("Seleccioná la medida", ["Mensual", "Interanual", "Acumulado"], index=0, key="medida")
@@ -401,9 +403,10 @@ with c1:
 with c2:
     base_year = st.selectbox("Seleccioná el año base del IPCA", options=list(range(2017, 2026)), index=8, key="base_ipca")
 
-with c3:
+# Fila 2: rango a lo ancho
+cR = st.columns([1], gap="medium")[0]
+with cR:
     start_default_date = next((d for d in months_d if (d.year == 2025 and d.month == 1)), months_d[0])
-
     start_d, end_d = st.slider(
         "Rango de fechas",
         min_value=months_d[0],
@@ -412,14 +415,11 @@ with c3:
         format="MMM-YY",
         key="rango",
     )
-
     start_m = pd.Timestamp(start_d)
     end_m = pd.Timestamp(end_d)
 
-st.divider()
-
 # ============================================================
-# CALCULAR
+# CALCULAR DATOS (igual que antes)
 # ============================================================
 mask = (common_idx >= start_m) & (common_idx <= end_m)
 ipc_level_rng = ipc_level.loc[mask]
@@ -435,18 +435,12 @@ ipc = ipc.loc[common]
 ipca = ipca.loc[common]
 
 # ============================================================
-# KPIs
+# KPIs (renderizados en la fila de arriba, a la derecha)
 # ============================================================
-if not common.empty:
-    ipc_monthly = calc_series(ipc_level_rng, "Mensual").dropna().iloc[-1] if len(ipc_level_rng) > 1 else np.nan
-    ipc_annual  = calc_series(ipc_level_rng, "Interanual").dropna().iloc[-1] if len(ipc_level_rng) > 12 else np.nan
-
-    ipca_monthly = calc_series(ipca_level_rng, "Mensual").dropna().iloc[-1] if len(ipca_level_rng) > 1 else np.nan
-    ipca_annual  = calc_series(ipca_level_rng, "Interanual").dropna().iloc[-1] if len(ipca_level_rng) > 12 else np.nan
-
-    kpi1, kpi2 = st.columns(2, gap="large")
-
-    with kpi1:
+with k1:
+    if not common.empty:
+        ipc_monthly = calc_series(ipc_level_rng, "Mensual").dropna().iloc[-1] if len(ipc_level_rng) > 1 else np.nan
+        ipc_annual  = calc_series(ipc_level_rng, "Interanual").dropna().iloc[-1] if len(ipc_level_rng) > 12 else np.nan
         st.markdown(
             f"""
             <div class="kpi-card-compact">
@@ -461,8 +455,13 @@ if not common.empty:
             """,
             unsafe_allow_html=True,
         )
+    else:
+        st.markdown("<div style='height:92px'></div>", unsafe_allow_html=True)
 
-    with kpi2:
+with k2:
+    if not common.empty:
+        ipca_monthly = calc_series(ipca_level_rng, "Mensual").dropna().iloc[-1] if len(ipca_level_rng) > 1 else np.nan
+        ipca_annual  = calc_series(ipca_level_rng, "Interanual").dropna().iloc[-1] if len(ipca_level_rng) > 12 else np.nan
         st.markdown(
             f"""
             <div class="kpi-card-compact">
@@ -477,10 +476,11 @@ if not common.empty:
             """,
             unsafe_allow_html=True,
         )
-else:
-    st.warning("⚠️ No hay datos en el rango seleccionado.")
+    else:
+        st.markdown("<div style='height:92px'></div>", unsafe_allow_html=True)
 
-st.markdown("<div style='margin-top: 1.6rem;'></div>", unsafe_allow_html=True)
+st.divider()
+
 
 # ============================================================
 # GRÁFICO
