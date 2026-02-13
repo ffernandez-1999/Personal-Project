@@ -204,15 +204,11 @@ st.markdown(
 
 # ============================================================
 # Botón volver (link estable)
-# - "/" vuelve al Home (app.py) en la mayoría de deployments
-# - si querés otro destino, cambiá href
 # ============================================================
-st.markdown(
-    """
-    <a class="back-btn" href="/">← Volver</a>
-    """,
-    unsafe_allow_html=True,
-)
+
+if st.button("← Volver"):
+    st.switch_page("app.py")
+
 
 # ============================================================
 # Notas (placeholder)
