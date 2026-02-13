@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 # ============================================================
-# CSS - DARK TECH (CORREGIDO) + SELECTORES MAS EVIDENTES + KPI compactos
+# CSS - DARK TECH + paneles unificados al color del gráfico
 # ============================================================
 
 st.markdown(
@@ -34,9 +34,9 @@ st.markdown(
       /* Variables CSS */
       :root {
         --bg-primary: #1a1a1a;
-        --bg-secondary: #242424;
+        --bg-secondary: #242424; /* lo dejamos, pero vamos a forzar paneles a --bg-chart */
         --bg-card: #2a2a2a;
-        --bg-chart: #2f2f2f;
+        --bg-chart: #2f2f2f;     /* ✅ el “más claro” (fondo del gráfico) */
         --accent-primary: #00ff88;
         --accent-secondary: #ff0088;
         --text-primary: #fff;
@@ -48,7 +48,7 @@ st.markdown(
       /* Fondo general */
       .stApp { background-color: var(--bg-primary) !important; color: var(--text-primary); }
 
-      /* Tipografía global - INTER */
+      /* Tipografía global */
       html, body, [class*="css"], p, span, div, h1, h2, h3, h4 {
         font-family: 'Inter', sans-serif !important;
         color: var(--text-primary) !important;
@@ -62,7 +62,7 @@ st.markdown(
       .home-links a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
       .home-links a:hover { color: #fff; }
 
-      /* Título de página */
+      /* Título de página (panel) -> mismo color que gráfico */
       .page-title-highlight {
         font-family: 'Inter', sans-serif;
         font-size: 2rem;
@@ -70,18 +70,21 @@ st.markdown(
         text-align: center;
         margin-bottom: 2.0rem;
         padding: 1rem;
-        background: var(--bg-card);
+        background: var(--bg-chart); /* ✅ */
         border-radius: 0;
         border-top: 4px solid var(--accent-primary);
         letter-spacing: -0.02em;
+        border-left: 1px solid var(--border-color);
+        border-right: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
       }
 
       /* =========================
-         KPI (menos aire, sin negrita fuerte)
+         KPI (panel) -> mismo color que gráfico
          ========================= */
       .kpi-card-compact {
-        background: var(--bg-card);
-        padding: 0.95rem 1.15rem; /* menos padding */
+        background: var(--bg-chart); /* ✅ */
+        padding: 0.95rem 1.15rem;
         border-radius: 0;
         border: 1px solid var(--border-color);
         border-top: 4px solid var(--accent-primary);
@@ -109,7 +112,7 @@ st.markdown(
       .kpi-value {
         font-family: 'Inter', sans-serif;
         font-size: 2.0rem;
-        font-weight: 500;  /* ✅ sin negrita */
+        font-weight: 500;  /* sin negrita */
         color: var(--text-primary);
         letter-spacing: -0.02em;
         line-height: 1;
@@ -125,7 +128,7 @@ st.markdown(
       }
 
       /* =========================
-         SELECTBOX (más evidente)
+         SELECTBOX (panel) -> mismo color que gráfico
          ========================= */
       .stSelectbox label {
         font-family: 'Inter', sans-serif !important;
@@ -137,68 +140,49 @@ st.markdown(
         margin-bottom: 0.35rem !important;
       }
 
-      /* contenedor select */
       .stSelectbox [data-baseweb="select"] > div {
-        background-color: var(--bg-secondary) !important;
+        background-color: var(--bg-chart) !important; /* ✅ */
         border: 1px solid var(--border-color) !important;
         color: var(--text-primary) !important;
-        cursor: pointer !important;                  /* ✅ “clickeable” */
+        cursor: pointer !important;
         box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
         transition: border-color .15s ease, box-shadow .15s ease;
       }
 
-      /* hover */
       .stSelectbox [data-baseweb="select"] > div:hover {
         border-color: var(--accent-primary) !important;
         box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.12) !important;
       }
 
-      /* focus */
       .stSelectbox [data-baseweb="select"] > div:focus-within {
         border-color: var(--accent-primary) !important;
         box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.16) !important;
       }
 
-      /* texto adentro */
       .stSelectbox [data-baseweb="select"] span {
         color: var(--text-primary) !important;
-        font-weight: 600 !important;                 /* ✅ se lee más “control” */
+        font-weight: 600 !important;
       }
 
-      /* caret */
       .stSelectbox [data-baseweb="select"] svg {
         opacity: 0.95 !important;
         transform: scale(1.15);
       }
 
-      /* =========================
-         DROPDOWN (evitar blanco)
-         ========================= */
-      /* Popover wrapper */
+      /* Dropdown */
       div[data-baseweb="popover"] > div {
-        background: var(--bg-secondary) !important;
+        background: var(--bg-chart) !important; /* ✅ */
         border: 1px solid var(--border-color) !important;
         box-shadow: 0 12px 30px rgba(0,0,0,0.45) !important;
       }
 
-      /* listbox */
-      ul[role="listbox"] {
-        background: var(--bg-secondary) !important;
-      }
-
-      /* options */
-      li[role="option"] {
-        background: var(--bg-secondary) !important;
-        color: var(--text-primary) !important;
-      }
-
+      ul[role="listbox"] { background: var(--bg-chart) !important; } /* ✅ */
+      li[role="option"]  { background: var(--bg-chart) !important; color: var(--text-primary) !important; }
       li[role="option"]:hover,
-      li[role="option"][aria-selected="true"] {
-        background: var(--bg-card) !important;
-      }
+      li[role="option"][aria-selected="true"] { background: #2a2a2a !important; } /* usa tu tono ya existente */
 
       /* =========================
-         SLIDER
+         SLIDER (panel) -> mismo color que gráfico
          ========================= */
       .stSlider label {
         font-family: 'Inter', sans-serif !important;
@@ -209,7 +193,7 @@ st.markdown(
         font-weight: 600 !important;
       }
 
-      .stSlider [data-baseweb="slider"] { background-color: var(--bg-card) !important; }
+      .stSlider [data-baseweb="slider"] { background-color: var(--bg-chart) !important; } /* ✅ */
       .stSlider [data-baseweb="slider"] > div > div { background-color: var(--accent-primary) !important; }
       .stSlider [role="slider"] { background-color: var(--accent-primary) !important; }
 
@@ -236,9 +220,9 @@ st.markdown(
         background: rgba(0, 255, 136, 0.05) !important;
       }
 
-      /* Metodología card */
+      /* Metodología (panel) -> mismo color que gráfico */
       .methodology-card {
-        background: var(--bg-card);
+        background: var(--bg-chart) !important; /* ✅ */
         border-top: 4px solid var(--accent-primary);
         border-radius: 0;
         padding: 1.5rem;
@@ -394,7 +378,6 @@ months_d = [m.date() for m in months]
 # CONTROLES + KPIs (misma zona, misma fila)
 # ============================================================
 
-# Fila 1: selectores + kpis
 c1, c2, k1, k2 = st.columns([1.35, 1.55, 1.55, 1.55], gap="medium")
 
 with c1:
@@ -403,7 +386,7 @@ with c1:
 with c2:
     base_year = st.selectbox("Seleccioná el año base del IPCA", options=list(range(2017, 2026)), index=8, key="base_ipca")
 
-# Fila 2: rango a lo ancho
+# Slider (fila 2)
 cR = st.columns([1], gap="medium")[0]
 with cR:
     start_default_date = next((d for d in months_d if (d.year == 2025 and d.month == 1)), months_d[0])
@@ -419,7 +402,7 @@ with cR:
     end_m = pd.Timestamp(end_d)
 
 # ============================================================
-# CALCULAR DATOS (igual que antes)
+# CALCULAR
 # ============================================================
 mask = (common_idx >= start_m) & (common_idx <= end_m)
 ipc_level_rng = ipc_level.loc[mask]
@@ -434,9 +417,7 @@ common = ipc.index.intersection(ipca.index)
 ipc = ipc.loc[common]
 ipca = ipca.loc[common]
 
-# ============================================================
-# KPIs (renderizados en la fila de arriba, a la derecha)
-# ============================================================
+# KPIs arriba (k1/k2)
 with k1:
     if not common.empty:
         ipc_monthly = calc_series(ipc_level_rng, "Mensual").dropna().iloc[-1] if len(ipc_level_rng) > 1 else np.nan
@@ -481,7 +462,6 @@ with k2:
 
 st.divider()
 
-
 # ============================================================
 # GRÁFICO
 # ============================================================
@@ -525,7 +505,7 @@ fig.update_layout(
     ),
     hovermode="x unified",
     plot_bgcolor="#2f2f2f",
-    paper_bgcolor="#2a2a2a",
+    paper_bgcolor="#2f2f2f",  # ✅ para que el “panel” del gráfico también sea el mismo
     font=dict(family="Inter", color="#fff"),
     xaxis=dict(gridcolor="#333", showgrid=True, linecolor="#333"),
     yaxis=dict(
