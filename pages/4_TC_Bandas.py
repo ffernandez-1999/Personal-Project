@@ -17,7 +17,7 @@ st.set_page_config(
 )
 
 # ============================================================
-# CSS - OPCIÓN 1: DARK TECH
+# CSS - OPCIÓN 1: DARK TECH (CORREGIDO)
 # ============================================================
 
 st.markdown(
@@ -35,6 +35,7 @@ st.markdown(
         --bg-primary: #0a0e17;
         --bg-secondary: #141824;
         --bg-card: #1a1f2e;
+        --bg-chart: #1e2433;
         --accent-primary: #00d4aa;
         --accent-secondary: #0099ff;
         --text-primary: #e8eaed;
@@ -78,6 +79,12 @@ st.markdown(
         background: linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
       }
 
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
       .header-title {
         font-family: 'Syne', sans-serif;
         font-size: 2rem;
@@ -93,6 +100,26 @@ st.markdown(
         color: var(--text-muted);
         letter-spacing: 0.05em;
         text-transform: uppercase;
+      }
+
+      .header-links {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      .header-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: color 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .header-links a:hover {
+        color: var(--accent-primary);
       }
 
       /* Título de página */
@@ -121,10 +148,10 @@ st.markdown(
         padding: 1.75rem;
         border-radius: 12px;
         border: 1px solid var(--border-color);
-        margin-bottom: 1.5rem;
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
+        height: 100%;
       }
 
       .kpi-card::after {
@@ -148,6 +175,15 @@ st.markdown(
         opacity: 1;
       }
 
+      .kpi-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.75rem;
+        font-weight: 500;
+      }
+
       .kpi-main {
         font-family: 'Syne', sans-serif;
         font-size: 2.5rem;
@@ -167,6 +203,12 @@ st.markdown(
         font-size: 2rem;
         font-weight: 700;
         color: var(--text-primary);
+      }
+
+      .kpi-sublabel {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-top: 0.25rem;
       }
 
       /* Subtítulos de sección */
@@ -242,6 +284,21 @@ st.markdown(
         border-radius: 12px;
         overflow: hidden;
       }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+
+        .header-links {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.75rem;
+        }
+      }
     </style>
     """,
     unsafe_allow_html=True,
@@ -254,10 +311,21 @@ st.markdown(
 st.markdown(
     """
     <div class="custom-header">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div class="header-content">
             <div>
                 <div class="header-title">Francisco Fernandez Amato</div>
                 <div class="header-subtitle">Macroeconomista</div>
+            </div>
+            <div class="header-links">
+                <a href="https://www.linkedin.com/in/francisco-fernandez-amato" target="_blank">
+                    <span>LinkedIn</span>
+                </a>
+                <a href="mailto:tu-email@gmail.com">
+                    <span>Gmail</span>
+                </a>
+                <a href="https://github.com/tu-usuario" target="_blank">
+                    <span>GitHub</span>
+                </a>
             </div>
         </div>
     </div>
@@ -320,27 +388,28 @@ df["FX"] = df["FX"].ffill()
 df.loc[df["Date"] > last_fx_date, "FX"] = np.nan
 
 # ============================================================
-# KPIs
+# KPIs EN FILA (ARRIBA)
 # ============================================================
 
-kpi_col, main_col = st.columns([1, 2.5], gap="large")
+last_row = fx.iloc[-1]
+last_val = int(round(last_row["FX"]))
+last_val_fmt = f"{last_val:,}".replace(",", ".")
+last_date = last_row["Date"].strftime("%d/%m/%Y")
 
-with kpi_col:
+prev_month = fx[fx["Date"] <= last_row["Date"] - pd.Timedelta(days=30)]
+prev_year = fx[fx["Date"] <= last_row["Date"] - pd.Timedelta(days=365)]
 
-    last_row = fx.iloc[-1]
-    last_val = int(round(last_row["FX"]))
-    last_val_fmt = f"{last_val:,}".replace(",", ".")
-    last_date = last_row["Date"].strftime("%d/%m/%Y")
+mm = ((last_val / prev_month.iloc[-1]["FX"]) - 1) * 100 if not prev_month.empty else np.nan
+yy = ((last_val / prev_year.iloc[-1]["FX"]) - 1) * 100 if not prev_year.empty else np.nan
 
-    prev_month = fx[fx["Date"] <= last_row["Date"] - pd.Timedelta(days=30)]
-    prev_year = fx[fx["Date"] <= last_row["Date"] - pd.Timedelta(days=365)]
+# KPIs en 3 columnas
+kpi1, kpi2, kpi3 = st.columns(3, gap="large")
 
-    mm = ((last_val / prev_month.iloc[-1]["FX"]) - 1) * 100 if not prev_month.empty else np.nan
-    yy = ((last_val / prev_year.iloc[-1]["FX"]) - 1) * 100 if not prev_year.empty else np.nan
-
+with kpi1:
     st.markdown(
         f"""
         <div class="kpi-card">
+            <div class="kpi-label">Tipo de Cambio Actual</div>
             <div>
                 <span class="kpi-main">{last_val_fmt}</span>
                 <span class="kpi-date">{last_date}</span>
@@ -350,101 +419,105 @@ with kpi_col:
         unsafe_allow_html=True,
     )
 
+with kpi2:
     st.markdown(
         f"""
         <div class="kpi-card">
-            <div style="display:flex; gap:2rem;">
-                <div>
-                    <div class="kpi-sub">{mm:.1f}%</div>
-                    <div style="font-size:0.8rem; color:#6b7280;">m/m</div>
-                </div>
-                <div>
-                    <div class="kpi-sub">{yy:.1f}%</div>
-                    <div style="font-size:0.8rem; color:#6b7280;">y/y</div>
-                </div>
-            </div>
+            <div class="kpi-label">Variación Mensual</div>
+            <div class="kpi-sub">{mm:.1f}%</div>
+            <div class="kpi-sublabel">m/m</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with kpi3:
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-label">Variación Anual</div>
+            <div class="kpi-sub">{yy:.1f}%</div>
+            <div class="kpi-sublabel">y/y</div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
 # ============================================================
-# RANGO + GRÁFICO
+# RANGO + GRÁFICO (TODO EL ANCHO)
 # ============================================================
 
-with main_col:
+st.markdown("### Rango de fechas")
 
-    st.markdown("### Rango de fechas")
+min_d = df["Date"].min().date()
+max_d = df["Date"].max().date()
 
-    min_d = df["Date"].min().date()
-    max_d = df["Date"].max().date()
+start_d, end_d = st.slider(
+    "",
+    min_value=min_d,
+    max_value=max_d,
+    value=(min_d, max_d),
+)
 
-    start_d, end_d = st.slider(
-        "",
-        min_value=min_d,
-        max_value=max_d,
-        value=(min_d, max_d),
+df_plot = df[
+    (df["Date"] >= pd.Timestamp(start_d)) &
+    (df["Date"] <= pd.Timestamp(end_d))
+]
+
+fig = go.Figure()
+
+fig.add_trace(
+    go.Scatter(
+        x=df_plot["Date"],
+        y=df_plot["upper"],
+        line=dict(dash="dash", color="#00d4aa", width=1.5),
+        showlegend=False,
     )
+)
 
-    df_plot = df[
-        (df["Date"] >= pd.Timestamp(start_d)) &
-        (df["Date"] <= pd.Timestamp(end_d))
-    ]
-
-    fig = go.Figure()
-
-    fig.add_trace(
-        go.Scatter(
-            x=df_plot["Date"],
-            y=df_plot["upper"],
-            line=dict(dash="dash", color="#00d4aa", width=1.5),
-            showlegend=False,
-        )
+fig.add_trace(
+    go.Scatter(
+        x=df_plot["Date"],
+        y=df_plot["lower"],
+        line=dict(dash="dash", color="#00d4aa", width=1.5),
+        fill="tonexty",
+        fillcolor="rgba(0, 212, 170, 0.05)",
+        showlegend=False,
     )
+)
 
-    fig.add_trace(
-        go.Scatter(
-            x=df_plot["Date"],
-            y=df_plot["lower"],
-            line=dict(dash="dash", color="#00d4aa", width=1.5),
-            fill="tonexty",
-            fillcolor="rgba(0, 212, 170, 0.05)",
-            showlegend=False,
-        )
+fig.add_trace(
+    go.Scatter(
+        x=df_plot["Date"],
+        y=df_plot["FX"],
+        line=dict(color="#0099ff", width=2.5),
+        showlegend=False,
     )
+)
 
-    fig.add_trace(
-        go.Scatter(
-            x=df_plot["Date"],
-            y=df_plot["FX"],
-            line=dict(color="#0099ff", width=2.5),
-            showlegend=False,
-        )
-    )
+fig.update_layout(
+    height=560,
+    hovermode="x unified",
+    margin=dict(l=20, r=20, t=20, b=20),
+    plot_bgcolor="#1e2433",  # Fondo más claro
+    paper_bgcolor="#1a1f2e",
+    font_color="#e8eaed",
+    font_family="JetBrains Mono",
+    xaxis=dict(
+        gridcolor="#2a3041",
+        showgrid=True,
+        linecolor="#2a3041",
+    ),
+    yaxis=dict(
+        gridcolor="#2a3041",
+        showgrid=True,
+        linecolor="#2a3041",
+    ),
+)
 
-    fig.update_layout(
-        height=560,
-        hovermode="x unified",
-        margin=dict(l=20, r=20, t=20, b=20),
-        plot_bgcolor="#141824",
-        paper_bgcolor="#1a1f2e",
-        font_color="#e8eaed",
-        font_family="JetBrains Mono",
-        xaxis=dict(
-            gridcolor="#2a3041",
-            showgrid=True,
-            linecolor="#2a3041",
-        ),
-        yaxis=dict(
-            gridcolor="#2a3041",
-            showgrid=True,
-            linecolor="#2a3041",
-        ),
-    )
+fig.update_yaxes(title="ARS/USD", title_font=dict(size=12))
 
-    fig.update_yaxes(title="ARS/USD", title_font=dict(size=12))
-
-    st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, use_container_width=True)
 
 # ============================================================
 # METODOLOGÍA
