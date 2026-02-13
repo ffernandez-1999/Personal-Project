@@ -21,7 +21,7 @@ st.markdown("""
 
 /* ========== VARIABLES ========== */
 :root {
-  --bg-primary: #1a1a1a;
+  --bg-primary: #f8fafc;
   --bg-secondary: #242424;
   --bg-card: #2a2a2a;
   --bg-chart: #2f2f2f;
