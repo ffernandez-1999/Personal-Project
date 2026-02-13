@@ -23,8 +23,8 @@ st.markdown(
       /* Variables CSS */
       :root {
         --bg-primary: #0a0e17;
-        --bg-secondary: #141824;
-        --bg-card: #1a1f2e;
+        --bg-secondary: #1a2332;
+        --bg-card: #222b3d;
         --accent-primary: #00d4aa;
         --accent-secondary: #0099ff;
         --text-primary: #e8eaed;
