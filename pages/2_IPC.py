@@ -21,17 +21,18 @@ st.markdown("""
 
 /* ========== VARIABLES ========== */
 :root {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #242424;
-  --bg-card: #2a2a2a;
-  --bg-chart: #2f2f2f;
-  --accent-primary: #00ff88;
-  --accent-secondary: #ff0088;
-  --text-primary: #fff;
-  --text-secondary: #aaa;
-  --text-muted: #888;
-  --border-color: #333;
+  --bg-primary: #f9fafb;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-chart: #ffffff;
+  --accent-primary: #2563eb;
+  --accent-secondary: #7c3aed;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  --border-color: #e5e7eb;
 }
+
 
 /* ========== BASE ========== */
 .stApp { background-color: var(--bg-primary); color: var(--text-primary); }
