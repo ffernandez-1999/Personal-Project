@@ -174,6 +174,7 @@ with kpi_col:
 
     last_row = fx.iloc[-1]
     last_val = int(round(last_row["FX"]))
+    last_val_fmt = f"{last_val:,}".replace(",", ".")
     last_date = last_row["Date"].strftime("%d/%m/%Y")
 
     prev_month = fx[fx["Date"] <= last_row["Date"] - pd.Timedelta(days=30)]
@@ -186,7 +187,7 @@ with kpi_col:
         f"""
         <div class="kpi-card">
             <div>
-                <span class="kpi-main">{last_val:,}".replace(",", ".")}</span>
+                <span class="kpi-main">{last_val_fmt}</span>
                 <span class="kpi-date">{last_date}</span>
             </div>
         </div>
