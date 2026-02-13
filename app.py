@@ -163,46 +163,48 @@ st.markdown(
 )
 
 # ============================================================
-# CONTENIDO - 2 CARDS MISMO ANCHO
+# CONTENIDO - 2 CARDS EN FILA (MISMO ANCHO)
 # ============================================================
 
-left, center, right = st.columns([1, 10, 1])
+left, center, right = st.columns([0.5, 10, 0.5])
 
 with center:
-    # Card 1: Dashboard
-    st.markdown(
-        """
-        <div class="card-container">
-            <div class="card-accent"></div>
-            <div class="card-content">
-                <div class="card-title">Dashboard interactivo</div>
-                <div class="card-desc">Indicadores macroeconómicos actualizados en tiempo real</div>
+    card1, card2 = st.columns(2, gap="large")
+    
+    with card1:
+        # Card 1: Dashboard
+        st.markdown(
+            """
+            <div class="card-container">
+                <div class="card-accent"></div>
+                <div class="card-content">
+                    <div class="card-title">Dashboard interactivo</div>
+                    <div class="card-desc">Indicadores macroeconómicos actualizados en tiempo real</div>
+                </div>
             </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+            """,
+            unsafe_allow_html=True
+        )
+        
+        btn1, btn2 = st.columns(2)
+        with btn1:
+            st.page_link("pages/2_IPC.py", label="Ver IPC", use_container_width=True)
+        with btn2:
+            st.page_link("pages/4_TC_Bandas.py", label="Ver TC y Bandas", use_container_width=True)
     
-    col1, col2 = st.columns(2)
-    with col1:
-        st.page_link("pages/2_IPC.py", label="Ver IPC", use_container_width=True)
-    with col2:
-        st.page_link("pages/4_TC_Bandas.py", label="Ver TC y Bandas", use_container_width=True)
-    
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    # Card 2: Notas
-    st.markdown(
-        """
-        <div class="card-container">
-            <div class="card-accent card-accent-pink"></div>
-            <div class="card-content">
-                <div class="card-title">Notas</div>
-                <div class="card-desc">Artículos y publicaciones sobre economía argentina</div>
+    with card2:
+        # Card 2: Notas
+        st.markdown(
+            """
+            <div class="card-container">
+                <div class="card-accent card-accent-pink"></div>
+                <div class="card-content">
+                    <div class="card-title">Notas</div>
+                    <div class="card-desc">Artículos y publicaciones sobre economía argentina</div>
+                </div>
             </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-    
-    st.page_link("pages/3_Notes.py", label="Ver artículos", use_container_width=True)
+            """,
+            unsafe_allow_html=True
+        )
+        
+        st.page_link("pages/3_Notes.py", label="Ver artículos", use_container_width=True)
