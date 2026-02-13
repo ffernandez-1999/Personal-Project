@@ -1,4 +1,3 @@
-
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -13,208 +12,323 @@ st.set_page_config(
 )
 
 
+# ============================================================
+# CSS - DARK TECH (IGUAL QUE TC MAYORISTA)
+# ============================================================
+
 st.markdown(
     """
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+      
       /* Ocultar sidebar */
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
-
-      /* Reducir padding superior */
       section.main > div { padding-top: 1rem; }
 
-      /* Tipografía general */
-      html, body, [class*="css"] {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      /* Variables CSS */
+      :root {
+        --bg-primary: #0a0e17;
+        --bg-secondary: #141824;
+        --bg-card: #1a1f2e;
+        --bg-chart: #1e2433;
+        --accent-primary: #00d4aa;
+        --accent-secondary: #0099ff;
+        --text-primary: #e8eaed;
+        --text-secondary: #9ba3af;
+        --text-muted: #6b7280;
+        --border-color: #2a3041;
       }
 
-      /* Headers más bonitos */
-      h1 {
-        font-size: 2.5rem !important;
-        font-weight: 700 !important;
-        margin-bottom: 0.5rem !important;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      /* Fondo general */
+      .stApp {
+        background-color: var(--bg-primary);
+        background-image: 
+          radial-gradient(circle at 20% 50%, rgba(0, 212, 170, 0.03) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(0, 153, 255, 0.03) 0%, transparent 50%);
+        color: var(--text-primary);
       }
 
-      h2, h3 { font-weight: 600 !important; }
-
-      /* Métricas mejoradas */
-      [data-testid="stMetricValue"] {
-        font-size: 2.5rem !important;
-        font-weight: 700 !important;
+      /* Tipografía global */
+      html, body, [class*="css"], p, span, div {
+        font-family: 'JetBrains Mono', monospace !important;
+        color: var(--text-primary);
       }
-
-      [data-testid="stMetricLabel"] {
-        font-size: 0.875rem !important;
-        font-weight: 500 !important;
-        color: rgba(0,0,0,0.6) !important;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-
-      /* Botones con mejor estilo */
-      .stButton > button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 8px !important;
-        padding: 0.5rem 1.5rem !important;
-        font-weight: 600 !important;
-        transition: all 0.3s !important;
-        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
-      }
-
-      .stButton > button:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
-      }
-
-      /* Selectbox y Slider más modernos */
-      .stSelectbox > div > div {
-        border-radius: 8px !important;
-        border: 1px solid #e2e8f0 !important;
-      }
-
-      /* Slider con color azul oscuro */
-      .stSlider > div > div > div > div { background-color: #1e3a8a !important; }
-      .stSlider > div > div > div { background-color: #1e3a8a !important; }
-
-      [data-baseweb="slider"] [role="slider"] {
-        background-color: #1e3a8a !important;
-      }
-
-      [data-baseweb="slider"] > div > div {
-        background-color: rgba(30, 58, 138, 0.2) !important;
-      }
-
-      [data-baseweb="slider"] [data-testid="stTickBar"] > div {
-        background-color: #1e3a8a !important;
-      }
-
-      /* Ocultar tickbar */
-      [data-baseweb="slider"] [data-testid="stTickBar"] {
-        display: none !important;
-      }
-
-      /* ====== (general) si querés seguir ocultando puntas en todos los sliders ====== */
-      [data-testid="stSlider"] [data-testid="stTickBarMin"],
-      [data-testid="stSlider"] [data-testid="stTickBarMax"]{
-        display: none !important;
-      }
-
-      /* ================================
-         SOLO este slider: ocultar etiquetas molestas
-         (Jan-25 / Jan-26 arriba + puntas)
-         ================================ */
-
-      /* Ocultar min/max dentro del wrapper */
-      .range-clean [data-testid="stTickBarMin"],
-      .range-clean [data-testid="stTickBarMax"]{
-        display: none !important;
-      }
-
-      /* Ocultar labels de valores arriba (Jan-25 / Jan-26) */
-      .range-clean [data-baseweb="slider"] [data-baseweb="popover"],
-      .range-clean [data-baseweb="slider"] [data-baseweb="tooltip"],
-      .range-clean [data-baseweb="slider"] div[role="tooltip"]{
-        display: none !important;
-      }
-
-      /* ÚLTIMO MARTILLAZO: si en tu versión esos labels vienen como spans */
-      .range-clean [data-baseweb="slider"] span{
-        display: none !important;
-      }
-
-      /* Divider más sutil */
-      hr {
-        margin: 1.5rem 0 !important;
-        border-color: #e2e8f0 !important;
-      }
-
-      /* Caption mejorado */
-      .stCaption {
-        color: rgba(0,0,0,0.5) !important;
-        font-size: 0.875rem !important;
-      }
-
-      /* Card personalizada para metodología */
-      .methodology-card {
-        background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
-        border-left: 4px solid #667eea;
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-top: 1rem;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      }
-
-      .methodology-card ul { margin-top: 0.5rem; padding-left: 1.2rem; }
-      .methodology-card li { margin-bottom: 0.75rem; line-height: 1.6; }
 
       /* Header personalizado */
       .custom-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2rem 2.5rem;
+        background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+        padding: 2rem;
         border-radius: 16px;
-        margin-bottom: 2.5rem;
-        color: white;
-        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+        border: 1px solid var(--border-color);
+        margin-bottom: 2rem;
+        position: relative;
       }
 
-      .header-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
-      .header-subtitle { font-size: 1.1rem; opacity: 0.95; font-weight: 500; }
+      .custom-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header-title {
+        font-family: 'Syne', sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+        letter-spacing: -0.02em;
+      }
+
+      .header-subtitle {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
 
       .header-links {
-        font-size: 0.95rem;
-        opacity: 0.95;
-        margin-top: 0.5rem;
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
       }
 
       .header-links a {
-        color: white !important;
+        color: var(--text-secondary);
         text-decoration: none;
-        margin: 0 0.5rem;
+        font-size: 0.875rem;
+        transition: color 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .header-links a:hover {
+        color: var(--accent-primary);
+      }
+
+      /* Título de página */
+      h1 {
+        font-family: 'Syne', sans-serif !important;
+        font-size: 1.5rem !important;
+        font-weight: 600 !important;
+        color: var(--text-primary) !important;
+        margin-bottom: 2rem !important;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      h1::before {
+        content: '';
+        width: 3px;
+        height: 1.5rem;
+        background: linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+        border-radius: 2px;
+      }
+
+      /* KPI Cards */
+      .kpi-card {
+        background: var(--bg-card);
+        padding: 1.75rem;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+      }
+
+      .kpi-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent-primary) 0%, transparent 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .kpi-card:hover {
+        border-color: var(--accent-primary);
+        transform: translateY(-2px);
+      }
+
+      .kpi-card:hover::after {
+        opacity: 1;
+      }
+
+      .kpi-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.75rem;
         font-weight: 500;
       }
 
-      .header-links a:hover { text-decoration: underline; }
-
-      /* KPI cards personalizadas */
-      .kpi-card {
-        background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        margin-bottom: 1rem;
-      }
-
-      .kpi-card-label {
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: rgba(0,0,0,0.5);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.5rem;
-      }
-
-      .kpi-card-value {
+      .kpi-main {
+        font-family: 'Syne', sans-serif;
         font-size: 2.5rem;
         font-weight: 700;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 0.25rem;
+        color: var(--text-primary);
+        letter-spacing: -0.02em;
       }
 
-      /* Plotly container */
+      .kpi-sub {
+        font-family: 'Syne', sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        opacity: 0.4;
+      }
+
+      .kpi-sublabel {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+
+      /* Subtítulos de sección */
+      h3 {
+        font-family: 'Syne', sans-serif !important;
+        font-size: 0.875rem !important;
+        font-weight: 600 !important;
+        color: var(--text-secondary) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.1em !important;
+        margin-bottom: 1.5rem !important;
+      }
+
+      /* Selectbox */
+      .stSelectbox label {
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 0.75rem !important;
+        color: var(--text-muted) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        font-weight: 500 !important;
+      }
+
+      .stSelectbox > div > div {
+        background-color: var(--bg-secondary) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 8px !important;
+        color: var(--text-primary) !important;
+      }
+
+      .stSelectbox [data-baseweb="select"] > div {
+        background-color: var(--bg-secondary) !important;
+        border-color: var(--border-color) !important;
+        color: var(--text-primary) !important;
+      }
+
+      /* Slider personalizado */
+      .stSlider label {
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 0.75rem !important;
+        color: var(--text-muted) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        font-weight: 500 !important;
+      }
+
+      .stSlider > div > div > div {
+        background-color: var(--bg-card) !important;
+      }
+
+      .stSlider > div > div > div > div {
+        background-color: var(--accent-primary) !important;
+      }
+
+      /* Botón de volver */
+      .stButton > button {
+        background: var(--bg-card) !important;
+        border: 1px solid var(--border-color) !important;
+        color: var(--text-secondary) !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        border-radius: 8px !important;
+        padding: 0.75rem 1.25rem !important;
+        transition: all 0.2s ease !important;
+        font-size: 0.875rem !important;
+      }
+
+      .stButton > button:hover {
+        border-color: var(--accent-primary) !important;
+        color: var(--accent-primary) !important;
+      }
+
+      /* Metodología card */
+      .methodology-card {
+        background: var(--bg-card);
+        border-left: 4px solid var(--accent-primary);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+        border: 1px solid var(--border-color);
+      }
+
+      .methodology-card h4 {
+        font-family: 'Syne', sans-serif;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        font-size: 1.125rem;
+      }
+
+      .methodology-card ul {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        line-height: 1.6;
+      }
+
+      .methodology-card li {
+        color: var(--text-secondary);
+      }
+
+      /* Gráfico contenedor */
       .js-plotly-plot {
         border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      }
+
+      /* Caption */
+      .stCaption {
+        color: var(--text-muted) !important;
+        font-size: 0.75rem !important;
+      }
+
+      /* Divider */
+      hr {
+        border-color: var(--border-color) !important;
+        margin: 1.5rem 0 !important;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+
+        .header-links {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.75rem;
+        }
       }
     </style>
     """,
@@ -222,22 +336,27 @@ st.markdown(
 )
 
 
-
 # ============================================================
-# Header personalizado (reemplaza el top row)
+# HEADER
 # ============================================================
 st.markdown(
     """
     <div class="custom-header">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="header-content">
             <div>
                 <div class="header-title">Francisco Fernandez Amato</div>
                 <div class="header-subtitle">Macroeconomista</div>
             </div>
             <div class="header-links">
-                <a href="mailto:franciscofernandezz1999@gmail.com">📧 Email</a>
-                <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">💼 LinkedIn</a>
-                <a href="https://github.com/ffernandez-1999" target="_blank">🔗 GitHub</a>
+                <a href="mailto:franciscofernandezz1999@gmail.com">
+                    <span>Gmail</span>
+                </a>
+                <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/ffernandez-1999" target="_blank">
+                    <span>GitHub</span>
+                </a>
             </div>
         </div>
     </div>
@@ -245,14 +364,16 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Botón volver (más chico y elegante)
+# Botón volver
 col_btn, _ = st.columns([1, 5])
 with col_btn:
     if st.button("← Volver"):
         st.switch_page("app.py")
 
+st.markdown("<h1 style='text-align: center;'>IPC vs IPCA (ENGHo 2017/18)</h1>", unsafe_allow_html=True)
+
 # ============================================================
-# Config
+# CONFIG
 # ============================================================
 DIV_CODES = list(range(1, 13))
 W_2017 = {
@@ -262,7 +383,7 @@ W_2017 = {
 }
 
 # ============================================================
-# Loader INDEC
+# LOADER INDEC
 # ============================================================
 @st.cache_data(ttl=12 * 60 * 60, show_spinner=False)
 def get_ipc_indec_full() -> pd.DataFrame:
@@ -286,7 +407,7 @@ def get_ipc_indec_full() -> pd.DataFrame:
     return df.sort_values(["Periodo", "Codigo_num"]).reset_index(drop=True)
 
 # ============================================================
-# Helpers
+# HELPERS
 # ============================================================
 def fmt_pct(x):
     if x is None or (isinstance(x, float) and np.isnan(x)):
@@ -319,9 +440,8 @@ def calc_series(level: pd.Series, measure: str) -> pd.Series:
     raise ValueError("Medida inválida")
 
 # ============================================================
-# Data
+# DATA
 # ============================================================
-st.markdown("<h1 style='text-align: center;'>IPC vs IPCA (ENGHo 2017/18)</h1>", unsafe_allow_html=True)
 
 df = get_ipc_indec_full()
 df_nac = df[(df["Region"] == "Nacional") & (df["Clasificador"].str.contains("divisiones", case=False, na=False))].copy()
@@ -347,17 +467,22 @@ months = list(common_idx.sort_values())
 months_d = [m.date() for m in months]
 
 # ============================================================
-# Controles (inline compactos sin título)
+# CONTROLES: Selectores a la izquierda, Rango a la derecha
 # ============================================================
-c1, c2, c3 = st.columns([3, 1.5, 1.5], gap="medium")
+
+c1, c2, c3 = st.columns([1.5, 1.5, 3], gap="medium")
 
 with c1:
+    measure = st.selectbox("📈 Medida", ["Mensual", "Interanual", "Acumulado"], index=0)
+
+with c2:
+    base_year = st.selectbox("📐 Año base (IPCA)", options=list(range(2017, 2026)), index=8)
+
+with c3:
     start_default_date = next(
         (d for d in months_d if (d.year == 2025 and d.month == 1)),
         months_d[0]
     )
-
-    st.markdown('<div class="range-clean">', unsafe_allow_html=True)
 
     start_d, end_d = st.slider(
         "📅 Rango de fechas",
@@ -367,24 +492,13 @@ with c1:
         format="MMM-YY",
     )
 
-    st.markdown("</div>", unsafe_allow_html=True)
-
     start_m = pd.Timestamp(start_d)
     end_m = pd.Timestamp(end_d)
-
-
-
-
-with c2:
-    measure = st.selectbox("📈 Medida", ["Mensual", "Interanual", "Acumulado"], index=0)
-
-with c3:
-    base_year = st.selectbox("📐 Año base (IPCA)", options=list(range(2017, 2026)), index=8)
 
 st.divider()
 
 # ============================================================
-# Range + series
+# CALCULAR DATOS
 # ============================================================
 mask = (common_idx >= start_m) & (common_idx <= end_m)
 ipc_level_rng = ipc_level.loc[mask]
@@ -400,77 +514,75 @@ ipc = ipc.loc[common]
 ipca = ipca.loc[common]
 
 # ============================================================
-# Layout: KPIs (izq) + Chart (der)
+# KPIs ARRIBA (2 CARDS CON 2 DATOS CADA UNO)
 # ============================================================
-kpi_col, main_col = st.columns([1, 2.5], gap="large")
 
-with kpi_col:
-    st.markdown("### 📊 Indicadores")
-
-    if common.empty:
-        st.warning("⚠️ No hay datos en el rango seleccionado.")
-    else:
-        last_date = common.max()
-        st.caption(f"🕐 Último dato disponible: **{pd.to_datetime(last_date).strftime('%B %Y')}**")
-        
-        # Calculate monthly and annual variations
-        ipc_monthly = ipc.iloc[-1] if len(ipc) > 0 else np.nan
-        ipc_annual = calc_series(ipc_level_rng, "Interanual").iloc[-1] if len(ipc_level_rng) > 12 else np.nan
-        
-        ipca_monthly = ipca.iloc[-1] if len(ipca) > 0 else np.nan
-        ipca_annual = calc_series(ipca_level_rng, "Interanual").iloc[-1] if len(ipca_level_rng) > 12 else np.nan
-        
-        # KPI IPC con variaciones
-        st.markdown(
-            f"""
-            <div class="kpi-card">
-                <div class="kpi-card-label">IPC Nacional</div>
-                <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.5rem;">
-                    <div class="kpi-card-value">{fmt_pct(ipc_monthly)}</div>
-                    <div class="kpi-card-value" style="opacity: 0.4;">{fmt_pct(ipc_annual)}</div>
-                </div>
-                <div style="font-size: 0.75rem; color: rgba(0,0,0,0.5); font-weight: 600;">
-                    <span>m/m</span>
-                    <span style="margin-left: 6.5rem;">y/y</span>
-                </div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        
-        # KPI IPCA con variaciones
-        st.markdown(
-            f"""
-            <div class="kpi-card">
-                <div class="kpi-card-label">IPCA (ENGHo 2017/18)</div>
-                <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.5rem;">
-                    <div class="kpi-card-value">{fmt_pct(ipca_monthly)}</div>
-                    <div class="kpi-card-value" style="opacity: 0.4;">{fmt_pct(ipca_annual)}</div>
-                </div>
-                <div style="font-size: 0.75rem; color: rgba(0,0,0,0.5); font-weight: 600;">
-                    <span>m/m</span>
-                    <span style="margin-left: 6.5rem;">y/y</span>
-                </div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-with main_col:
-    st.markdown("### 📈 Evolución Temporal")
+if not common.empty:
+    last_date = common.max()
     
-    fig = go.Figure()
+    # Calcular variaciones mensuales y anuales
+    ipc_monthly = ipc.iloc[-1] if len(ipc) > 0 else np.nan
+    ipc_annual = calc_series(ipc_level_rng, "Interanual").iloc[-1] if len(ipc_level_rng) > 12 else np.nan
+    
+    ipca_monthly = ipca.iloc[-1] if len(ipca) > 0 else np.nan
+    ipca_annual = calc_series(ipca_level_rng, "Interanual").iloc[-1] if len(ipca_level_rng) > 12 else np.nan
+    
+    # 2 columnas para los 2 KPIs
+    kpi1, kpi2 = st.columns(2, gap="large")
+    
+    with kpi1:
+        st.markdown(
+            f"""
+            <div class="kpi-card">
+                <div class="kpi-label">IPC Nacional</div>
+                <div style="display: flex; align-items: baseline; gap: 2rem; margin-bottom: 0.5rem;">
+                    <div class="kpi-main">{fmt_pct(ipc_monthly)}</div>
+                    <div class="kpi-sub">{fmt_pct(ipc_annual)}</div>
+                </div>
+                <div style="display: flex; gap: 7rem;">
+                    <div class="kpi-sublabel">m/m</div>
+                    <div class="kpi-sublabel">y/y</div>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    
+    with kpi2:
+        st.markdown(
+            f"""
+            <div class="kpi-card">
+                <div class="kpi-label">IPCA (ENGHo 2017/18)</div>
+                <div style="display: flex; align-items: baseline; gap: 2rem; margin-bottom: 0.5rem;">
+                    <div class="kpi-main">{fmt_pct(ipca_monthly)}</div>
+                    <div class="kpi-sub">{fmt_pct(ipca_annual)}</div>
+                </div>
+                <div style="display: flex; gap: 7rem;">
+                    <div class="kpi-sublabel">m/m</div>
+                    <div class="kpi-sublabel">y/y</div>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+else:
+    st.warning("⚠️ No hay datos en el rango seleccionado.")
 
+# ============================================================
+# GRÁFICO (TODO EL ANCHO)
+# ============================================================
+
+fig = go.Figure()
+
+if not common.empty:
     # IPC
     fig.add_trace(
         go.Scatter(
             x=ipc.index,
             y=ipc.values,
             mode="lines+markers",
-            marker=dict(size=7, color='#667eea'),
-            line=dict(width=3, color='#667eea'),
+            marker=dict(size=6, color='#0099ff'),
+            line=dict(width=2.5, color='#0099ff'),
             name="IPC",
             hovertemplate="IPC: %{y:.2f}%<extra></extra>",
         )
@@ -482,59 +594,52 @@ with main_col:
             x=ipca.index,
             y=ipca.values,
             mode="lines+markers",
-            marker=dict(size=7, color='#764ba2'),
-            line=dict(width=3, color='#764ba2'),
+            marker=dict(size=6, color='#00d4aa'),
+            line=dict(width=2.5, color='#00d4aa'),
             name="IPCA (ENGHo 2017/18)",
             hovertemplate="IPCA: %{y:.2f}%<extra></extra>",
         )
     )
 
-    fig.update_layout(
-        height=560,
-        margin=dict(l=20, r=20, t=40, b=20),
-        legend=dict(
-            orientation="h",
-            yanchor="bottom",
-            y=1.02,
-            xanchor="left",
-            x=0,
-            font=dict(size=14),
-        ),
-        hovermode="x unified",
-        plot_bgcolor='rgba(0,0,0,0)',
-        paper_bgcolor='rgba(0,0,0,0)',
-        font=dict(family="Inter, sans-serif"),
-    )
-    
-    fig.update_xaxes(
+fig.update_layout(
+    height=560,
+    margin=dict(l=20, r=20, t=40, b=20),
+    legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="left",
+        x=0,
+        font=dict(size=12, family="JetBrains Mono", color="#e8eaed"),
+    ),
+    hovermode="x unified",
+    plot_bgcolor='#1e2433',
+    paper_bgcolor='#1a1f2e',
+    font=dict(family="JetBrains Mono", color="#e8eaed"),
+    xaxis=dict(
+        gridcolor='#2a3041',
         showgrid=True,
-        gridwidth=1,
-        gridcolor='rgba(0,0,0,0.05)',
-        showline=True,
-        linewidth=1,
-        linecolor='rgba(0,0,0,0.1)',
-    )
-    
-    fig.update_yaxes(
+        linecolor='#2a3041',
+    ),
+    yaxis=dict(
         title="Variación %",
+        title_font=dict(size=12),
+        gridcolor='#2a3041',
         showgrid=True,
-        gridwidth=1,
-        gridcolor='rgba(0,0,0,0.05)',
-        showline=True,
-        linewidth=1,
-        linecolor='rgba(0,0,0,0.1)',
-    )
+        linecolor='#2a3041',
+    ),
+)
 
-    st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, use_container_width=True)
 
 # ============================================================
-# Metodología (full width debajo del gráfico)
+# METODOLOGÍA
 # ============================================================
 st.markdown(
     """
     <div class="methodology-card">
-        <h4 style="margin-top: 0; margin-bottom: 1rem; font-size: 1rem;">📖 Metodología</h4>
-        <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.875rem; line-height: 1.6;">
+        <h4>📖 Metodología</h4>
+        <ul>
             <li><b>IPC:</b> Inflación oficial del INDEC (nivel general, nacional)</li>
             <li><b>IPCA:</b> Índice que repondera las 12 divisiones COICOP usando ponderadores de ENGHo 2017/18</li>
             <li><b>Fuente:</b> CSV oficial del INDEC, actualizado automáticamente</li>
@@ -546,7 +651,7 @@ st.markdown(
 )
 
 # ============================================================
-# Footer
+# FOOTER
 # ============================================================
-st.markdown("<br><br>", unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)
 st.caption("💡 Dashboard actualizado automáticamente desde fuentes oficiales del INDEC")
