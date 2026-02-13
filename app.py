@@ -7,7 +7,7 @@ st.set_page_config(
 )
 
 # ============================================================
-# CSS - DARK TECH (MISMO QUE LAS OTRAS PÁGINAS)
+# CSS - DARK TECH (CORREGIDO - PROPORCIONES)
 # ============================================================
 
 st.markdown(
@@ -48,50 +48,33 @@ st.markdown(
         color: var(--text-primary) !important;
       }
 
-      /* Header central */
+      /* Header central MÁS CHICO */
       .home-header {
         text-align: center;
-        padding: 3rem 2rem;
+        padding: 2rem 2rem;
         background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
         border-radius: 16px;
         border: 1px solid var(--border-color);
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
         position: relative;
       }
 
       .home-header::before {
         content: '';
         position: absolute;
-        top: 50%;
+        top: 0;
         left: 0;
-        transform: translateY(-50%);
         width: 4px;
-        height: 60%;
+        height: 100%;
         background: linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-        border-radius: 0 2px 2px 0;
-      }
-
-      .home-header::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-        width: 4px;
-        height: 60%;
-        background: linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-        border-radius: 2px 0 0 2px;
       }
 
       .home-title {
         font-family: 'Syne', sans-serif !important;
-        font-size: 3rem !important;
+        font-size: 2rem !important;
         font-weight: 700 !important;
-        margin-bottom: 0.5rem !important;
-        background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        margin-bottom: 1rem !important;
+        color: var(--text-primary) !important;
         letter-spacing: -0.02em;
       }
 
@@ -99,86 +82,63 @@ st.markdown(
         display: flex;
         justify-content: center;
         gap: 2rem;
-        margin-top: 1.5rem;
       }
 
       .home-links a {
         color: var(--text-secondary);
         text-decoration: none;
-        font-size: 0.95rem;
+        font-size: 0.875rem;
         transition: all 0.2s ease;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        border: 1px solid transparent;
       }
 
       .home-links a:hover {
         color: var(--accent-primary);
-        border-color: var(--border-color);
-        background: rgba(0, 212, 170, 0.05);
       }
 
-      /* Cards de contenido */
-      .stContainer {
+      /* Cards de contenido MÁS VISIBLES */
+      [data-testid="stVerticalBlock"] > [data-testid="element-container"] > div[data-testid="stVerticalBlock"] {
         background: var(--bg-card) !important;
         border: 1px solid var(--border-color) !important;
         border-radius: 12px !important;
         padding: 2rem !important;
         transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
       }
 
-      .stContainer::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: linear-gradient(90deg, var(--accent-primary) 0%, transparent 100%);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      .stContainer:hover {
-        border-color: var(--accent-primary);
+      [data-testid="stVerticalBlock"] > [data-testid="element-container"] > div[data-testid="stVerticalBlock"]:hover {
+        border-color: var(--accent-primary) !important;
         transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-      }
-
-      .stContainer:hover::after {
-        opacity: 1;
+        box-shadow: 0 8px 24px rgba(0, 212, 170, 0.15);
       }
 
       /* Títulos de las cards */
       h4 {
         font-family: 'Syne', sans-serif !important;
-        font-size: 1.5rem !important;
+        font-size: 1.25rem !important;
         font-weight: 600 !important;
-        margin-bottom: 1rem !important;
+        margin-bottom: 0.75rem !important;
+        color: var(--text-primary) !important;
       }
 
       /* Párrafos */
       p {
-        font-size: 0.95rem !important;
+        font-size: 0.875rem !important;
         line-height: 1.6 !important;
         color: var(--text-secondary) !important;
+        margin-bottom: 1.25rem !important;
       }
 
-      /* Botones de página */
+      /* Botones de página MÁS VISIBLES */
       .stButton > button {
         width: 100% !important;
-        background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card) 100%) !important;
-        border: 1px solid var(--border-color) !important;
-        color: var(--text-primary) !important;
+        background: var(--bg-secondary) !important;
+        border: 1px solid var(--accent-primary) !important;
+        color: var(--accent-primary) !important;
         font-family: 'JetBrains Mono', monospace !important;
         border-radius: 8px !important;
-        padding: 0.875rem 1.5rem !important;
+        padding: 0.75rem 1.25rem !important;
         font-size: 0.875rem !important;
-        font-weight: 500 !important;
+        font-weight: 600 !important;
         transition: all 0.3s ease !important;
-        margin-top: 1rem !important;
       }
 
       .stButton > button:hover {
@@ -186,20 +146,20 @@ st.markdown(
         border-color: var(--accent-primary) !important;
         color: var(--bg-primary) !important;
         transform: translateY(-2px) !important;
-        box-shadow: 0 4px 12px rgba(0, 212, 170, 0.3) !important;
+        box-shadow: 0 4px 12px rgba(0, 212, 170, 0.4) !important;
       }
 
       /* Divider */
       hr {
         border-color: var(--border-color) !important;
-        margin: 2rem 0 !important;
+        margin: 1.5rem 0 !important;
         opacity: 0.3;
       }
 
       /* Responsive */
       @media (max-width: 768px) {
         .home-title {
-          font-size: 2rem !important;
+          font-size: 1.5rem !important;
         }
 
         .home-links {
@@ -234,11 +194,11 @@ st.markdown(
 # CONTENIDO
 # ============================================================
 
-left, center, right = st.columns([1, 6, 1])
+left, center, right = st.columns([0.5, 8, 0.5])
 
 with center:
     st.divider()
-    st.markdown("<div style='height:60px;'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:40px;'></div>", unsafe_allow_html=True)
     
     c1, c2 = st.columns(2, gap="large")
     
