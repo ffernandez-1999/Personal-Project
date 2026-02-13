@@ -112,10 +112,10 @@ st.markdown(
         letter-spacing: -0.02em;
       }
 
-      /* KPI Cards MÁS CLAROS */
+      /* KPI Cards MÁS CLAROS (AJUSTE: menos aire, misma jerarquía en ambos números) */
       .kpi-card-compact {
         background: var(--bg-card);
-        padding: 1.5rem;
+        padding: 1.05rem 1.25rem; /* ✅ menos padding */
         border-radius: 0;
         border: 1px solid var(--border-color);
         border-top: 4px solid var(--accent-primary);
@@ -131,38 +131,27 @@ st.markdown(
         color: var(--text-muted);
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.65rem; /* ✅ un toque menos */
         font-weight: 600;
       }
 
-      .kpi-values {
-        display: flex;
+      /* ✅ Grid 2x2: valor/valor arriba, labels abajo */
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2.1rem;
+        row-gap: 0.35rem;
         align-items: baseline;
-        gap: 1.5rem;
       }
 
-      .kpi-main {
+      /* ✅ Misma importancia para mensual e interanual */
+      .kpi-value {
         font-family: 'Inter', sans-serif;
-        font-size: 2.25rem;
+        font-size: 2.05rem;   /* ✅ iguales */
         font-weight: 800;
         color: var(--text-primary);
         letter-spacing: -0.02em;
         line-height: 1;
-      }
-
-      .kpi-secondary {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: var(--text-secondary);
-        opacity: 0.5;
-        line-height: 1;
-      }
-
-      .kpi-labels {
-        display: flex;
-        gap: 3.5rem;
-        margin-top: 0.5rem;
       }
 
       .kpi-sublabel {
@@ -171,6 +160,7 @@ st.markdown(
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.05em;
+        margin-top: 0.1rem;
       }
 
       /* Subtítulos de sección */
@@ -466,10 +456,12 @@ months_d = [m.date() for m in months]
 c1, c2, c3 = st.columns([1.5, 1.5, 3], gap="medium")
 
 with c1:
-    measure = st.selectbox("📈 Medida", ["Mensual", "Interanual", "Acumulado"], index=0)
+    # ✅ cambio de label
+    measure = st.selectbox("Seleccioná la medida", ["Mensual", "Interanual", "Acumulado"], index=0)
 
 with c2:
-    base_year = st.selectbox("📐 Año base (IPCA)", options=list(range(2017, 2026)), index=8)
+    # ✅ cambio de label
+    base_year = st.selectbox("Seleccioná el año base del IPCA", options=list(range(2017, 2026)), index=8)
 
 with c3:
     start_default_date = next(
@@ -512,27 +504,25 @@ ipca = ipca.loc[common]
 
 if not common.empty:
     last_date = common.max()
-    
+
     # Calcular variaciones mensuales y anuales
     ipc_monthly = ipc.iloc[-1] if len(ipc) > 0 else np.nan
     ipc_annual = calc_series(ipc_level_rng, "Interanual").iloc[-1] if len(ipc_level_rng) > 12 else np.nan
-    
+
     ipca_monthly = ipca.iloc[-1] if len(ipca) > 0 else np.nan
     ipca_annual = calc_series(ipca_level_rng, "Interanual").iloc[-1] if len(ipca_level_rng) > 12 else np.nan
-    
+
     # 2 columnas para los 2 KPIs
     kpi1, kpi2 = st.columns(2, gap="large")
-    
+
     with kpi1:
         st.markdown(
             f"""
             <div class="kpi-card-compact">
                 <div class="kpi-label">IPC NACIONAL</div>
-                <div class="kpi-values">
-                    <div class="kpi-main">{fmt_pct(ipc_monthly)}</div>
-                    <div class="kpi-secondary">{fmt_pct(ipc_annual)}</div>
-                </div>
-                <div class="kpi-labels">
+                <div class="kpi-grid">
+                    <div class="kpi-value">{fmt_pct(ipc_monthly)}</div>
+                    <div class="kpi-value">{fmt_pct(ipc_annual)}</div>
                     <div class="kpi-sublabel">m/m</div>
                     <div class="kpi-sublabel">y/y</div>
                 </div>
@@ -540,17 +530,15 @@ if not common.empty:
             """,
             unsafe_allow_html=True,
         )
-    
+
     with kpi2:
         st.markdown(
             f"""
             <div class="kpi-card-compact">
                 <div class="kpi-label">IPCA (ENGHO 2017/18)</div>
-                <div class="kpi-values">
-                    <div class="kpi-main">{fmt_pct(ipca_monthly)}</div>
-                    <div class="kpi-secondary">{fmt_pct(ipca_annual)}</div>
-                </div>
-                <div class="kpi-labels">
+                <div class="kpi-grid">
+                    <div class="kpi-value">{fmt_pct(ipca_monthly)}</div>
+                    <div class="kpi-value">{fmt_pct(ipca_annual)}</div>
                     <div class="kpi-sublabel">m/m</div>
                     <div class="kpi-sublabel">y/y</div>
                 </div>
