@@ -15,6 +15,16 @@ st.markdown(
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
       section.main > div { padding-top: 2rem; }
+      
+      /* Ocultar/oscurecer header de Streamlit */
+      header[data-testid="stHeader"] {
+        background-color: #1a1a1a !important;
+      }
+      
+      /* Ocultar toolbar arriba */
+      [data-testid="stToolbar"] {
+        display: none !important;
+      }
 
       /* Fondo más claro */
       .stApp {
