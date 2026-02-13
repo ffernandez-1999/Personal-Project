@@ -6,165 +6,136 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# ============================================================
-# CSS - DARK TECH (CORREGIDO - PROPORCIONES)
-# ============================================================
-
 st.markdown(
     """
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
       
       /* Ocultar sidebar */
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
-      section.main > div { padding-top: 1.2rem; }
+      section.main > div { padding-top: 2rem; }
 
-      /* Variables CSS */
-      :root {
-        --bg-primary: #0a0e17;
-        --bg-secondary: #1a2332;
-        --bg-card: #222b3d;
-        --accent-primary: #00d4aa;
-        --accent-secondary: #0099ff;
-        --text-primary: #e8eaed;
-        --text-secondary: #9ba3af;
-        --text-muted: #6b7280;
-        --border-color: #2a3041;
-      }
-
-      /* Fondo general */
+      /* Fondo más claro */
       .stApp {
-        background-color: var(--bg-primary);
-        background-image: 
-          radial-gradient(circle at 20% 50%, rgba(0, 212, 170, 0.03) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(0, 153, 255, 0.03) 0%, transparent 50%);
-        color: var(--text-primary);
+        background: #1a1a1a !important;
+        color: #fff;
       }
 
       /* Tipografía global */
       html, body, [class*="css"], p, span, div, h1, h2, h3, h4 {
-        font-family: 'JetBrains Mono', monospace !important;
-        color: var(--text-primary) !important;
+        font-family: 'Inter', sans-serif !important;
+        color: #fff !important;
       }
 
-      /* Header central MÁS CHICO */
+      /* Header simple */
       .home-header {
-        text-align: center;
-        padding: 2rem 2rem;
-        background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
-        border-radius: 16px;
-        border: 1px solid var(--border-color);
-        margin-bottom: 2rem;
-        position: relative;
+        margin-bottom: 4rem;
+        padding: 0 1rem;
       }
 
-      .home-header::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 4px;
-        height: 100%;
-        background: linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-      }
-
-      .home-title {
-        font-family: 'Syne', sans-serif !important;
-        font-size: 2rem !important;
-        font-weight: 700 !important;
-        margin-bottom: 1rem !important;
-        color: var(--text-primary) !important;
+      .home-name {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
         letter-spacing: -0.02em;
+        color: #fff;
+      }
+
+      .home-role {
+        font-size: 0.95rem;
+        color: #888;
+        margin-bottom: 1.5rem;
       }
 
       .home-links {
         display: flex;
-        justify-content: center;
         gap: 2rem;
+        font-size: 0.875rem;
       }
 
       .home-links a {
-        color: var(--text-secondary);
+        color: #888;
         text-decoration: none;
-        font-size: 0.875rem;
-        transition: all 0.2s ease;
+        transition: color 0.2s;
       }
 
       .home-links a:hover {
-        color: var(--accent-primary);
+        color: #fff;
       }
 
-      /* Cards de contenido MÁS VISIBLES */
-      [data-testid="stVerticalBlock"] > [data-testid="element-container"] > div[data-testid="stVerticalBlock"] {
-        background: var(--bg-card) !important;
-        border: 1px solid var(--border-color) !important;
-        border-radius: 12px !important;
-        padding: 2rem !important;
-        transition: all 0.3s ease;
+      /* Cards con mismo ancho */
+      .card-container {
+        background: #0a0a0a;
+        padding: 0;
+        border-radius: 0;
+        overflow: hidden;
+        transition: transform 0.3s;
+        position: relative;
+        margin-bottom: 1.5rem;
       }
 
-      [data-testid="stVerticalBlock"] > [data-testid="element-container"] > div[data-testid="stVerticalBlock"]:hover {
-        border-color: var(--accent-primary) !important;
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(0, 212, 170, 0.15);
+      .card-container:hover {
+        transform: scale(1.02);
       }
 
-      /* Títulos de las cards */
-      h4 {
-        font-family: 'Syne', sans-serif !important;
-        font-size: 1.25rem !important;
-        font-weight: 600 !important;
-        margin-bottom: 0.75rem !important;
-        color: var(--text-primary) !important;
+      .card-accent {
+        height: 4px;
+        background: #00ff88;
       }
 
-      /* Párrafos */
-      p {
-        font-size: 0.875rem !important;
-        line-height: 1.6 !important;
-        color: var(--text-secondary) !important;
-        margin-bottom: 1.25rem !important;
+      .card-accent-pink {
+        background: #ff0088;
       }
 
-      /* Botones de página MÁS VISIBLES */
+      .card-content {
+        padding: 2rem;
+      }
+
+      .card-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+        color: #fff !important;
+      }
+
+      .card-desc {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #888 !important;
+        margin-bottom: 2rem;
+      }
+
+      /* Botones personalizados */
       .stButton > button {
         width: 100% !important;
-        background: var(--bg-secondary) !important;
-        border: 1px solid var(--accent-primary) !important;
-        color: var(--accent-primary) !important;
-        font-family: 'JetBrains Mono', monospace !important;
-        border-radius: 8px !important;
-        padding: 0.75rem 1.25rem !important;
+        background: transparent !important;
+        border: 1px solid #333 !important;
+        color: #fff !important;
+        padding: 1rem !important;
+        font-family: 'Inter', sans-serif !important;
         font-size: 0.875rem !important;
         font-weight: 600 !important;
-        transition: all 0.3s ease !important;
+        transition: all 0.2s !important;
+        text-align: left !important;
+        border-radius: 0 !important;
+        margin-bottom: 0.75rem !important;
       }
 
       .stButton > button:hover {
-        background: var(--accent-primary) !important;
-        border-color: var(--accent-primary) !important;
-        color: var(--bg-primary) !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 4px 12px rgba(0, 212, 170, 0.4) !important;
+        border-color: #00ff88 !important;
+        background: rgba(0, 255, 136, 0.05) !important;
       }
 
-      /* Divider */
-      hr {
-        border-color: var(--border-color) !important;
-        margin: 1.5rem 0 !important;
-        opacity: 0.3;
+      /* Container para centrar */
+      [data-testid="column"] {
+        padding: 0 1rem;
       }
 
-      /* Responsive */
       @media (max-width: 768px) {
-        .home-title {
-          font-size: 1.5rem !important;
-        }
-
-        .home-links {
-          flex-direction: column;
-          gap: 1rem;
+        .home-name {
+          font-size: 2rem;
         }
       }
     </style>
@@ -179,11 +150,12 @@ st.markdown(
 st.markdown(
     """
     <div class="home-header">
-        <h2 class="home-title">Francisco Fernandez Amato</h2>
+        <div class="home-name">Francisco Fernandez Amato</div>
+        <div class="home-role">Macroeconomista</div>
         <div class="home-links">
-            <a href="mailto:franciscofernandezz1999@gmail.com">📧 Gmail</a>
-            <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">💼 LinkedIn</a>
-            <a href="https://github.com/ffernandez-1999" target="_blank">🔗 GitHub</a>
+            <a href="mailto:franciscofernandezz1999@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/ffernandez-1999" target="_blank">GitHub</a>
         </div>
     </div>
     """,
@@ -191,42 +163,46 @@ st.markdown(
 )
 
 # ============================================================
-# CONTENIDO
+# CONTENIDO - 2 CARDS MISMO ANCHO
 # ============================================================
 
-left, center, right = st.columns([0.5, 8, 0.5])
+left, center, right = st.columns([1, 10, 1])
 
 with center:
-    st.divider()
-    st.markdown("<div style='height:40px;'></div>", unsafe_allow_html=True)
+    # Card 1: Dashboard
+    st.markdown(
+        """
+        <div class="card-container">
+            <div class="card-accent"></div>
+            <div class="card-content">
+                <div class="card-title">Dashboard interactivo</div>
+                <div class="card-desc">Indicadores macroeconómicos actualizados en tiempo real</div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     
-    c1, c2 = st.columns(2, gap="large")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.page_link("pages/2_IPC.py", label="Ver IPC", use_container_width=True)
+    with col2:
+        st.page_link("pages/4_TC_Bandas.py", label="Ver TC y Bandas", use_container_width=True)
     
-    with c1:
-        with st.container(border=True):
-            st.markdown(
-                "<h4 style='text-align:center;'>📊 Dashboard interactivo</h4>",
-                unsafe_allow_html=True
-            )
-            st.markdown(
-                "<p style='text-align:center;'>Indicadores macroeconómicos actualizados.</p>",
-                unsafe_allow_html=True
-            )
-            
-            col_a, col_b = st.columns(2)
-            with col_a:
-                st.page_link("pages/2_IPC.py", label="Ver IPC →", use_container_width=True)
-            with col_b:
-                st.page_link("pages/4_TC_Bandas.py", label="Ver TC →", use_container_width=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     
-    with c2:
-        with st.container(border=True):
-            st.markdown(
-                "<h4 style='text-align:center;'>📝 Notas macroeconómicas</h4>",
-                unsafe_allow_html=True
-            )
-            st.markdown(
-                "<p style='text-align:center;'>Artículos y publicaciones sobre economía.</p>",
-                unsafe_allow_html=True
-            )
-            st.page_link("pages/3_Notes.py", label="Ver artículos →", use_container_width=True)
+    # Card 2: Notas
+    st.markdown(
+        """
+        <div class="card-container">
+            <div class="card-accent card-accent-pink"></div>
+            <div class="card-content">
+                <div class="card-title">Notas</div>
+                <div class="card-desc">Artículos y publicaciones sobre economía argentina</div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    st.page_link("pages/3_Notes.py", label="Ver artículos", use_container_width=True)
