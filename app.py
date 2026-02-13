@@ -6,20 +6,17 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# --- Oculta sidebar + botón/cabecera (para que no aparezca el menú de páginas) ---
 st.markdown(
     """
     <style>
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
-      /* achica un poco el padding superior */
       section.main > div { padding-top: 1.2rem; }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-# ---------- HEADER PRINCIPAL ----------
 st.markdown(
     """
     <div style="text-align:center;">
@@ -36,19 +33,14 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ---------- CONTENEDOR ANGOSTO ----------
 left, center, right = st.columns([1, 6, 1])
 
 with center:
     st.divider()
-
-    # espacio vertical (mantenemos tu look)
     st.markdown("<div style='height:90px;'></div>", unsafe_allow_html=True)
 
-    # ---------- CARDS (2 columnas) ----------
     c1, c2 = st.columns(2)
 
-    # ---------- CARD 1: Dashboard ----------
     with c1:
         with st.container(border=True):
             st.markdown(
@@ -56,13 +48,18 @@ with center:
                 unsafe_allow_html=True
             )
             st.markdown(
-                "<p style='text-align:center;'>Comparación IPC oficial vs IPCA (ENGHo 2017/18).</p>",
+                "<p style='text-align:center;'>Indicadores macroeconómicos.</p>",
                 unsafe_allow_html=True
             )
 
-            st.page_link("pages/2_Dashboard.py", label="Ver IPC actualizado →", use_container_width=True)
+            col_a, col_b = st.columns(2)
 
-    # ---------- CARD 2: Notas macro (INTERNAL) ----------
+            with col_a:
+                st.page_link("pages/2_IPC.py", label="Ver IPC →", use_container_width=True)
+
+            with col_b:
+                st.page_link("pages/4_TC_Bandas.py", label="Ver TC y Bandas →", use_container_width=True)
+
     with c2:
         with st.container(border=True):
             st.markdown(
@@ -74,5 +71,4 @@ with center:
                 unsafe_allow_html=True
             )
 
-            # ✅ Ahora es una page interna (no Wix)
             st.page_link("pages/3_Notes.py", label="Ver artículos →", use_container_width=True)
