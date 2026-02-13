@@ -1,260 +1,276 @@
-# pages/3_TC_Bandas.py
-
 import numpy as np
 import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
 
+
 from data.macro_services import get_a3500, get_rem_last, get_ipc_bcra
 
 
+# ============================================================
+# CONFIG
+# ============================================================
+
 st.set_page_config(
-    page_title="TC Bandas",
+    page_title="TC Mayorista y Bandas",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
 
-st.title("Tipo de Cambio (A3500) y Bandas")
+# ============================================================
+# CSS (MISMO QUE IPC)
+# ============================================================
 
-if st.button("← Volver"):
-    st.switch_page("app.py")
+st.markdown(
+    """
+    <style>
+      [data-testid="stSidebar"] { display: none !important; }
+      [data-testid="stSidebarNav"] { display: none !important; }
+      section.main > div { padding-top: 1rem; }
 
-st.divider()
+      html, body, [class*="css"] {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+
+      h1 {
+        font-size: 2.5rem !important;
+        font-weight: 700 !important;
+        margin-bottom: 0.5rem !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .custom-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem 2.5rem;
+        border-radius: 16px;
+        margin-bottom: 2.5rem;
+        color: white;
+        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+      }
+
+      .header-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+      .header-subtitle { font-size: 1.1rem; opacity: 0.95; font-weight: 500; }
+
+      .header-links a {
+        color: white !important;
+        text-decoration: none;
+        margin: 0 0.5rem;
+        font-weight: 500;
+      }
+
+      .kpi-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        margin-bottom: 1rem;
+      }
+
+      .kpi-card-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: rgba(0,0,0,0.5);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+
+      .kpi-card-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #667eea;
+      }
+
+      .methodology-card {
+        background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
+        border-left: 4px solid #667eea;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-top: 1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 # ============================================================
-# LOAD DATA
+# HEADER PERSONALIZADO
+# ============================================================
+
+st.markdown(
+    """
+    <div class="custom-header">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <div class="header-title">Francisco Fernandez Amato</div>
+                <div class="header-subtitle">Macroeconomista</div>
+            </div>
+            <div class="header-links">
+                <a href="mailto:franciscofernandezz1999@gmail.com">📧 Email</a>
+                <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">💼 LinkedIn</a>
+                <a href="https://github.com/ffernandez-1999" target="_blank">🔗 GitHub</a>
+            </div>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+col_btn, _ = st.columns([1, 5])
+with col_btn:
+    if st.button("← Volver"):
+        st.switch_page("app.py")
+
+# ============================================================
+# TÍTULO
+# ============================================================
+
+st.markdown(
+    "<h1 style='text-align: center;'>TC Mayorista (A3500) y Bandas</h1>",
+    unsafe_allow_html=True,
+)
+
+# ============================================================
+# DATA
 # ============================================================
 
 with st.spinner("Cargando datos..."):
     fx = get_a3500().copy()
     fx["Date"] = pd.to_datetime(fx["Date"]).dt.normalize()
-    fx = (
-        fx.dropna(subset=["Date", "FX"])
-        .drop_duplicates("Date")
-        .sort_values("Date")
-        .reset_index(drop=True)
-    )
 
     rem = get_rem_last()
     ipc = get_ipc_bcra()
 
-
 # ============================================================
-# BANDAS 2025
+# BANDAS
 # ============================================================
 
 def build_bands_2025(start, end, lower0, upper0):
     g_up = (1 + 0.01) ** (1 / 30)
     g_dn = (1 - 0.01) ** (1 / 30)
-
     dates = pd.date_range(start, end, freq="D")
     t = np.arange(len(dates))
-
-    return pd.DataFrame(
-        {
-            "Date": dates,
-            "lower": lower0 * (g_dn**t),
-            "upper": upper0 * (g_up**t),
-        }
-    )
+    return pd.DataFrame({
+        "Date": dates,
+        "lower": lower0 * (g_dn**t),
+        "upper": upper0 * (g_up**t),
+    })
 
 
-def build_bands_2026(bands_2025, rem, ipc):
+bands_2025 = build_bands_2025("2025-04-14", "2025-12-31", 1000.0, 1400.0)
 
-    rem_m = rem.assign(Period=rem["Date"].dt.to_period("M"))[["Period", "v_m_REM"]]
-
-    m = ipc.merge(rem_m, on="Period", how="outer").sort_values("Period")
-
-    m["v_m_dec"] = np.where(
-        m["v_m_CPI"].notna(),
-        m["v_m_CPI"],
-        m["v_m_REM"] / 100,
-    )
-
-    if not m["v_m_REM"].notna().any():
-        return pd.DataFrame(columns=["Date", "lower", "upper"])
-
-    end_month = m.loc[m["v_m_REM"].notna(), "Period"].max() + 2
-
-    b = pd.DataFrame({"Period": pd.period_range("2026-01", end_month, freq="M")})
-    b["ref"] = b["Period"] - 2
-
-    b = b.merge(
-        m[["Period", "v_m_dec"]].rename(columns={"Period": "ref"}),
-        on="ref",
-        how="left",
-    )
-
-    lower0 = bands_2025.loc[
-        bands_2025["Date"] == "2025-12-31", "lower"
-    ].iloc[0]
-
-    upper0 = bands_2025.loc[
-        bands_2025["Date"] == "2025-12-31", "upper"
-    ].iloc[0]
-
-    cal = pd.DataFrame(
-        {
-            "Date": pd.date_range(
-                "2026-01-01",
-                b["Period"].max().to_timestamp("M"),
-                freq="D",
-            )
-        }
-    )
-
-    cal["Period"] = cal["Date"].dt.to_period("M")
-
-    cal = cal.merge(
-        b[["Period", "v_m_dec"]],
-        on="Period",
-        how="left",
-    )
-
-    r_d = (1 + cal["v_m_dec"]) ** (1 / 30) - 1
-
-    cal["lower"] = lower0 * (1 - r_d).cumprod()
-    cal["upper"] = upper0 * (1 + r_d).cumprod()
-
-    return cal[["Date", "lower", "upper"]]
-
-
-bands_2025 = build_bands_2025(
-    "2025-04-14",
-    "2025-12-31",
-    1000.0,
-    1400.0,
-)
-
-bands_2026 = build_bands_2026(bands_2025, rem, ipc)
-
-bands = (
-    pd.concat([bands_2025, bands_2026], ignore_index=True)
-    .dropna(subset=["Date", "lower", "upper"])
-    .sort_values("Date")
-    .reset_index(drop=True)
-)
-
-bands["Date"] = pd.to_datetime(bands["Date"]).dt.normalize()
-
+bands = bands_2025.copy()
 
 # ============================================================
-# MASTER CALENDAR (RESPETA MERGE ORIGINAL)
+# MASTER MERGE CORRECTO
 # ============================================================
 
-fx_min = pd.to_datetime(fx["Date"].min())
-last_fx_date = pd.to_datetime(fx["Date"].max())
-bands_max = pd.to_datetime(bands["Date"].max())
+fx_min = fx["Date"].min()
+last_fx_date = fx["Date"].max()
+bands_max = bands["Date"].max()
 
-full_end = max(d for d in [last_fx_date, bands_max] if pd.notna(d))
-
-cal = pd.DataFrame(
-    {"Date": pd.date_range(fx_min, full_end, freq="D")}
-)
+cal = pd.DataFrame({
+    "Date": pd.date_range(fx_min, bands_max, freq="D")
+})
 
 df = (
     cal.merge(fx, on="Date", how="left")
        .merge(bands, on="Date", how="left")
        .sort_values("Date")
-       .reset_index(drop=True)
 )
 
-# Forward fill SOLO dentro del rango real del oficial
 df["FX"] = df["FX"].ffill()
 df.loc[df["Date"] > last_fx_date, "FX"] = np.nan
 
-
 # ============================================================
-# SLIDER DINÁMICO (COMO TU BLOQUE ORIGINAL)
-# ============================================================
-
-mask_any = df[["FX"]].notna().any(axis=1)
-
-s_min = df.loc[mask_any, "Date"].min()
-s_max = df["Date"].max()
-
-min_d = s_min.date()
-max_d = s_max.date()
-
-default_start = max(min_d, pd.to_datetime("2025-01-01").date())
-
-start_d, end_d = st.slider(
-    "Rango de fechas",
-    min_value=min_d,
-    max_value=max_d,
-    value=(default_start, max_d),
-)
-
-df_plot = df[
-    (df["Date"] >= pd.Timestamp(start_d)) &
-    (df["Date"] <= pd.Timestamp(end_d))
-]
-
-
-# ============================================================
-# HEADER
+# LAYOUT KPIs + CHART
 # ============================================================
 
-last_fx = fx["FX"].iloc[-1]
+kpi_col, main_col = st.columns([1, 2.5], gap="large")
+
+with kpi_col:
+    st.markdown("### 📊 Indicadores")
+
+    st.markdown(
+        """
+        <div class="kpi-card">
+            <div class="kpi-card-label">Último TC</div>
+            <div class="kpi-card-value">—</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        """
+        <div class="kpi-card">
+            <div class="kpi-card-label">Variación mensual</div>
+            <div class="kpi-card-value">—</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with main_col:
+    st.markdown("### 📈 Evolución Temporal")
+
+    fig = go.Figure()
+
+    fig.add_trace(
+        go.Scatter(
+            x=df["Date"],
+            y=df["upper"],
+            name="Banda superior",
+            line=dict(dash="dash"),
+        )
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=df["Date"],
+            y=df["lower"],
+            name="Banda inferior",
+            line=dict(dash="dash"),
+            fill="tonexty",
+        )
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=df["Date"],
+            y=df["FX"],
+            name="TC Mayorista",
+            line=dict(color="red"),
+        )
+    )
+
+    fig.update_layout(
+        height=560,
+        hovermode="x unified",
+        margin=dict(l=20, r=20, t=40, b=20),
+    )
+
+    fig.update_yaxes(title="ARS/USD")
+
+    st.plotly_chart(fig, use_container_width=True)
+
+# ============================================================
+# METODOLOGÍA (VACÍA POR AHORA)
+# ============================================================
 
 st.markdown(
-    f"<div style='font-size:46px; font-weight:700'>{last_fx:,.0f} ARS/USD</div>",
+    """
+    <div class="methodology-card">
+        <h4>📖 Metodología</h4>
+        <ul>
+            <li>—</li>
+        </ul>
+    </div>
+    """,
     unsafe_allow_html=True,
-)
-
-
-# ============================================================
-# PLOT
-# ============================================================
-
-fig = go.Figure()
-
-fig.add_trace(
-    go.Scatter(
-        x=df_plot["Date"],
-        y=df_plot["upper"],
-        name="Banda superior",
-        line=dict(dash="dash"),
-    )
-)
-
-fig.add_trace(
-    go.Scatter(
-        x=df_plot["Date"],
-        y=df_plot["lower"],
-        name="Banda inferior",
-        line=dict(dash="dash"),
-        fill="tonexty",
-    )
-)
-
-fig.add_trace(
-    go.Scatter(
-        x=df_plot["Date"],
-        y=df_plot["FX"],
-        name="TC Mayorista",
-        line=dict(color="red"),
-    )
-)
-
-fig.update_layout(
-    hovermode="x unified",
-    height=600,
-)
-
-fig.update_yaxes(title_text="ARS / USD")
-fig.update_xaxes(title_text="")
-
-st.plotly_chart(fig, use_container_width=True)
-
-
-# ============================================================
-# DOWNLOAD
-# ============================================================
-
-st.download_button(
-    "⬇️ Descargar CSV",
-    df_plot.to_csv(index=False).encode("utf-8"),
-    file_name="tc_bandas.csv",
-    mime="text/csv",
 )
