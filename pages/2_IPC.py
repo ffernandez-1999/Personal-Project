@@ -12,216 +12,550 @@ st.set_page_config(
 )
 
 # ============================================================
-# CSS
+# CSS - DARK TECH (CORREGIDO) + SELECTORES MAS EVIDENTES + KPI compactos
 # ============================================================
 
-st.markdown("""
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+st.markdown(
+    """
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-/* ========== VARIABLES ========== */
-:root {
-  --bg-primary: #f9fafb;
-  --bg-secondary: #ffffff;
-  --bg-card: #ffffff;
-  --bg-chart: #ffffff;
-  --accent-primary: #2563eb;
-  --accent-secondary: #7c3aed;
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --text-muted: #9ca3af;
-  --border-color: #e5e7eb;
-}
+      /* Ocultar sidebar */
+      [data-testid="stSidebar"] { display: none !important; }
+      [data-testid="stSidebarNav"] { display: none !important; }
+      section.main > div { padding-top: 1rem; }
 
+      /* Ocultar/oscurecer header de Streamlit */
+      header[data-testid="stHeader"] { background-color: #1a1a1a !important; }
 
-/* ========== BASE ========== */
-.stApp { background-color: var(--bg-primary); color: var(--text-primary); }
+      /* Ocultar toolbar arriba */
+      [data-testid="stToolbar"] { display: none !important; }
 
-html, body, [class*="css"] { font-family: 'Inter', sans-serif !important; }
+      /* Variables CSS */
+      :root {
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #242424;
+        --bg-card: #2a2a2a;
+        --bg-chart: #2f2f2f;
+        --accent-primary: #00ff88;
+        --accent-secondary: #ff0088;
+        --text-primary: #fff;
+        --text-secondary: #aaa;
+        --text-muted: #888;
+        --border-color: #333;
+      }
 
-header[data-testid="stHeader"] { background-color: #1a1a1a !important; }
-[data-testid="stToolbar"] { display: none !important; }
-[data-testid="stSidebar"], [data-testid="stSidebarNav"] { display: none !important; }
+      /* Fondo general */
+      .stApp { background-color: var(--bg-primary) !important; color: var(--text-primary); }
 
-/* ========== HEADER ========== */
-.home-header { margin-bottom: 3rem; padding: 0 1rem; }
-.home-name { font-size: 2.5rem; font-weight: 800; margin-bottom: .5rem; }
-.home-role { font-size: .95rem; color: var(--text-muted); margin-bottom: 1.5rem; }
-.home-links { display:flex; gap:2rem; font-size:.875rem; }
-.home-links a { color: var(--text-muted); text-decoration:none; }
-.home-links a:hover { color:#fff; }
+      /* Tipografía global - INTER */
+      html, body, [class*="css"], p, span, div, h1, h2, h3, h4 {
+        font-family: 'Inter', sans-serif !important;
+        color: var(--text-primary) !important;
+      }
 
-/* ========== TÍTULO ========== */
-.page-title-highlight {
-  font-size: 2rem;
-  font-weight: 800;
-  text-align:center;
-  margin-bottom:2.5rem;
-  padding:1rem;
-  background:var(--bg-card);
-  border-top:4px solid var(--accent-primary);
-}
+      /* Header igual al home */
+      .home-header { margin-bottom: 3rem; padding: 0 1rem; }
+      .home-name { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.02em; color: #fff; }
+      .home-role { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+      .home-links { display: flex; gap: 2rem; font-size: 0.875rem; }
+      .home-links a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+      .home-links a:hover { color: #fff; }
 
-/* ========== KPI ========== */
-.kpi-card {
-  background: var(--bg-card);
-  padding: 1rem 1.2rem;
-  border:1px solid var(--border-color);
-  border-top:4px solid var(--accent-primary);
-}
+      /* Título de página */
+      .page-title-highlight {
+        font-family: 'Inter', sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 2.0rem;
+        padding: 1rem;
+        background: var(--bg-card);
+        border-radius: 0;
+        border-top: 4px solid var(--accent-primary);
+        letter-spacing: -0.02em;
+      }
 
-.kpi-title {
-  font-size:.7rem;
-  color:var(--text-muted);
-  text-transform:uppercase;
-  letter-spacing:.1em;
-  margin-bottom:.7rem;
-}
+      /* =========================
+         KPI (menos aire, sin negrita fuerte)
+         ========================= */
+      .kpi-card-compact {
+        background: var(--bg-card);
+        padding: 0.95rem 1.15rem; /* menos padding */
+        border-radius: 0;
+        border: 1px solid var(--border-color);
+        border-top: 4px solid var(--accent-primary);
+        transition: all 0.25s ease;
+      }
+      .kpi-card-compact:hover { transform: scale(1.01); }
 
-.kpi-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  column-gap:2rem;
-  row-gap:.2rem;
-}
+      .kpi-label {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.55rem;
+        font-weight: 600;
+      }
 
-.kpi-value {
-  font-size:2rem;
-  font-weight:600;   /* sin negrita pesada */
-  letter-spacing:-.02em;
-}
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 1.8rem;
+        row-gap: 0.15rem;
+        align-items: baseline;
+      }
 
-.kpi-label {
-  font-size:.7rem;
-  color:var(--text-muted);
-  text-transform:uppercase;
-}
+      .kpi-value {
+        font-family: 'Inter', sans-serif;
+        font-size: 2.0rem;
+        font-weight: 500;  /* ✅ sin negrita */
+        color: var(--text-primary);
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
 
-/* ========== SELECTORES ========== */
+      .kpi-sublabel {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-top: 0.05rem;
+      }
 
-.stSelectbox label {
-  font-size:.75rem !important;
-  text-transform:uppercase !important;
-  color:var(--text-secondary) !important;
-  letter-spacing:.05em !important;
-}
+      /* =========================
+         SELECTBOX (más evidente)
+         ========================= */
+      .stSelectbox label {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 0.75rem !important;
+        color: var(--text-secondary) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.35rem !important;
+      }
 
-.stSelectbox [data-baseweb="select"] > div {
-  background-color: var(--bg-secondary) !important;
-  border:1px solid var(--border-color) !important;
-  transition: all .15s ease;
-}
+      /* contenedor select */
+      .stSelectbox [data-baseweb="select"] > div {
+        background-color: var(--bg-secondary) !important;
+        border: 1px solid var(--border-color) !important;
+        color: var(--text-primary) !important;
+        cursor: pointer !important;                  /* ✅ “clickeable” */
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
+        transition: border-color .15s ease, box-shadow .15s ease;
+      }
 
-/* Hover real */
-.stSelectbox [data-baseweb="select"] > div:hover {
-  border-color: var(--accent-primary) !important;
-  box-shadow: 0 0 0 2px rgba(0,255,136,.12) !important;
-}
+      /* hover */
+      .stSelectbox [data-baseweb="select"] > div:hover {
+        border-color: var(--accent-primary) !important;
+        box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.12) !important;
+      }
 
-/* Focus real */
-.stSelectbox [data-baseweb="select"] > div:focus-within {
-  border-color: var(--accent-primary) !important;
-  box-shadow: 0 0 0 3px rgba(0,255,136,.18) !important;
-}
+      /* focus */
+      .stSelectbox [data-baseweb="select"] > div:focus-within {
+        border-color: var(--accent-primary) !important;
+        box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.16) !important;
+      }
 
-/* Flecha */
-.stSelectbox [data-baseweb="select"] svg {
-  transform: scale(1.15);
-  opacity:.9;
-}
+      /* texto adentro */
+      .stSelectbox [data-baseweb="select"] span {
+        color: var(--text-primary) !important;
+        font-weight: 600 !important;                 /* ✅ se lee más “control” */
+      }
 
-/* ========== SLIDER ========== */
-.stSlider [data-baseweb="slider"] > div > div,
-.stSlider [role="slider"] {
-  background-color: var(--accent-primary) !important;
-}
+      /* caret */
+      .stSelectbox [data-baseweb="select"] svg {
+        opacity: 0.95 !important;
+        transform: scale(1.15);
+      }
 
-/* ========== BOTÓN ========== */
-.stButton > button {
-  background:transparent !important;
-  border:1px solid var(--border-color) !important;
-  color:var(--text-primary) !important;
-  font-weight:600 !important;
-}
-.stButton > button:hover {
-  border-color:var(--accent-primary) !important;
-  background:rgba(0,255,136,.05) !important;
-}
+      /* =========================
+         DROPDOWN (evitar blanco)
+         ========================= */
+      /* Popover wrapper */
+      div[data-baseweb="popover"] > div {
+        background: var(--bg-secondary) !important;
+        border: 1px solid var(--border-color) !important;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.45) !important;
+      }
 
-</style>
-""", unsafe_allow_html=True)
+      /* listbox */
+      ul[role="listbox"] {
+        background: var(--bg-secondary) !important;
+      }
+
+      /* options */
+      li[role="option"] {
+        background: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
+      }
+
+      li[role="option"]:hover,
+      li[role="option"][aria-selected="true"] {
+        background: var(--bg-card) !important;
+      }
+
+      /* =========================
+         SLIDER
+         ========================= */
+      .stSlider label {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 0.75rem !important;
+        color: var(--text-secondary) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        font-weight: 600 !important;
+      }
+
+      .stSlider [data-baseweb="slider"] { background-color: var(--bg-card) !important; }
+      .stSlider [data-baseweb="slider"] > div > div { background-color: var(--accent-primary) !important; }
+      .stSlider [role="slider"] { background-color: var(--accent-primary) !important; }
+
+      .stSlider [data-testid="stTickBarMin"],
+      .stSlider [data-testid="stTickBarMax"] {
+        color: var(--text-secondary) !important;
+        font-weight: 500 !important;
+      }
+
+      /* Botón volver */
+      .stButton > button {
+        background: transparent !important;
+        border: 1px solid var(--border-color) !important;
+        color: var(--text-primary) !important;
+        font-family: 'Inter', sans-serif !important;
+        border-radius: 0 !important;
+        padding: 0.75rem 1.25rem !important;
+        transition: all 0.2s ease !important;
+        font-size: 0.875rem !important;
+        font-weight: 600 !important;
+      }
+      .stButton > button:hover {
+        border-color: var(--accent-primary) !important;
+        background: rgba(0, 255, 136, 0.05) !important;
+      }
+
+      /* Metodología card */
+      .methodology-card {
+        background: var(--bg-card);
+        border-top: 4px solid var(--accent-primary);
+        border-radius: 0;
+        padding: 1.5rem;
+        margin-top: 2rem;
+        border: 1px solid var(--border-color);
+      }
+
+      .methodology-card h4 {
+        font-family: 'Inter', sans-serif;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        font-size: 1.125rem;
+        font-weight: 800;
+      }
+
+      .methodology-card ul {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        line-height: 1.6;
+      }
+      .methodology-card li { color: var(--text-secondary); }
+
+      /* Divider */
+      hr { border-color: var(--border-color) !important; margin: 1.8rem 0 !important; }
+
+      @media (max-width: 768px) {
+        .home-name { font-size: 2rem; }
+        .home-links { flex-direction: column; gap: 1rem; }
+      }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 # ============================================================
-# HEADER
+# HEADER (IGUAL AL HOME)
 # ============================================================
+st.markdown(
+    """
+    <div class="home-header">
+        <div class="home-name">Francisco Fernandez Amato</div>
+        <div class="home-role">Macroeconomista</div>
+        <div class="home-links">
+            <a href="mailto:franciscofernandezz1999@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/ffernandez-1999" target="_blank">GitHub</a>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
-st.markdown("""
-<div class="home-header">
-  <div class="home-name">Francisco Fernandez Amato</div>
-  <div class="home-role">Macroeconomista</div>
-  <div class="home-links">
-    <a href="#">Email</a>
-    <a href="#">LinkedIn</a>
-    <a href="#">GitHub</a>
-  </div>
-</div>
-""", unsafe_allow_html=True)
-
-col_btn,_ = st.columns([1,5])
+col_btn, _ = st.columns([1, 5])
 with col_btn:
     if st.button("← Volver"):
         st.switch_page("app.py")
 
-st.markdown('<div class="page-title-highlight">IPC vs IPCA (ENGHo 2017/18)</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="page-title-highlight">IPC vs IPCA (ENGHo 2017/18)</div>',
+    unsafe_allow_html=True
+)
+
+# ============================================================
+# CONFIG
+# ============================================================
+DIV_CODES = list(range(1, 13))
+W_2017 = {
+    1: 22.7 / 100, 2: 2.0 / 100, 3: 6.8 / 100, 4: 14.5 / 100,
+    5: 5.5 / 100, 6: 6.4 / 100, 7: 14.3 / 100, 8: 5.1 / 100,
+    9: 8.6 / 100, 10: 3.1 / 100, 11: 6.6 / 100, 12: 4.4 / 100,
+}
+
+# ============================================================
+# LOADER INDEC
+# ============================================================
+@st.cache_data(ttl=12 * 60 * 60, show_spinner=False)
+def get_ipc_indec_full() -> pd.DataFrame:
+    url = "https://www.indec.gob.ar/ftp/cuadros/economia/serie_ipc_divisiones.csv"
+    try:
+        df = pd.read_csv(url, sep=";", decimal=",", encoding="utf-8")
+    except UnicodeDecodeError:
+        df = pd.read_csv(url, sep=";", decimal=",", encoding="latin1")
+
+    df["Codigo"] = df["Codigo"].astype(str).str.strip()
+    df["Codigo_num"] = pd.to_numeric(df["Codigo"], errors="coerce")
+    df["Periodo"] = pd.to_datetime(df["Periodo"].astype(str), format="%Y%m", errors="coerce")
+
+    for c in ["Descripcion", "Clasificador", "Region"]:
+        df[c] = df[c].astype(str).str.strip()
+
+    for c in ["Indice_IPC", "v_m_IPC", "v_i_a_IPC"]:
+        df[c] = pd.to_numeric(df[c], errors="coerce")
+
+    df = df.dropna(subset=["Periodo", "Codigo_num", "Indice_IPC"])
+    return df.sort_values(["Periodo", "Codigo_num"]).reset_index(drop=True)
+
+# ============================================================
+# HELPERS
+# ============================================================
+def fmt_pct(x):
+    if x is None or (isinstance(x, float) and np.isnan(x)):
+        return "—"
+    return f"{x:,.1f}%".replace(",", "X").replace(".", ",").replace("X", ".")
+
+def compute_ipca_level(div_wide: pd.DataFrame, weights: dict, base_year: int) -> pd.Series:
+    base_mask = div_wide.index.year == base_year
+    base_avg = div_wide.loc[base_mask, DIV_CODES].mean(axis=0)
+    if base_avg.isna().any():
+        base_avg = div_wide[DIV_CODES].mean(axis=0)
+
+    ratios = div_wide[DIV_CODES].divide(base_avg, axis=1)
+    wvec = np.array([weights[c] for c in DIV_CODES], dtype=float)
+    idx = 100.0 * (ratios.values @ wvec)
+    return pd.Series(idx, index=div_wide.index, name="ipca")
+
+def calc_series(level: pd.Series, measure: str) -> pd.Series:
+    level = level.sort_index()
+    if measure == "Mensual":
+        return level.pct_change(1) * 100
+    if measure == "Interanual":
+        return level.pct_change(12) * 100
+    if measure == "Acumulado":
+        base = level.dropna().iloc[0] if not level.dropna().empty else np.nan
+        return (level / base - 1) * 100
+    raise ValueError("Medida inválida")
+
+# ============================================================
+# DATA
+# ============================================================
+df = get_ipc_indec_full()
+df_nac = df[(df["Region"] == "Nacional") & (df["Clasificador"].str.contains("divisiones", case=False, na=False))].copy()
+
+ipc_level = (
+    df_nac[df_nac["Codigo_num"] == 0][["Periodo", "Indice_IPC"]]
+    .drop_duplicates("Periodo")
+    .sort_values("Periodo")
+    .set_index("Periodo")["Indice_IPC"]
+)
+
+div_df = df_nac[df_nac["Codigo_num"].isin(DIV_CODES)][["Periodo", "Codigo_num", "Indice_IPC"]].copy()
+div_wide = (
+    div_df.pivot_table(index="Periodo", columns="Codigo_num", values="Indice_IPC", aggfunc="last")
+    .sort_index()
+)
+
+common_idx = ipc_level.index.intersection(div_wide.index)
+ipc_level = ipc_level.loc[common_idx]
+div_wide = div_wide.loc[common_idx]
+months = list(common_idx.sort_values())
+months_d = [m.date() for m in months]
 
 # ============================================================
 # CONTROLES
 # ============================================================
-
-c1,c2,c3 = st.columns([1.5,1.5,3])
+c1, c2, c3 = st.columns([1.5, 1.5, 3], gap="medium")
 
 with c1:
-    measure = st.selectbox("Seleccioná la medida", ["Mensual","Interanual","Acumulado"])
+    measure = st.selectbox("Seleccioná la medida", ["Mensual", "Interanual", "Acumulado"], index=0, key="medida")
 
 with c2:
-    base_year = st.selectbox("Seleccioná el año base del IPCA", list(range(2017,2026)))
+    base_year = st.selectbox("Seleccioná el año base del IPCA", options=list(range(2017, 2026)), index=8, key="base_ipca")
 
 with c3:
-    start,end = st.slider("Rango de fechas",
-                          min_value=date(2017,1,1),
-                          max_value=date(2026,1,1),
-                          value=(date(2025,1,1),date(2026,1,1)))
+    start_default_date = next((d for d in months_d if (d.year == 2025 and d.month == 1)), months_d[0])
+
+    start_d, end_d = st.slider(
+        "Rango de fechas",
+        min_value=months_d[0],
+        max_value=months_d[-1],
+        value=(start_default_date, months_d[-1]),
+        format="MMM-YY",
+        key="rango",
+    )
+
+    start_m = pd.Timestamp(start_d)
+    end_m = pd.Timestamp(end_d)
 
 st.divider()
 
 # ============================================================
-# KPIs (demo valores)
+# CALCULAR
 # ============================================================
+mask = (common_idx >= start_m) & (common_idx <= end_m)
+ipc_level_rng = ipc_level.loc[mask]
+div_wide_rng = div_wide.loc[mask]
 
-k1,k2 = st.columns(2)
+ipca_level_rng = compute_ipca_level(div_wide_rng, W_2017, base_year)
 
-with k1:
-    st.markdown("""
-    <div class="kpi-card">
-      <div class="kpi-title">IPC NACIONAL</div>
-      <div class="kpi-grid">
-        <div class="kpi-value">2,9%</div>
-        <div class="kpi-value">32,4%</div>
-        <div class="kpi-label">m/m</div>
-        <div class="kpi-label">y/y</div>
-      </div>
+ipc = calc_series(ipc_level_rng, measure).dropna()
+ipca = calc_series(ipca_level_rng, measure).dropna()
+
+common = ipc.index.intersection(ipca.index)
+ipc = ipc.loc[common]
+ipca = ipca.loc[common]
+
+# ============================================================
+# KPIs
+# ============================================================
+if not common.empty:
+    ipc_monthly = calc_series(ipc_level_rng, "Mensual").dropna().iloc[-1] if len(ipc_level_rng) > 1 else np.nan
+    ipc_annual  = calc_series(ipc_level_rng, "Interanual").dropna().iloc[-1] if len(ipc_level_rng) > 12 else np.nan
+
+    ipca_monthly = calc_series(ipca_level_rng, "Mensual").dropna().iloc[-1] if len(ipca_level_rng) > 1 else np.nan
+    ipca_annual  = calc_series(ipca_level_rng, "Interanual").dropna().iloc[-1] if len(ipca_level_rng) > 12 else np.nan
+
+    kpi1, kpi2 = st.columns(2, gap="large")
+
+    with kpi1:
+        st.markdown(
+            f"""
+            <div class="kpi-card-compact">
+                <div class="kpi-label">IPC NACIONAL</div>
+                <div class="kpi-grid">
+                    <div class="kpi-value">{fmt_pct(ipc_monthly)}</div>
+                    <div class="kpi-value">{fmt_pct(ipc_annual)}</div>
+                    <div class="kpi-sublabel">m/m</div>
+                    <div class="kpi-sublabel">y/y</div>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with kpi2:
+        st.markdown(
+            f"""
+            <div class="kpi-card-compact">
+                <div class="kpi-label">IPCA (ENGHO 2017/18)</div>
+                <div class="kpi-grid">
+                    <div class="kpi-value">{fmt_pct(ipca_monthly)}</div>
+                    <div class="kpi-value">{fmt_pct(ipca_annual)}</div>
+                    <div class="kpi-sublabel">m/m</div>
+                    <div class="kpi-sublabel">y/y</div>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+else:
+    st.warning("⚠️ No hay datos en el rango seleccionado.")
+
+st.markdown("<div style='margin-top: 1.6rem;'></div>", unsafe_allow_html=True)
+
+# ============================================================
+# GRÁFICO
+# ============================================================
+fig = go.Figure()
+
+if not common.empty:
+    fig.add_trace(
+        go.Scatter(
+            x=ipc.index,
+            y=ipc.values,
+            mode="lines+markers",
+            marker=dict(size=6, color="#00ff88"),
+            line=dict(width=2.5, color="#00ff88"),
+            name="IPC",
+            hovertemplate="IPC: %{y:.2f}%<extra></extra>",
+        )
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=ipca.index,
+            y=ipca.values,
+            mode="lines+markers",
+            marker=dict(size=6, color="#ff0088"),
+            line=dict(width=2.5, color="#ff0088"),
+            name="IPCA (ENGHo 2017/18)",
+            hovertemplate="IPCA: %{y:.2f}%<extra></extra>",
+        )
+    )
+
+fig.update_layout(
+    height=560,
+    margin=dict(l=20, r=20, t=40, b=20),
+    legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="left",
+        x=0,
+        font=dict(size=12, family="Inter", color="#fff"),
+    ),
+    hovermode="x unified",
+    plot_bgcolor="#2f2f2f",
+    paper_bgcolor="#2a2a2a",
+    font=dict(family="Inter", color="#fff"),
+    xaxis=dict(gridcolor="#333", showgrid=True, linecolor="#333"),
+    yaxis=dict(
+        title="Variación %",
+        title_font=dict(size=12),
+        gridcolor="#333",
+        showgrid=True,
+        linecolor="#333",
+    ),
+)
+
+st.plotly_chart(fig, use_container_width=True)
+
+# ============================================================
+# METODOLOGÍA
+# ============================================================
+st.markdown(
+    """
+    <div class="methodology-card">
+        <h4>📖 Metodología</h4>
+        <ul>
+            <li><b>IPC:</b> Inflación oficial del INDEC (nivel general, nacional)</li>
+            <li><b>IPCA:</b> Índice que repondera las 12 divisiones COICOP usando ponderadores de ENGHo 2017/18</li>
+            <li><b>Fuente:</b> CSV oficial del INDEC, actualizado automáticamente</li>
+            <li><b>Cálculo:</b> Promedio ponderado de índices por división, normalizado a 100 en año base</li>
+        </ul>
     </div>
-    """, unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True,
+)
 
-with k2:
-    st.markdown("""
-    <div class="kpi-card">
-      <div class="kpi-title">IPCA (ENGHo 2017/18)</div>
-      <div class="kpi-grid">
-        <div class="kpi-value">2,7%</div>
-        <div class="kpi-value">32,9%</div>
-        <div class="kpi-label">m/m</div>
-        <div class="kpi-label">y/y</div>
-      </div>
-    </div>
-    """, unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)
+st.caption("💡 Dashboard actualizado automáticamente desde fuentes oficiales del INDEC")
