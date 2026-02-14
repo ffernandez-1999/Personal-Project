@@ -10,7 +10,7 @@ st.set_page_config(
 )
 
 # ============================================================
-# CSS GLOBAL
+# CSS
 # ============================================================
 
 st.markdown("""
@@ -22,12 +22,12 @@ st.markdown("""
 
 /* Fondo */
 .stApp {
-    background: #f5f7fa;
+    background-color: #f5f7fa;
 }
 
 /* Header superior */
 header[data-testid="stHeader"] {
-    background: #f5f7fa;
+    background-color: #f5f7fa;
 }
 
 /* Tipografía */
@@ -40,7 +40,7 @@ h1, h2, h3 {
     font-family: 'Merriweather', serif;
 }
 
-/* Header */
+/* Header principal */
 .home-header {
     margin-bottom: 4rem;
 }
@@ -70,50 +70,33 @@ h1, h2, h3 {
     color: #0f172a;
 }
 
-/* CARD BUTTON STYLE */
+/* ===== CARD BUTTON STYLE ===== */
+
 div[data-testid="stButton"] > button {
-    height: 220px;
-    border-radius: 18px !important;
+    height: 240px;
+    border-radius: 20px !important;
     background: white !important;
     border: none !important;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.08) !important;
-    font-size: 1.6rem !important;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08) !important;
+    font-size: 1.5rem !important;
     font-weight: 700 !important;
     text-align: left !important;
-    padding: 2.2rem !important;
+    padding: 2.5rem !important;
     white-space: pre-line !important;
     transition: all 0.3s ease !important;
-    position: relative !important;
 }
 
 /* Hover */
 div[data-testid="stButton"] > button:hover {
-    transform: translateY(-8px) !important;
-    box-shadow: 0 22px 50px rgba(0,0,0,0.18) !important;
+    transform: translateY(-10px) !important;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.18) !important;
 }
 
-/* Línea verde IPC */
-div[data-testid="stButton"] > button[key="ipc"]::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: #10b981;
-    border-radius: 18px 18px 0 0;
-}
-
-/* Línea azul Notes */
-div[data-testid="stButton"] > button[key="notes"]::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: #3b82f6;
-    border-radius: 18px 18px 0 0;
+/* Descripción (segunda línea) */
+div[data-testid="stButton"] > button span {
+    font-weight: 400 !important;
+    font-size: 1rem !important;
+    color: #475569 !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -138,7 +121,7 @@ st.markdown("""
 # CARDS
 # ============================================================
 
-left, center, right = st.columns([0.5, 10, 0.5])
+left, center, right = st.columns([1, 10, 1])
 
 with center:
     col1, col2 = st.columns(2, gap="large")
