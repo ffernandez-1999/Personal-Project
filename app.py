@@ -110,12 +110,18 @@ st.markdown(
 
       .card-content {
         padding: 2rem;
+        padding-bottom: 1.5rem;
+      }
+      
+      /* Contenedor de botones dentro de la card */
+      .button-container {
+        margin-top: 1.5rem;
       }
 
       .card-title {
-        font-size: 1.75rem;
+        font-size: 1.4rem;
         font-weight: 700;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
         letter-spacing: -0.02em;
         color: #1a1a1a !important;
         font-family: 'Merriweather', Georgia, serif !important;
@@ -125,7 +131,7 @@ st.markdown(
         font-size: 0.95rem;
         line-height: 1.6;
         color: #4a5568 !important;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
         font-family: 'Lato', sans-serif !important;
       }
 
@@ -180,39 +186,39 @@ st.markdown(
         color: #ffffff !important;
       }
 
-      /* Botones de Streamlit - MÁS VISIBLES */
+      /* Botones de Streamlit - DENTRO DE LAS CARDS */
       .stButton > button {
         width: 100% !important;
         background: #10b981 !important;
         border: none !important;
         color: #ffffff !important;
-        padding: 1rem 1.5rem !important;
+        padding: 0.75rem 1.25rem !important;
         font-family: 'Lato', sans-serif !important;
-        font-size: 0.95rem !important;
+        font-size: 0.875rem !important;
         font-weight: 600 !important;
         transition: all 0.3s !important;
         text-align: center !important;
-        border-radius: 8px !important;
-        margin-bottom: 0.75rem !important;
-        box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3) !important;
+        border-radius: 6px !important;
+        margin-bottom: 0.5rem !important;
+        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.25) !important;
         cursor: pointer !important;
       }
 
       .stButton > button:hover {
         background: #059669 !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 8px rgba(16, 185, 129, 0.35) !important;
       }
       
       /* Botones en la segunda card (Notas) - color azul */
       [data-testid="column"]:nth-child(2) .stButton > button {
         background: #3b82f6 !important;
-        box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3) !important;
+        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.25) !important;
       }
       
       [data-testid="column"]:nth-child(2) .stButton > button:hover {
         background: #2563eb !important;
-        box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
+        box-shadow: 0 4px 8px rgba(59, 130, 246, 0.35) !important;
       }
 
       /* Container para centrar */
@@ -267,8 +273,7 @@ with center:
                 <div class="card-content">
                     <div class="card-title">Dashboard interactivo</div>
                     <div class="card-desc">Indicadores macroeconómicos actualizados en tiempo real</div>
-                </div>
-            </div>
+                    <div class="button-container">
             """,
             unsafe_allow_html=True
         )
@@ -278,6 +283,15 @@ with center:
             st.page_link("pages/2_IPC.py", label="Ver IPC", use_container_width=True)
         with btn2:
             st.page_link("pages/4_TC_Bandas.py", label="Ver TC y Bandas", use_container_width=True)
+        
+        st.markdown(
+            """
+                    </div>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
     
     with card2:
         # Card 2: Notas
@@ -288,10 +302,18 @@ with center:
                 <div class="card-content">
                     <div class="card-title">Notas</div>
                     <div class="card-desc">Artículos y publicaciones sobre economía argentina</div>
-                </div>
-            </div>
+                    <div class="button-container">
             """,
             unsafe_allow_html=True
         )
         
         st.page_link("pages/3_Notes.py", label="Ver artículos", use_container_width=True)
+        
+        st.markdown(
+            """
+                    </div>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
