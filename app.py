@@ -3,7 +3,6 @@ import streamlit as st
 st.set_page_config(
     page_title="Francisco Fernandez Amato",
     layout="wide",
-    initial_sidebar_state="collapsed",
 )
 
 # ============================================================
@@ -14,45 +13,45 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@400;600;700&display=swap');
 
-/* Ocultar sidebar */
-[data-testid="stSidebar"] { display: none !important; }
-[data-testid="stSidebarNav"] { display: none !important; }
-
-/* Fondo */
+/* FONDO GENERAL */
 .stApp {
-    background: #f5f7fa !important;
+    background: #f5f7fa;
+}
+
+/* HEADER SUPERIOR (no blanco feo) */
+header[data-testid="stHeader"] {
+    background: #f5f7fa;
 }
 
 /* Tipografía */
-html, body, [class*="css"] {
-    font-family: 'Lato', sans-serif !important;
-    color: #1a1a1a !important;
+html, body {
+    font-family: 'Lato', sans-serif;
+    color: #1a1a1a;
 }
 
 h1, h2, h3 {
-    font-family: 'Merriweather', serif !important;
+    font-family: 'Merriweather', serif;
 }
 
-/* Header */
+/* HEADER */
 .home-header {
     margin-bottom: 4rem;
 }
 
 .home-name {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     font-weight: 900;
 }
 
 .home-role {
     font-size: 1.1rem;
-    color: #4a5568;
+    color: #475569;
     margin-bottom: 1.5rem;
 }
 
 .home-links {
     display: flex;
     gap: 2rem;
-    font-size: 0.9rem;
 }
 
 .home-links a {
@@ -61,29 +60,30 @@ h1, h2, h3 {
 }
 
 .home-links a:hover {
-    color: #1e293b;
+    color: #0f172a;
 }
 
-/* Cards */
-.card-container {
+/* CARDS */
+.card {
     background: white;
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
 }
 
-.card-container:hover {
+.card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.15);
 }
 
-.card-accent {
-    height: 5px;
+.card-accent-green {
+    height: 6px;
     background: #10b981;
 }
 
 .card-accent-blue {
+    height: 6px;
     background: #3b82f6;
 }
 
@@ -94,42 +94,46 @@ h1, h2, h3 {
 .card-title {
     font-size: 1.4rem;
     font-weight: 700;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.8rem;
 }
 
 .card-desc {
     color: #475569;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-/* BOTONES */
-.stButton > button {
-    width: 100% !important;
-    background: linear-gradient(135deg, #10b981, #059669) !important;
-    border: none !important;
-    color: white !important;
-    font-weight: 700 !important;
-    border-radius: 8px !important;
-    padding: 0.9rem !important;
-    box-shadow: 0 6px 14px rgba(16,185,129,0.35) !important;
-    transition: all 0.2s ease !important;
-    cursor: pointer !important;
+/* BOTONES REALES (anchor estilizado) */
+.btn {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 0.9rem;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    color: white;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
 
-.stButton > button:hover {
-    transform: translateY(-3px) scale(1.02) !important;
-    box-shadow: 0 10px 22px rgba(16,185,129,0.45) !important;
+.btn-green {
+    background: linear-gradient(135deg, #10b981, #059669);
 }
 
-/* Botón azul */
-.blue-button .stButton > button {
-    background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
-    box-shadow: 0 6px 14px rgba(59,130,246,0.35) !important;
+.btn-green:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(16,185,129,0.35);
 }
 
-.blue-button .stButton > button:hover {
-    box-shadow: 0 10px 22px rgba(59,130,246,0.45) !important;
+.btn-blue {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
 }
+
+.btn-blue:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(59,130,246,0.35);
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -161,37 +165,32 @@ with center:
     # CARD 1
     with col1:
         st.markdown("""
-        <div class="card-container">
-            <div class="card-accent"></div>
+        <div class="card">
+            <div class="card-accent-green"></div>
             <div class="card-content">
                 <div class="card-title">Dashboard interactivo</div>
                 <div class="card-desc">
                     Indicadores macroeconómicos actualizados en tiempo real
                 </div>
+                <div style="display:flex; gap:1rem;">
+                    <a href="/2_IPC" class="btn btn-green">Ver IPC</a>
+                    <a href="/4_TC_Bandas" class="btn btn-green">Ver TC y Bandas</a>
+                </div>
+            </div>
+        </div>
         """, unsafe_allow_html=True)
-
-        btn1, btn2 = st.columns(2)
-        with btn1:
-            st.page_link("pages/2_IPC.py", label="Ver IPC", use_container_width=True)
-        with btn2:
-            st.page_link("pages/4_TC_Bandas.py", label="Ver TC y Bandas", use_container_width=True)
-
-        st.markdown("</div></div>", unsafe_allow_html=True)
 
     # CARD 2
     with col2:
         st.markdown("""
-        <div class="card-container">
-            <div class="card-accent card-accent-blue"></div>
+        <div class="card">
+            <div class="card-accent-blue"></div>
             <div class="card-content">
                 <div class="card-title">Notas</div>
                 <div class="card-desc">
                     Artículos y publicaciones sobre economía argentina
                 </div>
+                <a href="/3_Notes" class="btn btn-blue">Ver artículos</a>
+            </div>
+        </div>
         """, unsafe_allow_html=True)
-
-        st.markdown('<div class="blue-button">', unsafe_allow_html=True)
-        st.page_link("pages/3_Notes.py", label="Ver artículos", use_container_width=True)
-        st.markdown("</div>", unsafe_allow_html=True)
-
-        st.markdown("</div></div>", unsafe_allow_html=True)
