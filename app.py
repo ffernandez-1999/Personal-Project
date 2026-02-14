@@ -113,7 +113,7 @@ st.markdown(
       }
 
       .card-title {
-        font-size: 1.75rem;
+        font-size: 1.3rem;
         font-weight: 700;
         margin-bottom: 1rem;
         letter-spacing: -0.02em;
