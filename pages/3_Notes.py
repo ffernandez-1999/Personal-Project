@@ -3,177 +3,218 @@ import streamlit as st
 import textwrap
 
 st.set_page_config(
-    page_title="Notas — Macro",
+    page_title="Artículos Macro",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
 
 # ============================================================
-# CSS GLOBAL + Header style (copiado de tu otra page)
+# CSS - LIGHT THEME + Merriweather/Lato
 # ============================================================
 st.markdown(
     """
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@400;600;700&display=swap');
+
       /* Ocultar sidebar */
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
       [data-testid="collapsedControl"] { display: none !important; }
+      section.main > div { padding-top: 2rem; }
 
-      /* Reducir padding superior */
-      section.main > div { padding-top: 1rem; }
-
-      /* Tipografía general */
-      html, body, [class*="css"] {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      /* Ocultar/aclarar header de Streamlit */
+      header[data-testid="stHeader"] {
+        background-color: #f5f7fa !important;
       }
 
-      /* Header personalizado */
-      .custom-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2rem 2.5rem;
-        border-radius: 16px;
-        margin-bottom: 1.2rem;
-        color: white;
-        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+      /* Ocultar toolbar arriba */
+      [data-testid="stToolbar"] {
+        display: none !important;
       }
 
-      .header-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
-      .header-subtitle { font-size: 1.1rem; opacity: 0.95; font-weight: 500; }
-
-      .header-links {
-        font-size: 0.95rem;
-        opacity: 0.95;
-        margin-top: 0.5rem;
-        white-space: nowrap;
+      /* Fondo claro */
+      .stApp {
+        background: #f5f7fa !important;
+        color: #1a1a1a;
       }
 
-      .header-links a {
-        color: white !important;
+      /* Tipografía global */
+      html, body, [class*="css"], p, span, div {
+        font-family: 'Lato', sans-serif !important;
+        color: #1a1a1a !important;
+      }
+      
+      h1, h2, h3, h4 {
+        font-family: 'Merriweather', Georgia, serif !important;
+        color: #1a1a1a !important;
+      }
+
+      /* Header simple */
+      .home-header {
+        margin-bottom: 3rem;
+        padding: 0 1rem;
+      }
+
+      .home-name {
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.02em;
+        color: #1a1a1a;
+        font-family: 'Merriweather', Georgia, serif;
+      }
+
+      .home-role {
+        font-size: 1.1rem;
+        color: #4a5568;
+        margin-bottom: 1.5rem;
+        font-family: 'Lato', sans-serif;
+      }
+
+      .home-links {
+        display: flex;
+        gap: 2rem;
+        font-size: 0.875rem;
+      }
+
+      .home-links a {
+        color: #718096;
         text-decoration: none;
-        margin-left: 1rem;
-        font-weight: 500;
-      }
-      .header-links a:hover { text-decoration: underline; }
-
-      /* Botón volver estilo violeta (HTML link) */
-      .back-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white !important;
-        border: none;
-        border-radius: 10px;
-        padding: 0.55rem 1.1rem;
-        font-weight: 600;
-        text-decoration: none !important;
-        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-        transition: all 0.25s ease;
-      }
-      .back-btn:hover{
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        transition: color 0.2s;
+        font-family: 'Lato', sans-serif;
       }
 
-      /* Contenedor ancho como venías usando */
+      .home-links a:hover {
+        color: #2d3748;
+      }
+
+      /* Botón de volver */
+      .stButton > button {
+        background: #10b981 !important;
+        border: none !important;
+        color: #ffffff !important;
+        font-family: 'Lato', sans-serif !important;
+        border-radius: 8px !important;
+        padding: 0.75rem 1.5rem !important;
+        transition: all 0.3s ease !important;
+        font-size: 0.875rem !important;
+        font-weight: 600 !important;
+        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.25) !important;
+      }
+
+      .stButton > button:hover {
+        background: #059669 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 8px rgba(16, 185, 129, 0.35) !important;
+      }
+
+      /* Contenedor ancho */
       .block-container { max-width: 1450px; }
 
-      /* ====== Estilos de Notas (los tuyos) ====== */
-      :root{
-        --ink:#0b2b4c;
-        --muted:#5b6b82;
-        --line: rgba(15, 23, 42, 0.10);
-        --card: rgba(255,255,255,0.92);
-        --shadow: 0 6px 18px rgba(2,6,23,0.05);
-        --hover: rgba(37, 99, 235, 0.25);
-      }
-
+      /* Título principal */
       .notes-title {
-        font-size: 40px;
-        font-weight: 800;
-        margin: 0;
-        color: var(--ink);
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin: 0 0 2rem 0;
+        color: #1a1a1a;
+        font-family: 'Merriweather', Georgia, serif;
+        text-align: center;
       }
 
-      .notes-sub {
-        color: var(--muted);
-        margin: 6px 0 22px 0;
-        font-size: 15px;
-      }
-
+      /* Sidebar de notas */
       .notes-sidebar {
         position: sticky;
         top: 70px;
-        padding: 16px;
-        border-radius: 18px;
-        background: var(--card);
-        border: 1px solid var(--line);
-        box-shadow: var(--shadow);
+        padding: 1.5rem;
+        border-radius: 12px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
 
       .notes-sidebar h4{
-        margin: 0 0 14px 2px;
-        font-size: 12px;
-        letter-spacing: .4px;
+        margin: 0 0 1rem 0;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--muted);
+        color: #718096;
         font-weight: 600;
+        font-family: 'Lato', sans-serif;
       }
 
       .notes-item{
         display:block;
-        padding: 14px 14px;
-        border-radius: 16px;
+        padding: 1rem;
+        border-radius: 8px;
         text-decoration: none !important;
-        color: var(--ink) !important;
+        color: #1a1a1a !important;
         font-weight: 500;
-        border: 1px solid rgba(15, 23, 42, 0.08);
+        border: 1px solid #e2e8f0;
         background: white;
-        margin-bottom: 12px;
-        transition: all .15s ease;
+        margin-bottom: 0.75rem;
+        transition: all .2s ease;
+        font-family: 'Lato', sans-serif;
       }
 
       .notes-item:hover{
-        border-color: var(--hover);
-        transform: translateY(-1px);
+        border-color: #10b981;
+        background: #f7fafc;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
       }
 
       .notes-item .date{
         display:block;
-        margin-top: 6px;
-        font-size: 12px;
+        margin-top: 0.5rem;
+        font-size: 0.75rem;
         font-weight: 400;
-        color: #6b7280;
+        color: #718096;
       }
 
       .note-anchor { scroll-margin-top: 100px; }
 
       .note-h2{
-        margin: 0 0 6px 0;
-        font-size: 26px;
+        margin: 0 0 0.5rem 0;
+        font-size: 1.5rem;
         font-weight: 700;
-        color: var(--ink);
+        color: #1a1a1a;
+        font-family: 'Merriweather', Georgia, serif;
       }
 
       .note-meta{
-        margin: 0 0 12px 0;
-        font-size: 12px;
-        color: var(--muted);
+        margin: 0 0 1rem 0;
+        font-size: 0.75rem;
+        color: #718096;
         text-transform: uppercase;
-        letter-spacing: .4px;
+        letter-spacing: 0.05em;
+        font-family: 'Lato', sans-serif;
       }
 
       .note-text{
-        margin: 0 0 16px 0;
-        font-size: 16px;
-        line-height: 1.65;
-        color: var(--ink);
+        margin: 0 0 1.5rem 0;
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #1a1a1a;
+        font-family: 'Lato', sans-serif;
       }
 
       hr {
         border: none;
-        border-top: 1px solid rgba(15, 23, 42, 0.12);
-        margin: 26px 0;
+        border-top: 1px solid #e2e8f0;
+        margin: 2rem 0;
+      }
+
+      @media (max-width: 768px) {
+        .home-name {
+          font-size: 2rem;
+        }
+        .home-links {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .notes-title {
+          font-size: 2rem;
+        }
       }
     </style>
     """,
@@ -181,21 +222,17 @@ st.markdown(
 )
 
 # ============================================================
-# Header (igual al tuyo)
+# Header (igual al resto de páginas)
 # ============================================================
 st.markdown(
     """
-    <div class="custom-header">
-        <div style="display:flex; justify-content:space-between; align-items:center; gap: 18px;">
-            <div>
-                <div class="header-title">Francisco Fernandez Amato</div>
-                <div class="header-subtitle">Macroeconomista</div>
-            </div>
-            <div class="header-links">
-                <a href="mailto:franciscofernandezz1999@gmail.com">📧 Email</a>
-                <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">💼 LinkedIn</a>
-                <a href="https://github.com/ffernandez-1999" target="_blank">🔗 GitHub</a>
-            </div>
+    <div class="home-header">
+        <div class="home-name">Francisco Fernandez Amato</div>
+        <div class="home-role">Macroeconomista</div>
+        <div class="home-links">
+            <a href="mailto:franciscofernandezz1999@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/ffernandez-1999" target="_blank">GitHub</a>
         </div>
     </div>
     """,
@@ -203,12 +240,11 @@ st.markdown(
 )
 
 # ============================================================
-# Botón volver (link estable)
+# Botón volver
 # ============================================================
 
 if st.button("← Volver"):
     st.switch_page("app.py")
-
 
 # ============================================================
 # Notas (placeholder)
@@ -225,8 +261,7 @@ NOTAS = [
 ]
 
 # Title
-st.markdown("<div class='notes-title'>Notas — Macro</div>", unsafe_allow_html=True)
-st.markdown("<div class='notes-sub'>Índice a la izquierda (sticky) + notas completas a la derecha</div>", unsafe_allow_html=True)
+st.markdown("<div class='notes-title'>Artículos Macro</div>", unsafe_allow_html=True)
 
 # Layout (izquierda un toque más grande como pediste)
 left, right = st.columns([1.5, 4], gap="large")
