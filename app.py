@@ -227,9 +227,8 @@ left, center, right = st.columns([0.5, 10, 0.5])
 
 with center:
     card1, card2 = st.columns(2, gap="large")
-    
+
     with card1:
-        # Card 1: Dashboard
         st.markdown(
             """
             <div class="card-container">
@@ -237,18 +236,19 @@ with center:
                 <div class="card-content">
                     <div class="card-title">Dashboard interactivo</div>
                     <div class="card-desc">Indicadores macroeconómicos actualizados en tiempo real</div>
-                    <div style="display: flex; gap: 1rem;">
-                        <a href="2_IPC.py" target="_self" class="custom-btn">Ver IPC</a>
-                        <a href="4_TC_Bandas.py" target="_self" class="custom-btn">Ver TC y Bandas</a>
-                    </div>
                 </div>
             </div>
             """,
             unsafe_allow_html=True
         )
-    
+
+        col_a, col_b = st.columns(2)
+        with col_a:
+            st.page_link("pages/2_IPC.py", label="Ver IPC")
+        with col_b:
+            st.page_link("pages/4_TC_Bandas.py", label="Ver TC y Bandas")
+
     with card2:
-        # Card 2: Notas
         st.markdown(
             """
             <div class="card-container">
@@ -256,9 +256,11 @@ with center:
                 <div class="card-content">
                     <div class="card-title">Notas</div>
                     <div class="card-desc">Artículos y publicaciones sobre economía argentina</div>
-                    <a href="3_Notes.py" target="_self" class="custom-btn-blue">Ver artículos</a>
                 </div>
             </div>
             """,
             unsafe_allow_html=True
         )
+
+        st.page_link("pages/3_Notes.py", label="Ver artículos")
+
