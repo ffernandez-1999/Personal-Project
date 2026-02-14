@@ -113,7 +113,7 @@ st.markdown(
       }
 
       .card-title {
-        font-size: 1.3rem;
+        font-size: 1.75rem;
         font-weight: 700;
         margin-bottom: 1rem;
         letter-spacing: -0.02em;
@@ -181,8 +181,40 @@ st.markdown(
       }
 
       /* Ocultar los botones de Streamlit por defecto */
-      .stButton {
-        display: none !important;
+      .stButton > button {
+        width: 100% !important;
+        background: #10b981 !important;
+        border: 2px solid #10b981 !important;
+        color: #ffffff !important;
+        padding: 0.875rem 1rem !important;
+        font-family: 'Lato', sans-serif !important;
+        font-size: 0.875rem !important;
+        font-weight: 600 !important;
+        transition: all 0.3s !important;
+        text-align: center !important;
+        border-radius: 8px !important;
+        margin-bottom: 0.75rem !important;
+        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2) !important;
+      }
+
+      .stButton > button:hover {
+        background: #059669 !important;
+        border-color: #059669 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3) !important;
+      }
+      
+      /* Botones en la segunda columna (Notas) - color azul */
+      [data-testid="column"]:last-child .stButton > button {
+        background: #3b82f6 !important;
+        border-color: #3b82f6 !important;
+        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2) !important;
+      }
+      
+      [data-testid="column"]:last-child .stButton > button:hover {
+        background: #2563eb !important;
+        border-color: #2563eb !important;
+        box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3) !important;
       }
 
       /* Container para centrar */
@@ -227,8 +259,9 @@ left, center, right = st.columns([0.5, 10, 0.5])
 
 with center:
     card1, card2 = st.columns(2, gap="large")
-
+    
     with card1:
+        # Card 1: Dashboard
         st.markdown(
             """
             <div class="card-container">
@@ -241,14 +274,15 @@ with center:
             """,
             unsafe_allow_html=True
         )
-
-        col_a, col_b = st.columns(2)
-        with col_a:
-            st.page_link("pages/2_IPC.py", label="Ver IPC")
-        with col_b:
-            st.page_link("pages/4_TC_Bandas.py", label="Ver TC y Bandas")
-
+        
+        btn1, btn2 = st.columns(2)
+        with btn1:
+            st.page_link("pages/2_IPC.py", label="Ver IPC", use_container_width=True)
+        with btn2:
+            st.page_link("pages/4_TC_Bandas.py", label="Ver TC y Bandas", use_container_width=True)
+    
     with card2:
+        # Card 2: Notas
         st.markdown(
             """
             <div class="card-container">
@@ -261,6 +295,5 @@ with center:
             """,
             unsafe_allow_html=True
         )
-
-        st.page_link("pages/3_Notes.py", label="Ver artículos")
-
+        
+        st.page_link("pages/3_Notes.py", label="Ver artículos", use_container_width=True)
