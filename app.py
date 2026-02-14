@@ -9,16 +9,16 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@400;600;700&display=swap');
       
       /* Ocultar sidebar */
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
       section.main > div { padding-top: 2rem; }
       
-      /* Ocultar/oscurecer header de Streamlit */
+      /* Ocultar/aclarar header de Streamlit */
       header[data-testid="stHeader"] {
-        background-color: #1a1a1a !important;
+        background-color: #f5f7fa !important;
       }
       
       /* Ocultar toolbar arriba */
@@ -26,16 +26,21 @@ st.markdown(
         display: none !important;
       }
 
-      /* Fondo más claro */
+      /* Fondo claro */
       .stApp {
-        background: #1a1a1a !important;
-        color: #fff;
+        background: #f5f7fa !important;
+        color: #1a1a1a;
       }
 
       /* Tipografía global */
-      html, body, [class*="css"], p, span, div, h1, h2, h3, h4 {
-        font-family: 'Inter', sans-serif !important;
-        color: #fff !important;
+      html, body, [class*="css"], p, span, div {
+        font-family: 'Lato', sans-serif !important;
+        color: #1a1a1a !important;
+      }
+      
+      h1, h2, h3, h4 {
+        font-family: 'Merriweather', Georgia, serif !important;
+        color: #1a1a1a !important;
       }
 
       /* Header simple */
@@ -46,16 +51,18 @@ st.markdown(
 
       .home-name {
         font-size: 2.5rem;
-        font-weight: 800;
+        font-weight: 900;
         margin-bottom: 0.5rem;
         letter-spacing: -0.02em;
-        color: #fff;
+        color: #1a1a1a;
+        font-family: 'Merriweather', Georgia, serif;
       }
 
       .home-role {
-        font-size: 0.95rem;
-        color: #888;
+        font-size: 1.1rem;
+        color: #4a5568;
         margin-bottom: 1.5rem;
+        font-family: 'Lato', sans-serif;
       }
 
       .home-links {
@@ -65,37 +72,40 @@ st.markdown(
       }
 
       .home-links a {
-        color: #888;
+        color: #718096;
         text-decoration: none;
         transition: color 0.2s;
+        font-family: 'Lato', sans-serif;
       }
 
       .home-links a:hover {
-        color: #fff;
+        color: #2d3748;
       }
 
       /* Cards con mismo ancho */
       .card-container {
-        background: #0a0a0a;
+        background: #ffffff;
         padding: 0;
-        border-radius: 0;
+        border-radius: 12px;
         overflow: hidden;
-        transition: transform 0.3s;
+        transition: all 0.3s;
         position: relative;
         margin-bottom: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
 
       .card-container:hover {
-        transform: scale(1.02);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
       }
 
       .card-accent {
         height: 4px;
-        background: #00ff88;
+        background: #10b981;
       }
 
       .card-accent-pink {
-        background: #ff0088;
+        background: #3b82f6;
       }
 
       .card-content {
@@ -104,38 +114,56 @@ st.markdown(
 
       .card-title {
         font-size: 1.75rem;
-        font-weight: 800;
+        font-weight: 700;
         margin-bottom: 1rem;
         letter-spacing: -0.02em;
-        color: #fff !important;
+        color: #1a1a1a !important;
+        font-family: 'Merriweather', Georgia, serif !important;
       }
 
       .card-desc {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         line-height: 1.6;
-        color: #888 !important;
+        color: #4a5568 !important;
         margin-bottom: 2rem;
+        font-family: 'Lato', sans-serif !important;
       }
 
       /* Botones personalizados */
       .stButton > button {
         width: 100% !important;
-        background: transparent !important;
-        border: 1px solid #333 !important;
-        color: #fff !important;
-        padding: 1rem !important;
-        font-family: 'Inter', sans-serif !important;
+        background: #10b981 !important;
+        border: 2px solid #10b981 !important;
+        color: #ffffff !important;
+        padding: 0.875rem 1rem !important;
+        font-family: 'Lato', sans-serif !important;
         font-size: 0.875rem !important;
         font-weight: 600 !important;
-        transition: all 0.2s !important;
-        text-align: left !important;
-        border-radius: 0 !important;
+        transition: all 0.3s !important;
+        text-align: center !important;
+        border-radius: 8px !important;
         margin-bottom: 0.75rem !important;
+        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2) !important;
       }
 
       .stButton > button:hover {
-        border-color: #00ff88 !important;
-        background: rgba(0, 255, 136, 0.05) !important;
+        background: #059669 !important;
+        border-color: #059669 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3) !important;
+      }
+      
+      /* Botones en la segunda columna (Notas) */
+      [data-testid="column"]:nth-child(2) .stButton > button {
+        background: #3b82f6 !important;
+        border-color: #3b82f6 !important;
+        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2) !important;
+      }
+      
+      [data-testid="column"]:nth-child(2) .stButton > button:hover {
+        background: #2563eb !important;
+        border-color: #2563eb !important;
+        box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3) !important;
       }
 
       /* Container para centrar */
