@@ -17,56 +17,47 @@ st.set_page_config(
 )
 
 # ============================================================
-# CSS - MISMO ESTILO QUE HOME E IPC
+# CSS - LIGHT THEME + Merriweather/Lato
 # ============================================================
 
 st.markdown(
     """
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-      
+      @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@400;600;700&display=swap');
+
       /* Ocultar sidebar */
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
-      section.main > div { padding-top: 1rem; }
-      
-      /* Ocultar/oscurecer header de Streamlit */
+      section.main > div { padding-top: 2rem; }
+
+      /* Ocultar/aclarar header de Streamlit */
       header[data-testid="stHeader"] {
-        background-color: #1a1a1a !important;
+        background-color: #f5f7fa !important;
       }
-      
+
       /* Ocultar toolbar arriba */
       [data-testid="stToolbar"] {
         display: none !important;
       }
 
-      /* Variables CSS - PANELES MÁS CLAROS */
-      :root {
-        --bg-primary: #1a1a1a;
-        --bg-secondary: #242424;
-        --bg-card: #2a2a2a;
-        --bg-chart: #2f2f2f;
-        --accent-primary: #00ff88;
-        --accent-secondary: #ff0088;
-        --text-primary: #fff;
-        --text-secondary: #aaa;
-        --text-muted: #888;
-        --border-color: #333;
-      }
-
-      /* Fondo general */
+      /* Fondo claro */
       .stApp {
-        background-color: var(--bg-primary) !important;
-        color: var(--text-primary);
+        background: #f5f7fa !important;
+        color: #1a1a1a;
       }
 
-      /* Tipografía global - INTER */
-      html, body, [class*="css"], p, span, div, h1, h2, h3, h4 {
-        font-family: 'Inter', sans-serif !important;
-        color: var(--text-primary) !important;
+      /* Tipografía global */
+      html, body, [class*="css"], p, span, div {
+        font-family: 'Lato', sans-serif !important;
+        color: #1a1a1a !important;
+      }
+      
+      h1, h2, h3, h4 {
+        font-family: 'Merriweather', Georgia, serif !important;
+        color: #1a1a1a !important;
       }
 
-      /* Header igual al home */
+      /* Header simple */
       .home-header {
         margin-bottom: 3rem;
         padding: 0 1rem;
@@ -74,16 +65,18 @@ st.markdown(
 
       .home-name {
         font-size: 2.5rem;
-        font-weight: 800;
+        font-weight: 900;
         margin-bottom: 0.5rem;
         letter-spacing: -0.02em;
-        color: #fff;
+        color: #1a1a1a;
+        font-family: 'Merriweather', Georgia, serif;
       }
 
       .home-role {
-        font-size: 0.95rem;
-        color: var(--text-muted);
+        font-size: 1.1rem;
+        color: #4a5568;
         margin-bottom: 1.5rem;
+        font-family: 'Lato', sans-serif;
       }
 
       .home-links {
@@ -93,98 +86,104 @@ st.markdown(
       }
 
       .home-links a {
-        color: var(--text-muted);
+        color: #718096;
         text-decoration: none;
         transition: color 0.2s;
+        font-family: 'Lato', sans-serif;
       }
 
       .home-links a:hover {
-        color: #fff;
+        color: #2d3748;
       }
 
       /* Título de página */
       .page-title-highlight {
-        font-family: 'Inter', sans-serif;
-        font-size: 2rem;
-        font-weight: 800;
+        font-family: 'Merriweather', Georgia, serif;
+        font-size: 1.8rem;
+        font-weight: 700;
         text-align: center;
-        margin-bottom: 2.5rem;
-        padding: 1rem;
-        background: var(--bg-card);
-        border-radius: 0;
-        border-top: 4px solid var(--accent-primary);
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: #ffffff;
+        border-radius: 12px;
+        border-top: 4px solid #10b981;
         letter-spacing: -0.02em;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        color: #1a1a1a;
       }
 
       h1 {
-        font-family: 'Inter', sans-serif !important;
-        font-size: 2rem !important;
-        font-weight: 800 !important;
-        color: var(--text-primary) !important;
+        font-family: 'Merriweather', Georgia, serif !important;
+        font-size: 1.8rem !important;
+        font-weight: 700 !important;
+        color: #1a1a1a !important;
         margin-bottom: 2rem !important;
         text-align: center;
       }
 
       /* KPI Cards */
       .kpi-card {
-        background: var(--bg-card);
+        background: #ffffff;
         padding: 1.5rem;
-        border-radius: 0;
-        border: 1px solid var(--border-color);
-        border-top: 4px solid var(--accent-primary);
-        transition: all 0.3s ease;
+        border-radius: 12px;
+        border-top: 4px solid #10b981;
+        transition: all 0.25s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         height: 100%;
       }
 
       .kpi-card:hover {
-        transform: scale(1.02);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       }
 
       .kpi-label {
-        font-size: 0.7rem;
-        color: var(--text-muted);
+        font-size: 0.75rem;
+        color: #718096;
         text-transform: uppercase;
         letter-spacing: 0.1em;
         margin-bottom: 0.75rem;
         font-weight: 600;
+        font-family: 'Lato', sans-serif;
       }
 
       .kpi-main {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Merriweather', Georgia, serif;
         font-size: 2.25rem;
-        font-weight: 800;
-        color: var(--text-primary);
+        font-weight: 700;
+        color: #1a1a1a;
         letter-spacing: -0.02em;
       }
 
       .kpi-date {
         font-size: 0.7rem;
-        color: var(--text-muted);
+        color: #718096;
         margin-left: 0.5rem;
       }
 
       .kpi-sub {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Merriweather', Georgia, serif;
         font-size: 2rem;
-        font-weight: 800;
-        color: var(--text-primary);
+        font-weight: 700;
+        color: #1a1a1a;
       }
 
       .kpi-sublabel {
         font-size: 0.7rem;
-        color: var(--text-muted);
+        color: #718096;
         margin-top: 0.25rem;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         font-weight: 600;
+        font-family: 'Lato', sans-serif;
       }
 
       /* Subtítulos de sección */
       h3 {
-        font-family: 'Inter', sans-serif !important;
-        font-size: 0.875rem !important;
+        font-family: 'Lato', sans-serif !important;
+        font-size: 0.75rem !important;
         font-weight: 600 !important;
-        color: var(--text-secondary) !important;
+        color: #4a5568 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.1em !important;
         margin-bottom: 1.5rem !important;
@@ -192,81 +191,85 @@ st.markdown(
 
       /* Slider personalizado */
       .stSlider label {
-        font-family: 'Inter', sans-serif !important;
+        font-family: 'Lato', sans-serif !important;
         font-size: 0.75rem !important;
-        color: var(--text-secondary) !important;
+        color: #4a5568 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.05em !important;
         font-weight: 600 !important;
       }
 
       .stSlider [data-baseweb="slider"] {
-        background-color: var(--bg-card) !important;
+        background-color: #ffffff !important;
       }
 
       .stSlider [data-baseweb="slider"] > div > div {
-        background-color: var(--accent-primary) !important;
+        background-color: #10b981 !important;
       }
 
       .stSlider [role="slider"] {
-        background-color: var(--accent-primary) !important;
+        background-color: #10b981 !important;
       }
 
       .stSlider [data-testid="stTickBarMin"],
       .stSlider [data-testid="stTickBarMax"] {
-        color: var(--text-secondary) !important;
+        color: #4a5568 !important;
         font-weight: 500 !important;
       }
 
       /* Botón de volver */
       .stButton > button {
-        background: transparent !important;
-        border: 1px solid var(--border-color) !important;
-        color: var(--text-primary) !important;
-        font-family: 'Inter', sans-serif !important;
-        border-radius: 0 !important;
-        padding: 0.75rem 1.25rem !important;
-        transition: all 0.2s ease !important;
+        background: #10b981 !important;
+        border: none !important;
+        color: #ffffff !important;
+        font-family: 'Lato', sans-serif !important;
+        border-radius: 8px !important;
+        padding: 0.75rem 1.5rem !important;
+        transition: all 0.3s ease !important;
         font-size: 0.875rem !important;
         font-weight: 600 !important;
+        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.25) !important;
       }
 
       .stButton > button:hover {
-        border-color: var(--accent-primary) !important;
-        background: rgba(0, 255, 136, 0.05) !important;
+        background: #059669 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 8px rgba(16, 185, 129, 0.35) !important;
       }
 
       /* Metodología card */
       .methodology-card {
-        background: var(--bg-card);
-        border-top: 4px solid var(--accent-primary);
-        border-radius: 0;
+        background: #ffffff !important;
+        border-top: 4px solid #10b981;
+        border-radius: 12px;
         padding: 1.5rem;
         margin-top: 2rem;
-        border: 1px solid var(--border-color);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
 
       .methodology-card h4 {
-        font-family: 'Inter', sans-serif;
-        color: var(--text-primary);
+        font-family: 'Merriweather', Georgia, serif;
+        color: #1a1a1a;
         margin-bottom: 1rem;
         font-size: 1.125rem;
-        font-weight: 800;
+        font-weight: 700;
       }
 
       .methodology-card ul {
-        color: var(--text-secondary);
+        color: #4a5568;
         font-size: 0.875rem;
-        line-height: 1.6;
+        line-height: 1.7;
+        font-family: 'Lato', sans-serif;
       }
 
       .methodology-card li {
-        color: var(--text-secondary);
+        color: #4a5568;
+        margin-bottom: 0.5rem;
       }
 
       /* Gráfico contenedor */
       .js-plotly-plot {
-        border-radius: 0;
+        border-radius: 12px;
         overflow: hidden;
       }
 
@@ -310,7 +313,7 @@ with col_btn:
         st.switch_page("app.py")
 
 st.markdown(
-    "<h1 style='text-align:center;'>TC Mayorista (A3500) y Bandas</h1>",
+    '<div class="page-title-highlight">TC Mayorista (A3500) y Bandas</div>',
     unsafe_allow_html=True,
 )
 
@@ -441,7 +444,7 @@ fig.add_trace(
     go.Scatter(
         x=df_plot["Date"],
         y=df_plot["upper"],
-        line=dict(dash="dash", color="#00ff88", width=1.5),
+        line=dict(dash="dash", color="#10b981", width=1.5),
         showlegend=False,
     )
 )
@@ -450,9 +453,9 @@ fig.add_trace(
     go.Scatter(
         x=df_plot["Date"],
         y=df_plot["lower"],
-        line=dict(dash="dash", color="#00ff88", width=1.5),
+        line=dict(dash="dash", color="#10b981", width=1.5),
         fill="tonexty",
-        fillcolor="rgba(0, 255, 136, 0.05)",
+        fillcolor="rgba(16, 185, 129, 0.1)",
         showlegend=False,
     )
 )
@@ -461,7 +464,7 @@ fig.add_trace(
     go.Scatter(
         x=df_plot["Date"],
         y=df_plot["FX"],
-        line=dict(color="#ff0088", width=2.5),
+        line=dict(color="#3b82f6", width=2.5),
         showlegend=False,
     )
 )
@@ -470,19 +473,19 @@ fig.update_layout(
     height=560,
     hovermode="x unified",
     margin=dict(l=20, r=20, t=20, b=20),
-    plot_bgcolor="#2f2f2f",
-    paper_bgcolor="#2a2a2a",
-    font_color="#fff",
-    font_family="Inter",
+    plot_bgcolor="#ffffff",
+    paper_bgcolor="#ffffff",
+    font_color="#1a1a1a",
+    font_family="Lato",
     xaxis=dict(
-        gridcolor="#333",
+        gridcolor="#e2e8f0",
         showgrid=True,
-        linecolor="#333",
+        linecolor="#cbd5e0",
     ),
     yaxis=dict(
-        gridcolor="#333",
+        gridcolor="#e2e8f0",
         showgrid=True,
-        linecolor="#333",
+        linecolor="#cbd5e0",
     ),
 )
 
@@ -499,9 +502,15 @@ st.markdown(
     <div class="methodology-card">
         <h4>📖 Metodología</h4>
         <ul>
-            <li>—</li>
+            <li><b>TC Mayorista:</b> Serie A3500 del BCRA (tipo de cambio de referencia)</li>
+            <li><b>Bandas:</b> Bandas de fluctuación del 2% mensual proyectadas desde abril 2025</li>
+            <li><b>Fuente:</b> Banco Central de la República Argentina (BCRA)</li>
+            <li><b>Actualización:</b> Datos actualizados automáticamente desde fuentes oficiales</li>
         </ul>
     </div>
     """,
     unsafe_allow_html=True,
 )
+
+st.markdown("<br>", unsafe_allow_html=True)
+st.caption("💡 Dashboard actualizado automáticamente desde fuentes oficiales del BCRA")
