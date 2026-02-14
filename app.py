@@ -6,12 +6,15 @@ st.set_page_config(
 )
 
 # ============================================================
-# CSS
+# CSS GLOBAL
 # ============================================================
 
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@400;600;700&display=swap');
+
+/* Ocultar sidebar */
+[data-testid="stSidebar"] { display: none !important; }
 
 /* Fondo */
 .stApp {
@@ -63,52 +66,56 @@ h1, h2, h3 {
     color: #0f172a;
 }
 
-/* CARD LINK WRAPPER */
-.card-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-/* Cards */
-.card {
+/* CARD ESTÉTICA */
+.card-box {
     background: white;
-    border-radius: 14px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
-    cursor: pointer;
+    height: 210px;
+    padding: 2rem;
 }
 
-.card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+.card-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.18);
 }
 
 .card-accent-green {
     height: 6px;
     background: #10b981;
+    border-radius: 16px 16px 0 0;
+    margin: -2rem -2rem 1.5rem -2rem;
 }
 
 .card-accent-blue {
     height: 6px;
     background: #3b82f6;
-}
-
-.card-content {
-    padding: 2rem;
+    border-radius: 16px 16px 0 0;
+    margin: -2rem -2rem 1.5rem -2rem;
 }
 
 .card-title {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.7rem;
 }
 
 .card-desc {
     color: #475569;
+    font-size: 0.95rem;
 }
 
+/* BOTÓN INVISIBLE QUE CUBRE TODA LA CARD */
+.card-button > button {
+    position: absolute !important;
+    width: 100% !important;
+    height: 210px !important;
+    opacity: 0 !important;
+    border-radius: 16px !important;
+    cursor: pointer !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -129,7 +136,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================================
-# CARDS (CLICKABLE COMPLETAS CON SWITCH_PAGE)
+# CARDS
 # ============================================================
 
 left, center, right = st.columns([0.5, 10, 0.5])
@@ -139,53 +146,30 @@ with center:
 
     # CARD IPC
     with col1:
-        if st.button("IPC Canasta 2017/18", key="ipc_card", use_container_width=True):
+        container = st.container()
+        with container:
+            st.markdown('<div class="card-box">', unsafe_allow_html=True)
+            st.markdown('<div class="card-accent-green"></div>', unsafe_allow_html=True)
+            st.markdown('<div class="card-title">IPC Canasta 2017/18</div>', unsafe_allow_html=True)
+            st.markdown('<div class="card-desc">Seguimiento interactivo del IPC base ENGHo 2017/18.</div>', unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+
+        st.markdown('<div class="card-button">', unsafe_allow_html=True)
+        if st.button("", key="ipc_card"):
             st.switch_page("pages/2_IPC.py")
-
-        st.markdown("""
-        <style>
-        div[data-testid="stButton"][key="ipc_card"] > button {
-            height: 170px;
-            border-radius: 14px;
-            background: white;
-            border: none;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-align: left;
-            padding-left: 2rem;
-            position: relative;
-        }
-
-        div[data-testid="stButton"][key="ipc_card"] > button:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 40px rgba(0,0,0,0.15);
-        }
-        </style>
-        """, unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
     # CARD NOTES
     with col2:
-        if st.button("Notas", key="notes_card", use_container_width=True):
+        container = st.container()
+        with container:
+            st.markdown('<div class="card-box">', unsafe_allow_html=True)
+            st.markdown('<div class="card-accent-blue"></div>', unsafe_allow_html=True)
+            st.markdown('<div class="card-title">Notas</div>', unsafe_allow_html=True)
+            st.markdown('<div class="card-desc">Artículos y publicaciones sobre economía argentina.</div>', unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+
+        st.markdown('<div class="card-button">', unsafe_allow_html=True)
+        if st.button("", key="notes_card"):
             st.switch_page("pages/3_Notes.py")
-
-        st.markdown("""
-        <style>
-        div[data-testid="stButton"][key="notes_card"] > button {
-            height: 170px;
-            border-radius: 14px;
-            background: white;
-            border: none;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-align: left;
-            padding-left: 2rem;
-        }
-
-        div[data-testid="stButton"][key="notes_card"] > button:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 40px rgba(0,0,0,0.15);
-        }
-        </style>
-        """, unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
