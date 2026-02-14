@@ -83,7 +83,7 @@ div[data-testid="stButton"] > button {
     background: white !important;
     border: none !important;
     box-shadow: 0 8px 20px rgba(0,0,0,0.06) !important;
-    font-size: 1.4rem !important;
+    font-size: 1.6rem !important;
     font-weight: 700 !important;
     text-align: center !important;
     transition: all 0.25s ease !important;
@@ -147,5 +147,5 @@ with center:
 
     # NOTES
     with col3:
-        if st.button("Notas", key="notes", use_container_width=True):
+        if st.button("Artículos Macro", key="notes", use_container_width=True):
             st.switch_page("pages/3_Notes.py")
