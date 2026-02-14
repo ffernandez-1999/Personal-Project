@@ -129,41 +129,60 @@ st.markdown(
         font-family: 'Lato', sans-serif !important;
       }
 
-      /* Botones personalizados */
-      .stButton > button {
-        width: 100% !important;
-        background: #10b981 !important;
-        border: 2px solid #10b981 !important;
+      /* Botones personalizados dentro de las cards */
+      .custom-btn {
+        display: inline-block;
+        background: #10b981;
+        border: 2px solid #10b981;
         color: #ffffff !important;
-        padding: 0.875rem 1rem !important;
-        font-family: 'Lato', sans-serif !important;
-        font-size: 0.875rem !important;
-        font-weight: 600 !important;
-        transition: all 0.3s !important;
-        text-align: center !important;
-        border-radius: 8px !important;
-        margin-bottom: 0.75rem !important;
-        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2) !important;
+        padding: 0.875rem 1.5rem;
+        font-family: 'Lato', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition: all 0.3s;
+        text-align: center;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+        text-decoration: none;
+        flex: 1;
       }
 
-      .stButton > button:hover {
-        background: #059669 !important;
-        border-color: #059669 !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3) !important;
+      .custom-btn:hover {
+        background: #059669;
+        border-color: #059669;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+        color: #ffffff !important;
       }
       
-      /* Botones en la segunda columna (Notas) */
-      [data-testid="column"]:nth-child(2) .stButton > button {
-        background: #3b82f6 !important;
-        border-color: #3b82f6 !important;
-        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2) !important;
+      .custom-btn-blue {
+        display: inline-block;
+        background: #3b82f6;
+        border: 2px solid #3b82f6;
+        color: #ffffff !important;
+        padding: 0.875rem 1.5rem;
+        font-family: 'Lato', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition: all 0.3s;
+        text-align: center;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+        text-decoration: none;
+        width: 100%;
       }
       
-      [data-testid="column"]:nth-child(2) .stButton > button:hover {
-        background: #2563eb !important;
-        border-color: #2563eb !important;
-        box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3) !important;
+      .custom-btn-blue:hover {
+        background: #2563eb;
+        border-color: #2563eb;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+        color: #ffffff !important;
+      }
+
+      /* Ocultar los botones de Streamlit por defecto */
+      .stButton {
+        display: none !important;
       }
 
       /* Container para centrar */
@@ -218,17 +237,15 @@ with center:
                 <div class="card-content">
                     <div class="card-title">Dashboard interactivo</div>
                     <div class="card-desc">Indicadores macroeconómicos actualizados en tiempo real</div>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="2_IPC" target="_self" class="custom-btn">Ver IPC</a>
+                        <a href="4_TC_Bandas" target="_self" class="custom-btn">Ver TC y Bandas</a>
+                    </div>
                 </div>
             </div>
             """,
             unsafe_allow_html=True
         )
-        
-        btn1, btn2 = st.columns(2)
-        with btn1:
-            st.page_link("pages/2_IPC.py", label="Ver IPC", use_container_width=True)
-        with btn2:
-            st.page_link("pages/4_TC_Bandas.py", label="Ver TC y Bandas", use_container_width=True)
     
     with card2:
         # Card 2: Notas
@@ -239,10 +256,9 @@ with center:
                 <div class="card-content">
                     <div class="card-title">Notas</div>
                     <div class="card-desc">Artículos y publicaciones sobre economía argentina</div>
+                    <a href="3_Notes" target="_self" class="custom-btn-blue">Ver artículos</a>
                 </div>
             </div>
             """,
             unsafe_allow_html=True
         )
-        
-        st.page_link("pages/3_Notes.py", label="Ver artículos", use_container_width=True)
