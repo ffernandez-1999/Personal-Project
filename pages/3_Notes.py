@@ -260,9 +260,6 @@ NOTAS = [
      "texto": "Ejemplo: una nota corta sobre dinámica de inflación núcleo, regulados y estacionales."},
 ]
 
-# Title
-st.markdown("<div class='notes-title'>Artículos Macro</div>", unsafe_allow_html=True)
-
 # Layout (izquierda un toque más grande como pediste)
 left, right = st.columns([1.5, 4], gap="large")
 
