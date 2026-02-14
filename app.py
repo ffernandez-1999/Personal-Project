@@ -180,41 +180,39 @@ st.markdown(
         color: #ffffff !important;
       }
 
-      /* Ocultar los botones de Streamlit por defecto */
+      /* Botones de Streamlit - MÁS VISIBLES */
       .stButton > button {
         width: 100% !important;
         background: #10b981 !important;
-        border: 2px solid #10b981 !important;
+        border: none !important;
         color: #ffffff !important;
-        padding: 0.875rem 1rem !important;
+        padding: 1rem 1.5rem !important;
         font-family: 'Lato', sans-serif !important;
-        font-size: 0.875rem !important;
+        font-size: 0.95rem !important;
         font-weight: 600 !important;
         transition: all 0.3s !important;
         text-align: center !important;
         border-radius: 8px !important;
         margin-bottom: 0.75rem !important;
-        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2) !important;
+        box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3) !important;
+        cursor: pointer !important;
       }
 
       .stButton > button:hover {
         background: #059669 !important;
-        border-color: #059669 !important;
         transform: translateY(-2px) !important;
-        box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3) !important;
+        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
       }
       
-      /* Botones en la segunda columna (Notas) - color azul */
-      [data-testid="column"]:last-child .stButton > button {
+      /* Botones en la segunda card (Notas) - color azul */
+      [data-testid="column"]:nth-child(2) .stButton > button {
         background: #3b82f6 !important;
-        border-color: #3b82f6 !important;
-        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2) !important;
+        box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3) !important;
       }
       
-      [data-testid="column"]:last-child .stButton > button:hover {
+      [data-testid="column"]:nth-child(2) .stButton > button:hover {
         background: #2563eb !important;
-        border-color: #2563eb !important;
-        box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3) !important;
+        box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
       }
 
       /* Container para centrar */
