@@ -13,12 +13,12 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@400;600;700&display=swap');
 
-/* FONDO GENERAL */
+/* Fondo */
 .stApp {
     background: #f5f7fa;
 }
 
-/* HEADER SUPERIOR (no blanco feo) */
+/* Header superior */
 header[data-testid="stHeader"] {
     background: #f5f7fa;
 }
@@ -33,7 +33,7 @@ h1, h2, h3 {
     font-family: 'Merriweather', serif;
 }
 
-/* HEADER */
+/* Header */
 .home-header {
     margin-bottom: 4rem;
 }
@@ -63,13 +63,21 @@ h1, h2, h3 {
     color: #0f172a;
 }
 
-/* CARDS */
+/* CARD LINK WRAPPER */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Cards */
 .card {
     background: white;
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .card:hover {
@@ -92,46 +100,13 @@ h1, h2, h3 {
 }
 
 .card-title {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 0.8rem;
 }
 
 .card-desc {
     color: #475569;
-    margin-bottom: 2rem;
-}
-
-/* BOTONES REALES (anchor estilizado) */
-.btn {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    padding: 0.9rem;
-    border-radius: 8px;
-    font-weight: 700;
-    text-decoration: none;
-    color: white;
-    transition: all 0.2s ease;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-}
-
-.btn-green {
-    background: linear-gradient(135deg, #10b981, #059669);
-}
-
-.btn-green:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 28px rgba(16,185,129,0.35);
-}
-
-.btn-blue {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-}
-
-.btn-blue:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 28px rgba(59,130,246,0.35);
 }
 
 </style>
@@ -162,35 +137,34 @@ left, center, right = st.columns([0.5, 10, 0.5])
 with center:
     col1, col2 = st.columns(2, gap="large")
 
-    # CARD 1
+    # CARD 1 → IPC
     with col1:
         st.markdown("""
-        <div class="card">
-            <div class="card-accent-green"></div>
-            <div class="card-content">
-                <div class="card-title">Dashboard interactivo</div>
-                <div class="card-desc">
-                    Indicadores macroeconómicos actualizados en tiempo real
-                </div>
-                <div style="display:flex; gap:1rem;">
-                    <a href="/2_IPC" class="btn btn-green">Ver IPC</a>
-                    <a href="/4_TC_Bandas" class="btn btn-green">Ver TC y Bandas</a>
+        <a href="2_IPC" target="_self" class="card-link">
+            <div class="card">
+                <div class="card-accent-green"></div>
+                <div class="card-content">
+                    <div class="card-title">IPC Canasta 2017/18</div>
+                    <div class="card-desc">
+                        Seguimiento interactivo del IPC base ENGHo 2017/18
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
         """, unsafe_allow_html=True)
 
-    # CARD 2
+    # CARD 2 → Notes
     with col2:
         st.markdown("""
-        <div class="card">
-            <div class="card-accent-blue"></div>
-            <div class="card-content">
-                <div class="card-title">Notas</div>
-                <div class="card-desc">
-                    Artículos y publicaciones sobre economía argentina
+        <a href="3_Notes" target="_self" class="card-link">
+            <div class="card">
+                <div class="card-accent-blue"></div>
+                <div class="card-content">
+                    <div class="card-title">Notas</div>
+                    <div class="card-desc">
+                        Artículos y publicaciones sobre economía argentina
+                    </div>
                 </div>
-                <a href="/3_Notes" class="btn btn-blue">Ver artículos</a>
             </div>
-        </div>
+        </a>
         """, unsafe_allow_html=True)
