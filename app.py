@@ -238,8 +238,8 @@ with center:
                     <div class="card-title">Dashboard interactivo</div>
                     <div class="card-desc">Indicadores macroeconómicos actualizados en tiempo real</div>
                     <div style="display: flex; gap: 1rem;">
-                        <a href="2_IPC" target="_self" class="custom-btn">Ver IPC</a>
-                        <a href="4_TC_Bandas" target="_self" class="custom-btn">Ver TC y Bandas</a>
+                        <a href="2_IPC.py" target="_self" class="custom-btn">Ver IPC</a>
+                        <a href="4_TC_Bandas.py" target="_self" class="custom-btn">Ver TC y Bandas</a>
                     </div>
                 </div>
             </div>
@@ -256,7 +256,7 @@ with center:
                 <div class="card-content">
                     <div class="card-title">Notas</div>
                     <div class="card-desc">Artículos y publicaciones sobre economía argentina</div>
-                    <a href="3_Notes" target="_self" class="custom-btn-blue">Ver artículos</a>
+                    <a href="3_Notes.py" target="_self" class="custom-btn-blue">Ver artículos</a>
                 </div>
             </div>
             """,
