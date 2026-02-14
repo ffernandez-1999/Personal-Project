@@ -135,8 +135,10 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+
+
 # ============================================================
-# CARDS
+# CARDS LIMPIAS Y ESTABLES
 # ============================================================
 
 left, center, right = st.columns([0.5, 10, 0.5])
@@ -146,30 +148,16 @@ with center:
 
     # CARD IPC
     with col1:
-        container = st.container()
-        with container:
-            st.markdown('<div class="card-box">', unsafe_allow_html=True)
-            st.markdown('<div class="card-accent-green"></div>', unsafe_allow_html=True)
-            st.markdown('<div class="card-title">IPC Canasta 2017/18</div>', unsafe_allow_html=True)
-            st.markdown('<div class="card-desc">Seguimiento interactivo del IPC base ENGHo 2017/18.</div>', unsafe_allow_html=True)
-            st.markdown('</div>', unsafe_allow_html=True)
-
-        st.markdown('<div class="card-button">', unsafe_allow_html=True)
-        if st.button("", key="ipc_card"):
+        if st.button("IPC Canasta 2017/18\n\nSeguimiento interactivo del IPC base ENGHo 2017/18.",
+                     key="ipc",
+                     use_container_width=True):
             st.switch_page("pages/2_IPC.py")
-        st.markdown('</div>', unsafe_allow_html=True)
 
     # CARD NOTES
     with col2:
-        container = st.container()
-        with container:
-            st.markdown('<div class="card-box">', unsafe_allow_html=True)
-            st.markdown('<div class="card-accent-blue"></div>', unsafe_allow_html=True)
-            st.markdown('<div class="card-title">Notas</div>', unsafe_allow_html=True)
-            st.markdown('<div class="card-desc">Artículos y publicaciones sobre economía argentina.</div>', unsafe_allow_html=True)
-            st.markdown('</div>', unsafe_allow_html=True)
-
-        st.markdown('<div class="card-button">', unsafe_allow_html=True)
-        if st.button("", key="notes_card"):
+        if st.button("Notas\n\nArtículos y publicaciones sobre economía argentina.",
+                     key="notes",
+                     use_container_width=True):
             st.switch_page("pages/3_Notes.py")
-        st.markdown('</div>', unsafe_allow_html=True)
+
+
