@@ -78,7 +78,7 @@ h1, h2, h3 {
 /* ================= CARDS ================= */
 
 div[data-testid="stButton"] > button {
-    height: 140px;
+    height: 100px;
     border-radius: 16px !important;
     background: white !important;
     border: none !important;
