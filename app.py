@@ -6,314 +6,192 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-st.markdown(
-    """
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@400;600;700&display=swap');
-      
-      /* Ocultar sidebar */
-      [data-testid="stSidebar"] { display: none !important; }
-      [data-testid="stSidebarNav"] { display: none !important; }
-      section.main > div { padding-top: 2rem; }
-      
-      /* Ocultar/aclarar header de Streamlit */
-      header[data-testid="stHeader"] {
-        background-color: #f5f7fa !important;
-      }
-      
-      /* Ocultar toolbar arriba */
-      [data-testid="stToolbar"] {
-        display: none !important;
-      }
+# ============================================================
+# CSS
+# ============================================================
 
-      /* Fondo claro */
-      .stApp {
-        background: #f5f7fa !important;
-        color: #1a1a1a;
-      }
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@400;600;700&display=swap');
 
-      /* Tipografía global */
-      html, body, [class*="css"], p, span, div {
-        font-family: 'Lato', sans-serif !important;
-        color: #1a1a1a !important;
-      }
-      
-      h1, h2, h3, h4 {
-        font-family: 'Merriweather', Georgia, serif !important;
-        color: #1a1a1a !important;
-      }
+/* Ocultar sidebar */
+[data-testid="stSidebar"] { display: none !important; }
+[data-testid="stSidebarNav"] { display: none !important; }
 
-      /* Header simple */
-      .home-header {
-        margin-bottom: 4rem;
-        padding: 0 1rem;
-      }
+/* Fondo */
+.stApp {
+    background: #f5f7fa !important;
+}
 
-      .home-name {
-        font-size: 2.5rem;
-        font-weight: 900;
-        margin-bottom: 0.5rem;
-        letter-spacing: -0.02em;
-        color: #1a1a1a;
-        font-family: 'Merriweather', Georgia, serif;
-      }
+/* Tipografía */
+html, body, [class*="css"] {
+    font-family: 'Lato', sans-serif !important;
+    color: #1a1a1a !important;
+}
 
-      .home-role {
-        font-size: 1.1rem;
-        color: #4a5568;
-        margin-bottom: 1.5rem;
-        font-family: 'Lato', sans-serif;
-      }
+h1, h2, h3 {
+    font-family: 'Merriweather', serif !important;
+}
 
-      .home-links {
-        display: flex;
-        gap: 2rem;
-        font-size: 0.875rem;
-      }
+/* Header */
+.home-header {
+    margin-bottom: 4rem;
+}
 
-      .home-links a {
-        color: #718096;
-        text-decoration: none;
-        transition: color 0.2s;
-        font-family: 'Lato', sans-serif;
-      }
+.home-name {
+    font-size: 2.5rem;
+    font-weight: 900;
+}
 
-      .home-links a:hover {
-        color: #2d3748;
-      }
+.home-role {
+    font-size: 1.1rem;
+    color: #4a5568;
+    margin-bottom: 1.5rem;
+}
 
-      /* Cards con mismo ancho */
-      .card-container {
-        background: #ffffff;
-        padding: 0;
-        border-radius: 12px;
-        overflow: hidden;
-        transition: all 0.3s;
-        position: relative;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
+.home-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.9rem;
+}
 
-      .card-container:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      }
+.home-links a {
+    color: #64748b;
+    text-decoration: none;
+}
 
-      .card-accent {
-        height: 4px;
-        background: #10b981;
-      }
+.home-links a:hover {
+    color: #1e293b;
+}
 
-      .card-accent-pink {
-        background: #3b82f6;
-      }
+/* Cards */
+.card-container {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
 
-      .card-content {
-        padding: 2rem;
-        padding-bottom: 1.5rem;
-      }
-      
-      /* Contenedor de botones dentro de la card */
-      .button-container {
-        margin-top: 1.5rem;
-      }
+.card-container:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
 
-      .card-title {
-        font-size: 1.4rem;
-        font-weight: 700;
-        margin-bottom: 0.75rem;
-        letter-spacing: -0.02em;
-        color: #1a1a1a !important;
-        font-family: 'Merriweather', Georgia, serif !important;
-      }
+.card-accent {
+    height: 5px;
+    background: #10b981;
+}
 
-      .card-desc {
-        font-size: 0.95rem;
-        line-height: 1.6;
-        color: #4a5568 !important;
-        margin-bottom: 1.5rem;
-        font-family: 'Lato', sans-serif !important;
-      }
+.card-accent-blue {
+    background: #3b82f6;
+}
 
-      /* Botones personalizados dentro de las cards */
-      .custom-btn {
-        display: inline-block;
-        background: #10b981;
-        border: 2px solid #10b981;
-        color: #ffffff !important;
-        padding: 0.875rem 1.5rem;
-        font-family: 'Lato', sans-serif;
-        font-size: 0.875rem;
-        font-weight: 600;
-        transition: all 0.3s;
-        text-align: center;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
-        text-decoration: none;
-        flex: 1;
-      }
+.card-content {
+    padding: 2rem;
+}
 
-      .custom-btn:hover {
-        background: #059669;
-        border-color: #059669;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
-        color: #ffffff !important;
-      }
-      
-      .custom-btn-blue {
-        display: inline-block;
-        background: #3b82f6;
-        border: 2px solid #3b82f6;
-        color: #ffffff !important;
-        padding: 0.875rem 1.5rem;
-        font-family: 'Lato', sans-serif;
-        font-size: 0.875rem;
-        font-weight: 600;
-        transition: all 0.3s;
-        text-align: center;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
-        text-decoration: none;
-        width: 100%;
-      }
-      
-      .custom-btn-blue:hover {
-        background: #2563eb;
-        border-color: #2563eb;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
-        color: #ffffff !important;
-      }
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
 
-      /* Botones de Streamlit - DENTRO DE LAS CARDS */
-      .stButton > button {
-        width: 100% !important;
-        background: #10b981 !important;
-        border: none !important;
-        color: #ffffff !important;
-        padding: 0.75rem 1.25rem !important;
-        font-family: 'Lato', sans-serif !important;
-        font-size: 0.875rem !important;
-        font-weight: 600 !important;
-        transition: all 0.3s !important;
-        text-align: center !important;
-        border-radius: 6px !important;
-        margin-bottom: 0.5rem !important;
-        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.25) !important;
-        cursor: pointer !important;
-      }
+.card-desc {
+    color: #475569;
+    margin-bottom: 1.5rem;
+}
 
-      .stButton > button:hover {
-        background: #059669 !important;
-        transform: translateY(-1px) !important;
-        box-shadow: 0 4px 8px rgba(16, 185, 129, 0.35) !important;
-      }
-      
-      /* Botones en la segunda card (Notas) - color azul */
-      [data-testid="column"]:nth-child(2) .stButton > button {
-        background: #3b82f6 !important;
-        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.25) !important;
-      }
-      
-      [data-testid="column"]:nth-child(2) .stButton > button:hover {
-        background: #2563eb !important;
-        box-shadow: 0 4px 8px rgba(59, 130, 246, 0.35) !important;
-      }
+/* BOTONES */
+.stButton > button {
+    width: 100% !important;
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    padding: 0.9rem !important;
+    box-shadow: 0 6px 14px rgba(16,185,129,0.35) !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+}
 
-      /* Container para centrar */
-      [data-testid="column"] {
-        padding: 0 1rem;
-      }
+.stButton > button:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 10px 22px rgba(16,185,129,0.45) !important;
+}
 
-      @media (max-width: 768px) {
-        .home-name {
-          font-size: 2rem;
-        }
-      }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+/* Botón azul */
+.blue-button .stButton > button {
+    background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+    box-shadow: 0 6px 14px rgba(59,130,246,0.35) !important;
+}
+
+.blue-button .stButton > button:hover {
+    box-shadow: 0 10px 22px rgba(59,130,246,0.45) !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # ============================================================
 # HEADER
 # ============================================================
 
-st.markdown(
-    """
-    <div class="home-header">
-        <div class="home-name">Francisco Fernandez Amato</div>
-        <div class="home-role">Macroeconomista</div>
-        <div class="home-links">
-            <a href="mailto:franciscofernandezz1999@gmail.com">Email</a>
-            <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">LinkedIn</a>
-            <a href="https://github.com/ffernandez-1999" target="_blank">GitHub</a>
-        </div>
+st.markdown("""
+<div class="home-header">
+    <div class="home-name">Francisco Fernandez Amato</div>
+    <div class="home-role">Macroeconomista</div>
+    <div class="home-links">
+        <a href="mailto:franciscofernandezz1999@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/ffernandez-1999" target="_blank">GitHub</a>
     </div>
-    """,
-    unsafe_allow_html=True
-)
+</div>
+""", unsafe_allow_html=True)
 
 # ============================================================
-# CONTENIDO - 2 CARDS EN FILA (MISMO ANCHO)
+# CARDS
 # ============================================================
 
 left, center, right = st.columns([0.5, 10, 0.5])
 
 with center:
-    card1, card2 = st.columns(2, gap="large")
-    
-    with card1:
-        # Card 1: Dashboard
-        st.markdown(
-            """
-            <div class="card-container">
-                <div class="card-accent"></div>
-                <div class="card-content">
-                    <div class="card-title">Dashboard interactivo</div>
-                    <div class="card-desc">Indicadores macroeconómicos actualizados en tiempo real</div>
-                    <div class="button-container">
-            """,
-            unsafe_allow_html=True
-        )
-        
+    col1, col2 = st.columns(2, gap="large")
+
+    # CARD 1
+    with col1:
+        st.markdown("""
+        <div class="card-container">
+            <div class="card-accent"></div>
+            <div class="card-content">
+                <div class="card-title">Dashboard interactivo</div>
+                <div class="card-desc">
+                    Indicadores macroeconómicos actualizados en tiempo real
+                </div>
+        """, unsafe_allow_html=True)
+
         btn1, btn2 = st.columns(2)
         with btn1:
             st.page_link("pages/2_IPC.py", label="Ver IPC", use_container_width=True)
         with btn2:
             st.page_link("pages/4_TC_Bandas.py", label="Ver TC y Bandas", use_container_width=True)
-        
-        st.markdown(
-            """
-                    </div>
+
+        st.markdown("</div></div>", unsafe_allow_html=True)
+
+    # CARD 2
+    with col2:
+        st.markdown("""
+        <div class="card-container">
+            <div class="card-accent card-accent-blue"></div>
+            <div class="card-content">
+                <div class="card-title">Notas</div>
+                <div class="card-desc">
+                    Artículos y publicaciones sobre economía argentina
                 </div>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-    
-    with card2:
-        # Card 2: Notas
-        st.markdown(
-            """
-            <div class="card-container">
-                <div class="card-accent card-accent-pink"></div>
-                <div class="card-content">
-                    <div class="card-title">Notas</div>
-                    <div class="card-desc">Artículos y publicaciones sobre economía argentina</div>
-                    <div class="button-container">
-            """,
-            unsafe_allow_html=True
-        )
-        
+        """, unsafe_allow_html=True)
+
+        st.markdown('<div class="blue-button">', unsafe_allow_html=True)
         st.page_link("pages/3_Notes.py", label="Ver artículos", use_container_width=True)
-        
-        st.markdown(
-            """
-                    </div>
-                </div>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        st.markdown("</div></div>", unsafe_allow_html=True)
