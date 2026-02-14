@@ -12,245 +12,302 @@ st.set_page_config(
 )
 
 # ============================================================
-# CSS - DARK TECH + paneles unificados al color del gráfico
+# CSS - LIGHT THEME + Merriweather/Lato
 # ============================================================
 
 st.markdown(
     """
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@400;600;700&display=swap');
 
       /* Ocultar sidebar */
       [data-testid="stSidebar"] { display: none !important; }
       [data-testid="stSidebarNav"] { display: none !important; }
-      section.main > div { padding-top: 1rem; }
+      section.main > div { padding-top: 2rem; }
 
-      /* Ocultar/oscurecer header de Streamlit */
-      header[data-testid="stHeader"] { background-color: #1a1a1a !important; }
+      /* Ocultar/aclarar header de Streamlit */
+      header[data-testid="stHeader"] {
+        background-color: #f5f7fa !important;
+      }
 
       /* Ocultar toolbar arriba */
-      [data-testid="stToolbar"] { display: none !important; }
-
-      /* Variables CSS */
-      :root {
-        --bg-primary: #1a1a1a;
-        --bg-secondary: #242424; /* lo dejamos, pero vamos a forzar paneles a --bg-chart */
-        --bg-card: #2a2a2a;
-        --bg-chart: #2f2f2f;     /* ✅ el “más claro” (fondo del gráfico) */
-        --accent-primary: #00ff88;
-        --accent-secondary: #ff0088;
-        --text-primary: #fff;
-        --text-secondary: #aaa;
-        --text-muted: #888;
-        --border-color: #333;
+      [data-testid="stToolbar"] {
+        display: none !important;
       }
 
-      /* Fondo general */
-      .stApp { background-color: var(--bg-primary) !important; color: var(--text-primary); }
+      /* Fondo claro */
+      .stApp {
+        background: #f5f7fa !important;
+        color: #1a1a1a;
+      }
 
       /* Tipografía global */
-      html, body, [class*="css"], p, span, div, h1, h2, h3, h4 {
-        font-family: 'Inter', sans-serif !important;
-        color: var(--text-primary) !important;
+      html, body, [class*="css"], p, span, div {
+        font-family: 'Lato', sans-serif !important;
+        color: #1a1a1a !important;
+      }
+      
+      h1, h2, h3, h4 {
+        font-family: 'Merriweather', Georgia, serif !important;
+        color: #1a1a1a !important;
       }
 
-      /* Header igual al home */
-      .home-header { margin-bottom: 3rem; padding: 0 1rem; }
-      .home-name { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.02em; color: #fff; }
-      .home-role { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem; }
-      .home-links { display: flex; gap: 2rem; font-size: 0.875rem; }
-      .home-links a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-      .home-links a:hover { color: #fff; }
+      /* Header simple */
+      .home-header {
+        margin-bottom: 3rem;
+        padding: 0 1rem;
+      }
 
-      /* Título de página (panel) -> mismo color que gráfico */
-      .page-title-highlight {
-        font-family: 'Inter', sans-serif;
-        font-size: 2rem;
-        font-weight: 800;
-        text-align: center;
-        margin-bottom: 3.0rem;
-        padding: 1rem;
-        background: var(--bg-chart); /* ✅ */
-        border-radius: 0;
-        border-top: 4px solid var(--accent-primary);
+      .home-name {
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin-bottom: 0.5rem;
         letter-spacing: -0.02em;
-        border-left: 1px solid var(--border-color);
-        border-right: 1px solid var(--border-color);
-        border-bottom: 1px solid var(--border-color);
+        color: #1a1a1a;
+        font-family: 'Merriweather', Georgia, serif;
       }
 
-      /* =========================
-         KPI (panel) -> mismo color que gráfico
-         ========================= */
-      .kpi-card-compact {
-        background: var(--bg-chart); /* ✅ */
-        padding: 0.95rem 1.15rem;
-        border-radius: 0;
-        border: 1px solid var(--border-color);
-        border-top: 4px solid var(--accent-primary);
-        transition: all 0.25s ease;
+      .home-role {
+        font-size: 1.1rem;
+        color: #4a5568;
+        margin-bottom: 1.5rem;
+        font-family: 'Lato', sans-serif;
       }
-      .kpi-card-compact:hover { transform: scale(1.01); }
+
+      .home-links {
+        display: flex;
+        gap: 2rem;
+        font-size: 0.875rem;
+      }
+
+      .home-links a {
+        color: #718096;
+        text-decoration: none;
+        transition: color 0.2s;
+        font-family: 'Lato', sans-serif;
+      }
+
+      .home-links a:hover {
+        color: #2d3748;
+      }
+
+      /* Título de página */
+      .page-title-highlight {
+        font-family: 'Merriweather', Georgia, serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: #ffffff;
+        border-radius: 12px;
+        border-top: 4px solid #10b981;
+        letter-spacing: -0.02em;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        color: #1a1a1a;
+      }
+
+      /* KPI Cards */
+      .kpi-card-compact {
+        background: #ffffff;
+        padding: 1.25rem;
+        border-radius: 12px;
+        border-top: 4px solid #10b981;
+        transition: all 0.25s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      
+      .kpi-card-compact:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
 
       .kpi-label {
-        font-size: 0.7rem;
-        color: var(--text-muted);
+        font-size: 0.75rem;
+        color: #718096;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        margin-bottom: 0.55rem;
+        margin-bottom: 0.75rem;
         font-weight: 600;
+        font-family: 'Lato', sans-serif;
       }
 
       .kpi-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        column-gap: 1.8rem;
-        row-gap: 0.15rem;
+        column-gap: 1.5rem;
+        row-gap: 0.25rem;
         align-items: baseline;
       }
 
       .kpi-value {
-        font-family: 'Inter', sans-serif;
-        font-size: 2.0rem;
-        font-weight: 500;  /* sin negrita */
-        color: var(--text-primary);
+        font-family: 'Merriweather', Georgia, serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #1a1a1a;
         letter-spacing: -0.02em;
         line-height: 1;
       }
 
       .kpi-sublabel {
         font-size: 0.7rem;
-        color: var(--text-muted);
+        color: #718096;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        margin-top: 0.05rem;
+        margin-top: 0.25rem;
+        font-family: 'Lato', sans-serif;
       }
 
-      /* =========================
-         SELECTBOX (panel) -> mismo color que gráfico
-         ========================= */
+      /* Selectbox */
       .stSelectbox label {
-        font-family: 'Inter', sans-serif !important;
+        font-family: 'Lato', sans-serif !important;
         font-size: 0.75rem !important;
-        color: var(--text-secondary) !important;
+        color: #4a5568 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.05em !important;
         font-weight: 600 !important;
-        margin-bottom: 0.35rem !important;
+        margin-bottom: 0.5rem !important;
       }
 
       .stSelectbox [data-baseweb="select"] > div {
-        background-color: var(--bg-chart) !important; /* ✅ */
-        border: 1px solid var(--border-color) !important;
-        color: var(--text-primary) !important;
+        background-color: #ffffff !important;
+        border: 2px solid #e2e8f0 !important;
+        color: #1a1a1a !important;
         cursor: pointer !important;
-        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
-        transition: border-color .15s ease, box-shadow .15s ease;
+        border-radius: 8px !important;
+        transition: border-color .2s ease, box-shadow .2s ease;
       }
 
       .stSelectbox [data-baseweb="select"] > div:hover {
-        border-color: var(--accent-primary) !important;
-        box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.12) !important;
+        border-color: #10b981 !important;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
       }
 
       .stSelectbox [data-baseweb="select"] > div:focus-within {
-        border-color: var(--accent-primary) !important;
-        box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.16) !important;
+        border-color: #10b981 !important;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15) !important;
       }
 
       .stSelectbox [data-baseweb="select"] span {
-        color: var(--text-primary) !important;
+        color: #1a1a1a !important;
         font-weight: 600 !important;
-      }
-
-      .stSelectbox [data-baseweb="select"] svg {
-        opacity: 0.95 !important;
-        transform: scale(1.15);
       }
 
       /* Dropdown */
       div[data-baseweb="popover"] > div {
-        background: var(--bg-chart) !important; /* ✅ */
-        border: 1px solid var(--border-color) !important;
-        box-shadow: 0 12px 30px rgba(0,0,0,0.45) !important;
+        background: #ffffff !important;
+        border: 2px solid #e2e8f0 !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+        border-radius: 8px !important;
       }
 
-      ul[role="listbox"] { background: var(--bg-chart) !important; } /* ✅ */
-      li[role="option"]  { background: var(--bg-chart) !important; color: var(--text-primary) !important; }
+      ul[role="listbox"] { 
+        background: #ffffff !important;
+      }
+      
+      li[role="option"] { 
+        background: #ffffff !important;
+        color: #1a1a1a !important;
+      }
+      
       li[role="option"]:hover,
-      li[role="option"][aria-selected="true"] { background: #2a2a2a !important; } /* usa tu tono ya existente */
+      li[role="option"][aria-selected="true"] {
+        background: #f7fafc !important;
+      }
 
-      /* =========================
-         SLIDER (panel) -> mismo color que gráfico
-         ========================= */
+      /* Slider */
       .stSlider label {
-        font-family: 'Inter', sans-serif !important;
+        font-family: 'Lato', sans-serif !important;
         font-size: 0.75rem !important;
-        color: var(--text-secondary) !important;
+        color: #4a5568 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.05em !important;
         font-weight: 600 !important;
       }
 
-      .stSlider [data-baseweb="slider"] { background-color: var(--bg-chart) !important; } /* ✅ */
-      .stSlider [data-baseweb="slider"] > div > div { background-color: var(--accent-primary) !important; }
-      .stSlider [role="slider"] { background-color: var(--accent-primary) !important; }
+      .stSlider [data-baseweb="slider"] {
+        background-color: #ffffff !important;
+      }
+      
+      .stSlider [data-baseweb="slider"] > div > div {
+        background-color: #10b981 !important;
+      }
+      
+      .stSlider [role="slider"] {
+        background-color: #10b981 !important;
+      }
 
       .stSlider [data-testid="stTickBarMin"],
       .stSlider [data-testid="stTickBarMax"] {
-        color: var(--text-secondary) !important;
+        color: #4a5568 !important;
         font-weight: 500 !important;
       }
 
       /* Botón volver */
       .stButton > button {
-        background: transparent !important;
-        border: 1px solid var(--border-color) !important;
-        color: var(--text-primary) !important;
-        font-family: 'Inter', sans-serif !important;
-        border-radius: 0 !important;
-        padding: 0.75rem 1.25rem !important;
-        transition: all 0.2s ease !important;
+        background: #10b981 !important;
+        border: none !important;
+        color: #ffffff !important;
+        font-family: 'Lato', sans-serif !important;
+        border-radius: 8px !important;
+        padding: 0.75rem 1.5rem !important;
+        transition: all 0.3s ease !important;
         font-size: 0.875rem !important;
         font-weight: 600 !important;
+        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.25) !important;
       }
+      
       .stButton > button:hover {
-        border-color: var(--accent-primary) !important;
-        background: rgba(0, 255, 136, 0.05) !important;
+        background: #059669 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 8px rgba(16, 185, 129, 0.35) !important;
       }
 
-      /* Metodología (panel) -> mismo color que gráfico */
+      /* Metodología */
       .methodology-card {
-        background: var(--bg-chart) !important; /* ✅ */
-        border-top: 4px solid var(--accent-primary);
-        border-radius: 0;
+        background: #ffffff !important;
+        border-top: 4px solid #10b981;
+        border-radius: 12px;
         padding: 1.5rem;
         margin-top: 2rem;
-        border: 1px solid var(--border-color);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
 
       .methodology-card h4 {
-        font-family: 'Inter', sans-serif;
-        color: var(--text-primary);
+        font-family: 'Merriweather', Georgia, serif;
+        color: #1a1a1a;
         margin-bottom: 1rem;
         font-size: 1.125rem;
-        font-weight: 800;
+        font-weight: 700;
       }
 
       .methodology-card ul {
-        color: var(--text-secondary);
+        color: #4a5568;
         font-size: 0.875rem;
-        line-height: 1.6;
+        line-height: 1.7;
+        font-family: 'Lato', sans-serif;
       }
-      .methodology-card li { color: var(--text-secondary); }
+      
+      .methodology-card li {
+        color: #4a5568;
+        margin-bottom: 0.5rem;
+      }
 
       /* Divider */
-      hr { border-color: var(--border-color) !important; margin: 1.8rem 0 !important; }
+      hr {
+        border-color: #e2e8f0 !important;
+        margin: 1.8rem 0 !important;
+      }
 
       @media (max-width: 768px) {
-        .home-name { font-size: 2rem; }
-        .home-links { flex-direction: column; gap: 1rem; }
+        .home-name {
+          font-size: 2rem;
+        }
+        .home-links {
+          flex-direction: column;
+          gap: 1rem;
+        }
       }
     </style>
     """,
@@ -473,8 +530,8 @@ if not common.empty:
             x=ipc.index,
             y=ipc.values,
             mode="lines+markers",
-            marker=dict(size=6, color="#00ff88"),
-            line=dict(width=2.5, color="#00ff88"),
+            marker=dict(size=6, color="#10b981"),
+            line=dict(width=2.5, color="#10b981"),
             name="IPC",
             hovertemplate="IPC: %{y:.2f}%<extra></extra>",
         )
@@ -485,8 +542,8 @@ if not common.empty:
             x=ipca.index,
             y=ipca.values,
             mode="lines+markers",
-            marker=dict(size=6, color="#ff0088"),
-            line=dict(width=2.5, color="#ff0088"),
+            marker=dict(size=6, color="#3b82f6"),
+            line=dict(width=2.5, color="#3b82f6"),
             name="IPCA (ENGHo 2017/18)",
             hovertemplate="IPCA: %{y:.2f}%<extra></extra>",
         )
@@ -501,19 +558,19 @@ fig.update_layout(
         y=1.02,
         xanchor="left",
         x=0,
-        font=dict(size=12, family="Inter", color="#fff"),
+        font=dict(size=12, family="Lato", color="#1a1a1a"),
     ),
     hovermode="x unified",
-    plot_bgcolor="#2f2f2f",
-    paper_bgcolor="#2f2f2f",  # ✅ para que el “panel” del gráfico también sea el mismo
-    font=dict(family="Inter", color="#fff"),
-    xaxis=dict(gridcolor="#333", showgrid=True, linecolor="#333"),
+    plot_bgcolor="#ffffff",
+    paper_bgcolor="#ffffff",
+    font=dict(family="Lato", color="#1a1a1a"),
+    xaxis=dict(gridcolor="#e2e8f0", showgrid=True, linecolor="#cbd5e0"),
     yaxis=dict(
         title="Variación %",
-        title_font=dict(size=12),
-        gridcolor="#333",
+        title_font=dict(size=12, family="Lato"),
+        gridcolor="#e2e8f0",
         showgrid=True,
-        linecolor="#333",
+        linecolor="#cbd5e0",
     ),
 )
 
