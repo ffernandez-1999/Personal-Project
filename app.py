@@ -1,5 +1,9 @@
 import streamlit as st
 
+# ============================================================
+# CONFIG
+# ============================================================
+
 st.set_page_config(
     page_title="Francisco Fernandez Amato",
     layout="wide",
@@ -42,12 +46,12 @@ h1, h2, h3 {
 }
 
 .home-name {
-    font-size: 2.6rem;
+    font-size: 2.8rem;
     font-weight: 900;
 }
 
 .home-role {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: #475569;
     margin-bottom: 1.5rem;
 }
@@ -66,55 +70,50 @@ h1, h2, h3 {
     color: #0f172a;
 }
 
-/* CARD ESTÉTICA */
-.card-box {
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-    height: 210px;
-    padding: 2rem;
+/* CARD BUTTON STYLE */
+div[data-testid="stButton"] > button {
+    height: 220px;
+    border-radius: 18px !important;
+    background: white !important;
+    border: none !important;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.08) !important;
+    font-size: 1.6rem !important;
+    font-weight: 700 !important;
+    text-align: left !important;
+    padding: 2.2rem !important;
+    white-space: pre-line !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
 }
 
-.card-box:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+/* Hover */
+div[data-testid="stButton"] > button:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 22px 50px rgba(0,0,0,0.18) !important;
 }
 
-.card-accent-green {
+/* Línea verde IPC */
+div[data-testid="stButton"] > button[key="ipc"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 6px;
     background: #10b981;
-    border-radius: 16px 16px 0 0;
-    margin: -2rem -2rem 1.5rem -2rem;
+    border-radius: 18px 18px 0 0;
 }
 
-.card-accent-blue {
+/* Línea azul Notes */
+div[data-testid="stButton"] > button[key="notes"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 6px;
     background: #3b82f6;
-    border-radius: 16px 16px 0 0;
-    margin: -2rem -2rem 1.5rem -2rem;
-}
-
-.card-title {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 0.7rem;
-}
-
-.card-desc {
-    color: #475569;
-    font-size: 0.95rem;
-}
-
-/* BOTÓN INVISIBLE QUE CUBRE TODA LA CARD */
-.card-button > button {
-    position: absolute !important;
-    width: 100% !important;
-    height: 210px !important;
-    opacity: 0 !important;
-    border-radius: 16px !important;
-    cursor: pointer !important;
+    border-radius: 18px 18px 0 0;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -135,10 +134,8 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-
-
 # ============================================================
-# CARDS LIMPIAS Y ESTABLES
+# CARDS
 # ============================================================
 
 left, center, right = st.columns([0.5, 10, 0.5])
@@ -146,18 +143,20 @@ left, center, right = st.columns([0.5, 10, 0.5])
 with center:
     col1, col2 = st.columns(2, gap="large")
 
-    # CARD IPC
+    # IPC CARD
     with col1:
-        if st.button("IPC Canasta 2017/18\n\nSeguimiento interactivo del IPC base ENGHo 2017/18.",
-                     key="ipc",
-                     use_container_width=True):
+        if st.button(
+            "IPC Canasta 2017/18\n\nSeguimiento interactivo del IPC base ENGHo 2017/18.",
+            key="ipc",
+            use_container_width=True,
+        ):
             st.switch_page("pages/2_IPC.py")
 
-    # CARD NOTES
+    # NOTES CARD
     with col2:
-        if st.button("Notas\n\nArtículos y publicaciones sobre economía argentina.",
-                     key="notes",
-                     use_container_width=True):
+        if st.button(
+            "Notas\n\nArtículos y publicaciones sobre economía argentina.",
+            key="notes",
+            use_container_width=True,
+        ):
             st.switch_page("pages/3_Notes.py")
-
-
