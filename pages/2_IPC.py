@@ -143,7 +143,7 @@ st.markdown(
       .kpi-value {
         font-family: 'Merriweather', Georgia, serif;
         font-size: 1.8rem;
-        font-weight: 700;
+        font-weight: 400;
         color: #1a1a1a;
         letter-spacing: -0.02em;
         line-height: 1;
@@ -461,14 +461,20 @@ with cR:
 # ============================================================
 # CALCULAR
 # ============================================================
-mask = (common_idx >= start_m) & (common_idx <= end_m)
-ipc_level_rng = ipc_level.loc[mask]
-div_wide_rng = div_wide.loc[mask]
+ipca_level_full = compute_ipca_level(div_wide, W_2017, base_year)
 
-ipca_level_rng = compute_ipca_level(div_wide_rng, W_2017, base_year)
+ipc_full = calc_series(ipc_level, measure)
+ipca_full = calc_series(ipca_level_full, measure)
 
-ipc = calc_series(ipc_level_rng, measure).dropna()
-ipca = calc_series(ipca_level_rng, measure).dropna()
+# Después aplicar rango
+mask = (ipc_full.index >= start_m) & (ipc_full.index <= end_m)
+ipc = ipc_full.loc[mask]
+ipca = ipca_full.loc[mask]
+
+# Ahora sí limpiamos
+ipc = ipc.dropna()
+ipca = ipca.dropna()
+
 
 common = ipc.index.intersection(ipca.index)
 ipc = ipc.loc[common]
