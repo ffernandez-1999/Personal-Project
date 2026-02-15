@@ -471,10 +471,6 @@ mask = (ipc_full.index >= start_m) & (ipc_full.index <= end_m)
 ipc = ipc_full.loc[mask]
 ipca = ipca_full.loc[mask]
 
-# Ahora sí limpiamos
-ipc = ipc.dropna()
-ipca = ipca.dropna()
-
 
 common = ipc.index.intersection(ipca.index)
 ipc = ipc.loc[common]
