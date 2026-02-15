@@ -122,15 +122,15 @@ st.markdown(
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       }
 
-      .kpi-label {
-        font-size: 0.75rem;
-        color: #718096;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-bottom: 0.75rem;
-        font-weight: 600;
+    .kpi-label {
         font-family: 'Lato', sans-serif;
-      }
+        font-size: 0.75rem;
+        color: #4a5568;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+    }
 
       .kpi-grid {
         display: grid;
