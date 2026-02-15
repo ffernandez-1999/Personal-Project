@@ -603,23 +603,30 @@ st.plotly_chart(fig, use_container_width=True)
 st.markdown(
     f"""
     <div class="methodology-card">
+
         <h4>📖 Metodología — IPCA (ENGHo 2017/18)</h4>
 
-        <p><b>Definición</b></p>
         <p>
-        El IPCA replica el IPC nacional utilizando la estructura de consumo
-        de la Encuesta Nacional de Gastos de los Hogares 2017/18 (ENGHo 2017/18).
+        El IPCA reconstruye el índice de precios al consumidor utilizando
+        la estructura de gasto observada en la Encuesta Nacional de Gastos
+        de los Hogares 2017/18 (ENGHo 2017/18).
         </p>
 
-        <p><b>Fórmula de cálculo</b></p>
         <p>
-        El índice se construye como:
+        A diferencia del IPC vigente basado en la encuesta 2004/05,
+        este índice mantiene las variaciones oficiales por división
+        publicadas por el INDEC, pero modifica su incidencia agregada
+        aplicando las ponderaciones actualizadas de consumo.
         </p>
 
-        <p style="text-align:center;">
+        <hr>
+
+        <p><b>Especificación formal</b></p>
+
+        <p style="text-align:center; font-size:1.05rem;">
         <b>
         IPCA<sub>t</sub> =
-        100 · Σ<sub>i=1..12</sub>
+        100 · Σ<sub>i=1}^{12}
         w<sub>i</sub>
         · ( I<sub>i,t</sub> / Ȳ<sub>i,base</sub> )
         </b>
@@ -630,15 +637,32 @@ st.markdown(
         </p>
 
         <ul>
-            <li><b>w<sub>i</sub></b>: ponderadores fijos de la ENGHo 2017/18</li>
-            <li><b>I<sub>i,t</sub></b>: índice oficial INDEC (base 2004=100) de cada división COICOP</li>
-            <li><b>Ȳ<sub>i,base</sub></b>: promedio del índice en el año base seleccionado ({base_year})</li>
+            <li>
+            <b>w<sub>i</sub></b> son los ponderadores fijos de la ENGHo 2017/18,
+            que representan la participación del gasto de cada división
+            en el consumo total de los hogares urbanos.
+            </li>
+
+            <li>
+            <b>I<sub>i,t</sub></b> es el índice oficial publicado por el INDEC
+            para la división <i>i</i> (serie base 2004=100).
+            </li>
+
+            <li>
+            <b>Ȳ<sub>i,base</sub></b> es el promedio del índice de la división
+            <i>i</i> durante el año base seleccionado ({base_year}),
+            que normaliza el índice a 100 en ese período.
+            </li>
         </ul>
 
         <p>
-        El año base define el período en el cual el índice toma valor 100.
-        Las variaciones mensuales e interanuales se calculan a partir del índice así construido.
+        El año base no altera las variaciones por división, sino que define
+        el punto de referencia en el cual el índice agregado toma valor 100.
+        Las tasas mensuales e interanuales se calculan a partir del nivel
+        del índice resultante.
         </p>
+
+        <hr>
 
         <p><b>Ponderaciones ENGHo 2017/18</b></p>
 
@@ -657,22 +681,26 @@ st.markdown(
             <li>Bienes y servicios varios: 4,4%</li>
         </ul>
 
+        <hr>
+
         <p><b>Fuente de datos</b></p>
+
         <p>
-        Índices oficiales por división publicados por el INDEC
-        (serie_ipc_divisiones.csv).
+        Serie oficial <i>“Índice de precios al consumidor por divisiones”</i>
+        publicada por el INDEC (archivo <i>serie_ipc_divisiones.csv</i>).
         </p>
 
         <p>
-        Este índice no modifica las variaciones oficiales por división,
-        sino que altera su incidencia agregada mediante la estructura
-        de gasto 2017/18.
+        Este índice constituye un ejercicio contrafactual: mantiene
+        las variaciones oficiales por rubro, pero repondera su impacto
+        agregado utilizando la estructura de consumo 2017/18.
         </p>
 
     </div>
     """,
     unsafe_allow_html=True,
 )
+
 
 
 st.markdown("<br>", unsafe_allow_html=True)
