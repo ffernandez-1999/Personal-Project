@@ -659,8 +659,7 @@ st.markdown(
 st.markdown(
 """
 **Fuente:**  
-Serie oficial *Índice de precios al consumidor por divisiones*  
-publicada por el INDEC (serie_ipc_divisiones.csv).
+Serie oficial *Índice de precios al consumidor por divisiones* publicada por el INDEC (serie_ipc_divisiones.csv).
 """
 )
 
