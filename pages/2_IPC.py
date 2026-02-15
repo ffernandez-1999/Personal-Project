@@ -601,19 +601,79 @@ st.plotly_chart(fig, use_container_width=True)
 # METODOLOGÍA
 # ============================================================
 st.markdown(
-    """
+    f"""
     <div class="methodology-card">
-        <h4>📖 Metodología</h4>
+        <h4>📖 Metodología — IPCA (ENGHo 2017/18)</h4>
+
+        <p><b>Definición</b></p>
+        <p>
+        El IPCA replica el IPC nacional utilizando la estructura de consumo
+        de la Encuesta Nacional de Gastos de los Hogares 2017/18 (ENGHo 2017/18).
+        </p>
+
+        <p><b>Fórmula de cálculo</b></p>
+        <p>
+        El índice se construye como:
+        </p>
+
+        <p style="text-align:center;">
+        <b>
+        IPCA<sub>t</sub> =
+        100 · Σ<sub>i=1..12</sub>
+        w<sub>i</sub>
+        · ( I<sub>i,t</sub> / Ȳ<sub>i,base</sub> )
+        </b>
+        </p>
+
+        <p>
+        donde:
+        </p>
+
         <ul>
-            <li><b>IPC:</b> Inflación oficial del INDEC (nivel general, nacional)</li>
-            <li><b>IPCA:</b> Índice que repondera las 12 divisiones COICOP usando ponderadores de ENGHo 2017/18</li>
-            <li><b>Fuente:</b> CSV oficial del INDEC, actualizado automáticamente</li>
-            <li><b>Cálculo:</b> Promedio ponderado de índices por división, normalizado a 100 en año base</li>
+            <li><b>w<sub>i</sub></b>: ponderadores fijos de la ENGHo 2017/18</li>
+            <li><b>I<sub>i,t</sub></b>: índice oficial INDEC (base 2004=100) de cada división COICOP</li>
+            <li><b>Ȳ<sub>i,base</sub></b>: promedio del índice en el año base seleccionado ({base_year})</li>
         </ul>
+
+        <p>
+        El año base define el período en el cual el índice toma valor 100.
+        Las variaciones mensuales e interanuales se calculan a partir del índice así construido.
+        </p>
+
+        <p><b>Ponderaciones ENGHo 2017/18</b></p>
+
+        <ul>
+            <li>Alimentos y bebidas no alcohólicas: 22,7%</li>
+            <li>Bebidas alcohólicas y tabaco: 2,0%</li>
+            <li>Prendas de vestir y calzado: 6,8%</li>
+            <li>Vivienda, agua, electricidad y otros combustibles: 14,5%</li>
+            <li>Equipamiento y mantenimiento del hogar: 5,5%</li>
+            <li>Salud: 6,4%</li>
+            <li>Transporte: 14,3%</li>
+            <li>Comunicaciones: 5,1%</li>
+            <li>Recreación y cultura: 8,6%</li>
+            <li>Educación: 3,1%</li>
+            <li>Restaurantes y hoteles: 6,6%</li>
+            <li>Bienes y servicios varios: 4,4%</li>
+        </ul>
+
+        <p><b>Fuente de datos</b></p>
+        <p>
+        Índices oficiales por división publicados por el INDEC
+        (serie_ipc_divisiones.csv).
+        </p>
+
+        <p>
+        Este índice no modifica las variaciones oficiales por división,
+        sino que altera su incidencia agregada mediante la estructura
+        de gasto 2017/18.
+        </p>
+
     </div>
     """,
     unsafe_allow_html=True,
 )
+
 
 st.markdown("<br>", unsafe_allow_html=True)
 st.caption("💡 Dashboard actualizado automáticamente desde fuentes oficiales del INDEC")
