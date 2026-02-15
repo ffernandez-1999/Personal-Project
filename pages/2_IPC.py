@@ -604,17 +604,15 @@ st.plotly_chart(fig, use_container_width=True)
 st.markdown("<br><br>", unsafe_allow_html=True)
 st.divider()
 
+
 # ============================================================
 # METODOLOGÍA
 # ============================================================
-
 st.markdown("## 📖 Metodología — IPCA (ENGHo 2017/18)")
-
 st.markdown(
 """
 El **IPCA** reconstruye el índice de precios al consumidor utilizando la
 estructura de gasto observada en la **Encuesta Nacional de Gastos de los Hogares 2017/18 (ENGHo 2017/18)**.
-
 Se mantienen las variaciones oficiales por división publicadas por el INDEC,
 pero se modifica su incidencia agregada aplicando las ponderaciones
 actualizadas de consumo.
@@ -622,27 +620,25 @@ actualizadas de consumo.
 )
 
 st.markdown("### Especificación formal")
-
 st.latex(r"""
-IPCA_t = 100 \cdot \sum_{i=1}^{12}
-w_i \left( \frac{I_{i,t}}{\bar{I}_{i,2025}} \right)
+IPCA_t = 100 \cdot \sum_{i=1}^{12} w_i \left( \frac{I_{i,t}}{\bar{I}_{i,2025}} \right)
+""")
+
+st.markdown("**donde:**")
+st.markdown(r"""
+- $w_i$: ponderadores fijos de la ENGHo 2017/18  
+- $I_{i,t}$: índice oficial INDEC por división (base 2004=100)  
+- $\bar{I}_{i,2025}$: promedio del índice en el año base seleccionado  
 """)
 
 st.markdown(
 """
-donde:
-
-- \( w_i \): ponderadores fijos de la ENGHo 2017/18  
-- \( I_{i,t} \): índice oficial INDEC por división (base 2004=100)  
-- \( \bar{I}_{i,2025} \): promedio del índice en el año base seleccionado  
-
 El año base define el período en el cual el índice toma valor 100.
 Las variaciones mensuales e interanuales se calculan a partir del nivel resultante.
 """
 )
 
 st.markdown("### Ponderaciones ENGHo 2017/18")
-
 st.markdown(
 """
 - Alimentos y bebidas no alcohólicas: **22,7%**  
