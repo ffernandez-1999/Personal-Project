@@ -384,16 +384,31 @@ def fmt_pct(x):
         return "—"
     return f"{x:,.1f}%".replace(",", "X").replace(".", ",").replace("X", ".")
 
-def compute_ipca_level(div_wide: pd.DataFrame, weights: dict, base_year: int) -> pd.Series:
-    base_mask = div_wide.index.year == base_year
-    base_avg = div_wide.loc[base_mask, DIV_CODES].mean(axis=0)
-    if base_avg.isna().any():
-        base_avg = div_wide[DIV_CODES].mean(axis=0)
+def compute_ipca(div_wide, base_year):
 
-    ratios = div_wide[DIV_CODES].divide(base_avg, axis=1)
-    wvec = np.array([weights[c] for c in DIV_CODES], dtype=float)
-    idx = 100.0 * (ratios.values @ wvec)
-    return pd.Series(idx, index=div_wide.index, name="ipca")
+    w0 = np.array([W_2017[c] for c in DIV_CODES])
+
+    base_mask = div_wide.index.year == base_year
+    base_avg = div_wide.loc[base_mask, DIV_CODES].mean()
+
+    if base_avg.isna().any():
+        base_avg = div_wide[DIV_CODES].mean()
+
+    # Revalorizar ponderadores
+    w_base = w0 * base_avg.values
+    w_base = w_base / w_base.sum()
+
+    # Construir índice
+    level = div_wide[DIV_CODES].values @ w_base
+
+    # Normalizar a 100 en año base
+    base_level = level[base_mask].mean()
+    if not np.isnan(base_level):
+        level = level / base_level * 100
+
+    return pd.Series(level, index=div_wide.index, name="ipca")
+
+
 
 def calc_series(level: pd.Series, measure: str) -> pd.Series:
     level = level.sort_index()
@@ -461,7 +476,8 @@ with cR:
 # ============================================================
 # CALCULAR
 # ============================================================
-ipca_level_full = compute_ipca_level(div_wide, W_2017, base_year)
+ipca_level_full = compute_ipca(div_wide, base_year)
+
 
 ipc_full = calc_series(ipc_level, measure)
 ipca_full = calc_series(ipca_level_full, measure)
@@ -508,7 +524,7 @@ with k2:
         st.markdown(
             f"""
             <div class="kpi-card-compact">
-                <div class="kpi-label">IPCA (ENGHO 2017/18)</div>
+                <div class="kpi-label">IPCA (ENGHo 2017/18) - Base {base_year}</div>
                 <div class="kpi-grid">
                     <div class="kpi-value">{fmt_pct(ipca_monthly)}</div>
                     <div class="kpi-value">{fmt_pct(ipca_annual)}</div>
@@ -550,7 +566,7 @@ if not common.empty:
             mode="lines+markers",
             marker=dict(size=6, color="#3b82f6"),
             line=dict(width=2.5, color="#3b82f6"),
-            name="IPCA (ENGHo 2017/18)",
+            name=f"IPCA (ENGHo 2017/18) - Base {base_year}",
             hovertemplate="IPCA: %{y:.2f}%<extra></extra>",
         )
     )
