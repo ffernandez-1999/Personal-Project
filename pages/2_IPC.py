@@ -141,7 +141,7 @@ st.markdown(
       }
 
       .kpi-value {
-        font-family: 'Merriweather', Georgia, serif;
+        font-family: 'Lato', sans-serif;
         font-size: 1.8rem;
         font-weight: 400;
         color: #1a1a1a;
