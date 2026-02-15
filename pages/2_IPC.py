@@ -614,8 +614,8 @@ st.markdown(
         </p>
 
         <p>
-        Mantiene las variaciones oficiales por división publicadas por el INDEC,
-        pero modifica su incidencia agregada aplicando las ponderaciones
+        Se mantienen las variaciones oficiales por división publicadas por el INDEC,
+        pero se modifica su incidencia agregada aplicando las ponderaciones
         actualizadas de consumo.
         </p>
 
@@ -623,48 +623,37 @@ st.markdown(
 
         <p><b>Especificación formal</b></p>
 
-        <p style="text-align:center; font-size:1.05rem;">
-        <b>
-        IPCA<sub>t</sub> =
-        100 · Σ<sub>i=1..12</sub>
-        w<sub>i</sub>
-        · ( I<sub>i,t</sub> / Ȳ<sub>i,base</sub> )
-        </b>
-        </p>
+        <div style="text-align:center; font-size:1.1rem; margin:1rem 0;">
+            <b>
+            IPCA<sub>t</sub> =
+            100 · Σ<sub>i=1..12</sub>
+            w<sub>i</sub>
+            · ( I<sub>i,t</sub> / Ȳ<sub>i,{base_year}</sub> )
+            </b>
+        </div>
 
         <p>donde:</p>
 
         <ul>
-            <li>
-            <b>w<sub>i</sub></b>: ponderadores fijos de la ENGHo 2017/18.
-            </li>
-
-            <li>
-            <b>I<sub>i,t</sub></b>: índice oficial INDEC por división
-            (serie base 2004=100).
-            </li>
-
-            <li>
-            <b>Ȳ<sub>i,base</sub></b>: promedio del índice en el año base
-            seleccionado ({base_year}), que normaliza el índice a 100 en ese período.
-            </li>
+            <li><b>w<sub>i</sub></b>: ponderadores fijos de la ENGHo 2017/18.</li>
+            <li><b>I<sub>i,t</sub></b>: índice oficial INDEC por división (base 2004=100).</li>
+            <li><b>Ȳ<sub>i,{base_year}</sub></b>: promedio del índice en el año base seleccionado.</li>
         </ul>
 
         <p>
-        El año base define el punto en el cual el índice toma valor 100.
-        Las variaciones mensuales e interanuales se calculan a partir
-        del nivel resultante.
+        El año base define el período en el cual el índice toma valor 100.
+        Las variaciones mensuales e interanuales se calculan a partir del nivel resultante.
         </p>
 
         <hr>
 
         <p><b>Ponderaciones ENGHo 2017/18</b></p>
 
-        <ul>
+        <ul style="columns:2; -webkit-columns:2; -moz-columns:2;">
             <li>Alimentos y bebidas no alcohólicas: 22,7%</li>
             <li>Bebidas alcohólicas y tabaco: 2,0%</li>
             <li>Prendas de vestir y calzado: 6,8%</li>
-            <li>Vivienda, agua, electricidad y otros combustibles: 14,5%</li>
+            <li>Vivienda, agua y combustibles: 14,5%</li>
             <li>Equipamiento y mantenimiento del hogar: 5,5%</li>
             <li>Salud: 6,4%</li>
             <li>Transporte: 14,3%</li>
@@ -677,37 +666,16 @@ st.markdown(
 
         <hr>
 
-        <p><b>Interpretación económica</b></p>
-
-        <p>
-        Este índice constituye un ejercicio contrafactual:
-        no modifica las variaciones oficiales por rubro,
-        sino que altera su incidencia agregada utilizando
-        la estructura de gasto 2017/18.
-        </p>
-
-        <p>
-        En comparación con la estructura 2004/05,
-        la ENGHo 2017/18 asigna mayor peso relativo a servicios
-        y menor peso a bienes, lo que puede generar diferencias
-        en la dinámica agregada ante cambios en precios relativos
-        o ajustes tarifarios.
-        </p>
-
-        <hr>
-
         <p><b>Fuente</b></p>
 
         <p>
         Serie oficial "Índice de precios al consumidor por divisiones"
-        publicada por el INDEC (archivo <i>serie_ipc_divisiones.csv</i>).
+        publicada por el INDEC (serie_ipc_divisiones.csv).
         </p>
 
     </div>
     """,
     unsafe_allow_html=True,
 )
-
-st.markdown("<br>", unsafe_allow_html=True)
 
 st.caption("💡 Dashboard actualizado automáticamente desde fuentes oficiales del INDEC")
