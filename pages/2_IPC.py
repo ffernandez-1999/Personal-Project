@@ -600,6 +600,7 @@ st.plotly_chart(fig, use_container_width=True)
 # ============================================================
 # METODOLOGÍA
 # ============================================================
+
 st.markdown(
     f"""
     <div class="methodology-card">
@@ -676,11 +677,30 @@ st.markdown(
 
         <hr>
 
+        <p><b>Interpretación económica</b></p>
+
+        <p>
+        Este índice constituye un ejercicio contrafactual:
+        no modifica las variaciones oficiales por rubro,
+        sino que altera su incidencia agregada utilizando
+        la estructura de gasto 2017/18.
+        </p>
+
+        <p>
+        En comparación con la estructura 2004/05,
+        la ENGHo 2017/18 asigna mayor peso relativo a servicios
+        y menor peso a bienes, lo que puede generar diferencias
+        en la dinámica agregada ante cambios en precios relativos
+        o ajustes tarifarios.
+        </p>
+
+        <hr>
+
         <p><b>Fuente</b></p>
 
         <p>
         Serie oficial "Índice de precios al consumidor por divisiones"
-        publicada por el INDEC (serie_ipc_divisiones.csv).
+        publicada por el INDEC (archivo <i>serie_ipc_divisiones.csv</i>).
         </p>
 
     </div>
@@ -688,7 +708,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-
-
+st.markdown("<br>", unsafe_allow_html=True)
 
 st.caption("💡 Dashboard actualizado automáticamente desde fuentes oficiales del INDEC")
