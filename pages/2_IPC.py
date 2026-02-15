@@ -598,6 +598,13 @@ fig.update_layout(
 st.plotly_chart(fig, use_container_width=True)
 
 # ============================================================
+# ESPACIO + DIVIDER
+# ============================================================
+
+st.markdown("<br><br>", unsafe_allow_html=True)
+st.divider()
+
+# ============================================================
 # METODOLOGÍA
 # ============================================================
 
@@ -614,8 +621,6 @@ actualizadas de consumo.
 """
 )
 
-st.markdown("---")
-
 st.markdown("#### Especificación formal")
 
 st.latex(r"""
@@ -623,48 +628,49 @@ IPCA_t = 100 \cdot \sum_{i=1}^{12}
 w_i \cdot \left( \frac{I_{i,t}}{\bar{I}_{i,2025}} \right)
 """)
 
+st.markdown("donde:")
+
+st.latex(r"w_i")
+st.markdown(": ponderadores fijos de la ENGHo 2017/18")
+
+st.latex(r"I_{i,t}")
+st.markdown(": índice oficial INDEC por división (base 2004=100)")
+
+st.latex(r"\bar{I}_{i,2025}")
+st.markdown(": promedio del índice en el año base seleccionado")
+
 st.markdown(
 """
-donde:
-
-- \( w_i \) : ponderadores fijos de la ENGHo 2017/18  
-- \( I_{i,t} \) : índice oficial INDEC por división (base 2004=100)  
-- \( \bar{I}_{i,2025} \) : promedio del índice en el año base seleccionado  
-
 El año base define el período en el cual el índice toma valor 100.
 Las variaciones mensuales e interanuales se calculan a partir del nivel resultante.
 """
 )
 
-st.markdown("---")
-
 st.markdown("#### Ponderaciones ENGHo 2017/18")
 
 st.markdown(
 """
-- Alimentos y bebidas no alcohólicas: **22,7%**
-- Bebidas alcohólicas y tabaco: **2,0%**
-- Prendas de vestir y calzado: **6,8%**
-- Vivienda, agua y combustibles: **14,5%**
-- Equipamiento y mantenimiento del hogar: **5,5%**
-- Salud: **6,4%**
-- Transporte: **14,3%**
-- Comunicaciones: **5,1%**
-- Recreación y cultura: **8,6%**
-- Educación: **3,1%**
-- Restaurantes y hoteles: **6,6%**
+- Alimentos y bebidas no alcohólicas: **22,7%**  
+- Bebidas alcohólicas y tabaco: **2,0%**  
+- Prendas de vestir y calzado: **6,8%**  
+- Vivienda, agua y combustibles: **14,5%**  
+- Equipamiento y mantenimiento del hogar: **5,5%**  
+- Salud: **6,4%**  
+- Transporte: **14,3%**  
+- Comunicaciones: **5,1%**  
+- Recreación y cultura: **8,6%**  
+- Educación: **3,1%**  
+- Restaurantes y hoteles: **6,6%**  
 - Bienes y servicios varios: **4,4%**
 """
 )
 
-st.markdown("---")
-
 st.markdown(
 """
 **Fuente:**  
-Serie oficial *“Índice de precios al consumidor por divisiones”* publicada por el INDEC (serie_ipc_divisiones.csv).
+Serie oficial *Índice de precios al consumidor por divisiones*  
+publicada por el INDEC (serie_ipc_divisiones.csv).
 """
 )
 
 st.caption("💡 Dashboard actualizado automáticamente desde fuentes oficiales del INDEC")
-
