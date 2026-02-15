@@ -386,27 +386,26 @@ def fmt_pct(x):
 
 def compute_ipca(div_wide, base_year):
 
-    w0 = np.array([W_2017[c] for c in DIV_CODES])
+    # Ponderadores fijos ENGHo 2017/18
+    w = np.array([W_2017[c] for c in DIV_CODES], dtype=float)
 
+    # Promedio del índice en el año base (ej: 2025)
     base_mask = div_wide.index.year == base_year
     base_avg = div_wide.loc[base_mask, DIV_CODES].mean()
 
+    # Si no hay datos en ese año, usar promedio total
     if base_avg.isna().any():
         base_avg = div_wide[DIV_CODES].mean()
 
-    # Revalorizar ponderadores
-    w_base = w0 * base_avg.values
-    w_base = w_base / w_base.sum()
+    # EXACTAMENTE como Excel:
+    # indice_t / promedio_base
+    ratios = div_wide[DIV_CODES].divide(base_avg, axis=1)
 
-    # Construir índice
-    level = div_wide[DIV_CODES].values @ w_base
+    # SUMAPRODUCTO ponderadores fijos
+    level = ratios.values @ w
 
-    # Normalizar a 100 en año base
-    base_level = level[base_mask].mean()
-    if not np.isnan(base_level):
-        level = level / base_level * 100
-
-    return pd.Series(level, index=div_wide.index, name="ipca")
+    # Escalar a base 100
+    return pd.Series(level * 100, index=div_wide.index, name="ipca")
 
 
 
