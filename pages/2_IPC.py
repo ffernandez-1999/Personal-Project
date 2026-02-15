@@ -482,9 +482,10 @@ ipca = ipca.loc[common]
 
 # KPIs arriba (k1/k2)
 with k1:
-    if not common.empty:
-        ipc_monthly = calc_series(ipc_level_rng, "Mensual").dropna().iloc[-1] if len(ipc_level_rng) > 1 else np.nan
-        ipc_annual  = calc_series(ipc_level_rng, "Interanual").dropna().iloc[-1] if len(ipc_level_rng) > 12 else np.nan
+    if not ipc.empty:
+        ipc_monthly = calc_series(ipc_level, "Mensual").loc[ipc.index].dropna().iloc[-1] if len(ipc.index) > 0 else np.nan
+        ipc_annual  = calc_series(ipc_level, "Interanual").loc[ipc.index].dropna().iloc[-1] if len(ipc.index) > 0 else np.nan
+
         st.markdown(
             f"""
             <div class="kpi-card-compact">
@@ -502,10 +503,12 @@ with k1:
     else:
         st.markdown("<div style='height:92px'></div>", unsafe_allow_html=True)
 
+
 with k2:
-    if not common.empty:
-        ipca_monthly = calc_series(ipca_level_rng, "Mensual").dropna().iloc[-1] if len(ipca_level_rng) > 1 else np.nan
-        ipca_annual  = calc_series(ipca_level_rng, "Interanual").dropna().iloc[-1] if len(ipca_level_rng) > 12 else np.nan
+    if not ipca.empty:
+        ipca_monthly = calc_series(ipca_level_full, "Mensual").loc[ipca.index].dropna().iloc[-1] if len(ipca.index) > 0 else np.nan
+        ipca_annual  = calc_series(ipca_level_full, "Interanual").loc[ipca.index].dropna().iloc[-1] if len(ipca.index) > 0 else np.nan
+
         st.markdown(
             f"""
             <div class="kpi-card-compact">
@@ -522,6 +525,7 @@ with k2:
         )
     else:
         st.markdown("<div style='height:92px'></div>", unsafe_allow_html=True)
+
 
 st.divider()
 
