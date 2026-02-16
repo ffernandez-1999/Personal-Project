@@ -174,15 +174,26 @@ st.markdown(
         font-family: 'Lato', sans-serif;
       }
 
-      h3 {
+    h3 {
         font-family: 'Lato', sans-serif !important;
         font-size: 0.75rem !important;
         font-weight: 600 !important;
         color: #4a5568 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.1em !important;
-        margin-bottom: 1.5rem !important;
-      }
+        margin-bottom: 0.5rem !important;  /* antes 1.5rem */
+    }
+    
+    /* Acercar slider al título */
+    .stSlider {
+        margin-top: -10px !important;
+    }
+
+        /* Acercar slider al título */
+        .stSlider {
+            margin-top: -10px !important;
+        }
+
 
       .stSlider label {
         font-family: 'Lato', sans-serif !important;
