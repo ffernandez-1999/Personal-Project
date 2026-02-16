@@ -189,11 +189,6 @@ st.markdown(
         margin-top: -25px !important;
     }
 
-        /* Acercar slider al título */
-        .stSlider {
-            margin-top: -10px !important;
-        }
-
 
       .stSlider label {
         font-family: 'Lato', sans-serif !important;
