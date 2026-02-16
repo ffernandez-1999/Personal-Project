@@ -286,72 +286,86 @@ Aun así, el cierre de julio fue <strong>caótico</strong>. Se cerraron las posi
         "texto": """
 <strong>¿Por qué un nuevo acuerdo?</strong>
 <br><br>
-Durante 2024 se utilizó (con éxito) el ancla cambiaria para bajar la inflación del 20% al 3%. Pero tuvo un costo grande y predecible; una vez que el blanqueo se quedó sin fuerza, <strong>comenzaron a faltar dólares</strong> al TCR elegido.
+Durante 2024 se utilizó (con éxito) el ancla cambiaria para bajar la inflación del 20% al 3%. Pero tuvo un costo grande y predecible; una vez que el blanqueo se quedó sin fuerza, comenzaron a faltar dólares al TCR elegido.
 <br><br>
-El nivel de RRII no era compatible con 1,5 M argentinos en Brasil ni con récord de importaciones de bienes de consumo. Las expectativas se desanclaron (RFX, brecha, MLC) y las <strong>RIN se vieron fuertemente golpeadas.</strong>
+El nivel de RRII no era compatible con 1,5 M argentinos en Brasil ni con récord de importaciones de bienes de consumo. Las expectativas se desanclaron (RFX, brecha, MLC) y las RIN se vieron fuertemente golpeadas.
 <br><br>
 <strong>¿Cuántos USD ingresan?</strong>
 <br><br>
-Mucha, más de lo esperado: <strong>los desembolsos en 2025 serán de USD 23 MM</strong>. A junio ya dispondremos de USD 20 MM + cosecha = Brutas en los USD 50 MM (nada mal, no?)
+Mucha, más de lo esperado: los desembolsos en 2025 serán de <strong>USD 23 MM</strong>. A junio ya dispondremos de USD 20 MM + cosecha = Brutas en los USD 50 MM (nada mal, no?)
 <br><br>
 Ahora; ¿son de libre disponibilidad? Sí. Pero buena parte lo vas a gastar en pagos de deuda externa. De acá a 2027 solo al Fondo le vas a pagar USD 12 MM; a eso hay que sumarle BOPREAL (impo y el nuevo de dividendos) y Soberanos. Por ello, el rolleo se vuelve fundamental. La salida del cepo deberá reducir el riesgo país.
 <br><br>
-<strong>Nuevo esquema cambiario y salida del cepo:</strong>
+<strong>Nuevo esquema cambiario y salida del cepo</strong>
 <br><br>
 El crawl no irá al 0% y el gobierno se despide de una de sus anclas; tampoco hizo falta BM=BMA o infla < 1% para salir del cepo.
 <br><br>
-<strong>EL ESQUEMA:</strong> unificación a un <strong>TC FLEXIBLE entre [1.000;1.400] con bandas -/+1% mensual.</strong> Cuando toque una de las bandas se intervendrá para defender el precio.
+<em>El esquema:</em> unificación a un TC flexible entre [1.000;1.400] con bandas -/+1% mensual. Cuando toque una de las bandas se intervendrá para defender el precio.
 <br><br>
-¿En qué zona se estabilizará? Dado que abrirá a $1.070 y el CCL cerró en los $1.350, <strong>de arranque podrá testear los $1.300</strong>. 2 cosas; <strong>i)</strong> al no liberarse los stocks a empresas (razonable) se evita un overshooting; <strong>ii)</strong> cuando se sitúe en los $1.300 los exportadores tendrán incentivos a liquidar (es una mejora del 15%) presionando hacia la baja. La TPM debería subir para subir los incentivos y resintalar el carry.
+¿En qué zona se estabilizará? Dado que abrirá a $1.070 y el CCL cerró en los $1.350, de arranque podrá testear los $1.300. Al no liberarse los stocks a empresas (razonable) se evita un overshooting; cuando se sitúe en los $1.300 los exportadores tendrán incentivos a liquidar (es una mejora del 15%) presionando hacia la baja. La TPM debería subir para subir los incentivos y resintalar el carry.
 <br><br>
-¿Será un valor estable? Si el BCRA no interviene entre bandas; deberíamos ver bastante volatilidad del TC respondiendo a los shock externos (Trump) y dolarización de carteras previo elecciones. <strong>PARA ESO ES LA FLEXIBILIDAD DEL TC.</strong>
+¿Será un valor estable? Si el BCRA no interviene entre bandas deberíamos ver bastante volatilidad del TC respondiendo a los shock externos (Trump) y dolarización de carteras previo elecciones. <strong>Para eso es la flexibilidad del TC.</strong>
 <br><br>
 <strong>¿Cuánta competitividad se gana?</strong>
 <br><br>
-Si el TCN se va $1.400, <strong>el TCR subiría +30%</strong> (+5% del nivel de salida de cepo -ene-16-). ¿Es suficiente? Difícil saberlo, pero es una mejora. El problema está en que las bandas se ajustan de forma mensual al 1% con una inflación superior ¿deja vú?
+Si el TCN se va $1.400, el TCR subiría +30% (+5% del nivel de salida de cepo -ene-16-). ¿Es suficiente? Difícil saberlo, pero es una mejora. El problema está en que las bandas se ajustan de forma mensual al 1% con una inflación superior ¿deja vú?
 <br><br>
-<strong>A nov-25 estaríamos en el mismo nivel de TCRM.</strong> De hecho, si el TC se establece en la banda superior; en términos de TCRM, hubiese sido lo mismo devaluar un +30% y mantener el crawling al 1%. Por ello, <strong>es fundamental que se avance en las reformas tributarias y laborales</strong> (mejora de competitividad por baja de precios en moneda local)
+A nov-25 estaríamos en el mismo nivel de TCRM. De hecho, si el TC se establece en la banda superior; en términos de TCRM, hubiese sido lo mismo devaluar un +30% y mantener el crawling al 1%. Por ello, <strong>es fundamental que se avance en las reformas tributarias y laborales</strong> (mejora de competitividad por baja de precios en moneda local).
 <br><br>
 <strong>Metas a cumplir</strong>
 <br><br>
-<strong>Fiscal:</strong> FMI exige 1,3% sup prim en 2025 y el Gobierno proyecta 1,6% (en año electoral -aplausos-).
+<em>Fiscal:</em> FMI exige 1,3% sup prim en 2025 y el Gobierno proyecta 1,6% (en año electoral -aplausos-).
 <br><br>
-<strong>Monetario:</strong> la meta cuantitativa exige 0 transferencias al Tesoro y sucederá. El informe explica que se abandona el BMA=$47,7bn para pasar a monitorear trimestramelnte el M2.
+<em>Monetario:</em> la meta cuantitativa exige 0 transferencias al Tesoro y sucederá. El informe explica que se abandona el BMA=$47,7bn para pasar a monitorear trimestralmente el M2.
 <br><br>
-<strong>Cambiaria:</strong> se debe finalizar el año con aprox RIN de USD 4.000 M (hoy en < -6.000). Por ello esperamos que el BCRA compre aún dentro de la banda (tirando el precio para arriba).
+<em>Cambiaria:</em> se debe finalizar el año con aprox RIN de USD 4.000 M (hoy en < -6.000). Por ello esperamos que el BCRA compre aún dentro de la banda (tirando el precio para arriba).
 <br><br>
-<strong>AIF = BM - RIN.</strong> Se incluye también una meta indicativa de $ máximos sin respaldo
+<em>AIF:</em> AIF = BM - RIN. Se incluye también una meta indicativa de $ máximos sin respaldo.
 <br><br>
-<strong>IMPACTOS EN ACTIVOS:</strong>
+<strong>Impactos en activos</strong>
 <br><br>
-RFX ABR-25 cerró a $1.190; tiene espacio para subir; $1.320 será momento para vender.
+• RFX ABR-25 cerró a $1.190; tiene espacio para subir; $1.320 será momento para vender.
 <br>
-Merval: la salida del cepo (sorpresiva) + la visita Bessent = recorrido al alza.
+• Merval: la salida del cepo (sorpresiva) + la visita Bessent = recorrido al alza.
 <br>
-Lo mismo para Soberanos. Pero todo condicional a Trump.
+• Lo mismo para Soberanos. Pero todo condicional a Trump.
 <br>
-CER debería ser ganador
+• CER debería ser ganador.
 <br><br>
-<strong>IMPACTOS EN PRECIOS Y ACTIVIDAD:</strong>
+<strong>Impactos en precios y actividad</strong>
 <br><br>
-El FMI se muestra sumamente optimista: PBI +5,5% y IPC [18%-23%]. <strong>No obstante, el salto devaluatorio tendrá sus consecuencias:</strong>
+El FMI se muestra sumamente optimista: PBI +5,5% y IPC [18%-23%]. No obstante, el salto devaluatorio tendrá sus consecuencias:
 <br><br>
-Precios: el IPC de marzo (3,7%) ya deja arrastre y si TCN se va a $1.200 es un salto de +12%. Abril podría ir al 6/7% (veremos si la baja del petróleo compensa). Si Abril cierra en 6% ya acumularemos 15%; es decir para finalizar en 23%; el prom mensual debería ir en el 0,8% el resto del año... Creo que el IPC cerrará 2025 en 35%-40% (nada mal).
+<em>Precios:</em> el IPC de marzo (3,7%) ya deja arrastre y si TCN se va a $1.200 es un salto de +12%. Abril podría ir al 6/7% (veremos si la baja del petróleo compensa). Si Abril cierra en 6% ya acumularemos 15%; es decir para finalizar en 23%; el prom mensual debería ir en el 0,8% el resto del año... Creo que el IPC cerrará 2025 en 35%-40% (nada mal).
 <br><br>
-Actividad: más díficil de pronosticar. Sabemos que 2024 dejó buen arrastre (+3pp) y datos de ene/feb soprendieron positivamente. Ahora; ¿cuál será el impacto del nuevo esquema (lease, devaluación)? La caída del consumo (70% del PBI) dado el impacto en el salario real será parcialmente compensada por mejora de las exportaciones netas. El resultado neto dependerá del grado de traslado a precios.
+<em>Actividad:</em> más difícil de pronosticar. Sabemos que 2024 dejó buen arrastre (+3pp) y datos de ene/feb sorprendieron positivamente. Ahora; ¿cuál será el impacto del nuevo esquema (lease, devaluación)? La caída del consumo (70% del PBI) dado el impacto en el salario real será parcialmente compensada por mejora de las exportaciones netas. El resultado neto dependerá del grado de traslado a precios.
 <br><br>
-<strong>Mi opinión: TODO COSTO SERÁ TEMPORAL Y VALDRÁ LA PENA</strong>
+<strong>Mi opinión: todo costo será temporal y valdrá la pena.</strong>
 <br><br>
-<strong>¿CÓMO ES EL NUEVO CRONOGRAMA DE PAGOS?</strong>
+<strong>¿Cómo es el nuevo cronograma de pagos?</strong>
 <br><br>
 En una 2da presidencia de Milei, solo con el FMI deberemos pagar por año aprox USD 9 MM. Será fundamental el desarrollo de Vaca Muerta y el acceso a los mercados internacionales; sino nos espera un nuevo EFF…
 """
     },
     {
         "id": "nota-03",
-        "titulo": "🏭 Nota 3 — Actividad industrial y EMAE",
-        "fecha": "2026-01-28",
-        "texto": "Texto de placeholder: un párrafo sobre nivel de actividad, arrastre estadístico y señales de la industria."
+        "titulo": "¿Dólar atrasado o precios adelantados?",
+        "fecha": "2025-02-10",
+        "texto": """
+<strong>Un aporte desde el lado productivo</strong>
+<br><br>
+Los precios en dólares, como todo ratio, se componen de un numerador (valor en pesos) y un denominador (tipo de cambio). Si Argentina está cara en dólares puede deberse a 2 opciones: <strong>i)</strong> el valor en pesos está por encima de lo que debería: adelantado; <strong>ii)</strong> el tipo de cambio (TC) está por debajo: atrasado.
+<br><br>
+<strong>¿Cuál está ocurriendo?</strong>
+<br><br>
+Veamos, el numerador (valor en pesos), determinado por la oferta y la demanda, enfrenta en Argentina múltiples distorsiones: una presión tributaria exorbitante, una baja calidad de la infraestructura y de las instituciones laborales, altos costos de comercialización y un nulo acceso al crédito. Manteniendo todo lo demás constante, cualquier desventaja en estos aspectos encarece en dólares al país. La salida rápida de abrir la economía parece no tener resultado: en el último año se facilitaron las importaciones y aún así los precios en dólares se elevaron.
+<br><br>
+Allí es donde aparece el denominador (tipo de cambio): el TC corrige esas deficiencias y nivela condiciones de producción entre países. A suerte de <em>second best</em>, el tipo de cambio actúa como paliativo de los déficits estructurales. No es casualidad que: <strong>i)</strong> Balassa-Samuelson demostraron la relación negativa entre tipo de cambio real y nivel de desarrollo económico; <strong>ii)</strong> el propio modelo TNT muestra que la productividad más alta en el sector NT de los desarrollados aprecia su TC (vía salario).
+<br><br>
+No obstante, la política cambiaria no hace magia: ningún nivel de tipo de cambio hará que Argentina sea competitiva en todos los rubros, tampoco sería deseable. Pero se debe entender que este atraso autogenerado impacta hasta en los sectores más productivos. En el límite, ninguna ventaja comparativa salva por sí sola a un sector, y sino revísese la situación actual del agro. A su vez, la apreciación impide la diversificación de las exportaciones: si usted cree que dadas las capacidades de nuestro suelo, la canasta exportadora debe ser primaria en su totalidad, revise que ocurre con nuestra macroeconomía en los años de sequía.
+<br><br>
+Si aún no están dadas las condiciones para reducir el numerador (escenario ideal), el TC debería reflejarlo. Ergo, el problema está en el denominador. De hecho, los recortes en educación y en obra pública, sumados al escenario de guerra de aranceles y al fortalecimiento del dólar, elevan el TC de equilibrio. Esta nota no aboga por "salarios africanos" pero tampoco por un tipo de cambio atrasado artificialmente vía controles cambiarios, blend e intervención; una estrategia tan efectiva para reducir la inflación como para generar desempleo y estallar una vez que no puede ser más financiada. <strong>El tipo de cambio debe ser determinado por el mercado y debe reflejar, de manera inversa y genuina, la competitividad de la economía argentina.</strong>
+"""
     },
     {
         "id": "nota-04",
