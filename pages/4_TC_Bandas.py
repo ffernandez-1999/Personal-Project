@@ -464,6 +464,7 @@ fig.add_trace(
     go.Scatter(
         x=df_plot["Date"],
         y=df_plot["upper"],
+        name="Banda superior",
         line=dict(dash="dash", color="#9AE6B4", width=1.5),
         showlegend=False,
     )
@@ -473,9 +474,10 @@ fig.add_trace(
     go.Scatter(
         x=df_plot["Date"],
         y=df_plot["lower"],
+        name="Banda inferior",
         line=dict(dash="dash", color="#9AE6B4", width=1.5),
         fill="tonexty",
-        fillcolor="rgba(16, 185, 129, 0.1)",
+        fillcolor="rgba(154, 230, 180, 0.15)",  # ajusté para que combine mejor
         showlegend=False,
     )
 )
@@ -484,10 +486,12 @@ fig.add_trace(
     go.Scatter(
         x=df_plot["Date"],
         y=df_plot["FX"],
+        name="TC",
         line=dict(color="#3b82f6", width=2.5),
         showlegend=False,
     )
 )
+
 
 fig.update_layout(
     height=560,
