@@ -101,7 +101,7 @@ st.markdown(
         padding: 1.5rem;
         background: #ffffff;
         border-radius: 12px;
-        border-top: 4px solid #10b981;
+        border-top: 4px solid #D1FAE5;
         letter-spacing: -0.02em;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         color: #1a1a1a;
@@ -112,7 +112,7 @@ st.markdown(
         background: #ffffff;
         padding: 1.25rem;
         border-radius: 12px;
-        border-top: 4px solid #10b981;
+        border-top: 4px solid #D1FAE5;
         transition: all 0.25s ease;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
@@ -180,12 +180,12 @@ st.markdown(
       }
 
       .stSelectbox [data-baseweb="select"] > div:hover {
-        border-color: #10b981 !important;
+        border-color: #D1FAE5 !important;
         box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
       }
 
       .stSelectbox [data-baseweb="select"] > div:focus-within {
-        border-color: #10b981 !important;
+        border-color: #D1FAE5 !important;
         box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15) !important;
       }
 
@@ -231,11 +231,11 @@ st.markdown(
       }
       
       .stSlider [data-baseweb="slider"] > div > div {
-        background-color: #10b981 !important;
+        background-color: #D1FAE5 !important;
       }
       
       .stSlider [role="slider"] {
-        background-color: #10b981 !important;
+        background-color: #D1FAE5 !important;
       }
 
       .stSlider [data-testid="stTickBarMin"],
@@ -246,7 +246,7 @@ st.markdown(
 
       /* Botón volver */
       .stButton > button {
-        background: #10b981 !important;
+        background: #D1FAE5 !important;
         border: none !important;
         color: #ffffff !important;
         font-family: 'Lato', sans-serif !important;
@@ -267,7 +267,7 @@ st.markdown(
       /* Metodología */
       .methodology-card {
         background: #ffffff !important;
-        border-top: 4px solid #10b981;
+        border-top: 4px solid #D1FAE5;
         border-radius: 12px;
         padding: 1.5rem;
         margin-top: 2rem;
@@ -551,8 +551,8 @@ if not common.empty:
             x=ipc.index,
             y=ipc.values,
             mode="lines+markers",
-            marker=dict(size=6, color="#10b981"),
-            line=dict(width=2.5, color="#10b981"),
+            marker=dict(size=6, color="#D1FAE5"),
+            line=dict(width=2.5, color="#D1FAE5"),
             name="IPC",
             hovertemplate="IPC: %{y:.2f}%<extra></extra>",
         )
