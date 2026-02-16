@@ -513,15 +513,29 @@ st.markdown(
     <div class="methodology-card">
         <h4>📖 Metodología</h4>
         <ul>
-            <li><b>TC Mayorista:</b> Serie A3500 del BCRA (tipo de cambio de referencia)</li>
-            <li><b>Bandas:</b> Bandas de fluctuación del 2% mensual proyectadas desde abril 2025</li>
-            <li><b>Fuente:</b> Banco Central de la República Argentina (BCRA)</li>
-            <li><b>Actualización:</b> Datos actualizados automáticamente desde fuentes oficiales</li>
+            <li><b>TC Mayorista:</b> Serie A3500 del BCRA (tipo de cambio de referencia mayorista).</li>
+
+            <li><b>Bandas 2025:</b> Esquema de crawling preanunciado del 1% mensual. 
+            El ajuste mensual se convierte a tasa diaria compuesta y se aplica 
+            de forma continua desde el 14/04/2025 hasta el 31/12/2025.</li>
+
+            <li><b>Bandas 2026:</b> El ritmo de actualización mensual deja de ser fijo 
+            y pasa a depender de la inflación con un rezago de dos meses (IPC t-2). 
+            Para cada mes, se utiliza la variación mensual del IPC observada dos meses antes. 
+            Cuando el dato de IPC aún no fue publicado, se utiliza como referencia 
+            la mediana de inflación mensual del Relevamiento de Expectativas de Mercado (REM).</li>
+
+            <li><b>Implementación:</b> El ajuste mensual (observado o esperado) 
+            se transforma en tasa diaria equivalente y se aplica de manera compuesta 
+            sobre los niveles de banda vigentes al 31/12/2025.</li>
+
+            <li><b>Fuentes:</b> Banco Central de la República Argentina (BCRA) e INDEC.</li>
         </ul>
     </div>
     """,
     unsafe_allow_html=True,
 )
+
 
 st.markdown("<br>", unsafe_allow_html=True)
 st.caption("💡 Dashboard actualizado automáticamente desde fuentes oficiales del BCRA")
