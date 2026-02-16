@@ -250,37 +250,103 @@ if st.button("← Volver"):
 # Notas (placeholder)
 # ============================================================
 
+
 NOTAS = [
     {
         "id": "nota-01",
         "titulo": "¿Qué pasó en Jul-25?",
         "fecha": "2025-08-05",
-"texto": """
-En los primeros días del mes el Gobierno desarmó las **LEFIs ($15 B)**, instrumento que garantizaba tasa diaria a los bancos. La medida lucía expansiva: se esperaba que las entidades aumentaran su exposición al sector privado (“trabajen de bancos”). Sin embargo, el crédito ya venía creciendo con fuerza y, dado el stock de depósitos, existía margen para que continuara en esa dinámica.
-
-Puede argumentarse entonces que el objetivo era eliminar el piso de tasa para migrar hacia un esquema más limpio de control de agregados (**M2 privado transaccional**). Si ese fuese el caso, el timing resulta llamativo: la decisión se tomó una vez finalizada la baja transitoria de DEX y luego de que JP Morgan recomendara “tomarse un respiro” del carry argentino. Si el BCRA no mira el nivel del tipo de cambio, la reacción posterior del Gobierno no parece consistente.
-
-El Gobierno tocó todos los botones del joystick para bajarle presión al FX: vendió LECAPs, intervino en futuros, licitó fuera de calendario y la frutilla fue la colocación del 29/7 con **TEAs cercanas al 60%** y plazo promedio ponderado de apenas 38 días. El mensaje fue claro: bajar la inflación a cualquier costo.
-
-Aun así, el cierre de julio fue desordenado. Se cerraron posiciones en futuros y el Tesoro pagó la S31L5 (inyección neta de liquidez por $1 B, descontado el aumento de encajes). Parte de esos pesos fue a demanda spot y el **TCN alcanzó $/USD 1.375**.
-
-**¿La buena noticia?** El TCRM volvió a niveles más razonables. En julio subió +7%, la mayor variación mensual para un mes sin elecciones desde 2018, y se ubica +25% por encima del nivel de abril (75; base 100=ene-16). Quedó demostrado que Argentina aún no tiene la oferta estructural de dólares necesaria para flotar sin cepo a aquel precio. También que el pass-through luce contenido: el TCN promedio mensual subió +7,3% vs jun-25 y ninguna consultora proyecta un IPC superior al 2%.
-
-**¿Se testeará la banda superior?** Difícil. Razones:
-
-1. Mejores condiciones para rearmar el carry (mayor TC y tasa). Las letras de noviembre ofrecen rendimiento asegurado en USD bajo el esquema de bandas.
-2. El agro, que se había retirado como oferente en el MULC, ahora enfrenta mayores incentivos a liquidar tras la baja permanente de DEX y la suba del TCN.
-3. El BCRA dispone de más de **USD 10.000 M** de poder de fuego, lo que contribuye a anclar expectativas.
-4. Nuevas medidas que reducen presión cambiaria: aumento de encajes al 40% y flexibilización de la meta de RIN con el FMI.
-
-Julio deja una conclusión clara: la política económica responde al tipo de cambio. Los $25 B que vencen con el sector privado en agosto serán roleados sin importar el precio ni el impacto sobre el resto de las tasas, la actividad o la morosidad.
+        "texto": """
+En los primeros días del mes el Gob desarmó las <strong>LEFIs ($ 15 B; instrumento que garantizaba tasa diaria a los bancos)</strong>. <strong>La medida lucía expansiva.</strong> Se esperaba que los bancos aumenten su exposición al sector privado ("trabajen de bancos"). Lo llamativo es que <strong>eso ya venía ocurriendo</strong>: el crédito al sector privado venía a toda marcha y dado el stock de depósitos había espacio para que continue en esa línea.
+<br><br>
+Puede argumentarse entonces que el objetivo de la medida era sacar el piso de tasa para pasar a un <strong>esquema limpio de control de agregados</strong> (M2 privado transaccional). Si ese fuese el caso, la pregunta es porque se eligió hacer una vez que terminó la baja transitoria de DEX y que JP Morgan recomendó "tomarse un respiro" de carry argentino. Si la respuesta es que el BCRA no mira el nivel de FX, <strong>no se entiende la reacción del Gob.</strong>
+<br><br>
+El Gob <strong>tocó todos los botones del joystick</strong> para bajarle presión al FX: vendió LECAPs, vendió futuros, licitó por fuera del calendario y la frutilla fue la lici del 29/7 donde las TEAs llegaron al 60% y el plazo promedio ponderado fue de 38 días. "<strong>Yo soy monetarista, estructuralista y todo lo que sea necesario para bajar la inflación, y si hay que recurrir a la macumba, también</strong>".
+<br><br>
+Aun así, el cierre de julio fue <strong>caótico</strong>. Se cerraron las posiciones de futuros y el Tesoro pagó la S31L5 (inyección de liquidez por $ 1 B -neta del aumento de encajes-). Parte de esa liquidez fue a pagar spot y llevó al TCN a $/USD 1.375.
+<br><br>
+<strong>¿La buena noticia?</strong> El <strong>TCRM ahora se ubica en un valor razonable.</strong> El TCRM saltó +7% en jul-25; la suba mensual más alta para un mes sin elecciones desde 2018. Este nivel está +25%(!) por encima del TCRM de 75 (100=ene-16) alcanzado en abril. Quedó demostrado que Argentina <strong>aún</strong> no tiene la oferta de dólares necesaria para <strong>flotar sin cepo</strong> a ese precio. También que el <strong>pass through</strong> con superávit primario y apertura comercial es <strong>más bajo</strong> -el TCN prom mensual subió +7,3% vs jun-25 y ninguna consultora estima un IPC > 2%-.
+<br><br>
+<strong>¿Se va a testear la banda superior?</strong>
+<br><br>
+<strong>1)</strong> Hay mejores condiciones para <strong>rearmar el carry</strong> (mayor TC y tasa). Las letras de nov tienen rendimiento asegurado en usd por el esquema de bandas.
+<br><br>
+<strong>2)</strong> El <strong>agro, que se había corrido como oferente del MULC,</strong> tiene ahora mayores incentivos a liquidar dada la baja de permanente de DEX y la suba del TCN. Habrá que ver que remanente de producción queda.
+<br><br>
+<strong>3)</strong> El BCRA cuenta con más de USD 10.000 M de <strong>poder de fuego</strong> lo que calma expectativas.
+<br><br>
+<strong>4)</strong> Nuevas medidas que <strong>quitan presión cambiaria</strong>: se aumentan los encajes al 40% y se flexibiliza la meta de RIN con el FMI.
+<br><br>
+<strong>De julio nos llevamos una certeza: la política económica responde al tipo de cambio. Los $ 25 B que vencen con el sector privado en agosto serán roleados sin importar el precio (déficit financiero) y sin importar el impacto en el resto de las tasas (actividad y morosidad).</strong>
 """
-  },
+    },
     {
         "id": "nota-02",
-        "titulo": "💱 Nota 2 — Tipo de cambio real y competitividad",
-        "fecha": "2026-02-05",
-        "texto": "Contenido de ejemplo: discusión breve sobre TCR, pass-through y precios relativos."
+        "titulo": "Nuevo acuerdo con el FMI",
+        "fecha": "2025-03-15",
+        "texto": """
+<strong>¿Por qué un nuevo acuerdo?</strong>
+<br><br>
+Durante 2024 se utilizó (con éxito) el ancla cambiaria para bajar la inflación del 20% al 3%. Pero tuvo un costo grande y predecible; una vez que el blanqueo se quedó sin fuerza, <strong>comenzaron a faltar dólares</strong> al TCR elegido.
+<br><br>
+El nivel de RRII no era compatible con 1,5 M argentinos en Brasil ni con récord de importaciones de bienes de consumo. Las expectativas se desanclaron (RFX, brecha, MLC) y las <strong>RIN se vieron fuertemente golpeadas.</strong>
+<br><br>
+<strong>¿Cuántos USD ingresan?</strong>
+<br><br>
+Mucha, más de lo esperado: <strong>los desembolsos en 2025 serán de USD 23 MM</strong>. A junio ya dispondremos de USD 20 MM + cosecha = Brutas en los USD 50 MM (nada mal, no?)
+<br><br>
+Ahora; ¿son de libre disponibilidad? Sí. Pero buena parte lo vas a gastar en pagos de deuda externa. De acá a 2027 solo al Fondo le vas a pagar USD 12 MM; a eso hay que sumarle BOPREAL (impo y el nuevo de dividendos) y Soberanos. Por ello, el rolleo se vuelve fundamental. La salida del cepo deberá reducir el riesgo país.
+<br><br>
+<strong>Nuevo esquema cambiario y salida del cepo:</strong>
+<br><br>
+El crawl no irá al 0% y el gobierno se despide de una de sus anclas; tampoco hizo falta BM=BMA o infla < 1% para salir del cepo.
+<br><br>
+<strong>EL ESQUEMA:</strong> unificación a un <strong>TC FLEXIBLE entre [1.000;1.400] con bandas -/+1% mensual.</strong> Cuando toque una de las bandas se intervendrá para defender el precio.
+<br><br>
+¿En qué zona se estabilizará? Dado que abrirá a $1.070 y el CCL cerró en los $1.350, <strong>de arranque podrá testear los $1.300</strong>. 2 cosas; <strong>i)</strong> al no liberarse los stocks a empresas (razonable) se evita un overshooting; <strong>ii)</strong> cuando se sitúe en los $1.300 los exportadores tendrán incentivos a liquidar (es una mejora del 15%) presionando hacia la baja. La TPM debería subir para subir los incentivos y resintalar el carry.
+<br><br>
+¿Será un valor estable? Si el BCRA no interviene entre bandas; deberíamos ver bastante volatilidad del TC respondiendo a los shock externos (Trump) y dolarización de carteras previo elecciones. <strong>PARA ESO ES LA FLEXIBILIDAD DEL TC.</strong>
+<br><br>
+<strong>¿Cuánta competitividad se gana?</strong>
+<br><br>
+Si el TCN se va $1.400, <strong>el TCR subiría +30%</strong> (+5% del nivel de salida de cepo -ene-16-). ¿Es suficiente? Difícil saberlo, pero es una mejora. El problema está en que las bandas se ajustan de forma mensual al 1% con una inflación superior ¿deja vú?
+<br><br>
+<strong>A nov-25 estaríamos en el mismo nivel de TCRM.</strong> De hecho, si el TC se establece en la banda superior; en términos de TCRM, hubiese sido lo mismo devaluar un +30% y mantener el crawling al 1%. Por ello, <strong>es fundamental que se avance en las reformas tributarias y laborales</strong> (mejora de competitividad por baja de precios en moneda local)
+<br><br>
+<strong>Metas a cumplir</strong>
+<br><br>
+<strong>Fiscal:</strong> FMI exige 1,3% sup prim en 2025 y el Gobierno proyecta 1,6% (en año electoral -aplausos-).
+<br><br>
+<strong>Monetario:</strong> la meta cuantitativa exige 0 transferencias al Tesoro y sucederá. El informe explica que se abandona el BMA=$47,7bn para pasar a monitorear trimestramelnte el M2.
+<br><br>
+<strong>Cambiaria:</strong> se debe finalizar el año con aprox RIN de USD 4.000 M (hoy en < -6.000). Por ello esperamos que el BCRA compre aún dentro de la banda (tirando el precio para arriba).
+<br><br>
+<strong>AIF = BM - RIN.</strong> Se incluye también una meta indicativa de $ máximos sin respaldo
+<br><br>
+<strong>IMPACTOS EN ACTIVOS:</strong>
+<br><br>
+RFX ABR-25 cerró a $1.190; tiene espacio para subir; $1.320 será momento para vender.
+<br>
+Merval: la salida del cepo (sorpresiva) + la visita Bessent = recorrido al alza.
+<br>
+Lo mismo para Soberanos. Pero todo condicional a Trump.
+<br>
+CER debería ser ganador
+<br><br>
+<strong>IMPACTOS EN PRECIOS Y ACTIVIDAD:</strong>
+<br><br>
+El FMI se muestra sumamente optimista: PBI +5,5% y IPC [18%-23%]. <strong>No obstante, el salto devaluatorio tendrá sus consecuencias:</strong>
+<br><br>
+Precios: el IPC de marzo (3,7%) ya deja arrastre y si TCN se va a $1.200 es un salto de +12%. Abril podría ir al 6/7% (veremos si la baja del petróleo compensa). Si Abril cierra en 6% ya acumularemos 15%; es decir para finalizar en 23%; el prom mensual debería ir en el 0,8% el resto del año... Creo que el IPC cerrará 2025 en 35%-40% (nada mal).
+<br><br>
+Actividad: más díficil de pronosticar. Sabemos que 2024 dejó buen arrastre (+3pp) y datos de ene/feb soprendieron positivamente. Ahora; ¿cuál será el impacto del nuevo esquema (lease, devaluación)? La caída del consumo (70% del PBI) dado el impacto en el salario real será parcialmente compensada por mejora de las exportaciones netas. El resultado neto dependerá del grado de traslado a precios.
+<br><br>
+<strong>Mi opinión: TODO COSTO SERÁ TEMPORAL Y VALDRÁ LA PENA</strong>
+<br><br>
+<strong>¿CÓMO ES EL NUEVO CRONOGRAMA DE PAGOS?</strong>
+<br><br>
+En una 2da presidencia de Milei, solo con el FMI deberemos pagar por año aprox USD 9 MM. Será fundamental el desarrollo de Vaca Muerta y el acceso a los mercados internacionales; sino nos espera un nuevo EFF…
+"""
     },
     {
         "id": "nota-03",
