@@ -199,10 +199,12 @@ st.markdown(
         text-align: justify;
       }
 
+
       .note-image {
-        margin: 2rem 0;
-        text-align: center;
-      }
+      margin: 2rem 0;
+      display: flex;           ← NUEVA: hace que sea un contenedor flex
+      justify-content: center; ← NUEVA: centra el contenido horizontalmente
+    }
 
       .note-image img {
         max-width: 50%;
