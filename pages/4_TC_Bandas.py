@@ -103,7 +103,7 @@ st.markdown(
         padding: 1.5rem;
         background: #ffffff;
         border-radius: 12px;
-        border-top: 4px solid #10b981;
+        border-top: 4px solid #9AE6B4;
         letter-spacing: -0.02em;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         color: #1a1a1a;
@@ -122,7 +122,7 @@ st.markdown(
         background: #ffffff;
         padding: 1.5rem;
         border-radius: 12px;
-        border-top: 4px solid #10b981;
+        border-top: 4px solid #9AE6B4;
         transition: all 0.25s ease;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         height: 100%;
@@ -198,11 +198,11 @@ st.markdown(
       }
 
       .stSlider [data-baseweb="slider"] > div > div {
-        background-color: #10b981 !important;
+        background-color: #9AE6B4 !important;
       }
 
       .stSlider [role="slider"] {
-        background-color: #10b981 !important;
+        background-color: #9AE6B4 !important;
       }
 
       .stSlider [data-testid="stTickBarMin"],
@@ -212,7 +212,7 @@ st.markdown(
       }
 
       .stButton > button {
-        background: #10b981 !important;
+        background: #9AE6B4 !important;
         border: none !important;
         color: #ffffff !important;
         font-family: 'Lato', sans-serif !important;
@@ -232,7 +232,7 @@ st.markdown(
 
       .methodology-card {
         background: #ffffff !important;
-        border-top: 4px solid #10b981;
+        border-top: 4px solid #9AE6B4;
         border-radius: 12px;
         padding: 1.5rem;
         margin-top: 2rem;
@@ -455,7 +455,7 @@ fig.add_trace(
     go.Scatter(
         x=df_plot["Date"],
         y=df_plot["upper"],
-        line=dict(dash="dash", color="#10b981", width=1.5),
+        line=dict(dash="dash", color="#9AE6B4", width=1.5),
         showlegend=False,
     )
 )
@@ -464,7 +464,7 @@ fig.add_trace(
     go.Scatter(
         x=df_plot["Date"],
         y=df_plot["lower"],
-        line=dict(dash="dash", color="#10b981", width=1.5),
+        line=dict(dash="dash", color="#9AE6B4", width=1.5),
         fill="tonexty",
         fillcolor="rgba(16, 185, 129, 0.1)",
         showlegend=False,
