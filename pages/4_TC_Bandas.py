@@ -515,7 +515,7 @@ st.markdown(
 
 - **Bandas 2025:** Crawling del 1% mensual, aplicado en forma diaria compuesta desde el 14/04/2025 hasta el 31/12/2025.
 
-- **Bandas 2026:** Actualización mensual según inflación con rezago de dos meses (IPC t-2). Se utiliza la mediana del REM para la proyección de las bandas
+- **Bandas 2026:** Actualización mensual según inflación con rezago de dos meses (IPC t-2). Se utiliza la mediana del REM para la proyección de las bandas.
 
 - **Fuentes:** BCRA e INDEC.
 """
