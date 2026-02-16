@@ -255,30 +255,27 @@ NOTAS = [
         "id": "nota-01",
         "titulo": "¿Qué pasó en Jul-25?",
         "fecha": "2025-08-05",
-        "texto": """
-En los primeros días del mes el Gobierno desarmó las LEFIs ($15 B), instrumento que garantizaba una tasa diaria a los bancos. La medida lucía expansiva: se esperaba que las entidades aumentaran su exposición al sector privado. Sin embargo, el crédito ya venía creciendo con fuerza y, dado el stock de depósitos, existía margen para que continuara en esa dinámica.
+"texto": """
+En los primeros días del mes el Gobierno desarmó las **LEFIs ($15 B)**, instrumento que garantizaba tasa diaria a los bancos. La medida lucía expansiva: se esperaba que las entidades aumentaran su exposición al sector privado (“trabajen de bancos”). Sin embargo, el crédito ya venía creciendo con fuerza y, dado el stock de depósitos, existía margen para que continuara en esa dinámica.
 
-Una lectura alternativa es que el objetivo haya sido eliminar el piso de tasa para migrar hacia un esquema más limpio de control de agregados (M2 privado transaccional). Si ese fuese el caso, resulta llamativo el timing: la decisión se tomó una vez finalizada la baja transitoria de DEX y luego de que JP Morgan recomendara “tomarse un respiro” del carry argentino. Si el BCRA no mira el nivel del tipo de cambio, la reacción posterior del Gobierno no parece consistente.
+Puede argumentarse entonces que el objetivo era eliminar el piso de tasa para migrar hacia un esquema más limpio de control de agregados (**M2 privado transaccional**). Si ese fuese el caso, el timing resulta llamativo: la decisión se tomó una vez finalizada la baja transitoria de DEX y luego de que JP Morgan recomendara “tomarse un respiro” del carry argentino. Si el BCRA no mira el nivel del tipo de cambio, la reacción posterior del Gobierno no parece consistente.
 
-Durante el mes se utilizaron múltiples herramientas para contener la presión cambiaria: venta de LECAPs, intervención en futuros, licitaciones fuera de calendario y una colocación el 29/7 con TEAs cercanas al 60% y plazo promedio de apenas 38 días. El mensaje fue claro: bajar la inflación a cualquier costo.
+El Gobierno tocó todos los botones del joystick para bajarle presión al FX: vendió LECAPs, intervino en futuros, licitó fuera de calendario y la frutilla fue la colocación del 29/7 con **TEAs cercanas al 60%** y plazo promedio ponderado de apenas 38 días. El mensaje fue claro: bajar la inflación a cualquier costo.
 
-Aun así, el cierre de julio fue desordenado. Se cerraron posiciones en futuros y el Tesoro pagó la S31L5, lo que implicó una inyección neta de liquidez cercana a $1 B (descontado el aumento de encajes). Parte de esos pesos fue a demanda spot y el TCN alcanzó $1.375.
+Aun así, el cierre de julio fue desordenado. Se cerraron posiciones en futuros y el Tesoro pagó la S31L5 (inyección neta de liquidez por $1 B, descontado el aumento de encajes). Parte de esos pesos fue a demanda spot y el **TCN alcanzó $/USD 1.375**.
 
-La buena noticia es que el TCRM volvió a niveles más razonables. En julio subió 7%, la mayor variación mensual para un mes sin elecciones desde 2018, y se ubica 25% por encima del nivel de abril (75; base 100=ene-16). Quedó en evidencia que Argentina aún no cuenta con la oferta estructural de dólares necesaria para flotar sin cepo a aquel precio. También que el pass-through, con superávit primario y apertura comercial, luce contenido: el TCN promedio mensual subió 7,3% y ninguna consultora proyecta un IPC superior al 2%.
+**¿La buena noticia?** El TCRM volvió a niveles más razonables. En julio subió +7%, la mayor variación mensual para un mes sin elecciones desde 2018, y se ubica +25% por encima del nivel de abril (75; base 100=ene-16). Quedó demostrado que Argentina aún no tiene la oferta estructural de dólares necesaria para flotar sin cepo a aquel precio. También que el pass-through luce contenido: el TCN promedio mensual subió +7,3% vs jun-25 y ninguna consultora proyecta un IPC superior al 2%.
 
-¿Se testeará la banda superior? Difícil.
+**¿Se testeará la banda superior?** Difícil. Razones:
 
-Primero, porque el nuevo nivel de tipo de cambio y tasas mejora las condiciones para rearmar el carry, con letras de noviembre que ofrecen rendimiento asegurado en dólares bajo el esquema de bandas.
-
-Segundo, porque el agro —que se había retirado como oferente en el MULC— ahora enfrenta mayores incentivos a liquidar tras la baja permanente de DEX y la suba del TCN. Resta evaluar cuánto remanente de producción queda.
-
-Tercero, porque el BCRA dispone de más de USD 10.000 M de poder de fuego, lo que contribuye a anclar expectativas.
-
-Cuarto, por nuevas medidas que reducen presión cambiaria: aumento de encajes al 40% y flexibilización de la meta de RIN con el FMI.
+1. Mejores condiciones para rearmar el carry (mayor TC y tasa). Las letras de noviembre ofrecen rendimiento asegurado en USD bajo el esquema de bandas.
+2. El agro, que se había retirado como oferente en el MULC, ahora enfrenta mayores incentivos a liquidar tras la baja permanente de DEX y la suba del TCN.
+3. El BCRA dispone de más de **USD 10.000 M** de poder de fuego, lo que contribuye a anclar expectativas.
+4. Nuevas medidas que reducen presión cambiaria: aumento de encajes al 40% y flexibilización de la meta de RIN con el FMI.
 
 Julio deja una conclusión clara: la política económica responde al tipo de cambio. Los $25 B que vencen con el sector privado en agosto serán roleados sin importar el precio ni el impacto sobre el resto de las tasas, la actividad o la morosidad.
 """
-    },
+  },
     {
         "id": "nota-02",
         "titulo": "💱 Nota 2 — Tipo de cambio real y competitividad",
