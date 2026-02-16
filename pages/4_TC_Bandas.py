@@ -186,7 +186,7 @@ st.markdown(
     
     /* Acercar slider al título */
     .stSlider {
-        margin-top: -10px !important;
+        margin-top: -15px !important;
     }
 
         /* Acercar slider al título */
