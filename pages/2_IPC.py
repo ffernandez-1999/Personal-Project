@@ -608,7 +608,7 @@ st.divider()
 # ============================================================
 # METODOLOGÍA
 # ============================================================
-st.markdown("## 📖 Metodología — IPCA (ENGHo 2017/18)")
+st.markdown("## Metodología del IPCA")
 st.markdown(
 """
 El **IPCA** reconstruye el índice de precios al consumidor utilizando la
