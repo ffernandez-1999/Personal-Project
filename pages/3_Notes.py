@@ -479,22 +479,22 @@ with right:
                 unsafe_allow_html=True,
             )
             st.markdown('<div class="note-image">', unsafe_allow_html=True)
-            st.image(n["imagen1"], use_container_width=True)
+            st.image(n["imagen1"])
             st.markdown('</div>', unsafe_allow_html=True)
             
             st.markdown(f'<div class="note-text">{n["texto_parte2"]}</div>', unsafe_allow_html=True)
             st.markdown('<div class="note-image">', unsafe_allow_html=True)
-            st.image(n["imagen2"], use_container_width=True)
+            st.image(n["imagen2"])
             st.markdown('</div>', unsafe_allow_html=True)
             
             st.markdown(f'<div class="note-text">{n["texto_parte3"]}</div>', unsafe_allow_html=True)
             st.markdown('<div class="note-image">', unsafe_allow_html=True)
-            st.image(n["imagen3"], use_container_width=True)
+            st.image(n["imagen3"])
             st.markdown('</div>', unsafe_allow_html=True)
             
             st.markdown(f'<div class="note-text">{n["texto_parte4"]}</div>', unsafe_allow_html=True)
             st.markdown('<div class="note-image">', unsafe_allow_html=True)
-            st.image(n["imagen4"], use_container_width=True)
+            st.image(n["imagen4"])
             st.markdown('</div>', unsafe_allow_html=True)
         else:
             # Notas normales sin imágenes
