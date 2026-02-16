@@ -443,12 +443,15 @@ st.markdown("### Rango de fechas")
 min_d = df["Date"].min().date()
 max_d = df["Date"].max().date()
 
+default_start = max(min_d, pd.to_datetime("2025-01-01").date())
+
 start_d, end_d = st.slider(
     "",
     min_value=min_d,
     max_value=max_d,
-    value=(min_d, max_d),
+    value=(default_start, max_d),
 )
+
 
 df_plot = df[
     (df["Date"] >= pd.Timestamp(start_d)) &
