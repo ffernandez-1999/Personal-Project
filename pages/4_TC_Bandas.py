@@ -293,7 +293,7 @@ with col_btn:
         st.switch_page("app.py")
 
 st.markdown(
-    '<div class="page-title-highlight">TC Mayorista (A3500) y Bandas</div>',
+    '<div class="page-title-highlight">TC mayorista (A3500) y bandas cambiarias</div>',
     unsafe_allow_html=True,
 )
 
