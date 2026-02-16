@@ -196,6 +196,19 @@ st.markdown(
         line-height: 1.7;
         color: #1a1a1a;
         font-family: 'Lato', sans-serif;
+        text-align: justify;
+      }
+
+      .note-image {
+        margin: 2rem 0;
+        text-align: center;
+      }
+
+      .note-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
 
       hr {
@@ -247,7 +260,7 @@ if st.button("← Volver"):
     st.switch_page("app.py")
 
 # ============================================================
-# Notas (placeholder)
+# Notas
 # ============================================================
 
 NOTAS = [
@@ -286,11 +299,15 @@ Aun así, el cierre de julio fue <strong>caótico</strong>. Se cerraron las posi
         "texto": """
 <strong>¿Por qué un nuevo acuerdo?</strong>
 <br><br>
-Durante 2024 se utilizó (con éxito) el ancla cambiaria para bajar la inflación del 20% al 3%. Pero tuvo un costo grande y predecible; una vez que el blanqueo se quedó sin fuerza, comenzaron a faltar dólares al TCR elegido. El nivel de RRII no era compatible con 1,5 M argentinos en Brasil ni con récord de importaciones de bienes de consumo. Las expectativas se desanclaron (RFX, brecha, MLC) y las RIN se vieron fuertemente golpeadas.
+Durante 2024 se utilizó (con éxito) el ancla cambiaria para bajar la inflación del 20% al 3%. Pero tuvo un costo grande y predecible; una vez que el blanqueo se quedó sin fuerza, comenzaron a faltar dólares al TCR elegido.
+<br><br>
+El nivel de RRII no era compatible con 1,5 M argentinos en Brasil ni con récord de importaciones de bienes de consumo. Las expectativas se desanclaron (RFX, brecha, MLC) y las RIN se vieron fuertemente golpeadas.
 <br><br>
 <strong>¿Cuántos USD ingresan?</strong>
 <br><br>
-Mucha, más de lo esperado: los desembolsos en 2025 serán de <strong>USD 23 MM</strong>. A junio ya dispondremos de USD 20 MM + cosecha = Brutas en los USD 50 MM (nada mal, no?). Ahora; ¿son de libre disponibilidad? Sí. Pero buena parte lo vas a gastar en pagos de deuda externa. De acá a 2027 solo al Fondo le vas a pagar USD 12 MM; a eso hay que sumarle BOPREAL (impo y el nuevo de dividendos) y Soberanos. Por ello, el rolleo se vuelve fundamental. La salida del cepo deberá reducir el riesgo país.
+Mucha, más de lo esperado: los desembolsos en 2025 serán de <strong>USD 23 MM</strong>. A junio ya dispondremos de USD 20 MM + cosecha = Brutas en los USD 50 MM (nada mal, no?)
+<br><br>
+Ahora; ¿son de libre disponibilidad? Sí. Pero buena parte lo vas a gastar en pagos de deuda externa. De acá a 2027 solo al Fondo le vas a pagar USD 12 MM; a eso hay que sumarle BOPREAL (impo y el nuevo de dividendos) y Soberanos. Por ello, el rolleo se vuelve fundamental. La salida del cepo deberá reducir el riesgo país.
 <br><br>
 <strong>Nuevo esquema cambiario y salida del cepo</strong>
 <br><br>
@@ -298,11 +315,15 @@ El crawl no irá al 0% y el gobierno se despide de una de sus anclas; tampoco hi
 <br><br>
 <em>El esquema:</em> unificación a un TC flexible entre [1.000;1.400] con bandas -/+1% mensual. Cuando toque una de las bandas se intervendrá para defender el precio.
 <br><br>
-¿En qué zona se estabilizará? Dado que abrirá a $1.070 y el CCL cerró en los $1.350, de arranque podrá testear los $1.300. Al no liberarse los stocks a empresas (razonable) se evita un overshooting; cuando se sitúe en los $1.300 los exportadores tendrán incentivos a liquidar (es una mejora del 15%) presionando hacia la baja. La TPM debería subir para subir los incentivos y resintalar el carry. ¿Será un valor estable? Si el BCRA no interviene entre bandas deberíamos ver bastante volatilidad del TC respondiendo a los shock externos (Trump) y dolarización de carteras previo elecciones. <strong>Para eso es la flexibilidad del TC.</strong>
+¿En qué zona se estabilizará? Dado que abrirá a $1.070 y el CCL cerró en los $1.350, de arranque podrá testear los $1.300. Al no liberarse los stocks a empresas (razonable) se evita un overshooting; cuando se sitúe en los $1.300 los exportadores tendrán incentivos a liquidar (es una mejora del 15%) presionando hacia la baja. La TPM debería subir para subir los incentivos y resintalar el carry.
+<br><br>
+¿Será un valor estable? Si el BCRA no interviene entre bandas deberíamos ver bastante volatilidad del TC respondiendo a los shock externos (Trump) y dolarización de carteras previo elecciones. <strong>Para eso es la flexibilidad del TC.</strong>
 <br><br>
 <strong>¿Cuánta competitividad se gana?</strong>
 <br><br>
-Si el TCN se va $1.400, el TCR subiría +30% (+5% del nivel de salida de cepo -ene-16-). ¿Es suficiente? Difícil saberlo, pero es una mejora. El problema está en que las bandas se ajustan de forma mensual al 1% con una inflación superior ¿deja vú? A nov-25 estaríamos en el mismo nivel de TCRM. De hecho, si el TC se establece en la banda superior; en términos de TCRM, hubiese sido lo mismo devaluar un +30% y mantener el crawling al 1%. Por ello, <strong>es fundamental que se avance en las reformas tributarias y laborales</strong> (mejora de competitividad por baja de precios en moneda local).
+Si el TCN se va $1.400, el TCR subiría +30% (+5% del nivel de salida de cepo -ene-16-). ¿Es suficiente? Difícil saberlo, pero es una mejora. El problema está en que las bandas se ajustan de forma mensual al 1% con una inflación superior ¿deja vú?
+<br><br>
+A nov-25 estaríamos en el mismo nivel de TCRM. De hecho, si el TC se establece en la banda superior; en términos de TCRM, hubiese sido lo mismo devaluar un +30% y mantener el crawling al 1%. Por ello, <strong>es fundamental que se avance en las reformas tributarias y laborales</strong> (mejora de competitividad por baja de precios en moneda local).
 <br><br>
 <strong>Metas a cumplir</strong>
 <br><br>
@@ -334,6 +355,9 @@ El FMI se muestra sumamente optimista: PBI +5,5% y IPC [18%-23%]. No obstante, e
 <br><br>
 <strong>Mi opinión: todo costo será temporal y valdrá la pena.</strong>
 <br><br>
+<strong>¿Cómo es el nuevo cronograma de pagos?</strong>
+<br><br>
+En una 2da presidencia de Milei, solo con el FMI deberemos pagar por año aprox USD 9 MM. Será fundamental el desarrollo de Vaca Muerta y el acceso a los mercados internacionales; sino nos espera un nuevo EFF…
 """
     },
     {
@@ -356,11 +380,11 @@ No obstante, la política cambiaria no hace magia: ningún nivel de tipo de camb
 Si aún no están dadas las condiciones para reducir el numerador (escenario ideal), el TC debería reflejarlo. Ergo, el problema está en el denominador. De hecho, los recortes en educación y en obra pública, sumados al escenario de guerra de aranceles y al fortalecimiento del dólar, elevan el TC de equilibrio. Esta nota no aboga por "salarios africanos" pero tampoco por un tipo de cambio atrasado artificialmente vía controles cambiarios, blend e intervención; una estrategia tan efectiva para reducir la inflación como para generar desempleo y estallar una vez que no puede ser más financiada. <strong>El tipo de cambio debe ser determinado por el mercado y debe reflejar, de manera inversa y genuina, la competitividad de la economía argentina.</strong>
 """
     },
-{
+    {
         "id": "nota-04",
         "titulo": "Nueva meta fiscal con el Fondo - 2024",
         "fecha": "2024-02-05",
-        "texto": """
+        "texto_parte1": """
 El 31Ene24 se recibió un desembolso por <strong>USD 4.700 M</strong>, USD 3.300 M fueron en concepto de la cuota demorada por el Fondo en Nov23 y USD 1.300 M en concepto de adelantos de desembolsos de este año. La contrapartida del acuerdo fue el compromiso por parte de LLA de alcanzar metas sin precedentes; <strong>i)</strong> un superávit primario de 2% del PBI para conseguir equilibrio financiero; <strong>ii)</strong> el nulo financiamiento monetario al Tesoro (ampliando el concepto y volviéndolo más genuino); <strong>iii)</strong> una recuperación de las RRII netas de USD 10.000 M (vs el stock del 13Dic23).
 <br><br>
 Para conseguir el superávit primario de 2%, Economía estimó que se necesitará un <strong>ajuste fiscal de 5,2%</strong> vía una tabla publicada en Twitter - ajuste de una magnitud nunca vista en la historia argentina -. La misma tabla presenta un camino mixto entre suba de impuestos y baja del gasto para conseguir el objetivo fiscal. Sin embargo, la estimación incorpora algunos puntos a revisar:
@@ -373,7 +397,6 @@ Para conseguir el superávit primario de 2%, Economía estimó que se necesitar�
 <br><br>
 <strong>iv)</strong> La hoja de ruta fiscal de las metas nominales no tiene en cuenta la estacionalidad del resultado primario.
 <br><br>
-
 <strong>¿Cuál es la herencia de déficit financiero que recibe LLA?</strong>
 <br><br>
 Según los datos del MECON-IMG, el 2023 cerró con un déficit fiscal de -2,7% y un déficit financiero de -5,9% del producto en vez del -5,2% estimado. Lo que elevaría en +0,7pp la necesidad de ajuste para conseguir el equilibrio financiero. Sin embargo, para medir el ajuste necesario se requiere observar la inercia del déficit financiero de 2023 para 2024 y no simplemente su resultado. Hay dos operaciones extraordinarias que hacen diferir el resultado financiero de su inercia para 2024.
@@ -384,35 +407,41 @@ Según los datos del MECON-IMG, el 2023 cerró con un déficit fiscal de -2,7% y
 <br><br>
 <strong>ii)</strong> El pago de intereses explotó en Dic23 ($ 3.300.000 M; 1,8% del PBI vs 0,1% promedio 2023) debido a la inclusión de la recompra de deuda del Tesoro al BCRA por 1,5% del PBI. Esto tampoco responde a la verdadera estructura fiscal así que debe ser descontado. En consecuencia, el ajuste requerido cae al -4,6% en vez del -5,0% primeramente estimado.
 <br><br>
-
 <strong>Retirada del capítulo fiscal de la Ley Ómnibus</strong>
 <br><br>
 Dentro de la hoja de ruta fiscal mostrada tanto por el FMI como por el MECON, se estimaba una suba de los ingresos de 2,2% del PBI. El 65% de esa suba dependía de la aprobación del capítulo fiscal por parte del Congreso (suba de DEX -que aportaría 0,5% del PBI-, reversión Ganancias -0,4%- y Moratoria, bienes personales y blanqueo -0,5%-). Asimismo, en la ley se incorporaba el cambio de la fórmula de movilidad de jubilaciones, que habría otorgado 0,4% del producto de recorte en el gasto. Dado que el capítulo fue retirado, Economía perdió -1,8% del PBI de ajuste estimado. Si a esto se le netea la inercia más baja del déficit financiero, deberá buscar un recorte de -6,4% del producto (mayor en +1,4pp al estimado).
 <br><br>
-
 <strong>Impacto de la recesión en la recaudación</strong>
 <br><br>
 Según el Fondo, la actividad económica caerá -2,8% en 2024, una recesión anual no vista desde 2009 (-5,9%; exceptuando 2020). Si se excluye al agro, la caída sería de -5,8%. El informe menciona al proceso de ajuste de precios relativos y al proceso de consolidación fiscal como los principales drivers de la baja de la actividad. Los datos con los que se cuentan hasta ahora son más que ilustrativos. Luego de los primeros ajustes de precios (tipo de cambio, combustibles, prepagas) el IPC registró una suba mensual de +25,5% en Dic23 y en Ene24 se espera algo cerca de +22% (el IPC CABA dio 21,7%-). A su vez, el salario RIPTE creció tan solo +8,3% en Dic23, lo que significa una pérdida de compra real de -13,7%.
 <br><br>
-Esta baja del salario real tuvo su contraparte en el consumo: la recaudación por IVA DGI de Dic23 y Ene24 mostró un descenso real de -6,7% y -15,9% anual (usando IPC CABA). Si la dinámica de pérdida de salario real, baja del consumo y baja de la recaudación se mantiene a lo largo del año, el ajuste de -6,4% del PBI se quedará corto (además la caída de la demanda tendrá su efecto de segunda ronda en la oferta -derechos de importación, seguridad social, ganancias-).
-<br><br>
+Esta baja del salario real tuvo su contraparte en el consumo: la recaudación por IVA DGI de Dic23 y Ene24 mostró un descenso real de -6,7% y -15,9% anual (usando IPC CABA). Si la dinámica de pérdida de salario real, baja del consumo y baja de la recaudación se mantiene a lo largo del año, el ajuste de -6,4% del PBI se quedará corto (además la caída de la demanda tendrá su efecto de segunda ronda en la oferta -derechos de importación, seguridad social, ganancias-). A modo clarificador, en la siguiente tabla se muestra cómo cayó la recaudación en todos los últimos años de recesión:
+""",
+        "imagen1": "data/1.jpg",
+        "texto_parte2": """
 En Ene24, las bajas en los tributos relacionados con el mercado interno fueron compensadas por lo recaudado por el impuesto país (+278,5% i.a. real) y por los derechos de exportación (177,3%). De este modo, la recaudación total cayó -4,9% anual. ¿Qué sucede si esta dinámica se repite a lo largo del año? Una baja real de -5% de la recaudación (escenario optimista) significa una baja de los ingresos/producto de -0,4pp, por lo que el ajuste necesario pasa de -6,4% a -6,8% del PBI y el recorte adicional de -1,4pp a -1,8pp (en un escenario pesimista, donde la recaudación cae -10% real, los ingresos/productos bajan -1,2pp). No obstante, la suba de los impuestos a los combustibles se estima que dará recursos adicionales por +0,5% del PBI. Por lo que el bache a compensar queda en torno a los -1,3pp.
 <br><br>
 Ese bache se cubriría achicando aún más el gasto público: <strong>el ajuste requerido desde el lado del gasto pasa del -3% estimado por el MECON al 5% del PBI</strong>, (con especial foco en subsidios, transferencias a provincias y empresas públicas y obra pública). La relación ajuste ingresos-gastos pasa de 40/60 a 20/80. Para cumplir con este camino, el Tesoro cuenta con un as bajo la manga: dado que no hay presupuesto para 2024, varias partidas se ejecutarán bajo la nominalidad de 2023.
+""",
+        "imagen2": "data/2.jpg",
+        "texto_parte3": """
+El Tesoro necesitará que, como ocurrió en Ene24, la baja de la recaudación por merma de la actividad sea compensada de manera significativa por los tributos relacionados con el comercio exterior. Para ello se requiere; <strong>i)</strong> desde el lado de los DEX, que el TCRM se mantenga en niveles atractivos (y que llueva); <strong>ii)</strong> desde el lado del impuesto país que la actividad no caiga para sostener la base imponible. El primer supuesto parece no estar asegurado dada la política cambiaria del BCRA. Si bien la devaluación de Dic23 colocó al TCRM en niveles no vistos desde comienzos de siglo, el crawling peg de 2% acompañado de una inflación promedio de 20% mensual tiene como resultado una constante pérdida de competitividad. Al 30Abr24 se habría perdido un -46% de la ganancia de la devaluación, lo que afectaría los incentivos a liquidar exportaciones golpeando a la recaudación. Por ello, luce inevitable una nueva devaluación/aceleración del crawling peg o nuevas versiones de dólar soja.
 <br><br>
-El Tesoro necesitará que, como ocurrió en Ene24, la baja de la recaudación por merma de la actividad sea compensada de manera significativa por los tributos relacionados con el comercio exterior. Para ello se requiere; <strong>i)</strong> desde el lado de los DEX, que el TCRM se mantenga en niveles atractivos (y que llueva); <strong>ii)</strong> desde el lado del impuesto país que la actividad no caiga para sostener la base imponible. El primer supuesto parece no estar asegurado dada la política cambiaria del BCRA. Si bien la devaluación de Dic23 colocó al TCRM en niveles no vistos desde comienzos de siglo, el crawling peg de 2% acompañado de una inflación promedio de 20% mensual tiene como resultado una constante pérdida de competitividad.
-<br><br>
-
+<strong>GRÁFICO TCRM ($800=13/12/23)</strong>
+""",
+        "imagen3": "data/3.jpg",
+        "texto_parte4": """
 <strong>Estacionalidad del déficit</strong>
 <br><br>
-Las metas trimestrales publicadas por el Fondo llegan hasta Sep24. Para ese entonces el Tesoro debería contar con un superávit fiscal nominal de $2.887.300 M. El número es muy bajo en relación al 2% de superávit exigido para el año y al PBI implícito por los pronósticos publicados en el informe. Veamos, el Fondo espera una recesión real de -2,8% y un deflactor del PBI de 253,1% = un producto nominal estimado de $660.000.000 M para 2024. Es decir, la meta nominal de Sep24 implica acumular un superávit primario de +0,4% del PBI en los primeros tres trimestres. Y el +1,6% restante (80% de la meta; $10.290.000 M) se debería acumular en el último trimestre. Sin embargo, el último trimestre es estacionalmente deficitario por lo que esta hoja de ruta fiscal no tiene asidero.
+Las metas trimestrales publicadas por el Fondo llegan hasta Sep24. Para ese entonces el Tesoro debería contar con un superávit fiscal nominal de $2.887.300 M. El número es muy bajo en relación al 2% de superávit exigido para el año y al PBI implícito por los pronósticos publicados en el informe. Veamos, el Fondo espera una recesión real de -2,8% y un deflactor del PBI de 253,1% = un producto nominal estimado de $660.000.000 M para 2024. Es decir, la meta nominal de Sep24 implica acumular un superávit primario de +0,4% del PBI en los primeros tres trimestres. Y el +1,6% restante (80% de la meta; $10.290.000 M) se debería acumular en el último trimestre. Sin embargo, <strong>el último trimestre es estacionalmente deficitario por lo que esta hoja de ruta fiscal no tiene asidero.</strong>
 <br><br>
 Suena más lógico que las metas nominales hayan sido expresadas en relación al PBI de 2023 ($192.000.000 M; se obtiene de las mismas estimaciones del informe) y se irán ajustando a medida que se conozcan los datos de precios y actividad (esto no sucedió el año pasado cuando las metas fiscales de 2023 fueron planteadas en relación al PBI pronosticado para ese año). Esta nueva manera de expresar los datos conlleva el problema de que se vuelve más complejo monitorear el cumplimiento de las metas ya que no habrá relación directa con el resultado del IMIG.
 <br><br>
 De esta forma, la hoja de ruta fiscal entonces sería lineal. Se repartiría el ajuste en partes iguales en cada trimestre (0,5% del PBI), lo que implica que para Sep24 (primeros tres trimestres) el Tesoro tendría que presentar un superávit de 1,5% del producto. No obstante, no es conveniente exigir de la misma manera en el último trimestre ya que es estacionalmente deficitario. Tendría más sentido elevar el ajuste en los trimestres anteriores y dejar algo de margen para los últimos 3 meses del año (la estacionalidad si se tomó en cuenta para la meta de RRII netas, la acumulación fuerte se exige en el primer semestre del año cuando las liquidaciones del agro son altas).
 <br><br>
 <strong>En el último trimestre del año se acumula en promedio el 60% del déficit fiscal total del año.</strong>
-"""
+""",
+        "imagen4": "data/4.jpg"
     },
 ]
 
@@ -437,15 +466,48 @@ with left:
 
 with right:
     for i, n in enumerate(NOTAS):
-        st.markdown(
-            textwrap.dedent(f"""
-            <div id="{n['id']}" class="note-anchor">
-              <div class="note-h2">{n['titulo']}</div>
-              <div class="note-meta">{n['fecha']}</div>
-              <div class="note-text">{n['texto']}</div>
-            </div>
-            """).strip(),
-            unsafe_allow_html=True,
-        )
+        # Nota 04 tiene estructura especial con imágenes
+        if n["id"] == "nota-04":
+            st.markdown(
+                f"""
+                <div id="{n['id']}" class="note-anchor">
+                  <div class="note-h2">{n['titulo']}</div>
+                  <div class="note-meta">{n['fecha']}</div>
+                  <div class="note-text">{n['texto_parte1']}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+            st.markdown('<div class="note-image">', unsafe_allow_html=True)
+            st.image(n["imagen1"], use_container_width=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+            
+            st.markdown(f'<div class="note-text">{n["texto_parte2"]}</div>', unsafe_allow_html=True)
+            st.markdown('<div class="note-image">', unsafe_allow_html=True)
+            st.image(n["imagen2"], use_container_width=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+            
+            st.markdown(f'<div class="note-text">{n["texto_parte3"]}</div>', unsafe_allow_html=True)
+            st.markdown('<div class="note-image">', unsafe_allow_html=True)
+            st.image(n["imagen3"], use_container_width=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+            
+            st.markdown(f'<div class="note-text">{n["texto_parte4"]}</div>', unsafe_allow_html=True)
+            st.markdown('<div class="note-image">', unsafe_allow_html=True)
+            st.image(n["imagen4"], use_container_width=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+        else:
+            # Notas normales sin imágenes
+            st.markdown(
+                textwrap.dedent(f"""
+                <div id="{n['id']}" class="note-anchor">
+                  <div class="note-h2">{n['titulo']}</div>
+                  <div class="note-meta">{n['fecha']}</div>
+                  <div class="note-text">{n['texto']}</div>
+                </div>
+                """).strip(),
+                unsafe_allow_html=True,
+            )
+        
         if i < len(NOTAS) - 1:
             st.markdown("<hr/>", unsafe_allow_html=True)
