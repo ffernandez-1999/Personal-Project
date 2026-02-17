@@ -200,10 +200,9 @@ st.markdown(
       }
 
 
-      .note-image {
+    .note-image {
       margin: 2rem 0;
-      display: flex;           ← NUEVA: hace que sea un contenedor flex
-      justify-content: center; ← NUEVA: centra el contenido horizontalmente
+      text-align: center;    ← esto NO centra imágenes cuando usás Streamlit
     }
 
       .note-image img {
