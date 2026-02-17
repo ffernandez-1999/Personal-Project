@@ -124,7 +124,7 @@ st.markdown(
       /* Sidebar de notas */
       .notes-sidebar {
         position: sticky;
-        top: 70px;
+        top: 20px;
         padding: 1.5rem;
         border-radius: 12px;
         background: #ffffff;
