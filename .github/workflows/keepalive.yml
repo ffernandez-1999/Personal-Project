@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Wake ffamato app
         run: |
-          curl -s -o /dev/null https://ffamato.streamlit.app || exit 0
+          curl -s -o /dev/null https://ffamato.streamlit.app || true
