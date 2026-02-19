@@ -9,6 +9,7 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Streamlit App
+      - name: Ping ffamato app
         run: |
-          curl -k -A "Mozilla/5.0" -L https://monitor-ceu-uia.streamlit.app/?keepalive=1 || true
+          curl -k -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" \
+          https://ffamato.streamlit.app/?keepalive=1 || true
