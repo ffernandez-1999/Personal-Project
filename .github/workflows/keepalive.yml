@@ -10,4 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping Streamlit App
-        run: curl -L https://ffamato.streamlit.app/?keepalive=1
+        run: |
+          curl -k -A "Mozilla/5.0" -L https://monitor-ceu-uia.streamlit.app/?keepalive=1 || true
