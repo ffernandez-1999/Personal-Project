@@ -9,7 +9,6 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping ffamato app
+      - name: Wake ffamato app
         run: |
-          curl -k -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" \
-          https://ffamato.streamlit.app/?keepalive=1 || true
+          curl -s -o /dev/null https://ffamato.streamlit.app || exit 0
