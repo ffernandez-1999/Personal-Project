@@ -122,6 +122,7 @@ st.markdown("""
         <a href="mailto:franciscofernandezz1999@gmail.com">Email</a>
         <a href="https://www.linkedin.com/in/francisco-fernandez-amato-7725ba241/" target="_blank">LinkedIn</a>
         <a href="https://github.com/ffernandez-1999" target="_blank">GitHub</a>
+        <a href="tesis.pdf" target="_blank">Thesis</a>
     </div>
 </div>
 """, unsafe_allow_html=True)
