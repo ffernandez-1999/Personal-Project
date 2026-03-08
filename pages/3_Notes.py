@@ -300,26 +300,26 @@ Aun así, el cierre de julio fue <strong>caótico</strong>. Se cerraron las posi
         "texto": """
 <strong>¿Por qué un nuevo acuerdo?</strong>
 <br><br>
-Durante 2024 se utilizó (con éxito) el ancla cambiaria para bajar la inflación del 20% al 3%. Pero tuvo un costo grande y predecible; una vez que el blanqueo se quedó sin fuerza, comenzaron a faltar dólares al TCR elegido.
+Durante 2024 se utilizó con éxito el ancla cambiaria para bajar la inflación del 20% al 3%. La medida no estuvo exenta de costos: una vez que el blanqueo se quedó sin dinamismo, comenzaron a faltar dólares al TCR elegido vía el crawling.
 El nivel de RRII no era compatible con 1,5 M argentinos en Brasil ni con récord de importaciones de bienes de consumo. Las expectativas se desanclaron (RFX, brecha, MLC) y las RIN se vieron fuertemente golpeadas.
 <br><br>
 <strong>¿Cuántos USD ingresan?</strong>
 <br><br>
-Mucha, más de lo esperado: los desembolsos en 2025 serán de <strong>USD 23 MM</strong>. A junio ya dispondremos de USD 20 MM + cosecha = Brutas en los USD 50 MM (nada mal, no?)
-Ahora; ¿son de libre disponibilidad? Sí. Pero buena parte lo vas a gastar en pagos de deuda externa. De acá a 2027 solo al Fondo le vas a pagar USD 12 MM; a eso hay que sumarle BOPREAL (impo y el nuevo de dividendos) y Soberanos. Por ello, el rolleo se vuelve fundamental. La salida del cepo deberá reducir el riesgo país.
+Más de lo esperado: los desembolsos en 2025 serán de <strong>USD 23 MM</strong>. A junio ya dispondremos de USD 20 MM + cosecha = ¿brutas en USD 50 MM?
+Ahora, la pregunta es: ¿son de libre disponibilidad? Sí. Pero buena parte se irá en pagos de deuda externa. De acá a 2027 se le deberá devolver al Fondo USD 12 MM; a eso hay que sumarle BOPREAL (importaciones y la nueva especie de dividendos) y Soberanos (USD 8 MM por año). Por ello, el acceso a los mercados internacionales se vuelve fundamental (¿la salida del cepo colaborará a la baja del riegso país?)
 <br><br>
 <strong>Nuevo esquema cambiario y salida del cepo</strong>
 <br><br>
-El crawl no irá al 0% y el gobierno se despide de una de sus anclas; tampoco hizo falta BM=BMA o infla < 1% para salir del cepo.
+El crawl finalemnte no irá al 0% y el gobierno se despide de una de sus anclas. Tampoco hizo falta BM=BMA o infla < 1% para salir del cepo.
 <br><br>
-<em>El esquema:</em> unificación a un TC flexible entre [1.000;1.400] con bandas -/+1% mensual. Cuando toque una de las bandas se intervendrá para defender el precio.
+<em>El esquema:</em> unificación a un TC flexible entre [1.000;1.400] con bandas -/+1% mensual. Cuando toque una de las bandas se intervendrá para defender el precio: en el piso se compran dólares (venden pesos) y en el techo se venden (compran).
 <br><br>
-¿En qué zona se estabilizará? Dado que abrirá a $1.070 y el CCL cerró en los $1.350, de arranque podrá testear los $1.300. Al no liberarse los stocks a empresas (razonable) se evita un overshooting; cuando se sitúe en los $1.300 los exportadores tendrán incentivos a liquidar (es una mejora del 15%) presionando hacia la baja. La TPM debería subir para subir los incentivos y resintalar el carry.
+¿En qué zona se estabilizará? Dado que el TCN abrirá a $1.070 y el CCL cerró en los $1.350, de arranque podrá testear los $1.300. Al no liberarse los stocks a empresas (razonable) se evita un overshooting; cuando se sitúe en los $1.300 los exportadores tendrán incentivos a liquidar (es una mejora del 15% en su competitividad) presionando hacia la baja el TC. La TPM debería subir para resintalar el carry.
 ¿Será un valor estable? Si el BCRA no interviene entre bandas deberíamos ver bastante volatilidad del TC respondiendo a los shock externos (Trump) y dolarización de carteras previo elecciones. <strong>Para eso es la flexibilidad del TC.</strong>
 <br><br>
 <strong>¿Cuánta competitividad se gana?</strong>
 <br><br>
-Si el TCN se va $1.400, el TCR subiría +30% (+5% del nivel de salida de cepo -ene-16-). ¿Es suficiente? Difícil saberlo, pero es una mejora. El problema está en que las bandas se ajustan de forma mensual al 1% con una inflación superior ¿deja vú?
+Si el TCN se va $1.400, el TCR subiría +30% (+5% del nivel de salida de cepo -ene-16-). ¿Es suficiente? Difícil saberlo, pero es una mejora. El problema está en que las bandas se ajustan de forma mensual al 1% con una inflación superior.
 A nov-25 estaríamos en el mismo nivel de TCRM. De hecho, si el TC se establece en la banda superior; en términos de TCRM, hubiese sido lo mismo devaluar un +30% y mantener el crawling al 1%. Por ello, <strong>es fundamental que se avance en las reformas tributarias y laborales</strong> (mejora de competitividad por baja de precios en moneda local).
 <br><br>
 <strong>Metas a cumplir</strong>
