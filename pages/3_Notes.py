@@ -290,7 +290,7 @@ Aun así, el cierre de julio fue <strong>caótico</strong>. Se cerraron las posi
 <br><br>
 <strong>4)</strong> Nuevas medidas que <strong>quitan presión cambiaria</strong>: se aumentan los encajes al 40% y se flexibiliza la meta de RIN con el FMI.
 <br><br>
-<strong>En julio la política económica respondió al tipo de cambio. Por lo que los $ 25 B que vencen con el sector privado en agosto serán roleados sin importar el precio (déficit financiero) y sin importar el impacto en el resto de las tasas (actividad y morosidad).</strong>
+<strong>La política económica de julio adelanta que los $ 25 B que vencen con el sector privado en agosto serán roleados sin importar el precio (déficit financiero) y sin importar el impacto en el resto de las tasas (actividad y morosidad).</strong>
 """
     },
     {
