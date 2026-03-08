@@ -300,7 +300,7 @@ Aun así, el cierre de julio fue <strong>caótico</strong>. Se cerraron las posi
         "texto": """
 <strong>¿Por qué un nuevo acuerdo?</strong>
 <br><br>
-Durante 2024 se utilizó con éxito el ancla cambiaria para bajar la inflación del 20% al 3%. La medida no estuvo exenta de costos: una vez que el blanqueo se quedó sin dinamismo, comenzaron a faltar dólares al TCR elegido vía el crawling.
+Durante 2024 se utilizó con éxito el ancla cambiaria para bajar la inflación del 20% al 3%. La medida no estuvo exenta de costos: una vez que el blanqueo se quedó sin dinamismo, comenzaron a faltar dólares al TCR elegido.
 El nivel de RRII no era compatible con 1,5 M argentinos en Brasil ni con récord de importaciones de bienes de consumo. Las expectativas se desanclaron (RFX, brecha, MLC) y las RIN se vieron fuertemente golpeadas.
 <br><br>
 <strong>¿Cuántos USD ingresan?</strong>
