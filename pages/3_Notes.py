@@ -334,7 +334,7 @@ A nov-25 estaríamos en el mismo nivel de TCRM. De hecho, si el TC se establece 
 <br><br>
 <strong>Impactos en activos</strong>
 <br><br>
-• RFX ABR-25 cerró a $1.190; tiene espacio para subir; $1.320 será momento para vender.
+• RFX ABR-25 cerró a $1.190; tiene espacio para subir; ¿$1.320 será momento para vender?
 <br>
 • Merval: la salida del cepo (sorpresiva) + la visita Bessent = recorrido al alza.
 <br>
