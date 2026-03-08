@@ -310,7 +310,7 @@ Ahora, la pregunta es: ¿son de libre disponibilidad? Sí. Pero buena parte se i
 <br><br>
 <strong>Nuevo esquema cambiario y salida del cepo</strong>
 <br><br>
-El crawl finalemnte no irá al 0% y el gobierno se despide de una de sus anclas. Tampoco hizo falta BM=BMA o infla < 1% para salir del cepo.
+(El crawl finalmente no irá al 0% y el gobierno se despide de una de sus anclas; tampoco hizo falta BM=BMA o infla < 1% para salir del cepo).
 <br><br>
 <em>El esquema:</em> unificación a un TC flexible entre [1.000;1.400] con bandas -/+1% mensual. Cuando toque una de las bandas se intervendrá para defender el precio: en el piso se compran dólares (venden pesos) y en el techo se venden (compran).
 <br><br>
