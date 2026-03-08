@@ -355,26 +355,6 @@ El FMI se muestra sumamente optimista: PBI +5,5% y IPC [18%-23%]. No obstante, e
 """
     },
     {
-        "id": "nota-03",
-        "titulo": "¿Dólar atrasado o precios adelantados?",
-        "fecha": "2025-02-10",
-        "texto": """
-<strong>Un aporte desde el lado productivo</strong>
-<br><br>
-Los precios en dólares, como todo ratio, se componen de un numerador (valor en pesos) y un denominador (tipo de cambio). Si Argentina está cara en dólares puede deberse a 2 opciones: <strong>i)</strong> el valor en pesos está por encima de lo que debería: adelantado; <strong>ii)</strong> el tipo de cambio (TC) está por debajo: atrasado.
-<br><br>
-<strong>¿Cuál está ocurriendo?</strong>
-<br><br>
-Veamos, el numerador (valor en pesos), determinado por la oferta y la demanda, enfrenta en Argentina múltiples distorsiones: una presión tributaria exorbitante, una baja calidad de la infraestructura y de las instituciones laborales, altos costos de comercialización y un nulo acceso al crédito. Manteniendo todo lo demás constante, cualquier desventaja en estos aspectos encarece en dólares al país. La salida rápida de abrir la economía parece no tener resultado: en el último año se facilitaron las importaciones y aún así los precios en dólares se elevaron.
-<br><br>
-Allí es donde aparece el denominador (tipo de cambio): el TC corrige esas deficiencias y nivela condiciones de producción entre países. A suerte de <em>second best</em>, el tipo de cambio actúa como paliativo de los déficits estructurales. No es casualidad que: <strong>i)</strong> Balassa-Samuelson demostraron la relación negativa entre tipo de cambio real y nivel de desarrollo económico; <strong>ii)</strong> el propio modelo TNT muestra que la productividad más alta en el sector NT de los desarrollados aprecia su TC (vía salario).
-<br><br>
-No obstante, la política cambiaria no hace magia: ningún nivel de tipo de cambio hará que Argentina sea competitiva en todos los rubros, tampoco sería deseable. Pero se debe entender que este atraso autogenerado impacta hasta en los sectores más productivos. En el límite, ninguna ventaja comparativa salva por sí sola a un sector, y sino revísese la situación actual del agro. A su vez, la apreciación impide la diversificación de las exportaciones: si usted cree que dadas las capacidades de nuestro suelo, la canasta exportadora debe ser primaria en su totalidad, revise que ocurre con nuestra macroeconomía en los años de sequía.
-<br><br>
-Si aún no están dadas las condiciones para reducir el numerador (escenario ideal), el TC debería reflejarlo. Ergo, el problema está en el denominador. De hecho, los recortes en educación y en obra pública, sumados al escenario de guerra de aranceles y al fortalecimiento del dólar, elevan el TC de equilibrio. Esta nota no aboga por "salarios africanos" pero tampoco por un tipo de cambio atrasado artificialmente vía controles cambiarios, blend e intervención; una estrategia tan efectiva para reducir la inflación como para generar desempleo y estallar una vez que no puede ser más financiada. <strong>El tipo de cambio debe ser determinado por el mercado y debe reflejar, de manera inversa y genuina, la competitividad de la economía argentina.</strong>
-"""
-    },
-    {
         "id": "nota-04",
         "titulo": "Nueva meta fiscal con el Fondo - 2024",
         "fecha": "2024-02-05",
