@@ -12,6 +12,9 @@ st.set_page_config(
 # CSS - LIGHT THEME + Merriweather/Lato
 # ============================================================
 
+# ============================================================
+# CSS - LIGHT THEME + Merriweather/Lato
+# ============================================================
 st.markdown(
     """
     <style>
@@ -40,9 +43,9 @@ st.markdown(
       }
 
       /* Tipografía global */
-      html, body {
-        font-family: 'Lato', sans-serif;
-        color: #1a1a1a;
+      html, body, [class*="css"], p, span, div {
+        font-family: 'Lato', sans-serif !important;
+        color: #1a1a1a !important;
       }
       
       h1, h2, h3, h4 {
@@ -50,6 +53,7 @@ st.markdown(
         color: #1a1a1a !important;
       }
 
+      /* Header simple */
       .home-header {
         margin-bottom: 3rem;
         padding: 0 1rem;
@@ -88,6 +92,7 @@ st.markdown(
         color: #2d3748;
       }
 
+      /* Botón de volver */
       .stButton > button {
         background: #10b981 !important;
         border: none !important;
@@ -107,19 +112,31 @@ st.markdown(
         box-shadow: 0 4px 8px rgba(16, 185, 129, 0.35) !important;
       }
 
+      /* Contenedor ancho */
       .block-container { max-width: 1450px; }
 
+      /* Título principal */
+      .notes-title {
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin: 0 0 2rem 0;
+        color: #1a1a1a;
+        font-family: 'Merriweather', Georgia, serif;
+        text-align: center;
+      }
+
+      /* Sidebar de notas */
       .notes-sidebar {
         position: sticky;
         top: 20px;
         padding: 1.5rem;
         border-radius: 12px;
-        background: #ffffff !important;
+        background: #ffffff;
         border: 1px solid #e2e8f0;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
 
-      .notes-sidebar h4 {
+      .notes-sidebar h4{
         margin: 0 0 1rem 0;
         font-size: 0.75rem;
         letter-spacing: 0.1em;
@@ -129,30 +146,29 @@ st.markdown(
         font-family: 'Lato', sans-serif;
       }
 
-      .notes-item {
-        display: block;
+      .notes-item{
+        display:block;
         padding: 1rem;
         border-radius: 8px;
         text-decoration: none !important;
-        background: #ffffff !important;
-        border: 1px solid #e2e8f0;
         color: #1a1a1a !important;
         font-weight: 500;
+        border: 1px solid #e2e8f0;
+        background: white;
         margin-bottom: 0.75rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
         transition: all .2s ease;
         font-family: 'Lato', sans-serif;
       }
 
-      .notes-item:hover {
+      .notes-item:hover{
         border-color: #10b981;
-        background: #ffffff !important;
+        background: #f7fafc;
         transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.10);
+        box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
       }
 
-      .notes-item .date {
-        display: block;
+      .notes-item .date{
+        display:block;
         margin-top: 0.5rem;
         font-size: 0.75rem;
         font-weight: 400;
@@ -161,7 +177,7 @@ st.markdown(
 
       .note-anchor { scroll-margin-top: 100px; }
 
-      .note-h2 {
+      .note-h2{
         margin: 0 0 0.5rem 0;
         font-size: 1.5rem;
         font-weight: 700;
@@ -169,7 +185,7 @@ st.markdown(
         font-family: 'Merriweather', Georgia, serif;
       }
 
-      .note-meta {
+      .note-meta{
         margin: 0 0 1rem 0;
         font-size: 0.75rem;
         color: #718096;
@@ -178,7 +194,7 @@ st.markdown(
         font-family: 'Lato', sans-serif;
       }
 
-      .note-text {
+      .note-text{
         margin: 0 0 1.5rem 0;
         font-size: 1rem;
         line-height: 1.7;
@@ -187,15 +203,42 @@ st.markdown(
         text-align: justify;
       }
 
+
+    .note-image {
+      margin: 2rem 0;
+      text-align: center;    ← esto NO centra imágenes cuando usás Streamlit
+    }
+
+      .note-image img {
+        max-width: 50%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
       hr {
         border: none;
         border-top: 1px solid #e2e8f0;
         margin: 2rem 0;
       }
+
+      @media (max-width: 768px) {
+        .home-name {
+          font-size: 2rem;
+        }
+        .home-links {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .notes-title {
+          font-size: 2rem;
+        }
+      }
     </style>
     """,
     unsafe_allow_html=True,
 )
+
 
 # ============================================================
 # Header
