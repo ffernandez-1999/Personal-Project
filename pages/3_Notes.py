@@ -287,7 +287,6 @@ En 2026, sin embargo, la recaudación muestra señales de debilitamiento. Los in
 <div style="font-weight:600; font-size:15px; margin-bottom:6px;">
 Recaudación Nacional (en B de $ de feb-25, promedio móvil 3 meses)
 </div>
-st.markdown('<div style="height:1px;background:#cbd5e1;margin-bottom:14px;"></div>', unsafe_allow_html=True)
 st.image("data/reca.png", use_container_width=True)
 <br><br>
 <strong>Margen fiscal y outlook</strong>
