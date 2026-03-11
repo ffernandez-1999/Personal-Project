@@ -107,6 +107,12 @@ div[data-testid="stButton"] > button::before {
 div[data-testid="stButton"] > button:hover {
     transform: translateY(-6px) !important;
     box-shadow: 0 18px 35px rgba(16,185,129,0.2) !important;
+
+    /* ===== FIX MODO OSCURO ===== */
+
+.home-name { color: #1a1a1a !important; }
+.home-role { color: #4a5568 !important; }
+.home-links a { color: #6b7280 !important; }
 }
 </style>
 """, unsafe_allow_html=True)
