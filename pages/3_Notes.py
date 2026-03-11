@@ -225,7 +225,7 @@ NOTAS = [
 
 {
 "id": "nota-00",
-"titulo": "Política Fiscal 2026",
+"titulo": "El Ancla Fiscal en 2026",
 "fecha": "2026-03-04",
 "texto": """
 <strong>El ancla fiscal</strong><br><br>
