@@ -88,6 +88,7 @@ div[data-testid="stButton"] > button {
     text-align: center !important;
     transition: all 0.25s ease !important;
     position: relative !important;
+    color: #1a1a1a !important;
 }
 
 /* Barra verde superior */
