@@ -284,14 +284,6 @@ Durante 2025 la recuperación de la actividad permitió recomponer parcialmente 
 <br><br>
 En 2026, sin embargo, la recaudación muestra señales de debilitamiento. Los ingresos acumulan <strong>siete meses consecutivos de caída interanual</strong> y el primer bimestre registró el nivel real más bajo desde 2009 —similar al de 2024—. El deterioro se concentra en los tributos vinculados al comercio exterior (menores DEX por baja de alícuotas —soja de <strong>33% a 24%</strong> y trigo y maíz de <strong>12,5% a 9%</strong>— y por el adelantamiento de exportaciones en sep-25), mientras que el <strong>Impuesto a los Combustibles</strong> cumple un rol compensador. Tal es así que, por primera vez desde 2017, lo recaudado por Combustibles supera a lo recaudado por DEX.
 <br><br>
-<div style="font-weight:600; font-size:15px; color:#334155;">
-Recaudación Nacional (en B de $ de feb-25, promedio móvil 3 meses)
-</div>
-
-<div style="height:1px; background:#cbd5e1; margin-bottom:14px;"></div>
-
-<img src="./data/reca.png" style="width:100%; margin:10px 0 20px 0;">
-<br><br>
 <strong>Margen fiscal y outlook</strong>
 <br><br>
 Dada la caída de los ingresos tributarios, el resultado fiscal de ene-26 muestra menor robustez al registrado en años anteriores. Si bien el resultado es similar al de ene-25, cuando se elimina el ingreso por la privatización de <strong>Centrales Hidroeléctricas ($ 1 B)</strong>, el superávit pasa a ser <strong>-35% menor</strong> (y <strong>-60% menor al de 2024</strong>). De igual modo, el superávit financiero de <strong>$ 1 B</strong> hubiese sido prácticamente nulo.
