@@ -130,18 +130,20 @@ st.markdown(
 
     .notes-item{
         display:block;
-        padding: 1rem;
-        border-radius: 8px;
-        text-decoration: none !important;
-        color: #1a1a1a !important;
-        font-weight: 500;
+        padding:1rem;
+        border-radius:8px;
+        text-decoration:none !important;
     
         background-color:#ffffff !important;
         border:1px solid #e2e8f0;
     
-        box-shadow:0 1px 2px rgba(0,0,0,0.05);
+        color:#1a1a1a !important;
+        font-weight:500;
     
         margin-bottom:0.75rem;
+    
+        box-shadow:0 2px 6px rgba(0,0,0,0.06);
+    
         transition:all .2s ease;
     
         font-family:'Lato', sans-serif;
@@ -149,9 +151,9 @@ st.markdown(
     
     .notes-item:hover{
         border-color:#10b981;
-        background:#ffffff;
+        background-color:#ffffff !important;
         transform:translateY(-2px);
-        box-shadow:0 4px 10px rgba(0,0,0,0.08);
+        box-shadow:0 6px 14px rgba(0,0,0,0.08);
     }
 
       .notes-item .date{
