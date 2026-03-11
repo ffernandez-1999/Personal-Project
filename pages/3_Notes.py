@@ -470,4 +470,4 @@ with right:
             )
         
         if i < len(NOTAS) - 1:
-            st.markdown("<hr/>", unsafe_allow_html=True)
+            st.markdown('<div style="height:1px;background:#e2e8f0;margin:2rem 0;"></div>', unsafe_allow_html=True)
