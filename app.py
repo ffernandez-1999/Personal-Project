@@ -51,6 +51,7 @@ h1, h2, h3 {
     font-size: 3rem;
     font-weight: 900;
     margin-bottom: 0.4rem;
+    color: #1a1a1a !important;
 }
 
 .home-role {
