@@ -465,9 +465,7 @@ with right:
                   <div class="note-meta">{n['fecha']}</div>
                   <div class="note-text">{n['texto']}</div>
                 </div>
-                """).strip(),
-                unsafe_allow_html=True,
-            )
+                """),
         
         if i < len(NOTAS) - 1:
             st.markdown('<div style="height:1px;background:#e2e8f0;margin:2rem 0;"></div>', unsafe_allow_html=True)
