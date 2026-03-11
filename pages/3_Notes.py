@@ -266,6 +266,32 @@ if st.button("← Volver"):
 NOTAS = [
 
     {
+        "id": "nota-05",
+        "titulo": "El ancla fiscal y la dinámica tributaria",
+        "fecha": "2026-03-08",
+        "texto": """
+<strong>El ancla fiscal</strong>
+<br><br>
+El ordenamiento de las cuentas públicas se consolidó como el principal ancla del programa macroeconómico iniciado a fines de 2023. En un contexto de inflación superior al 200% anual y fuerte deterioro fiscal, el Gobierno implementó un ajuste real del gasto cercano al <strong>-30% respecto de 2023</strong>. El recorte fue generalizado: <strong>Obra Pública cayó cerca de -80% real</strong>, mientras que <strong>Subsidios Económicos y Transferencias a Provincias retrocedieron más de -50%</strong>. La principal excepción fue la <strong>AUH</strong>, con una expansión real cercana al <strong>+70%</strong>.
+<br><br>
+Como resultado, el sector público pasó de registrar un <strong>déficit primario de -3,5% del PIB en 2023</strong> a un <strong>superávit primario cercano a +1,5% del PIB en 2024-2025</strong>. Esta corrección operó como ancla nominal del programa: la inflación mensual descendió desde niveles cercanos al <strong>10% en 2023</strong> a aproximadamente <strong>2,5% promedio mensual en 2025</strong>, mientras que el <strong>riesgo país</strong> cayó desde <strong>2.500 pb hacia la zona de 500 pb</strong>.
+<br><br>
+<strong>Dinámica de la recaudación</strong>
+<br><br>
+En 2024 la recaudación tributaria cayó cerca de <strong>-6% real</strong>, reflejando el impacto inicial del proceso de estabilización sobre el nivel de actividad. Las bajas de <strong>IVA DGI, Ganancias DGI y Seguridad Social</strong> fueron parcialmente compensadas por mayores ingresos asociados a <strong>Derechos de Exportación</strong>, el incremento del <strong>Impuesto PAIS</strong> y recursos extraordinarios vinculados al <strong>blanqueo y la moratoria</strong>.
+<br><br>
+Durante 2025 la recuperación de la actividad permitió recomponer parcialmente los tributos vinculados al mercado interno y habilitó una <strong>reducción de impuestos cercana a 2% del PIB</strong>, incluyendo la eliminación del <strong>Impuesto PAIS</strong>, la reducción de <strong>Derechos de Exportación</strong> y la baja de <strong>aranceles a importaciones</strong>.
+<br><br>
+En 2026, sin embargo, la recaudación muestra señales de debilitamiento. Los ingresos acumulan <strong>siete meses consecutivos de caída interanual</strong> y el primer bimestre registró el nivel real más bajo desde 2009. El deterioro se concentra en los tributos vinculados al comercio exterior, mientras que el <strong>Impuesto a los Combustibles</strong> pasó a cumplir un rol compensador más relevante.
+<br><br>
+<strong>Margen fiscal y outlook</strong>
+<br><br>
+La continuidad del proceso de reducción tributaria dependerá de preservar el equilibrio financiero. El margen disponible se limita al <strong>superávit financiero proyectado para 2026</strong>, estimado en torno a <strong>0,3% del PIB</strong>, lo que implica que nuevas reducciones impositivas requerirán mejoras en la dinámica de ingresos o fuentes adicionales de financiamiento.
+<br><br>
+En este contexto, el frente externo podría aportar cierto alivio. La escalada del conflicto en Oriente Medio —impulsada en parte por la política exterior de la administración Trump hacia Irán— presiona al alza los <strong>precios internacionales del petróleo</strong>, lo que favorece a Argentina como exportador energético: mayores precios implican <strong>mayores bases imponibles para Derechos de Exportación</strong>, compensando parcialmente la reducción de alícuotas mediante mayores volúmenes exportados y sosteniendo la recaudación. A su vez, el avance de la <strong>reforma laboral</strong> podría mejorar gradualmente la formalización del empleo y ampliar la base contributiva, fortaleciendo la recaudación de <strong>Seguridad Social</strong> y contribuyendo a sostener el equilibrio fiscal en un esquema de menor presión tributaria.
+"""
+    },
+
         "id": "nota-01",
         "titulo": "¿Qué pasó en Jul-25?",
         "fecha": "2025-08-05",
