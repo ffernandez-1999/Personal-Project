@@ -272,7 +272,7 @@ NOTAS = [
 "texto": """
 <strong>El ancla fiscal</strong>
 <br><br>
-El ordenamiento de las cuentas públicas se consolidó como el principal ancla del programa macroeconómico iniciado a fines de 2023. No quedó en lo discursivo sino que el Gobierno implementó un inaudito ajuste real del gasto cercano al <strong>-30% respecto de 2023</strong>. El recorte fue generalizado: <strong>Obra Pública cayó cerca de -80% real</strong>, mientras que <strong>Subsidios Económicos y Transferencias a Provincias retrocedieron más de -50%</strong>. La única excepción fue la <strong>AUH</strong>, con una expansión real cercana al <strong>+70%</strong>.
+El ordenamiento de las cuentas públicas se consolidó como el principal ancla del programa macroeconómico. No quedó en lo discursivo sino que el Gobierno implementó un inaudito ajuste real del gasto cercano al <strong>-30% respecto de 2023</strong>. El recorte fue generalizado: <strong>Obra Pública cayó cerca de -80% real</strong>, mientras que <strong>Subsidios Económicos y Transferencias a Provincias retrocedieron más de -50%</strong>. La única excepción fue la <strong>AUH</strong>, con una expansión real cercana al <strong>+70%</strong>.
 <br><br>
 Como resultado, el sector público pasó de registrar un <strong>déficit primario de -3,5% del PIB en 2023</strong> a un <strong>superávit primario cercano a +1,5% del PIB en 2024-2025</strong>. Esta corrección permitió reducir la inflación mensual desde niveles superiores al <strong>10% en el segundo semestre de 2023</strong> a aproximadamente <strong>2,5% promedio mensual en 2025</strong>, mientras que el <strong>riesgo país</strong> cayó desde <strong>2.500 pb hacia la zona de 500 pb</strong>.
 <br><br>
