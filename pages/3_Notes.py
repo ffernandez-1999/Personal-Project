@@ -278,7 +278,7 @@ Como resultado, el sector público pasó de registrar un <strong>déficit primar
 <br><br>
 <strong>Dinámica de la recaudación</strong>
 <br><br>
-En 2024 la recaudación tributaria cayó cerca de <strong>-6% real</strong>, reflejando el impacto inicial del proceso de estabilización sobre el nivel de actividad. Las bajas de <strong>IVA DGI, Ganancias DGI y Seguridad Social</strong> fueron parcialmente compensadas por mayores ingresos asociados a <strong>Derechos de Exportación</strong> (base de comparación de sequía), el incremento de la alícuota del <strong>Impuesto PAIS de 7,5% a 17,5%</strong> y recursos extraordinarios vinculados al <strong>blanqueo, bienes personales y la moratoria</strong>.
+En 2024 la recaudación tributaria cayó cerca de <strong>-6% real</strong>, reflejando el impacto inicial del proceso de estabilización sobre el nivel de actividad. Las bajas de <strong>IVA DGI, Ganancias DGI y Seguridad Social</strong> fueron parcialmente compensadas por mayores ingresos asociados a <strong>Derechos de Exportación</strong> (+30%; base de comparación de sequía), el incremento de la alícuota del <strong>Impuesto PAIS de 7,5% a 17,5%</strong> y recursos extraordinarios vinculados al <strong>blanqueo, bienes personales y la moratoria</strong>.
 <br><br>
 Durante 2025 la recuperación de la actividad permitió recomponer parcialmente los tributos vinculados al mercado interno y habilitó una <strong>reducción de impuestos cercana a 2% del PIB</strong>, incluyendo la eliminación del <strong>Impuesto PAIS</strong>, la reducción de <strong>Derechos de Exportación</strong> y la baja de <strong>aranceles a importaciones</strong>.
 <br><br>
