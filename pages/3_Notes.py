@@ -265,16 +265,16 @@ if st.button("← Volver"):
 
 NOTAS = [
 
-    {
-        "id": "nota-05",
-        "titulo": "El ancla fiscal en 2026",
-        "fecha": "2026-03-08",
-        "texto": """
+{
+"id": "nota-05",
+"titulo": "El ancla fiscal en 2026",
+"fecha": "2026-03-08",
+"texto": """
 <strong>El ancla fiscal</strong>
 <br><br>
 El ordenamiento de las cuentas públicas se consolidó como el principal ancla del programa macroeconómico iniciado a fines de 2023. En un contexto de inflación superior al 200% anual y financiamiento monetario al Tesoro, el Gobierno implementó un inaudito ajuste real del gasto cercano al <strong>-30% respecto de 2023</strong>. El recorte fue generalizado: <strong>Obra Pública cayó cerca de -80% real</strong>, mientras que <strong>Subsidios Económicos y Transferencias a Provincias retrocedieron más de -50%</strong>. La única excepción fue la <strong>AUH</strong>, con una expansión real cercana al <strong>+70%</strong>.
 <br><br>
-Como resultado, el sector público pasó de registrar un <strong>déficit primario de -3,5% del PIB en 2023</strong> a un <strong>superávit primario cercano a +1,5% del PIB en 2024-2025</strong>. Esta correción permitió reducir la inflación mensual desde niveles superiores al <strong>10% en segundo semestre 2023</strong> a  <strong>2,5% promedio mensual en 2025</strong>, mientras que el <strong>riesgo país</strong> cayó desde <strong>2.500 pb hacia la zona de 500 pb</strong>.
+Como resultado, el sector público pasó de registrar un <strong>déficit primario de -3,5% del PIB en 2023</strong> a un <strong>superávit primario cercano a +1,5% del PIB en 2024-2025</strong>. Esta corrección permitió reducir la inflación mensual desde niveles superiores al <strong>10% en el segundo semestre de 2023</strong> a aproximadamente <strong>2,5% promedio mensual en 2025</strong>, mientras que el <strong>riesgo país</strong> cayó desde <strong>2.500 pb hacia la zona de 500 pb</strong>.
 <br><br>
 <strong>Dinámica de la recaudación</strong>
 <br><br>
@@ -282,15 +282,19 @@ En 2024 la recaudación tributaria cayó cerca de <strong>-6% real</strong>, ref
 <br><br>
 Durante 2025 la recuperación de la actividad permitió recomponer parcialmente los tributos vinculados al mercado interno y habilitó una <strong>reducción de impuestos cercana a 2% del PIB</strong>, incluyendo la eliminación del <strong>Impuesto PAIS</strong>, la reducción de <strong>Derechos de Exportación</strong> y la baja de <strong>aranceles a importaciones</strong>.
 <br><br>
-En 2026, sin embargo, la recaudación muestra señales de debilitamiento. Los ingresos acumulan <strong>siete meses consecutivos de caída interanual</strong> y el primer bimestre registró el nivel real más bajo desde 2009 -similar al  de 2024-. El deterioro se concentra en los tributos vinculados al comercio exterior (menores DEX por baja de alícuotas -soja de 33% a 24% y trigo y maíz de 12,5 a 9%- y por el adelantamiento de exportaciones en sep-25), mientras que el <strong>Impuesto a los Combustibles</strong> cumple el rol compensador. Tal es así que por primera vez desde 2017 lo recuadado por Combustibles supera a lo recaudado por DEX.
+En 2026, sin embargo, la recaudación muestra señales de debilitamiento. Los ingresos acumulan <strong>siete meses consecutivos de caída interanual</strong> y el primer bimestre registró el nivel real más bajo desde 2009 —similar al de 2024—. El deterioro se concentra en los tributos vinculados al comercio exterior (menores DEX por baja de alícuotas —soja de <strong>33% a 24%</strong> y trigo y maíz de <strong>12,5% a 9%</strong>— y por el adelantamiento de exportaciones en sep-25), mientras que el <strong>Impuesto a los Combustibles</strong> cumple un rol compensador. Tal es así que, por primera vez desde 2017, lo recaudado por Combustibles supera a lo recaudado por DEX.
 <br><br>
 <strong>Margen fiscal y outlook</strong>
 <br><br>
-¿Se puede seguir bajando impuestos? Si el objetivo es respetar el equilibrio financiero (esto es, un superávit primario tal alto como para financiar los intereses de la deuda pública) el margen con el que se cuenta es simplemente el superávit financiero proyectado para 2026: 0,3% del PBI ($ 3 B). Es decir, el margen es tan bajo que no alcanza a financiar ni 2 meses del Impuesto al Cheque. Por ende, la baja de impuestos depende de nuevas fuentes de financiamiento.
+Dada la caída de los ingresos tributarios, el resultado fiscal de ene-26 muestra menor robustez al registrado en años anteriores. Si bien el resultado es similar al de ene-25, cuando se elimina el ingreso por la privatización de <strong>Centrales Hidroeléctricas ($ 1 B)</strong>, el superávit pasa a ser <strong>-35% menor</strong> (y <strong>-60% menor al de 2024</strong>). De igual modo, el superávit financiero de <strong>$ 1 B</strong> hubiese sido prácticamente nulo.
 <br><br>
-En este contexto, el frente externo podría aportar cierto alivio. La escalada del conflicto en Oriente Medio presiona al alza los <strong>precios internacionales de las commodities</strong>: mayores precios implican <strong>mayores bases imponibles para Derechos de Exportación</strong>. A su vez, el avance de la <strong>reforma laboral</strong> podría mejorar gradualmente la formalización del empleo y ampliar la base contributiva, fortaleciendo la recaudación de <strong>Seguridad Social</strong> y contribuyendo a sostener el equilibrio fiscal en un esquema de menor presión tributaria.
+¿Se puede seguir bajando impuestos? Si el objetivo es respetar el equilibrio financiero (esto es, un superávit primario lo suficientemente elevado como para financiar los intereses de la deuda pública), el margen disponible es simplemente el superávit financiero proyectado para 2026: alrededor de <strong>0,3% del PIB ($ 3 B)</strong>. Es decir, el margen es tan bajo que no alcanza a financiar ni dos meses de recaudación del <strong>Impuesto al Cheque</strong>. En este contexto, la baja de impuestos depende necesariamente de nuevas fuentes de financiamiento.
+<br><br>
+Las partidas que podrían ser recortadas son las no indexadas por IPC, por lo que se descartan Jubilaciones y Pensiones, la AUH y otras prestaciones sociales. También se descarta un nuevo recorte en Transferencias a Universidades, dado que su costo político no justifica su costo fiscal. En consecuencia, las partidas potencialmente ajustables se concentran en Obra Pública, Transferencias a Provincias, Subsidios Económicos y Gastos de Funcionamiento (masa salarial pública y déficit operativo de empresas). El problema es que estas ya han sido fuertemente recortadas: la suma de las mismas pasó de representar 8% del PIB en 2023 a aproximadamente 4% del PIB en la actualidad. De hecho, Obra Pública, Subsidios y Transferencias a Provincias se encuentran en mínimos históricos, lo que limita el margen de ajuste adicional. Por ende, el único espacio potencial aparece en Gastos de Funcionamiento, donde podría existir cierto margen para reducir la partida desde aproximadamente 2,5% del PIB hacia niveles cercanos a 2% del PIB, aunque incluso ese ajuste tendría un impacto fiscal acotado.
+<br><br>
+En este contexto, el frente externo podría aportar cierto alivio. La escalada del conflicto en Oriente Medio presiona al alza los <strong>precios internacionales de las commodities</strong>: mayores precios implican <strong>mayores bases imponibles para Derechos de Exportación</strong>. A su vez, el avance de la <strong>reforma laboral</strong> podría mejorar gradualmente la formalización del empleo y ampliar la base contributiva, fortaleciendo la recaudación de <strong>Seguridad Social</strong>. Finalmente, el programa de <strong>privatizaciones</strong> también podría aportar recursos extraordinarios. Como referencia, la eventual privatización de <strong>AySA</strong> podría generar ingresos cercanos a <strong>$ 0,7 B</strong>, contribuyendo a ampliar el margen fiscal en el corto plazo.
 """
-    },
+},
     {
 
         "id": "nota-01",
