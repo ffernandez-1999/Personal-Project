@@ -8,12 +8,9 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# ============================================================
-# CSS - LIGHT THEME + Merriweather/Lato
-# ============================================================
 
 # ============================================================
-# CSS - LIGHT THEME + Merriweather/Lato
+# CSS - LIGHT THEME + Merriweather/Latof
 # ============================================================
 st.markdown(
     """
@@ -131,7 +128,7 @@ st.markdown(
             top: 20px;
             padding: 1.5rem;
             border-radius: 12px;
-            background: #2d3748 !important;  /* ← ANTES era #ffffff */
+            background: #e2e8f0  !important;  /* ← ANTES era #ffffff */
             border: 1px solid #e2e8f0;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
           }
