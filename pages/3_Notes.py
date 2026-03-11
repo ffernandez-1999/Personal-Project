@@ -264,12 +264,11 @@ if st.button("← Volver"):
 # ============================================================
 
 NOTAS = [
-
 {
-"id": "nota-05",
-"titulo": "El ancla fiscal en 2026",
-"fecha": "2026-03-08",
-"texto": """
+    "id": "nota-05",
+    "titulo": "El ancla fiscal en 2026",
+    "fecha": "2026-03-08",
+    "texto_parte1": """
 <strong>El ancla fiscal</strong>
 <br><br>
 El ordenamiento de las cuentas públicas se consolidó como el principal ancla del programa macroeconómico. No quedó en lo discursivo sino que el Gobierno implementó un inaudito ajuste real del gasto cercano al <strong>-30% respecto de 2023</strong>. El recorte fue generalizado: <strong>Obra Pública cayó cerca de -80% real</strong>, mientras que <strong>Subsidios Económicos y Transferencias a Provincias retrocedieron más de -50%</strong>. La única excepción fue la <strong>AUH</strong>, con una expansión real cercana al <strong>+70%</strong>.
@@ -283,7 +282,10 @@ En 2024 la recaudación tributaria cayó cerca de <strong>-6% real</strong>, ref
 Durante 2025 la recuperación de la actividad permitió recomponer parcialmente los tributos vinculados al mercado interno y habilitó una <strong>reducción de impuestos cercana a 2% del PIB</strong>, incluyendo la eliminación del <strong>Impuesto PAIS</strong>, la reducción de <strong>Derechos de Exportación</strong> y la baja de <strong>aranceles a importaciones</strong>.
 <br><br>
 En 2026, sin embargo, la recaudación muestra señales de debilitamiento. Los ingresos acumulan <strong>siete meses consecutivos de caída interanual</strong> y el primer bimestre registró el nivel real más bajo desde 2009 —similar al de 2024—. El deterioro se concentra en los tributos vinculados al comercio exterior (menores DEX por baja de alícuotas —soja de <strong>33% a 24%</strong> y trigo y maíz de <strong>12,5% a 9%</strong>— y por el adelantamiento de exportaciones en sep-25), mientras que el <strong>Impuesto a los Combustibles</strong> cumple un rol compensador. Tal es así que, por primera vez desde 2017, lo recaudado por Combustibles supera a lo recaudado por DEX.
-<br><br>
+""",
+    "imagen1": "data/5.jpg",
+    "imagen1_titulo": "Recaudación Nacional (B de $ de feb-26; promedio móvil 3 meses)",
+    "texto_parte2": """
 <strong>Margen fiscal y outlook</strong>
 <br><br>
 Dada la caída de los ingresos tributarios, el resultado fiscal de ene-26 muestra menor robustez al registrado en años anteriores. Si bien el resultado es similar al de ene-25, cuando se elimina el ingreso por la privatización de <strong>Centrales Hidroeléctricas ($ 1 B)</strong>, el superávit pasa a ser <strong>-35% menor</strong> (y <strong>-60% menor al de 2024</strong>). De igual modo, el superávit financiero de <strong>$ 1 B</strong> hubiese sido prácticamente nulo.
@@ -293,8 +295,8 @@ Dada la caída de los ingresos tributarios, el resultado fiscal de ene-26 muestr
 Las partidas que podrían ser recortadas son las no indexadas por IPC, por lo que se descartan Jubilaciones y Pensiones, la AUH y otras prestaciones sociales. También se descarta un nuevo recorte en Transferencias a Universidades, dado que su costo político no justifica su costo fiscal. En consecuencia, las partidas potencialmente ajustables se concentran en Obra Pública, Transferencias a Provincias, Subsidios Económicos y Gastos de Funcionamiento (masa salarial pública y déficit operativo de empresas). El problema es que estas ya han sido fuertemente recortadas: la suma de las mismas pasó de representar 8% del PIB en 2023 a aproximadamente 4% del PIB en la actualidad. De hecho, Obra Pública, Subsidios y Transferencias a Provincias se encuentran en mínimos históricos, lo que limita el margen de ajuste adicional. Por ende, el único espacio potencial aparece en Gastos de Funcionamiento, donde podría existir cierto margen para reducir la partida desde aproximadamente 2,5% del PIB hacia niveles cercanos a 2% del PIB, aunque incluso ese ajuste tendría un impacto fiscal acotado.
 <br><br>
 En este contexto, el frente externo podría aportar cierto alivio. La escalada del conflicto en Oriente Medio presiona al alza los <strong>precios internacionales de las commodities</strong>: mayores precios implican <strong>mayores bases imponibles para Derechos de Exportación</strong>. A su vez, el avance de la <strong>reforma laboral</strong> podría mejorar gradualmente la formalización del empleo y ampliar la base contributiva, fortaleciendo la recaudación de <strong>Seguridad Social</strong>. Finalmente, el programa de <strong>privatizaciones</strong> también podría aportar recursos extraordinarios. Como referencia, la eventual privatización de <strong>AySA</strong> podría generar ingresos cercanos a <strong>$ 0,7 B</strong>, contribuyendo a ampliar el margen fiscal en el corto plazo.
-"""
-},
+""",
+    },
     {
 
         "id": "nota-01",
@@ -501,6 +503,35 @@ with right:
             st.markdown('<div class="note-image">', unsafe_allow_html=True)
             st.image(n["imagen1"], output_format="PNG")
             st.markdown('</div>', unsafe_allow_html=True)
+
+        elif n["id"] == "nota-05":
+            st.markdown(
+                f"""
+                <div id="{n['id']}" class="note-anchor">
+                  <div class="note-h2">{n['titulo']}</div>
+                  <div class="note-meta">{n['fecha']}</div>
+                  <div class="note-text">{n['texto_parte1']}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+            st.markdown(
+                f'<div style="text-align:center;font-size:0.85rem;font-weight:600;'
+                f'text-decoration:underline;color:#4a5568;margin-bottom:0.5rem;">'
+                f'{n["imagen1_titulo"]}</div>',
+                unsafe_allow_html=True,
+            )
+            st.image(n["imagen1"], output_format="PNG")
+            st.markdown(
+                f'<div class="note-text">{n["texto_parte2"]}</div>',
+                unsafe_allow_html=True,
+            )
+            if i < len(NOTAS) - 1:
+                st.markdown(
+                    '<div style="height:1px;background:#e2e8f0;margin:2rem 0;"></div>',
+                    unsafe_allow_html=True,
+                )
+        
         else:
             st.markdown(
                 textwrap.dedent(f"""
@@ -512,10 +543,8 @@ with right:
                 """),
                 unsafe_allow_html=True,
             )
-        
             if i < len(NOTAS) - 1:
                 st.markdown(
                     '<div style="height:1px;background:#e2e8f0;margin:2rem 0;"></div>',
-                    unsafe_allow_html=True
+                    unsafe_allow_html=True,
                 )
-                
