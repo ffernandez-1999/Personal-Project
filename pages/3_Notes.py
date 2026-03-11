@@ -39,9 +39,9 @@ st.markdown(
       }
 
       /* Tipografía global */
-    html, body, [class*="css"], p, span, div {
-      font-family: 'Lato', sans-serif !important;
-      color: #1a1a1a !important;
+    html, body {
+      font-family: 'Lato', sans-serif;
+      color: #1a1a1a;
     }
       
       h1, h2, h3, h4 {
@@ -108,15 +108,20 @@ st.markdown(
 
       .block-container { max-width: 1450px; }
 
-      .notes-sidebar {
-        position: sticky;
-        top: 20px;
-        padding: 1.5rem;
-        border-radius: 12px;
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
+    .notes-sidebar {
+      position: sticky;
+      top: 20px;
+      padding: 1.5rem;
+      border-radius: 12px;
+      background:#ffffff !important;
+      border:1px solid #e2e8f0;
+      box-shadow:0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    /* fuerza fondo blanco dentro del sidebar */
+    .notes-sidebar *{
+      background:transparent;
+    }
 
       .notes-sidebar h4{
         margin: 0 0 1rem 0;
