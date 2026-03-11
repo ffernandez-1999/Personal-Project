@@ -515,7 +515,16 @@ fig.update_layout(
 
 fig.update_yaxes(title="ARS/USD", title_font=dict(size=12))
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(
+    fig,
+    use_container_width=True,
+    config={
+        "scrollZoom": False,
+        "doubleClick": False,
+        "displayModeBar": False,
+        "staticPlot": True
+    }
+)
 
 # ============================================================
 # METODOLOGÍA
