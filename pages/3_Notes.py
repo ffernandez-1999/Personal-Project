@@ -39,10 +39,10 @@ st.markdown(
       }
 
       /* Tipografía global */
-      html, body, [class*="css"], p, span, div {
-        font-family: 'Lato', sans-serif !important;
-        color: #1a1a1a !important;
-      }
+    html, body, p, span {
+      font-family: 'Lato', sans-serif !important;
+      color: #1a1a1a !important;
+    }
       
       h1, h2, h3, h4 {
         font-family: 'Merriweather', Georgia, serif !important;
