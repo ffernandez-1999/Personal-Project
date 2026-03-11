@@ -235,34 +235,6 @@ if st.button("← Volver"):
 
 NOTAS = [
 
-{
-"id": "nota-00",
-"titulo": "El Ancla Fiscal en 2026",
-"fecha": "2026-03-04",
-"texto": """
-<strong>El ancla fiscal</strong><br><br>
-
-El ordenamiento de las cuentas públicas se consolidó como el principal ancla del programa macroeconómico iniciado a fines de 2023. En un contexto de inflación superior al 200% anual y deterioro fiscal significativo, el Gobierno implementó un ajuste real del gasto público cercano al <strong>-30% respecto de 2023</strong>. El ajuste fue generalizado: <strong>Obra Pública cayó cerca de -80% real</strong>, mientras que <strong>Transferencias a Provincias y Subsidios Económicos retrocedieron más de -50%</strong>. La única excepción relevante fue la <strong>AUH</strong>, con un incremento real cercano al <strong>+70%</strong>.
-
-Como resultado, el sector público pasó de registrar un <strong>déficit primario de -3,5% del PIB en 2023</strong> a un <strong>superávit primario cercano a +1,5% del PIB en 2024 y 2025</strong>. Esta corrección operó como ancla nominal del programa macroeconómico: la inflación mensual descendió desde niveles cercanos al 10% en 2023 a aproximadamente 2,5% promedio mensual en 2025, mientras que el riesgo país cayó desde 2.500 pb hacia la zona de 500 pb.
-
-<br><br>
-<strong>Dinámica de la recaudación</strong><br><br>
-
-En 2024 la recaudación tributaria cayó cerca de <strong>-6% real</strong>, reflejando el impacto inicial del proceso de estabilización sobre el nivel de actividad. Las caídas de <strong>IVA DGI, Ganancias DGI y Seguridad Social</strong> fueron parcialmente compensadas por el aumento de <strong>Derechos de Exportación</strong>, el incremento del <strong>Impuesto PAIS</strong> y los ingresos extraordinarios asociados al blanqueo y la moratoria.
-
-Durante 2025 la recuperación de la actividad permitió recomponer parcialmente los tributos vinculados al mercado interno y habilitó una <strong>reducción de impuestos cercana a 2% del PIB</strong>. Entre las principales medidas se destacaron la eliminación del Impuesto PAIS, la reducción de Derechos de Exportación y la baja de aranceles a las importaciones.
-
-En 2026 la recaudación muestra señales de debilitamiento. Los ingresos acumulan <strong>siete meses consecutivos de caída interanual</strong> y el primer bimestre registró el nivel real más bajo desde 2009. Los tributos vinculados al comercio exterior explican gran parte del deterioro, mientras que el <strong>Impuesto a los Combustibles</strong> pasó a cumplir un rol compensador relevante.
-
-<br><br>
-<strong>Margen fiscal y outlook</strong><br><br>
-
-La continuidad del proceso de reducción tributaria dependerá de preservar el equilibrio financiero. El margen disponible se limita al <strong>superávit financiero proyectado para 2026</strong>, estimado en torno a <strong>0,3% del PIB</strong>, lo que implica que nuevas reducciones impositivas requieren mejoras en la dinámica de ingresos o fuentes adicionales de financiamiento.
-
-Adicionalmente, el frente externo podría aportar cierto alivio fiscal. Un escenario internacional caracterizado por <strong>precios energéticos más bajos —asociados a la política energética de la administración Trump—</strong>, junto con un <strong>tipo de cambio real sostenido por las compras de reservas del BCRA dentro del esquema de bandas</strong>, podría favorecer una expansión de los volúmenes exportados, compensando parcialmente la reducción de alícuotas mediante mayores bases imponibles y sosteniendo la recaudación por <strong>Derechos de Exportación</strong>. A su vez, el avance de la <strong>reforma laboral</strong> podría mejorar gradualmente la formalización del empleo y ampliar la base contributiva, fortaleciendo la recaudación de Seguridad Social.
-"""
-    },
     {
         "id": "nota-01",
         "titulo": "¿Qué pasó en Jul-25?",
