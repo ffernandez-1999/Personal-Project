@@ -134,7 +134,7 @@ st.markdown(
         border-radius:8px;
         text-decoration:none !important;
     
-        background-color:#ffffff !important;
+        background:#ffffff !important;
         border:1px solid #e2e8f0;
     
         color:#1a1a1a !important;
@@ -142,18 +142,23 @@ st.markdown(
     
         margin-bottom:0.75rem;
     
-        box-shadow:0 2px 6px rgba(0,0,0,0.06);
+        box-shadow:0 1px 3px rgba(0,0,0,0.08);
     
         transition:all .2s ease;
     
         font-family:'Lato', sans-serif;
     }
     
+    /* fuerza blanco al wrapper que Streamlit crea */
+    .notes-sidebar a{
+        background:#ffffff !important;
+    }
+    
     .notes-item:hover{
         border-color:#10b981;
-        background-color:#ffffff !important;
+        background:#ffffff !important;
         transform:translateY(-2px);
-        box-shadow:0 6px 14px rgba(0,0,0,0.08);
+        box-shadow:0 4px 10px rgba(0,0,0,0.10);
     }
 
       .notes-item .date{
