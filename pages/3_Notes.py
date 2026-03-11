@@ -39,9 +39,9 @@ st.markdown(
       }
 
       /* Tipografía global */
-    html, body, p, span {
-      font-family: 'Lato', sans-serif !important;
-      color: #1a1a1a !important;
+    html, body {
+      font-family: 'Lato', sans-serif;
+      color: #1a1a1a;
     }
       
       h1, h2, h3, h4 {
