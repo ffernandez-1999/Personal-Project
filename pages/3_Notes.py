@@ -126,16 +126,20 @@ st.markdown(
       }
 
       /* Sidebar de notas */
-      .notes-sidebar {
-        position: sticky;
-        top: 20px;
-        padding: 1.5rem;
-        border-radius: 12px;
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-
+    .notes-sidebar {
+      position: sticky;
+      top: 20px;
+      padding: 1.5rem;
+      border-radius: 12px;
+      background:#ffffff !important;
+      border:1px solid #e2e8f0;
+      box-shadow:0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    /* fuerza fondo blanco dentro del sidebar */
+    .notes-sidebar *{
+      background:transparent;
+    }
       .notes-sidebar h4{
         margin: 0 0 1rem 0;
         font-size: 0.75rem;
