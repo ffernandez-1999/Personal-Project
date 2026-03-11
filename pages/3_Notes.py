@@ -291,6 +291,7 @@ La continuidad del proceso de reducción tributaria dependerá de preservar el e
 En este contexto, el frente externo podría aportar cierto alivio. La escalada del conflicto en Oriente Medio —impulsada en parte por la política exterior de la administración Trump hacia Irán— presiona al alza los <strong>precios internacionales del petróleo</strong>, lo que favorece a Argentina como exportador energético: mayores precios implican <strong>mayores bases imponibles para Derechos de Exportación</strong>, compensando parcialmente la reducción de alícuotas mediante mayores volúmenes exportados y sosteniendo la recaudación. A su vez, el avance de la <strong>reforma laboral</strong> podría mejorar gradualmente la formalización del empleo y ampliar la base contributiva, fortaleciendo la recaudación de <strong>Seguridad Social</strong> y contribuyendo a sostener el equilibrio fiscal en un esquema de menor presión tributaria.
 """
     },
+    {
 
         "id": "nota-01",
         "titulo": "¿Qué pasó en Jul-25?",
