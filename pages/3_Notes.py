@@ -11,6 +11,7 @@ st.set_page_config(
 # ============================================================
 # CSS - LIGHT THEME + Merriweather/Lato
 # ============================================================
+
 st.markdown(
     """
     <style>
@@ -39,10 +40,10 @@ st.markdown(
       }
 
       /* Tipografía global */
-    html, body {
-      font-family: 'Lato', sans-serif;
-      color: #1a1a1a;
-    }
+      html, body {
+        font-family: 'Lato', sans-serif;
+        color: #1a1a1a;
+      }
       
       h1, h2, h3, h4 {
         font-family: 'Merriweather', Georgia, serif !important;
@@ -108,22 +109,17 @@ st.markdown(
 
       .block-container { max-width: 1450px; }
 
-    .notes-sidebar {
-      position: sticky;
-      top: 20px;
-      padding: 1.5rem;
-      border-radius: 12px;
-      background:#ffffff !important;
-      border:1px solid #e2e8f0;
-      box-shadow:0 1px 3px rgba(0,0,0,0.1);
-    }
-    
-    /* fuerza fondo blanco dentro del sidebar */
-    .notes-sidebar *{
-      background:transparent;
-    }
+      .notes-sidebar {
+        position: sticky;
+        top: 20px;
+        padding: 1.5rem;
+        border-radius: 12px;
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      }
 
-      .notes-sidebar h4{
+      .notes-sidebar h4 {
         margin: 0 0 1rem 0;
         font-size: 0.75rem;
         letter-spacing: 0.1em;
@@ -133,41 +129,30 @@ st.markdown(
         font-family: 'Lato', sans-serif;
       }
 
-    .notes-item{
-        display:block;
-        padding:1rem;
-        border-radius:8px;
-        text-decoration:none !important;
-    
-        background:#ffffff !important;
-        border:1px solid #e2e8f0;
-    
-        color:#1a1a1a !important;
-        font-weight:500;
-    
-        margin-bottom:0.75rem;
-    
-        box-shadow:0 1px 3px rgba(0,0,0,0.08);
-    
-        transition:all .2s ease;
-    
-        font-family:'Lato', sans-serif;
-    }
-    
-    /* fuerza blanco al wrapper que Streamlit crea */
-    .notes-sidebar a{
-        background:#ffffff !important;
-    }
-    
-    .notes-item:hover{
-        border-color:#10b981;
-        background:#ffffff !important;
-        transform:translateY(-2px);
-        box-shadow:0 4px 10px rgba(0,0,0,0.10);
-    }
+      .notes-item {
+        display: block;
+        padding: 1rem;
+        border-radius: 8px;
+        text-decoration: none !important;
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0;
+        color: #1a1a1a !important;
+        font-weight: 500;
+        margin-bottom: 0.75rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        transition: all .2s ease;
+        font-family: 'Lato', sans-serif;
+      }
 
-      .notes-item .date{
-        display:block;
+      .notes-item:hover {
+        border-color: #10b981;
+        background: #ffffff !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.10);
+      }
+
+      .notes-item .date {
+        display: block;
         margin-top: 0.5rem;
         font-size: 0.75rem;
         font-weight: 400;
@@ -176,7 +161,7 @@ st.markdown(
 
       .note-anchor { scroll-margin-top: 100px; }
 
-      .note-h2{
+      .note-h2 {
         margin: 0 0 0.5rem 0;
         font-size: 1.5rem;
         font-weight: 700;
@@ -184,7 +169,7 @@ st.markdown(
         font-family: 'Merriweather', Georgia, serif;
       }
 
-      .note-meta{
+      .note-meta {
         margin: 0 0 1rem 0;
         font-size: 0.75rem;
         color: #718096;
@@ -193,7 +178,7 @@ st.markdown(
         font-family: 'Lato', sans-serif;
       }
 
-      .note-text{
+      .note-text {
         margin: 0 0 1.5rem 0;
         font-size: 1rem;
         line-height: 1.7;
