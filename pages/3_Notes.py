@@ -265,6 +265,14 @@ if st.button("← Volver"):
 
 NOTAS = [
 {
+    "id": "nota-06",
+    "titulo": "EMAE en máximos y recaudación en mínimos",
+    "fecha": "2026-03-28",
+    "tipo": "externo",
+    "url": "https://eleconomista.com.ar/economia/la-economia-maximos-recaudacion-minimos-n93676",
+    "imagen": "data/link_elecon.png",
+},
+{
     "id": "nota-05",
     "titulo": "El ancla fiscal en 2026",
     "fecha": "2026-03-08",
@@ -524,6 +532,31 @@ with right:
             st.image(n["imagen1"], output_format="PNG")
             st.markdown(
                 f'<div class="note-text">{n["texto_parte2"]}</div>',
+                unsafe_allow_html=True,
+            )
+            if i < len(NOTAS) - 1:
+                st.markdown(
+                    '<div style="height:1px;background:#e2e8f0;margin:2rem 0;"></div>',
+                    unsafe_allow_html=True,
+                )
+
+        elif n["id"] == "nota-06":
+            st.markdown(
+                f"""
+                <div id="{n['id']}" class="note-anchor">
+                  <div class="note-h2">{n['titulo']}</div>
+                  <div class="note-meta">{n['fecha']}</div>
+                  <a href="{n['url']}" target="_blank" style="text-decoration:none;display:block;max-width:480px;">
+                    <div style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;cursor:pointer;transition:box-shadow .2s;">
+                      <img src="{n['imagen']}" style="width:100%;display:block;" />
+                      <div style="padding:0.75rem 1rem;border-top:1px solid #f0f0f0;background:white;">
+                        <div style="font-size:0.75rem;color:#a0aec0;margin-bottom:4px;">eleconomista.com.ar · 28 mar 2026 ↗</div>
+                        <div style="font-size:0.95rem;font-weight:600;color:#1a1a1a;line-height:1.4;">La economía en máximos y la recaudación en mínimos</div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                """,
                 unsafe_allow_html=True,
             )
             if i < len(NOTAS) - 1:
