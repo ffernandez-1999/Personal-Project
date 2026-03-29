@@ -542,7 +542,9 @@ with right:
                 )
 
         elif n["id"] == "nota-06":
-                    # 1. Títulos y Metadatos en HTML
+                    import os
+                    
+                    # 1. Títulos
                     st.markdown(f"""
                         <div id="{n['id']}" class="note-anchor">
                           <div class="note-h2">{n['titulo']}</div>
@@ -550,13 +552,20 @@ with right:
                         </div>
                         """, unsafe_allow_html=True)
                     
-                    # 2. La imagen usando la función nativa de Streamlit (esto no falla)
-                    # Como estás en pages/3_Notes.py, subimos un nivel a la raíz y entramos a data/
-                    st.image("data/link_elecon.png", use_container_width=True)
+                    # 2. Buscamos la ruta real del archivo
+                    # Esto busca la carpeta 'data' en la raíz, subiendo un nivel desde 'pages'
+                    root_path = os.path.dirname(os.path.dirname(__file__))
+                    img_path = os.path.join(root_path, "data", "link_elecon.png")
         
-                    # 3. El link a la nota como un botón o texto destacado
+                    # 3. Mostramos la imagen (con un try/except por si el nombre del archivo está mal)
+                    try:
+                        st.image(img_path, use_container_width=True)
+                    except:
+                        st.warning("No se pudo cargar la imagen. Verificá que el archivo se llame link_elecon.png en la carpeta data.")
+        
+                    # 4. Link a la nota
                     st.markdown(f"""
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 1rem; border-radius: 8px; margin-top: -10px;">
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 1rem; border-radius: 8px; margin-top: 10px;">
                             <div style="font-size: 0.75rem; color: #a0aec0; margin-bottom: 4px;">FUENTE: ELECONOMISTA.COM.AR</div>
                             <a href="{n['url']}" target="_blank" style="color: #2b6cb0; font-weight: 600; text-decoration: none; font-size: 1.1rem;">
                                 Leer nota completa en el portal ↗
