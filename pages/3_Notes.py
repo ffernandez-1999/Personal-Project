@@ -540,51 +540,45 @@ with right:
                     '<div style="height:1px;background:#e2e8f0;margin:2rem 0;"></div>',
                     unsafe_allow_html=True,
                 )
-
+        
         elif n["id"] == "nota-06":
-                    import base64
-        
-                    # Función interna para convertir la imagen local a un formato que el HTML entienda
-                    def get_base64(bin_file):
-                        with open(bin_file, 'rb') as f:
-                            data = f.read()
-                        return base64.b64encode(data).decode()
-        
-                    # Títulos principales
+                    import os
+                    
+                    # 1. Títulos y Ancla
                     st.markdown(f"""
                         <div id="{n['id']}" class="note-anchor">
                           <div class="note-h2">{n['titulo']}</div>
                           <div class="note-meta">{n['fecha']}</div>
                         </div>
                         """, unsafe_allow_html=True)
-        
-                    # Buscamos la ruta y la convertimos
+                    
+                    # 2. Definición de la ruta de la imagen (Subiendo un nivel desde 'pages' a la raíz)
                     root_path = os.path.dirname(os.path.dirname(__file__))
                     img_path = os.path.join(root_path, "data", "Link_elecon.png")
-                    
+        
+                    # 3. Renderizado de Imagen y Caja de Enlace
                     try:
-                        img_base64 = get_base64(img_path)
+                        # Mostramos la imagen con el estilo de tus otras notas
+                        st.markdown('<div class="note-image">', unsafe_allow_html=True)
+                        st.image(img_path, use_container_width=True)
+                        st.markdown('</div>', unsafe_allow_html=True)
                         
-                        # HTML Unificado: Todo es clickeable
-                        html_final = f"""
-                        <a href="{n['url']}" target="_blank" style="text-decoration: none; color: inherit;">
-                            <div style="border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: white; transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-                                <div style="padding: 10px 15px; background: #f8fafc; border-bottom: 1px solid #f0f0f0; font-size: 0.75rem; color: #a0aec0; font-weight: 700; text-transform: uppercase;">
-                                    FUENTE: ELECONOMISTA.COM.AR ↗
-                                </div>
-                                <img src="data:image/png;base64,{img_base64}" style="width: 100%; display: block;">
-                                <div style="padding: 1.25rem;">
-                                    <div style="color: #2b6cb0; font-weight: 600; font-size: 1.1rem; line-height: 1.4;">
+                        # Caja de enlace clickeable justo debajo
+                        st.markdown(f"""
+                            <a href="{n['url']}" target="_blank" style="text-decoration: none;">
+                                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 1.25rem; border-radius: 0 0 12px 12px; margin-top: -10px; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                                    <div style="font-size: 0.7rem; color: #a0aec0; margin-bottom: 5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">
+                                        FUENTE: ELECONOMISTA.COM.AR ↗
+                                    </div>
+                                    <div style="color: #2b6cb0; font-weight: 600; font-size: 1.1rem;">
                                         Leer nota completa en el portal
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                        <br>
-                        """
-                        st.markdown(html_final, unsafe_allow_html=True)
-                    except:
-                        st.warning("No se pudo cargar la imagen. Verificá que el archivo se llame Link_elecon.png (con L mayúscula) en la carpeta data.")
+                            </a>
+                            <br><br>
+                            """, unsafe_allow_html=True)
+                    except Exception:
+                        st.warning("No se pudo cargar la imagen. Verificá que el archivo se llame Link_elecon.png en la carpeta data.")
         else:
             st.markdown(
                 textwrap.dedent(f"""
