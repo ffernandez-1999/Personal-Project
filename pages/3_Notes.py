@@ -271,7 +271,7 @@ NOTAS = [
     "tipo": "externo",
     "url": "https://eleconomista.com.ar/economia/la-economia-maximos-recaudacion-minimos-n93676",
     # ESTE ES EL LINK CORREGIDO (Raw):
-    "imagen": "https://raw.githubusercontent.com/ffernandez-1999/Personal-Project/main/data/link_elecon.png",
+    "imagen": "https://raw.githubusercontent.com/ffernandez-1999/Personal-Project/main/data/Link_elecon.png",
 },
 {
     "id": "nota-05",
@@ -555,7 +555,7 @@ with right:
                     # 2. Buscamos la ruta real del archivo
                     # Esto busca la carpeta 'data' en la raíz, subiendo un nivel desde 'pages'
                     root_path = os.path.dirname(os.path.dirname(__file__))
-                    img_path = os.path.join(root_path, "data", "link_elecon.png")
+                    img_path = os.path.join(root_path, "data", "Link_elecon.png")
         
                     # 3. Mostramos la imagen (con un try/except por si el nombre del archivo está mal)
                     try:
