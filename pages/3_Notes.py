@@ -541,34 +541,28 @@ with right:
                 )
 
         elif n["id"] == "nota-06":
-            # Usamos la URL raw de GitHub que ya definiste en tu diccionario NOTAS
-            img_url = n["imagen"] 
-            
-            st.markdown(
-                f"""
-                <div id="{n['id']}" class="note-anchor">
-                  <div class="note-h2">{n['titulo']}</div>
-                  <div class="note-meta">{n['fecha']}</div>
-                  
-                  <a href="{n['url']}" target="_blank" style="text-decoration:none; display:block; max-width:480px;">
-                    <div style="border:1px solid #e2e8f0; border-radius:12px; overflow:hidden; cursor:pointer; background:white; transition: transform 0.2s ease;">
-                      
-                      <img src="{img_url}" style="width:100%; display:block; aspect-ratio: 16/9; object-fit: cover;" />
-                      
-                      <div style="padding:1rem; border-top:1px solid #f0f0f0;">
-                        <div style="font-size:0.75rem; color:#a0aec0; margin-bottom:4px; text-transform: uppercase; letter-spacing: 0.5px;">
-                          eleconomista.com.ar · 28 mar 2026 ↗
-                        </div>
-                        <div style="font-size:1rem; font-weight:700; color:#2d3748; line-height:1.4;">
-                          {n['titulo']}
-                        </div>
-                      </div>
+                    # 1. Definimos las variables para que el HTML sea legible
+                    img_url = n["imagen"]
+                    url_nota = n["url"]
+                    titulo_nota = n["titulo"]
+                    fecha_nota = n["fecha"]
+        
+                    # 2. El HTML sin sangrías raras al principio para que no se rompa
+                    html_card = f"""
+        <div id="{n['id']}" style="margin-bottom: 2rem;">
+            <a href="{url_nota}" target="_blank" style="text-decoration: none; display: block; max-width: 450px;">
+                <div style="border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s;">
+                    <img src="{img_url}" style="width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover;" />
+                    <div style="padding: 1rem; border-top: 1px solid #f0f0f0;">
+                        <div style="font-size: 0.75rem; color: #a0aec0; margin-bottom: 4px; font-weight: 600;">ELECONOMISTA.COM.AR ↗</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: #2d3748; line-height: 1.4;">{titulo_nota}</div>
                     </div>
-                  </a>
                 </div>
-                """,
-                unsafe_allow_html=True,
-            )
+            </a>
+        </div>
+        """
+                    # 3. Renderizamos el HTML
+                    st.markdown(html_card, unsafe_allow_html=True)
         else:
             st.markdown(
                 textwrap.dedent(f"""
