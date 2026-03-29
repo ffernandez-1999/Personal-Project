@@ -270,6 +270,7 @@ NOTAS = [
     "fecha": "2026-03-28",
     "tipo": "externo",
     "url": "https://eleconomista.com.ar/economia/la-economia-maximos-recaudacion-minimos-n93676",
+    # ESTE ES EL LINK CORREGIDO (Raw):
     "imagen": "https://raw.githubusercontent.com/ffernandez-1999/Personal-Project/main/data/link_elecon.png",
 },
 {
@@ -547,17 +548,14 @@ with right:
                     fecha_nota = n["fecha"]
         
                     html_card = f"""
-        <div id="{n['id']}" style="margin-bottom: 2.5rem; scroll-margin-top: 2rem;">
+        <div id="{n['id']}" style="margin-bottom: 2.5rem;">
             <div style="font-size: 1.5rem; font-weight: 700; color: #1a202c; margin-bottom: 0.25rem;">{titulo_nota}</div>
             <div style="font-size: 0.875rem; color: #718096; margin-bottom: 1rem;">{fecha_nota}</div>
             <a href="{url_nota}" target="_blank" style="text-decoration: none; display: block; max-width: 450px;">
                 <div style="border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-                    <div style="width: 100%; height: 250px; background: #f7fafc;">
-                        <img src="{img_url}" style="width: 100%; height: 100%; object-fit: cover; display: block;" 
-                             onerror="this.parentElement.style.display='none';">
-                    </div>
+                    <img src="{img_url}" style="width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover;">
                     <div style="padding: 1.25rem; border-top: 1px solid #f0f0f0;">
-                        <div style="font-size: 0.7rem; color: #a0aec0; margin-bottom: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">
+                        <div style="font-size: 0.7rem; color: #a0aec0; margin-bottom: 6px; font-weight: 700; text-transform: uppercase;">
                             ELECONOMISTA.COM.AR ↗
                         </div>
                         <div style="font-size: 1.1rem; font-weight: 600; color: #2d3748; line-height: 1.4;">
