@@ -541,8 +541,9 @@ with right:
                 )
 
         elif n["id"] == "nota-06":
-            import base64
-            with open("data/link_elecon.png", "rb") as f:
+            import base64, os
+            img_path = os.path.join(os.path.dirname(__file__), "..", "data", "link_elecon.png")
+            with open(img_path, "rb") as f:
                 img_b64 = base64.b64encode(f.read()).decode()
             st.markdown(
                 f"""
