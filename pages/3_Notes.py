@@ -541,14 +541,17 @@ with right:
                 )
 
         elif n["id"] == "nota-06":
+            import base64
+            with open("data/link_elecon.png", "rb") as f:
+                img_b64 = base64.b64encode(f.read()).decode()
             st.markdown(
                 f"""
                 <div id="{n['id']}" class="note-anchor">
                   <div class="note-h2">{n['titulo']}</div>
                   <div class="note-meta">{n['fecha']}</div>
                   <a href="{n['url']}" target="_blank" style="text-decoration:none;display:block;max-width:480px;">
-                    <div style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;cursor:pointer;transition:box-shadow .2s;">
-                      <img src="{n['imagen']}" style="width:100%;display:block;" />
+                    <div style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;cursor:pointer;">
+                      <img src="data:image/png;base64,{img_b64}" style="width:100%;display:block;" />
                       <div style="padding:0.75rem 1rem;border-top:1px solid #f0f0f0;background:white;">
                         <div style="font-size:0.75rem;color:#a0aec0;margin-bottom:4px;">eleconomista.com.ar · 28 mar 2026 ↗</div>
                         <div style="font-size:0.95rem;font-weight:600;color:#1a1a1a;line-height:1.4;">La economía en máximos y la recaudación en mínimos</div>
@@ -564,7 +567,6 @@ with right:
                     '<div style="height:1px;background:#e2e8f0;margin:2rem 0;"></div>',
                     unsafe_allow_html=True,
                 )
-        
         else:
             st.markdown(
                 textwrap.dedent(f"""
