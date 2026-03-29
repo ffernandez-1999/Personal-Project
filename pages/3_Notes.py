@@ -270,7 +270,7 @@ NOTAS = [
     "fecha": "2026-03-28",
     "tipo": "externo",
     "url": "https://eleconomista.com.ar/economia/la-economia-maximos-recaudacion-minimos-n93676",
-    "imagen": "data/link_elecon.png",
+    "imagen": "https://raw.githubusercontent.com/ffernandez-1999/Personal-Project/main/data/link_elecon.png",
 },
 {
     "id": "nota-05",
