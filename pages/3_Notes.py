@@ -542,37 +542,49 @@ with right:
                 )
 
         elif n["id"] == "nota-06":
-                    import os
-                    
-                    # 1. Títulos
+                    import base64
+        
+                    # Función interna para convertir la imagen local a un formato que el HTML entienda
+                    def get_base64(bin_file):
+                        with open(bin_file, 'rb') as f:
+                            data = f.read()
+                        return base64.b64encode(data).decode()
+        
+                    # Títulos principales
                     st.markdown(f"""
                         <div id="{n['id']}" class="note-anchor">
                           <div class="note-h2">{n['titulo']}</div>
                           <div class="note-meta">{n['fecha']}</div>
                         </div>
                         """, unsafe_allow_html=True)
-                    
-                    # 2. Buscamos la ruta real del archivo
-                    # Esto busca la carpeta 'data' en la raíz, subiendo un nivel desde 'pages'
+        
+                    # Buscamos la ruta y la convertimos
                     root_path = os.path.dirname(os.path.dirname(__file__))
                     img_path = os.path.join(root_path, "data", "Link_elecon.png")
-        
-                    # 3. Mostramos la imagen (con un try/except por si el nombre del archivo está mal)
+                    
                     try:
-                        st.image(img_path, use_container_width=True)
-                    except:
-                        st.warning("No se pudo cargar la imagen. Verificá que el archivo se llame link_elecon.png en la carpeta data.")
-        
-                    # 4. Link a la nota
-                    st.markdown(f"""
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 1rem; border-radius: 8px; margin-top: 10px;">
-                            <div style="font-size: 0.75rem; color: #a0aec0; margin-bottom: 4px;">FUENTE: ELECONOMISTA.COM.AR</div>
-                            <a href="{n['url']}" target="_blank" style="color: #2b6cb0; font-weight: 600; text-decoration: none; font-size: 1.1rem;">
-                                Leer nota completa en el portal ↗
-                            </a>
-                        </div>
+                        img_base64 = get_base64(img_path)
+                        
+                        # HTML Unificado: Todo es clickeable
+                        html_final = f"""
+                        <a href="{n['url']}" target="_blank" style="text-decoration: none; color: inherit;">
+                            <div style="border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: white; transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                                <div style="padding: 10px 15px; background: #f8fafc; border-bottom: 1px solid #f0f0f0; font-size: 0.75rem; color: #a0aec0; font-weight: 700; text-transform: uppercase;">
+                                    FUENTE: ELECONOMISTA.COM.AR ↗
+                                </div>
+                                <img src="data:image/png;base64,{img_base64}" style="width: 100%; display: block;">
+                                <div style="padding: 1.25rem;">
+                                    <div style="color: #2b6cb0; font-weight: 600; font-size: 1.1rem; line-height: 1.4;">
+                                        Leer nota completa en el portal
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                         <br>
-                        """, unsafe_allow_html=True)
+                        """
+                        st.markdown(html_final, unsafe_allow_html=True)
+                    except:
+                        st.warning("No se pudo cargar la imagen. Verificá que el archivo se llame Link_elecon.png (con L mayúscula) en la carpeta data.")
         else:
             st.markdown(
                 textwrap.dedent(f"""
