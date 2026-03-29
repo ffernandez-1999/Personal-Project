@@ -542,31 +542,28 @@ with right:
                 )
 
         elif n["id"] == "nota-06":
-                    img_url = n["imagen"]
-                    url_nota = n["url"]
-                    titulo_nota = n["titulo"]
-                    fecha_nota = n["fecha"]
+                    # 1. Títulos y Metadatos en HTML
+                    st.markdown(f"""
+                        <div id="{n['id']}" class="note-anchor">
+                          <div class="note-h2">{n['titulo']}</div>
+                          <div class="note-meta">{n['fecha']}</div>
+                        </div>
+                        """, unsafe_allow_html=True)
+                    
+                    # 2. La imagen usando la función nativa de Streamlit (esto no falla)
+                    # Como estás en pages/3_Notes.py, subimos un nivel a la raíz y entramos a data/
+                    st.image("data/link_elecon.png", use_container_width=True)
         
-                    html_card = f"""
-        <div id="{n['id']}" style="margin-bottom: 2.5rem;">
-            <div style="font-size: 1.5rem; font-weight: 700; color: #1a202c; margin-bottom: 0.25rem;">{titulo_nota}</div>
-            <div style="font-size: 0.875rem; color: #718096; margin-bottom: 1rem;">{fecha_nota}</div>
-            <a href="{url_nota}" target="_blank" style="text-decoration: none; display: block; max-width: 450px;">
-                <div style="border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-                    <img src="{img_url}" style="width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover;">
-                    <div style="padding: 1.25rem; border-top: 1px solid #f0f0f0;">
-                        <div style="font-size: 0.7rem; color: #a0aec0; margin-bottom: 6px; font-weight: 700; text-transform: uppercase;">
-                            ELECONOMISTA.COM.AR ↗
+                    # 3. El link a la nota como un botón o texto destacado
+                    st.markdown(f"""
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 1rem; border-radius: 8px; margin-top: -10px;">
+                            <div style="font-size: 0.75rem; color: #a0aec0; margin-bottom: 4px;">FUENTE: ELECONOMISTA.COM.AR</div>
+                            <a href="{n['url']}" target="_blank" style="color: #2b6cb0; font-weight: 600; text-decoration: none; font-size: 1.1rem;">
+                                Leer nota completa en el portal ↗
+                            </a>
                         </div>
-                        <div style="font-size: 1.1rem; font-weight: 600; color: #2d3748; line-height: 1.4;">
-                            {titulo_nota}
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        """
-                    st.markdown(html_card, unsafe_allow_html=True)
+                        <br>
+                        """, unsafe_allow_html=True)
         else:
             st.markdown(
                 textwrap.dedent(f"""
