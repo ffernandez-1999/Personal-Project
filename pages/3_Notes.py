@@ -541,27 +541,33 @@ with right:
                 )
 
         elif n["id"] == "nota-06":
-                    # 1. Definimos las variables para que el HTML sea legible
                     img_url = n["imagen"]
                     url_nota = n["url"]
                     titulo_nota = n["titulo"]
                     fecha_nota = n["fecha"]
         
-                    # 2. El HTML sin sangrías raras al principio para que no se rompa
                     html_card = f"""
-        <div id="{n['id']}" style="margin-bottom: 2rem;">
+        <div id="{n['id']}" style="margin-bottom: 2.5rem; scroll-margin-top: 2rem;">
+            <div style="font-size: 1.5rem; font-weight: 700; color: #1a202c; margin-bottom: 0.25rem;">{titulo_nota}</div>
+            <div style="font-size: 0.875rem; color: #718096; margin-bottom: 1rem;">{fecha_nota}</div>
             <a href="{url_nota}" target="_blank" style="text-decoration: none; display: block; max-width: 450px;">
-                <div style="border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s;">
-                    <img src="{img_url}" style="width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover;" />
-                    <div style="padding: 1rem; border-top: 1px solid #f0f0f0;">
-                        <div style="font-size: 0.75rem; color: #a0aec0; margin-bottom: 4px; font-weight: 600;">ELECONOMISTA.COM.AR ↗</div>
-                        <div style="font-size: 1rem; font-weight: 600; color: #2d3748; line-height: 1.4;">{titulo_nota}</div>
+                <div style="border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                    <div style="width: 100%; height: 250px; background: #f7fafc;">
+                        <img src="{img_url}" style="width: 100%; height: 100%; object-fit: cover; display: block;" 
+                             onerror="this.parentElement.style.display='none';">
+                    </div>
+                    <div style="padding: 1.25rem; border-top: 1px solid #f0f0f0;">
+                        <div style="font-size: 0.7rem; color: #a0aec0; margin-bottom: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">
+                            ELECONOMISTA.COM.AR ↗
+                        </div>
+                        <div style="font-size: 1.1rem; font-weight: 600; color: #2d3748; line-height: 1.4;">
+                            {titulo_nota}
+                        </div>
                     </div>
                 </div>
             </a>
         </div>
         """
-                    # 3. Renderizamos el HTML
                     st.markdown(html_card, unsafe_allow_html=True)
         else:
             st.markdown(
