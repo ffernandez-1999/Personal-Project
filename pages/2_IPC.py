@@ -554,7 +554,7 @@ if not common.empty:
             marker=dict(size=6, color="#9AE6B4"),
             line=dict(width=2.5, color="#9AE6B4"),
             name="IPC",
-            hovertemplate="IPC: %{y:.2f}%<extra></extra>",
+            hovertemplate="%{y:.1f}%<extra></extra>",
         )
     )
 
@@ -566,7 +566,7 @@ if not common.empty:
             marker=dict(size=6, color="#3b82f6"),
             line=dict(width=2.5, color="#3b82f6"),
             name=f"IPCA (ENGHo 2017/18) - Base {base_year}",
-            hovertemplate="IPCA: %{y:.2f}%<extra></extra>",
+            hovertemplate="%{y:.1f}%<extra></extra>",
         )
     )
 
@@ -585,7 +585,17 @@ fig.update_layout(
     plot_bgcolor="#ffffff",
     paper_bgcolor="#ffffff",
     font=dict(family="Lato", color="#1a1a1a"),
-    xaxis=dict(gridcolor="#e2e8f0", showgrid=True, linecolor="#cbd5e0"),
+    xaxis=dict(
+        gridcolor="#e2e8f0",
+        showgrid=True,
+        linecolor="#cbd5e0",
+    
+        showspikes=True,
+        spikecolor="#9ca3af",
+        spikethickness=1,
+        spikedash="dot",
+        spikemode="across",
+    ),
     yaxis=dict(
         title="Variación %",
         title_font=dict(size=12, family="Lato"),
